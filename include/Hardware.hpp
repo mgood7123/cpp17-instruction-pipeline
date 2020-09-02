@@ -236,7 +236,6 @@ struct Hardware {
     }
     
     void run(const std::string & id, T input) {
-        // TODO: upgrade to Component types
         Wire<T> * start = find_wire(id);
         start->push(std::move(input));
         T && copy = std::move(start->pull());
