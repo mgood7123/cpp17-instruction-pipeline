@@ -76,15 +76,27 @@ TEST_F(Hardware_Core, added_wires_has_expected_values) {
 }
 
 TEST_F(Hardware_Core_With_Wires, can_find_wire) {
-    ASSERT_NE(hardware.find_wire("A"), nullptr);
+    Wire<int> * wire = hardware.find_wire("A");
+    ASSERT_NE(wire, nullptr);
+    ASSERT_STREQ(wire->id.c_str(), "A");
+    ASSERT_EQ(wire->outputs.size(), 0);
+    ASSERT_EQ(wire->data.input->size(), 0);
+    ASSERT_EQ(wire->data.output->size(), 0);
+}
+
+TEST_F(Hardware_Core_With_Wires, wire_can_store_data) {
+    Wire<int> * wire = hardware.find_wire("A");
+    wire->push(std::move(5));
+    ASSERT_EQ(wire->data.input->size(), 0);
+    ASSERT_EQ(wire->data.output->size(), 1);
 }
 
 TEST_F(Hardware_Core_With_Wires, can_connect_wire_to_another_wire) {
     hardware.connectWires("A", "B");
-    Wire<int> & wire = std::any_cast<Wire<int>&>(hardware.components[0].component);
-    ASSERT_EQ(wire.outputs.size(), 1);
-    ASSERT_EQ(wire.data.input->size(), 0);
-    ASSERT_EQ(wire.data.output->size(), 0);
+    Wire<int> * wire = hardware.find_wire("A");
+    ASSERT_EQ(wire->outputs.size(), 1);
+    ASSERT_EQ(wire->data.input->size(), 0);
+    ASSERT_EQ(wire->data.output->size(), 0);
 }
 
 //     hardware.connectWires("A", "C");
