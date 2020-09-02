@@ -238,26 +238,13 @@ struct Hardware {
     void run(const std::string & id, T input) {
         // TODO: upgrade to Component types
         Wire<T> * start = find_wire(id);
-        CHECK_NE(start, nullptr);
         start->push(std::move(input));
         T && copy = std::move(start->pull());
-        CHECK_EQ(copy, input);
-        HardwarePrint << HardwarePrintModifiersPrintValue(copy);
-        HardwarePrint << HardwarePrintModifiersPrintValue(input);
-        HardwarePrint << HardwarePrintModifiersPrintValue(start->outputs);
         if (!start->outputs.empty()) {
             for (std::string & out_id : start->outputs) {
-                HardwarePrint << HardwarePrintModifiersPrintValue(out_id);
                 Wire<T> * out = find_wire(out_id);
                 CHECK_NE(out, nullptr);
                 out->push(copy);
-                {
-                    T && output = std::move(out->pull());
-                    CHECK_EQ(output, input);
-                    HardwarePrint << HardwarePrintModifiersPrintValue(copy);
-                    HardwarePrint << HardwarePrintModifiersPrintValue(output);
-                    HardwarePrint << HardwarePrintModifiersPrintValue(input);
-                }
             }
         }
     }

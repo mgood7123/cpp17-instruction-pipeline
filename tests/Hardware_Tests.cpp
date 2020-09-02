@@ -99,8 +99,22 @@ TEST_F(Hardware_Core_With_Wires, can_connect_wire_to_another_wire) {
     ASSERT_EQ(wire->data.output->size(), 0);
 }
 
-//     hardware.connectWires("A", "C");
-//     hardware.run("A", 1);
+TEST_F(Hardware_Core_With_Wires, can_send_data_from_one_wire_to_another_wire) {
+    hardware.connectWires("A", "B");
+    hardware.run("A", 1);
+    Wire<int> * wire1 = hardware.find_wire("A");
+    ASSERT_EQ(wire1->outputs.size(), 1);
+    ASSERT_EQ(wire1->data.input->size(), 0);
+    ASSERT_EQ(wire1->data.output->size(), 0);
+    Wire<int> * wire2 = hardware.find_wire("B");
+    ASSERT_EQ(wire2->outputs.size(), 0);
+    ASSERT_EQ(wire2->data.input->size(), 0);
+    ASSERT_EQ(wire2->data.output->size(), 1);
+    int && output = std::move(wire2->pull());
+    ASSERT_EQ(wire2->data.output->size(), 0);
+    ASSERT_EQ(output, 1);
+}
+
 // TEST(Hardware_Core, initialization_AnyNullOpt_no_data_checking) {
 //     Hardware a = AnyNullOpt;
 // }
