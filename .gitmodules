@@ -1,0 +1,9 @@
+[submodule "dependancies/taskflow"]
+	path = dependancies/taskflow
+	url = https://github.com/taskflow/taskflow
+[submodule "dependancies/SPSCQueue"]
+	path = dependancies/SPSCQueue
+	url = https://github.com/rigtorp/SPSCQueue/
+[submodule "dependancies/easyloggingpp"]
+	path = dependancies/easyloggingpp
+	url = https://github.com/mgood7123/easyloggingpp/

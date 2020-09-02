@@ -152,6 +152,16 @@ TEST_F(Hardware_Core_With_Wires, can_send_data_from_one_wire_to_multiple_wires) 
     ASSERT_EQ(output2, 1);
 }
 
+TEST_F(Hardware_Core_With_Wires, invalid_connection) {
+    ASSERT_DEATH(
+            {
+                hardware.connectWires("A", "F");
+                hardware.run("A", 1);
+            },
+            ".*wire does not exist: F"
+     );
+}
+
 // TEST(Hardware_Core, initialization_AnyNullOpt_no_data_checking) {
 //     Hardware a = AnyNullOpt;
 // }

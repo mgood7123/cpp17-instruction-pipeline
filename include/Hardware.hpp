@@ -231,7 +231,7 @@ struct Hardware {
     void connectWires(const std::string & wire_1, const std::string & wire_2) {
         Wire<T> * in = find_wire(wire_1);
         CHECK_NE(in, nullptr);
-        CHECK_NE(find_wire(wire_2), nullptr);
+        CHECK_NE(find_wire(wire_2), nullptr) << "wire does not exist: " << wire_2;
         in->outputs.push_back(wire_2);
     }
     
@@ -242,7 +242,6 @@ struct Hardware {
         if (!start->outputs.empty()) {
             for (std::string & out_id : start->outputs) {
                 Wire<T> * out = find_wire(out_id);
-                CHECK_NE(out, nullptr);
                 out->push(copy);
             }
         }
