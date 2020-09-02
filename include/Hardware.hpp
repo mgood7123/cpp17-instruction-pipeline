@@ -228,30 +228,44 @@ struct Hardware {
         return std::nullopt;
     }
     
-    std::optional<std::reference_wrapper<Wire<T>>> find_wire(const std::string & id) {
-        auto component = find_component(id);
+    template<template<typename Unused> class Type>
+    std::optional<std::reference_wrapper<Type<T>>> component_cast(std::optional<std::reference_wrapper<Component>> component) {
         if (component.has_value()) {
-            Wire<T> & wire = std::any_cast<Wire<T>&>(component.value().get().component);
-            return std::optional<std::reference_wrapper<Wire<T>>>(wire);
+            Type<T> & type = std::any_cast<Type<T> &>(component.value().get().component);
+            return std::optional<std::reference_wrapper<Type<T>>>(type);
         }
         return std::nullopt;
     }
     
+    template<template<typename Unused> class Type>
+    Type<T> & component_get(std::optional<std::reference_wrapper<Component>> component) {
+        return std::any_cast<Type<T> &>(component.value().get().component);
+    }
+
+    template<template<typename Unused> class Type>
+    Type<T> & component_get(std::optional<std::reference_wrapper<Type<T>>> component) {
+        return component.value().get();
+    }
+    
+    template<template<typename Unused> class Type>
+    Type<T> & component_get(const std::string & component_name) {
+        return component_get<Type>(find_component(component_name));
+    }
+
     void connectWires(const std::string & wire_1, const std::string & wire_2) {
-        std::optional<std::reference_wrapper<Wire<T>>> in = find_wire(wire_1);
-        CHECK_EQ(in.has_value(), true) << "wire does not exist: " << wire_1;
-        CHECK_EQ(find_wire(wire_2).has_value(), true) << "wire does not exist: " << wire_2;
-        in.value().get().outputs.push_back(wire_2);
+        Wire<T> & in = component_get<Wire>(wire_1);
+        CHECK_EQ(find_component(wire_2).has_value(), true) << "wire does not exist: " << wire_2;
+        in.outputs.push_back(wire_2);
     }
     
     void run(const std::string & id, T input) {
-        std::optional<std::reference_wrapper<Wire<T>>> start = find_wire(id);
-        start.value().get().push(std::move(input));
-        T && copy = std::move(start.value().get().pull());
-        if (!start.value().get().outputs.empty()) {
-            for (std::string & out_id : start.value().get().outputs) {
-                std::optional<std::reference_wrapper<Wire<T>>> out = find_wire(out_id);
-                out.value().get().push(copy);
+        Wire<T> & start = component_get<Wire>(id);
+        start.push(std::move(input));
+        T && copy = std::move(start.pull());
+        if (!start.outputs.empty()) {
+            for (std::string & out_id : start.outputs) {
+                Wire<T> & out = component_get<Wire>(out_id);
+                out.push(copy);
             }
         }
     }

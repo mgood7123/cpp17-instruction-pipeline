@@ -405,3 +405,35 @@
 2020-09-02 18:04:39,707 WARNING [default] Aborting application. Reason: Fatal log at [/home/smallville7123/AndroidCompositor/app/src/main/jni/GLIS/dependancies/pipeline/include/Hardware.hpp:234]
 2020-09-02 19:14:53,851 FATAL [default] Check failed: [find_wire(wire_2).has_value() == true] wire does not exist: F
 2020-09-02 19:14:53,852 WARNING [default] Aborting application. Reason: Fatal log at [/home/smallville7123/AndroidCompositor/app/src/main/jni/GLIS/dependancies/pipeline/include/Hardware.hpp:243]
+2020-09-02 21:10:47,104 FATAL [default] Check failed: [find_wire(wire_2).has_value() == true] wire does not exist: F
+2020-09-02 21:10:47,105 WARNING [default] Aborting application. Reason: Fatal log at [/home/smallville7123/AndroidCompositor/app/src/main/jni/GLIS/dependancies/pipeline/include/Hardware.hpp:247]
+2020-09-02 21:12:09,019 FATAL [default] Check failed: [find_wire(wire_2).has_value() == true] wire does not exist: F
+2020-09-02 21:12:09,019 WARNING [default] Aborting application. Reason: Fatal log at [/home/smallville7123/AndroidCompositor/app/src/main/jni/GLIS/dependancies/pipeline/include/Hardware.hpp:247]
+2020-09-02 21:19:29,397 FATAL [default] Check failed: [find_wire(wire_2).has_value() == true] wire does not exist: F
+2020-09-02 21:19:29,397 WARNING [default] Aborting application. Reason: Fatal log at [/home/smallville7123/AndroidCompositor/app/src/main/jni/GLIS/dependancies/pipeline/include/Hardware.hpp:257]
+2020-09-02 21:34:54,351 FATAL [default] Check failed: [component_cast<Wire>(find_component(wire_2)).has_value() == true] wire does not exist: F
+2020-09-02 21:34:54,351 WARNING [default] Aborting application. Reason: Fatal log at [/home/smallville7123/AndroidCompositor/app/src/main/jni/GLIS/dependancies/pipeline/include/Hardware.hpp:253]
+2020-09-02 21:39:56,733 FATAL [default] Check failed: [find_component(wire_2).has_value() == true] wire does not exist: F
+2020-09-02 21:39:56,733 WARNING [default] Aborting application. Reason: Fatal log at [/home/smallville7123/AndroidCompositor/app/src/main/jni/GLIS/dependancies/pipeline/include/Hardware.hpp:252]
+2020-09-02 21:47:31,397 FATAL [default] Check failed: [find_component(wire_2).has_value() == true] wire does not exist: F
+2020-09-02 21:47:31,398 WARNING [default] Aborting application. Reason: Fatal log at [/home/smallville7123/AndroidCompositor/app/src/main/jni/GLIS/dependancies/pipeline/include/Hardware.hpp:257]
+2020-09-02 21:53:45,958 FATAL [default] Check failed: [find_component(wire_2).has_value() == true] wire does not exist: F
+2020-09-02 21:53:45,958 WARNING [default] Aborting application. Reason: Fatal log at [/home/smallville7123/AndroidCompositor/app/src/main/jni/GLIS/dependancies/pipeline/include/Hardware.hpp:257]
+2020-09-02 21:55:22,455 FATAL [default] Check failed: [find_component(wire_2).has_value() == true] wire does not exist: F
+2020-09-02 21:55:22,456 WARNING [default] Aborting application. Reason: Fatal log at [/home/smallville7123/AndroidCompositor/app/src/main/jni/GLIS/dependancies/pipeline/include/Hardware.hpp:257]
+2020-09-02 21:58:13,966 FATAL [default] Check failed: [find_component(wire_2).has_value() == true] wire does not exist: F
+2020-09-02 21:58:13,967 WARNING [default] Aborting application. Reason: Fatal log at [/home/smallville7123/AndroidCompositor/app/src/main/jni/GLIS/dependancies/pipeline/include/Hardware.hpp:257]
+2020-09-02 21:58:39,023 FATAL [default] Check failed: [find_component(wire_2).has_value() == true] wire does not exist: F
+2020-09-02 21:58:39,023 WARNING [default] Aborting application. Reason: Fatal log at [/home/smallville7123/AndroidCompositor/app/src/main/jni/GLIS/dependancies/pipeline/include/Hardware.hpp:257]
+2020-09-02 21:58:50,007 FATAL [default] Check failed: [find_component(wire_2).has_value() == true] wire does not exist: F
+2020-09-02 21:58:50,008 WARNING [default] Aborting application. Reason: Fatal log at [/home/smallville7123/AndroidCompositor/app/src/main/jni/GLIS/dependancies/pipeline/include/Hardware.hpp:257]
+2020-09-02 21:59:03,774 FATAL [default] Check failed: [find_component(wire_2).has_value() == true] wire does not exist: F
+2020-09-02 21:59:03,774 WARNING [default] Aborting application. Reason: Fatal log at [/home/smallville7123/AndroidCompositor/app/src/main/jni/GLIS/dependancies/pipeline/include/Hardware.hpp:257]
+2020-09-02 21:59:18,235 FATAL [default] Check failed: [find_component(wire_2).has_value() == true] wire does not exist: F
+2020-09-02 21:59:18,236 WARNING [default] Aborting application. Reason: Fatal log at [/home/smallville7123/AndroidCompositor/app/src/main/jni/GLIS/dependancies/pipeline/include/Hardware.hpp:257]
+2020-09-02 21:59:35,803 FATAL [default] Check failed: [find_component(wire_2).has_value() == true] wire does not exist: F
+2020-09-02 21:59:35,803 WARNING [default] Aborting application. Reason: Fatal log at [/home/smallville7123/AndroidCompositor/app/src/main/jni/GLIS/dependancies/pipeline/include/Hardware.hpp:257]
+2020-09-02 22:05:29,333 FATAL [default] Check failed: [find_component(wire_2).has_value() == true] wire does not exist: F
+2020-09-02 22:05:29,333 WARNING [default] Aborting application. Reason: Fatal log at [/home/smallville7123/AndroidCompositor/app/src/main/jni/GLIS/dependancies/pipeline/include/Hardware.hpp:257]
+2020-09-02 22:05:49,036 FATAL [default] Check failed: [find_component(wire_2).has_value() == true] wire does not exist: F
+2020-09-02 22:05:49,036 WARNING [default] Aborting application. Reason: Fatal log at [/home/smallville7123/AndroidCompositor/app/src/main/jni/GLIS/dependancies/pipeline/include/Hardware.hpp:257]
