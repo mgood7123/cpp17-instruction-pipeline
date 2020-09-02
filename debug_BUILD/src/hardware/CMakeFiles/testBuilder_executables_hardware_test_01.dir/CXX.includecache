@@ -169,6 +169,6 @@ rigtorp/SPSCQueue.h
 -
 deque
 -
-variant
+any
 -
 

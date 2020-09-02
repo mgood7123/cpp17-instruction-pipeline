@@ -3,7 +3,7 @@
 INITIALIZE_EASYLOGGINGPP
 #include <rigtorp/SPSCQueue.h>
 #include <deque>
-#include <variant>
+#include <any>
 
 #define HardwarePrintModifiersPrintValue(value) #value << ": " << value
 #define HardwarePrintModifiersAlphaBool(boolean) #boolean << ": " << (boolean ? "true" : "false")
@@ -182,9 +182,10 @@ struct ComponentTypes {
     static const int Wire = 0;
 };
 
+template <typename T>
 struct Component {
     int type = ComponentTypes::Undefined;
-    std::variant<std::monostate, Wire> component;
+    std::any component;
 };
 
 template <typename T>
