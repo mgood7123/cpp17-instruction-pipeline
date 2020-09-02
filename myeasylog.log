@@ -399,3 +399,5 @@
 2020-09-02 17:25:11,386 WARNING [default] Aborting application. Reason: Fatal log at [/home/smallville7123/AndroidCompositor/app/src/main/jni/GLIS/dependancies/pipeline/include/Hardware.hpp:234]
 2020-09-02 17:29:43,937 FATAL [default] Check failed: [find_wire(wire_2) != nullptr] wire does not exist: F
 2020-09-02 17:29:43,938 WARNING [default] Aborting application. Reason: Fatal log at [/home/smallville7123/AndroidCompositor/app/src/main/jni/GLIS/dependancies/pipeline/include/Hardware.hpp:234]
+2020-09-02 18:03:13,164 FATAL [default] Check failed: [find_wire(wire_2) != nullptr] wire does not exist: F
+2020-09-02 18:03:13,165 WARNING [default] Aborting application. Reason: Fatal log at [/home/smallville7123/AndroidCompositor/app/src/main/jni/GLIS/dependancies/pipeline/include/Hardware.hpp:234]
