@@ -10,6 +10,14 @@ INITIALIZE_EASYLOGGINGPP
 #define HardwarePrint CLOG(INFO, "hardware")
 #define HardwarePrintIf(condition) CLOG_IF(condition, INFO, "hardware")
 
+// this is based on Digital Design and Computer Architecture 2nd edition
+// Chapter 7 . 3 . 1 - Single-Cycle Datapath
+
+// NOTE: for scematical reasons, i am unable to determine if PC in figure 7.2
+//       if a Register hardware or a Counter circuit hardware
+//       as the schematics for both are exactly the same except in 7.2
+//       it is missing the reset wire tho it is the closest i can find
+
 template <typename T, int CAPACITY = 1>
 struct Flop {
     rigtorp::SPSCQueue<T> * input = nullptr;
