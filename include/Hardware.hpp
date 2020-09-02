@@ -213,7 +213,7 @@ struct Hardware {
         components.push_back(Component(ComponentTypes::Wire, std::move(Wire<T>(wireName))));
     }
     
-    Wire<T> * findWire(const std::string & id) {
+    Wire<T> * find_wire(const std::string & id) {
         const char * wire_id = id.c_str();
         const size_t wire_id_length = id.length();
         for (Component & component : components) {
@@ -229,15 +229,15 @@ struct Hardware {
     }
     
     void connectWires(const std::string & wire_1, const std::string & wire_2) {
-        Wire<T> * in = findWire(wire_1);
+        Wire<T> * in = find_wire(wire_1);
         CHECK_NE(in, nullptr);
-        CHECK_NE(findWire(wire_2), nullptr);
+        CHECK_NE(find_wire(wire_2), nullptr);
         in->outputs.push_back(wire_2);
     }
     
     void run(const std::string & id, T input) {
         // TODO: upgrade to Component types
-        Wire<T> * start = findWire(id);
+        Wire<T> * start = find_wire(id);
         CHECK_NE(start, nullptr);
         start->push(std::move(input));
         T && copy = std::move(start->pull());
@@ -248,7 +248,7 @@ struct Hardware {
         if (!start->outputs.empty()) {
             for (std::string & out_id : start->outputs) {
                 HardwarePrint << HardwarePrintModifiersPrintValue(out_id);
-                Wire<T> * out = findWire(out_id);
+                Wire<T> * out = find_wire(out_id);
                 CHECK_NE(out, nullptr);
                 out->push(copy);
                 {

@@ -36,7 +36,6 @@ TEST_F(Hardware_Core, initialization_contains_expected_values) {
 TEST_F(Hardware_Core, can_add_wire) {
     hardware.addWire("A");
     ASSERT_EQ(hardware.components.size(), 1);
-    ASSERT_EQ(hardware.components.size(), 1);
 }
 
 TEST_F(Hardware_Core, added_wire_has_expected_values) {
@@ -50,8 +49,42 @@ TEST_F(Hardware_Core, added_wire_has_expected_values) {
     ASSERT_EQ(wire.data.output->size(), 0);
 }
 
+TEST_F(Hardware_Core, can_add_multiple_wires) {
+    hardware.addWire("A");
+    hardware.addWire("B");
+    ASSERT_EQ(hardware.components.size(), 2);
+}
+
+TEST_F(Hardware_Core, added_wires_has_expected_values) {
+    hardware.addWire("A");
+    hardware.addWire("B");
+    ASSERT_EQ(hardware.components.size(), 2);
+    
+    ASSERT_EQ(hardware.components[0].type, ComponentTypes::Wire);
+    Wire<int> & wire1 = std::any_cast<Wire<int>&>(hardware.components[0].component);
+    ASSERT_STREQ(wire1.id.c_str(), "A");
+    ASSERT_EQ(wire1.outputs.size(), 0);
+    ASSERT_EQ(wire1.data.input->size(), 0);
+    ASSERT_EQ(wire1.data.output->size(), 0);
+    
+    ASSERT_EQ(hardware.components[1].type, ComponentTypes::Wire);
+    Wire<int> & wire2 = std::any_cast<Wire<int>&>(hardware.components[1].component);
+    ASSERT_STREQ(wire2.id.c_str(), "B");
+    ASSERT_EQ(wire2.outputs.size(), 0);
+    ASSERT_EQ(wire2.data.input->size(), 0);
+    ASSERT_EQ(wire2.data.output->size(), 0);
+}
+
+TEST_F(Hardware_Core_With_Wires, can_find_wire) {
+    ASSERT_NE(hardware.find_wire("A"), nullptr);
+}
+
 TEST_F(Hardware_Core_With_Wires, can_connect_wire_to_another_wire) {
     hardware.connectWires("A", "B");
+    Wire<int> & wire = std::any_cast<Wire<int>&>(hardware.components[0].component);
+    ASSERT_EQ(wire.outputs.size(), 1);
+    ASSERT_EQ(wire.data.input->size(), 0);
+    ASSERT_EQ(wire.data.output->size(), 0);
 }
 
 //     hardware.connectWires("A", "C");
