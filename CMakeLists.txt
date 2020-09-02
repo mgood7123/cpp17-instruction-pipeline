@@ -37,6 +37,7 @@ testBuilder_build_shared_library(easyloggingpp)
 
 include_directories(dependancies/SPSCQueue/include)
 
-add_subdirectory(src)
+# add_subdirectory(src)
+add_subdirectory(tests)
 
 set(Pipeline_INCLUDE ${CMAKE_CURRENT_SOURCE_DIR}/include PARENT_SCOPE)

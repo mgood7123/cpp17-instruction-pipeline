@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/smallville7123/AndroidCompositor/app/src/main/jni/GLIS/dependancies/pipeline/src/hardware/hardware.cpp" "/home/smallville7123/AndroidCompositor/app/src/main/jni/GLIS/dependancies/pipeline/debug_BUILD/src/hardware/CMakeFiles/testBuilder_executables_hardware_test_01.dir/hardware.cpp.o"
+  "/home/smallville7123/AndroidCompositor/app/src/main/jni/GLIS/dependancies/pipeline/tests/Hardware_Tests.cpp" "/home/smallville7123/AndroidCompositor/app/src/main/jni/GLIS/dependancies/pipeline/debug_BUILD/tests/CMakeFiles/testBuilder_executables_Hardware_Tests.dir/Hardware_Tests.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

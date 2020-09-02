@@ -126,14 +126,14 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/smallville7123/AndroidCompositor/app/src/main/jni/GLIS/dependancies/pipeline/debug_BUILD && $(CMAKE_COMMAND) -E cmake_progress_start /home/smallville7123/AndroidCompositor/app/src/main/jni/GLIS/dependancies/pipeline/debug_BUILD/CMakeFiles /home/smallville7123/AndroidCompositor/app/src/main/jni/GLIS/dependancies/pipeline/debug_BUILD/src/CMakeFiles/progress.marks
-	cd /home/smallville7123/AndroidCompositor/app/src/main/jni/GLIS/dependancies/pipeline/debug_BUILD && $(MAKE) -f CMakeFiles/Makefile2 src/all
+	cd /home/smallville7123/AndroidCompositor/app/src/main/jni/GLIS/dependancies/pipeline/debug_BUILD && $(CMAKE_COMMAND) -E cmake_progress_start /home/smallville7123/AndroidCompositor/app/src/main/jni/GLIS/dependancies/pipeline/debug_BUILD/CMakeFiles /home/smallville7123/AndroidCompositor/app/src/main/jni/GLIS/dependancies/pipeline/debug_BUILD/tests/CMakeFiles/progress.marks
+	cd /home/smallville7123/AndroidCompositor/app/src/main/jni/GLIS/dependancies/pipeline/debug_BUILD && $(MAKE) -f CMakeFiles/Makefile2 tests/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/smallville7123/AndroidCompositor/app/src/main/jni/GLIS/dependancies/pipeline/debug_BUILD/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/smallville7123/AndroidCompositor/app/src/main/jni/GLIS/dependancies/pipeline/debug_BUILD && $(MAKE) -f CMakeFiles/Makefile2 src/clean
+	cd /home/smallville7123/AndroidCompositor/app/src/main/jni/GLIS/dependancies/pipeline/debug_BUILD && $(MAKE) -f CMakeFiles/Makefile2 tests/clean
 .PHONY : clean
 
 # The main clean target
@@ -143,18 +143,60 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/smallville7123/AndroidCompositor/app/src/main/jni/GLIS/dependancies/pipeline/debug_BUILD && $(MAKE) -f CMakeFiles/Makefile2 src/preinstall
+	cd /home/smallville7123/AndroidCompositor/app/src/main/jni/GLIS/dependancies/pipeline/debug_BUILD && $(MAKE) -f CMakeFiles/Makefile2 tests/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/smallville7123/AndroidCompositor/app/src/main/jni/GLIS/dependancies/pipeline/debug_BUILD && $(MAKE) -f CMakeFiles/Makefile2 src/preinstall
+	cd /home/smallville7123/AndroidCompositor/app/src/main/jni/GLIS/dependancies/pipeline/debug_BUILD && $(MAKE) -f CMakeFiles/Makefile2 tests/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
 	cd /home/smallville7123/AndroidCompositor/app/src/main/jni/GLIS/dependancies/pipeline/debug_BUILD && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
+
+# Convenience name for target.
+tests/CMakeFiles/testBuilder_executables_Hardware_Tests.dir/rule:
+	cd /home/smallville7123/AndroidCompositor/app/src/main/jni/GLIS/dependancies/pipeline/debug_BUILD && $(MAKE) -f CMakeFiles/Makefile2 tests/CMakeFiles/testBuilder_executables_Hardware_Tests.dir/rule
+.PHONY : tests/CMakeFiles/testBuilder_executables_Hardware_Tests.dir/rule
+
+# Convenience name for target.
+testBuilder_executables_Hardware_Tests: tests/CMakeFiles/testBuilder_executables_Hardware_Tests.dir/rule
+
+.PHONY : testBuilder_executables_Hardware_Tests
+
+# fast build rule for target.
+testBuilder_executables_Hardware_Tests/fast:
+	cd /home/smallville7123/AndroidCompositor/app/src/main/jni/GLIS/dependancies/pipeline/debug_BUILD && $(MAKE) -f tests/CMakeFiles/testBuilder_executables_Hardware_Tests.dir/build.make tests/CMakeFiles/testBuilder_executables_Hardware_Tests.dir/build
+.PHONY : testBuilder_executables_Hardware_Tests/fast
+
+Hardware_Tests.o: Hardware_Tests.cpp.o
+
+.PHONY : Hardware_Tests.o
+
+# target to build an object file
+Hardware_Tests.cpp.o:
+	cd /home/smallville7123/AndroidCompositor/app/src/main/jni/GLIS/dependancies/pipeline/debug_BUILD && $(MAKE) -f tests/CMakeFiles/testBuilder_executables_Hardware_Tests.dir/build.make tests/CMakeFiles/testBuilder_executables_Hardware_Tests.dir/Hardware_Tests.cpp.o
+.PHONY : Hardware_Tests.cpp.o
+
+Hardware_Tests.i: Hardware_Tests.cpp.i
+
+.PHONY : Hardware_Tests.i
+
+# target to preprocess a source file
+Hardware_Tests.cpp.i:
+	cd /home/smallville7123/AndroidCompositor/app/src/main/jni/GLIS/dependancies/pipeline/debug_BUILD && $(MAKE) -f tests/CMakeFiles/testBuilder_executables_Hardware_Tests.dir/build.make tests/CMakeFiles/testBuilder_executables_Hardware_Tests.dir/Hardware_Tests.cpp.i
+.PHONY : Hardware_Tests.cpp.i
+
+Hardware_Tests.s: Hardware_Tests.cpp.s
+
+.PHONY : Hardware_Tests.s
+
+# target to generate assembly for a file
+Hardware_Tests.cpp.s:
+	cd /home/smallville7123/AndroidCompositor/app/src/main/jni/GLIS/dependancies/pipeline/debug_BUILD && $(MAKE) -f tests/CMakeFiles/testBuilder_executables_Hardware_Tests.dir/build.make tests/CMakeFiles/testBuilder_executables_Hardware_Tests.dir/Hardware_Tests.cpp.s
+.PHONY : Hardware_Tests.cpp.s
 
 # Help Target
 help:
@@ -168,6 +210,10 @@ help:
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... testBuilder_executables_Hardware_Tests"
+	@echo "... Hardware_Tests.o"
+	@echo "... Hardware_Tests.i"
+	@echo "... Hardware_Tests.s"
 .PHONY : help
 
 

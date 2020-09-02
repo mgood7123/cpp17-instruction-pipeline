@@ -262,14 +262,3 @@ struct Hardware {
         }
     }
 };
-
-int main() {
-    Hardware<bool> hardware;
-    hardware.addWire("A");
-    hardware.addWire("B");
-    hardware.addWire("C");
-    hardware.connectWires("A", "B");
-    hardware.connectWires("A", "C");
-    hardware.run("A", 1);
-    return 0;
-}
