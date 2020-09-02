@@ -182,10 +182,17 @@ struct ComponentTypes {
     static const int Wire = 0;
 };
 
-template <typename T>
 struct Component {
     int type = ComponentTypes::Undefined;
     std::any component;
+    Component(int type, std::any & component) {
+        this->type = type;
+        this->component = component;
+    }
+    Component(int type, std::any && component) {
+        this->type = type;
+        this->component = std::move(component);
+    }
 };
 
 template <typename T>
@@ -200,19 +207,22 @@ struct Hardware {
         el::Loggers::reconfigureLogger("hardware", config);
     }
     
-    std::deque<Wire<T>> wires;
+    std::deque<Component> components;
     
     void addWire(const char * wireName) {
-        wires.push_back(Wire<T>(wireName));
+        components.push_back(Component(ComponentTypes::Wire, std::move(Wire<T>(wireName))));
     }
     
     Wire<T> * findWire(const std::string & id) {
         const char * wire_id = id.c_str();
         const size_t wire_id_length = id.length();
-        for (Wire<T> & wire: wires) {
-            const char * wire_id_cstr = wire.id.c_str();
-            if (memcmp(wire_id, wire_id_cstr, wire_id_length) == 0) {
-                return &wire;
+        for (Component & component : components) {
+            if (component.type == ComponentTypes::Wire) {
+                Wire<T> & wire = std::any_cast<Wire<T>&>(component.component);
+                const char * wire_id_cstr = wire.id.c_str();
+                if (memcmp(wire_id, wire_id_cstr, wire_id_length) == 0) {
+                    return &wire;
+                }
             }
         }
         return nullptr;
