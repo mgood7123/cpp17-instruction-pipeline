@@ -156,7 +156,6 @@ TEST_F(Hardware_Core_With_Wires, invalid_connection) {
     ASSERT_DEATH(
             {
                 hardware.connectWires("A", "F");
-                hardware.run("A", 1);
             },
             ".*wire does not exist: F"
      );
