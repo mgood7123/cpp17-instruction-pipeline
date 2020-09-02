@@ -178,8 +178,8 @@ struct Wire {
 };
 
 struct ComponentTypes {
-    static const int Undefined = -1;
-    static const int Wire = 0;
+    static constexpr int Undefined = -1;
+    static constexpr int Wire = 0;
 };
 
 struct Component {

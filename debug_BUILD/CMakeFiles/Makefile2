@@ -202,8 +202,8 @@ CMakeFiles/easyloggingpp.dir/clean:
 # Target rules for target googletest/googlemock/CMakeFiles/gmock_main.dir
 
 # All Build rule for target.
-googletest/googlemock/CMakeFiles/gmock_main.dir/all: googletest/googletest/CMakeFiles/gtest.dir/all
 googletest/googlemock/CMakeFiles/gmock_main.dir/all: googletest/googlemock/CMakeFiles/gmock.dir/all
+googletest/googlemock/CMakeFiles/gmock_main.dir/all: googletest/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f googletest/googlemock/CMakeFiles/gmock_main.dir/build.make googletest/googlemock/CMakeFiles/gmock_main.dir/depend
 	$(MAKE) -f googletest/googlemock/CMakeFiles/gmock_main.dir/build.make googletest/googlemock/CMakeFiles/gmock_main.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/smallville7123/AndroidCompositor/app/src/main/jni/GLIS/dependancies/pipeline/debug_BUILD/CMakeFiles --progress-num=5,6 "Built target gmock_main"
@@ -311,9 +311,9 @@ googletest/googletest/CMakeFiles/gtest.dir/clean:
 # Target rules for target tests/CMakeFiles/testBuilder_executables_Hardware_Tests.dir
 
 # All Build rule for target.
+tests/CMakeFiles/testBuilder_executables_Hardware_Tests.dir/all: CMakeFiles/easyloggingpp.dir/all
 tests/CMakeFiles/testBuilder_executables_Hardware_Tests.dir/all: googletest/googletest/CMakeFiles/gtest_main.dir/all
 tests/CMakeFiles/testBuilder_executables_Hardware_Tests.dir/all: googletest/googletest/CMakeFiles/gtest.dir/all
-tests/CMakeFiles/testBuilder_executables_Hardware_Tests.dir/all: CMakeFiles/easyloggingpp.dir/all
 	$(MAKE) -f tests/CMakeFiles/testBuilder_executables_Hardware_Tests.dir/build.make tests/CMakeFiles/testBuilder_executables_Hardware_Tests.dir/depend
 	$(MAKE) -f tests/CMakeFiles/testBuilder_executables_Hardware_Tests.dir/build.make tests/CMakeFiles/testBuilder_executables_Hardware_Tests.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/smallville7123/AndroidCompositor/app/src/main/jni/GLIS/dependancies/pipeline/debug_BUILD/CMakeFiles --progress-num=11,12 "Built target testBuilder_executables_Hardware_Tests"
