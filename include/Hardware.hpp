@@ -126,37 +126,28 @@ struct Flop {
 
 template <typename T>
 struct Wire {
-    std::string id = "Undefined";
     Flop<T, 1> data;
     std::deque<std::string> outputs;
     
     Wire() {}
     
-    Wire(const std::string & id) {
-        this->id = id;
-    }
-    
     Wire(const Wire & wire) {
-        id = wire.id;
         data = wire.data;
         outputs = wire.outputs;
     }
     
     Wire(Wire && wire) {
-        std::swap(id, wire.id);
         std::swap(data, wire.data);
         std::swap(outputs, wire.outputs);
     }
     
     Wire & operator=(const Wire & wire) {
-        id = wire.id;
         data = wire.data;
         outputs = wire.outputs;
         return *this;
     }
     
     Wire & operator=(Wire && wire) {
-        std::swap(id, wire.id);
         std::swap(data, wire.data);
         std::swap(outputs, wire.outputs);
         return *this;
@@ -184,14 +175,19 @@ struct ComponentTypes {
 
 struct Component {
     int type = ComponentTypes::Undefined;
+    std::string id = "Undefined";
     std::any component;
-    Component(int type, std::any & component) {
+    
+    Component(int type, std::any & component, const char * component_name) {
         this->type = type;
         this->component = component;
+        this->id = component_name;
     }
-    Component(int type, std::any && component) {
+    
+    Component(int type, std::any && component, const char * component_name) {
         this->type = type;
         this->component = std::move(component);
+        this->id = component_name;
     }
 };
 
@@ -209,40 +205,53 @@ struct Hardware {
     
     std::deque<Component> components;
     
-    void addWire(const char * wireName) {
-        components.push_back(Component(ComponentTypes::Wire, std::move(Wire<T>(wireName))));
+    void addComponent(const int component_type, std::any & component, const char * component_name) {
+        components.push_back(Component(ComponentTypes::Wire, component, component_name));
+    }
+
+    void addComponent(const int component_type, std::any && component, const char * component_name) {
+        components.push_back(Component(ComponentTypes::Wire, std::move(component), component_name));
     }
     
-    Wire<T> * find_wire(const std::string & id) {
-        const char * wire_id = id.c_str();
-        const size_t wire_id_length = id.length();
+    void addWire(const char * wireName) {
+        addComponent(ComponentTypes::Wire, std::move(Wire<T>()), wireName);
+    }
+    
+    std::optional<std::reference_wrapper<Component>> find_component(const std::string & id) {
+        const char * component_id = id.c_str();
+        const size_t component_id_length = id.length();
         for (Component & component : components) {
-            if (component.type == ComponentTypes::Wire) {
-                Wire<T> & wire = std::any_cast<Wire<T>&>(component.component);
-                const char * wire_id_cstr = wire.id.c_str();
-                if (memcmp(wire_id, wire_id_cstr, wire_id_length) == 0) {
-                    return &wire;
-                }
+            if (memcmp(component_id, component.id.c_str(), component_id_length) == 0) {
+                return component;
             }
         }
-        return nullptr;
+        return std::nullopt;
+    }
+    
+    std::optional<std::reference_wrapper<Wire<T>>> find_wire(const std::string & id) {
+        auto component = find_component(id);
+        if (component.has_value()) {
+            Wire<T> & wire = std::any_cast<Wire<T>&>(component.value().get().component);
+            return std::optional<std::reference_wrapper<Wire<T>>>(wire);
+        }
+        return std::nullopt;
     }
     
     void connectWires(const std::string & wire_1, const std::string & wire_2) {
-        Wire<T> * in = find_wire(wire_1);
-        CHECK_NE(in, nullptr);
-        CHECK_NE(find_wire(wire_2), nullptr) << "wire does not exist: " << wire_2;
-        in->outputs.push_back(wire_2);
+        std::optional<std::reference_wrapper<Wire<T>>> in = find_wire(wire_1);
+        CHECK_EQ(in.has_value(), true) << "wire does not exist: " << wire_1;
+        CHECK_EQ(find_wire(wire_2).has_value(), true) << "wire does not exist: " << wire_2;
+        in.value().get().outputs.push_back(wire_2);
     }
     
     void run(const std::string & id, T input) {
-        Wire<T> * start = find_wire(id);
-        start->push(std::move(input));
-        T && copy = std::move(start->pull());
-        if (!start->outputs.empty()) {
-            for (std::string & out_id : start->outputs) {
-                Wire<T> * out = find_wire(out_id);
-                out->push(copy);
+        std::optional<std::reference_wrapper<Wire<T>>> start = find_wire(id);
+        start.value().get().push(std::move(input));
+        T && copy = std::move(start.value().get().pull());
+        if (!start.value().get().outputs.empty()) {
+            for (std::string & out_id : start.value().get().outputs) {
+                std::optional<std::reference_wrapper<Wire<T>>> out = find_wire(out_id);
+                out.value().get().push(copy);
             }
         }
     }

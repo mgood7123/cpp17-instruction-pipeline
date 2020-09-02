@@ -42,8 +42,8 @@ TEST_F(Hardware_Core, added_wire_has_expected_values) {
     hardware.addWire("A");
     ASSERT_EQ(hardware.components.size(), 1);
     ASSERT_EQ(hardware.components[0].type, ComponentTypes::Wire);
+    ASSERT_STREQ(hardware.components[0].id.c_str(), "A");
     Wire<int> & wire = std::any_cast<Wire<int>&>(hardware.components[0].component);
-    ASSERT_STREQ(wire.id.c_str(), "A");
     ASSERT_EQ(wire.outputs.size(), 0);
     ASSERT_EQ(wire.data.input->size(), 0);
     ASSERT_EQ(wire.data.output->size(), 0);
@@ -61,79 +61,78 @@ TEST_F(Hardware_Core, added_wires_has_expected_values) {
     ASSERT_EQ(hardware.components.size(), 2);
     
     ASSERT_EQ(hardware.components[0].type, ComponentTypes::Wire);
+    ASSERT_STREQ(hardware.components[0].id.c_str(), "A");
     Wire<int> & wire1 = std::any_cast<Wire<int>&>(hardware.components[0].component);
-    ASSERT_STREQ(wire1.id.c_str(), "A");
     ASSERT_EQ(wire1.outputs.size(), 0);
     ASSERT_EQ(wire1.data.input->size(), 0);
     ASSERT_EQ(wire1.data.output->size(), 0);
     
     ASSERT_EQ(hardware.components[1].type, ComponentTypes::Wire);
+    ASSERT_STREQ(hardware.components[1].id.c_str(), "B");
     Wire<int> & wire2 = std::any_cast<Wire<int>&>(hardware.components[1].component);
-    ASSERT_STREQ(wire2.id.c_str(), "B");
     ASSERT_EQ(wire2.outputs.size(), 0);
     ASSERT_EQ(wire2.data.input->size(), 0);
     ASSERT_EQ(wire2.data.output->size(), 0);
 }
 
 TEST_F(Hardware_Core_With_Wires, can_find_wire) {
-    Wire<int> * wire = hardware.find_wire("A");
-    ASSERT_NE(wire, nullptr);
-    ASSERT_STREQ(wire->id.c_str(), "A");
-    ASSERT_EQ(wire->outputs.size(), 0);
-    ASSERT_EQ(wire->data.input->size(), 0);
-    ASSERT_EQ(wire->data.output->size(), 0);
+    auto wire = hardware.find_wire("A");
+    ASSERT_EQ(wire.has_value(), true);
+    ASSERT_EQ(wire.value().get().outputs.size(), 0);
+    ASSERT_EQ(wire.value().get().data.input->size(), 0);
+    ASSERT_EQ(wire.value().get().data.output->size(), 0);
 }
 
 TEST_F(Hardware_Core_With_Wires, wire_can_store_data) {
-    Wire<int> * wire = hardware.find_wire("A");
-    wire->push(std::move(5));
-    ASSERT_EQ(wire->data.input->size(), 0);
-    ASSERT_EQ(wire->data.output->size(), 1);
+    auto wire = hardware.find_wire("A");
+    wire.value().get().push(std::move(5));
+    ASSERT_EQ(wire.value().get().data.input->size(), 0);
+    ASSERT_EQ(wire.value().get().data.output->size(), 1);
 }
 
 TEST_F(Hardware_Core_With_Wires, can_connect_wire_to_another_wire) {
     hardware.connectWires("A", "B");
-    Wire<int> * wire1 = hardware.find_wire("A");
-    ASSERT_EQ(wire1->outputs.size(), 1);
-    ASSERT_EQ(wire1->data.input->size(), 0);
-    ASSERT_EQ(wire1->data.output->size(), 0);
-    Wire<int> * wire2 = hardware.find_wire("B");
-    ASSERT_EQ(wire2->outputs.size(), 0);
-    ASSERT_EQ(wire2->data.input->size(), 0);
-    ASSERT_EQ(wire2->data.output->size(), 0);
+    auto wire1 = hardware.find_wire("A");
+    ASSERT_EQ(wire1.value().get().outputs.size(), 1);
+    ASSERT_EQ(wire1.value().get().data.input->size(), 0);
+    ASSERT_EQ(wire1.value().get().data.output->size(), 0);
+    auto wire2 = hardware.find_wire("B");
+    ASSERT_EQ(wire2.value().get().outputs.size(), 0);
+    ASSERT_EQ(wire2.value().get().data.input->size(), 0);
+    ASSERT_EQ(wire2.value().get().data.output->size(), 0);
 }
 
 TEST_F(Hardware_Core_With_Wires, can_send_data_from_one_wire_to_another_wire) {
     hardware.connectWires("A", "B");
     hardware.run("A", 1);
-    Wire<int> * wire1 = hardware.find_wire("A");
-    ASSERT_EQ(wire1->outputs.size(), 1);
-    ASSERT_EQ(wire1->data.input->size(), 0);
-    ASSERT_EQ(wire1->data.output->size(), 0);
-    Wire<int> * wire2 = hardware.find_wire("B");
-    ASSERT_EQ(wire2->outputs.size(), 0);
-    ASSERT_EQ(wire2->data.input->size(), 0);
-    ASSERT_EQ(wire2->data.output->size(), 1);
-    int && output = std::move(wire2->pull());
-    ASSERT_EQ(wire2->data.output->size(), 0);
+    auto wire1 = hardware.find_wire("A");
+    ASSERT_EQ(wire1.value().get().outputs.size(), 1);
+    ASSERT_EQ(wire1.value().get().data.input->size(), 0);
+    ASSERT_EQ(wire1.value().get().data.output->size(), 0);
+    auto wire2 = hardware.find_wire("B");
+    ASSERT_EQ(wire2.value().get().outputs.size(), 0);
+    ASSERT_EQ(wire2.value().get().data.input->size(), 0);
+    ASSERT_EQ(wire2.value().get().data.output->size(), 1);
+    int && output = std::move(wire2.value().get().pull());
+    ASSERT_EQ(wire2.value().get().data.output->size(), 0);
     ASSERT_EQ(output, 1);
 }
 
 TEST_F(Hardware_Core_With_Wires, can_connect_wire_to_multiple_wires) {
     hardware.connectWires("A", "B");
     hardware.connectWires("A", "C");
-    Wire<int> * wire1 = hardware.find_wire("A");
-    ASSERT_EQ(wire1->outputs.size(), 2);
-    ASSERT_EQ(wire1->data.input->size(), 0);
-    ASSERT_EQ(wire1->data.output->size(), 0);
-    Wire<int> * wire2 = hardware.find_wire("B");
-    ASSERT_EQ(wire2->outputs.size(), 0);
-    ASSERT_EQ(wire2->data.input->size(), 0);
-    ASSERT_EQ(wire2->data.output->size(), 0);
-    Wire<int> * wire3 = hardware.find_wire("C");
-    ASSERT_EQ(wire2->outputs.size(), 0);
-    ASSERT_EQ(wire2->data.input->size(), 0);
-    ASSERT_EQ(wire2->data.output->size(), 0);
+    auto wire1 = hardware.find_wire("A");
+    ASSERT_EQ(wire1.value().get().outputs.size(), 2);
+    ASSERT_EQ(wire1.value().get().data.input->size(), 0);
+    ASSERT_EQ(wire1.value().get().data.output->size(), 0);
+    auto wire2 = hardware.find_wire("B");
+    ASSERT_EQ(wire2.value().get().outputs.size(), 0);
+    ASSERT_EQ(wire2.value().get().data.input->size(), 0);
+    ASSERT_EQ(wire2.value().get().data.output->size(), 0);
+    auto wire3 = hardware.find_wire("C");
+    ASSERT_EQ(wire2.value().get().outputs.size(), 0);
+    ASSERT_EQ(wire2.value().get().data.input->size(), 0);
+    ASSERT_EQ(wire2.value().get().data.output->size(), 0);
 }
 
 TEST_F(Hardware_Core_With_Wires, can_send_data_from_one_wire_to_multiple_wires) {
@@ -141,14 +140,14 @@ TEST_F(Hardware_Core_With_Wires, can_send_data_from_one_wire_to_multiple_wires) 
     hardware.connectWires("A", "C");
     hardware.run("A", 1);
     
-    Wire<int> * wire1 = hardware.find_wire("B");
-    int && output1 = std::move(wire1->pull());
-    ASSERT_EQ(wire1->data.output->size(), 0);
+    auto wire1 = hardware.find_wire("B");
+    int && output1 = std::move(wire1.value().get().pull());
+    ASSERT_EQ(wire1.value().get().data.output->size(), 0);
     ASSERT_EQ(output1, 1);
 
-    Wire<int> * wire2 = hardware.find_wire("C");
-    int && output2 = std::move(wire2->pull());
-    ASSERT_EQ(wire2->data.output->size(), 0);
+    auto wire2 = hardware.find_wire("C");
+    int && output2 = std::move(wire2.value().get().pull());
+    ASSERT_EQ(wire2.value().get().data.output->size(), 0);
     ASSERT_EQ(output2, 1);
 }
 
