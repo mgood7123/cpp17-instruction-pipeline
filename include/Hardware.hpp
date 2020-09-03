@@ -14,7 +14,7 @@ INITIALIZE_EASYLOGGINGPP
 // Chapter 7 . 3 . 1 - Single-Cycle Datapath
 
 // NOTE: for scematical reasons, i am unable to determine if PC in figure 7.2
-//       if a Register hardware or a Counter circuit hardware
+//       is a Register hardware or a Counter circuit hardware
 //       as the schematics for both are exactly the same except in 7.2
 //       it is missing the reset wire tho it is the closest i can find
 
