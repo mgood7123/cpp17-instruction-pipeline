@@ -92,8 +92,7 @@ struct TimeSince {
 // #define ELPP_HANDLE_SIGABRT
 // #define ELPP_FEATURE_CRASH_LOG
 
-#include "easyloggingpp/src/easylogging++.h"
-#include "easyloggingpp/src/easylogging++.cc"
+#include <easylogging++.h>
 
 INITIALIZE_EASYLOGGINGPP
 
@@ -114,7 +113,7 @@ INITIALIZE_EASYLOGGINGPP
 #include <functional>
 #include <deque>
 #include <cassert>
-#include "SPSCQueue/include/rigtorp/SPSCQueue.h"
+#include <rigtorp/SPSCQueue.h>
 
 template <typename T>
 using PipelineQueueType =

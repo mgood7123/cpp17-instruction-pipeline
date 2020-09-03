@@ -56,14 +56,14 @@ CMAKE_BINARY_DIR = /home/smallville7123/AndroidCompositor/app/src/main/jni/GLIS/
 all: CMakeFiles/easyloggingpp.dir/all
 all: testBuilder/all
 all: googletest/all
-all: tests/all
+all: src/all
 
 .PHONY : all
 
 # The main recursive "preinstall" target.
 preinstall: testBuilder/preinstall
 preinstall: googletest/preinstall
-preinstall: tests/preinstall
+preinstall: src/preinstall
 
 .PHONY : preinstall
 
@@ -71,7 +71,7 @@ preinstall: tests/preinstall
 clean: CMakeFiles/easyloggingpp.dir/clean
 clean: testBuilder/clean
 clean: googletest/clean
-clean: tests/clean
+clean: src/clean
 
 .PHONY : clean
 
@@ -136,6 +136,42 @@ googletest/googletest/clean: googletest/googletest/CMakeFiles/gtest.dir/clean
 .PHONY : googletest/googletest/clean
 
 #=============================================================================
+# Directory level rules for directory src
+
+# Recursive "all" directory target.
+src/all: src/pipeline/all
+
+.PHONY : src/all
+
+# Recursive "preinstall" directory target.
+src/preinstall: src/pipeline/preinstall
+
+.PHONY : src/preinstall
+
+# Recursive "clean" directory target.
+src/clean: src/pipeline/clean
+
+.PHONY : src/clean
+
+#=============================================================================
+# Directory level rules for directory src/pipeline
+
+# Recursive "all" directory target.
+src/pipeline/all: src/pipeline/CMakeFiles/testBuilder_executables_pipeline.dir/all
+
+.PHONY : src/pipeline/all
+
+# Recursive "preinstall" directory target.
+src/pipeline/preinstall:
+
+.PHONY : src/pipeline/preinstall
+
+# Recursive "clean" directory target.
+src/pipeline/clean: src/pipeline/CMakeFiles/testBuilder_executables_pipeline.dir/clean
+
+.PHONY : src/pipeline/clean
+
+#=============================================================================
 # Directory level rules for directory testBuilder
 
 # Recursive "all" directory target.
@@ -152,24 +188,6 @@ testBuilder/preinstall:
 testBuilder/clean:
 
 .PHONY : testBuilder/clean
-
-#=============================================================================
-# Directory level rules for directory tests
-
-# Recursive "all" directory target.
-tests/all: tests/CMakeFiles/testBuilder_executables_Hardware_Tests.dir/all
-
-.PHONY : tests/all
-
-# Recursive "preinstall" directory target.
-tests/preinstall:
-
-.PHONY : tests/preinstall
-
-# Recursive "clean" directory target.
-tests/clean: tests/CMakeFiles/testBuilder_executables_Hardware_Tests.dir/clean
-
-.PHONY : tests/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/easyloggingpp.dir
@@ -308,33 +326,31 @@ googletest/googletest/CMakeFiles/gtest.dir/clean:
 .PHONY : googletest/googletest/CMakeFiles/gtest.dir/clean
 
 #=============================================================================
-# Target rules for target tests/CMakeFiles/testBuilder_executables_Hardware_Tests.dir
+# Target rules for target src/pipeline/CMakeFiles/testBuilder_executables_pipeline.dir
 
 # All Build rule for target.
-tests/CMakeFiles/testBuilder_executables_Hardware_Tests.dir/all: CMakeFiles/easyloggingpp.dir/all
-tests/CMakeFiles/testBuilder_executables_Hardware_Tests.dir/all: googletest/googletest/CMakeFiles/gtest_main.dir/all
-tests/CMakeFiles/testBuilder_executables_Hardware_Tests.dir/all: googletest/googletest/CMakeFiles/gtest.dir/all
-	$(MAKE) -f tests/CMakeFiles/testBuilder_executables_Hardware_Tests.dir/build.make tests/CMakeFiles/testBuilder_executables_Hardware_Tests.dir/depend
-	$(MAKE) -f tests/CMakeFiles/testBuilder_executables_Hardware_Tests.dir/build.make tests/CMakeFiles/testBuilder_executables_Hardware_Tests.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/smallville7123/AndroidCompositor/app/src/main/jni/GLIS/dependancies/pipeline/debug_BUILD/CMakeFiles --progress-num=11,12 "Built target testBuilder_executables_Hardware_Tests"
-.PHONY : tests/CMakeFiles/testBuilder_executables_Hardware_Tests.dir/all
+src/pipeline/CMakeFiles/testBuilder_executables_pipeline.dir/all: CMakeFiles/easyloggingpp.dir/all
+	$(MAKE) -f src/pipeline/CMakeFiles/testBuilder_executables_pipeline.dir/build.make src/pipeline/CMakeFiles/testBuilder_executables_pipeline.dir/depend
+	$(MAKE) -f src/pipeline/CMakeFiles/testBuilder_executables_pipeline.dir/build.make src/pipeline/CMakeFiles/testBuilder_executables_pipeline.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/smallville7123/AndroidCompositor/app/src/main/jni/GLIS/dependancies/pipeline/debug_BUILD/CMakeFiles --progress-num=11,12 "Built target testBuilder_executables_pipeline"
+.PHONY : src/pipeline/CMakeFiles/testBuilder_executables_pipeline.dir/all
 
 # Build rule for subdir invocation for target.
-tests/CMakeFiles/testBuilder_executables_Hardware_Tests.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/smallville7123/AndroidCompositor/app/src/main/jni/GLIS/dependancies/pipeline/debug_BUILD/CMakeFiles 8
-	$(MAKE) -f CMakeFiles/Makefile2 tests/CMakeFiles/testBuilder_executables_Hardware_Tests.dir/all
+src/pipeline/CMakeFiles/testBuilder_executables_pipeline.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/smallville7123/AndroidCompositor/app/src/main/jni/GLIS/dependancies/pipeline/debug_BUILD/CMakeFiles 4
+	$(MAKE) -f CMakeFiles/Makefile2 src/pipeline/CMakeFiles/testBuilder_executables_pipeline.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/smallville7123/AndroidCompositor/app/src/main/jni/GLIS/dependancies/pipeline/debug_BUILD/CMakeFiles 0
-.PHONY : tests/CMakeFiles/testBuilder_executables_Hardware_Tests.dir/rule
+.PHONY : src/pipeline/CMakeFiles/testBuilder_executables_pipeline.dir/rule
 
 # Convenience name for target.
-testBuilder_executables_Hardware_Tests: tests/CMakeFiles/testBuilder_executables_Hardware_Tests.dir/rule
+testBuilder_executables_pipeline: src/pipeline/CMakeFiles/testBuilder_executables_pipeline.dir/rule
 
-.PHONY : testBuilder_executables_Hardware_Tests
+.PHONY : testBuilder_executables_pipeline
 
 # clean rule for target.
-tests/CMakeFiles/testBuilder_executables_Hardware_Tests.dir/clean:
-	$(MAKE) -f tests/CMakeFiles/testBuilder_executables_Hardware_Tests.dir/build.make tests/CMakeFiles/testBuilder_executables_Hardware_Tests.dir/clean
-.PHONY : tests/CMakeFiles/testBuilder_executables_Hardware_Tests.dir/clean
+src/pipeline/CMakeFiles/testBuilder_executables_pipeline.dir/clean:
+	$(MAKE) -f src/pipeline/CMakeFiles/testBuilder_executables_pipeline.dir/build.make src/pipeline/CMakeFiles/testBuilder_executables_pipeline.dir/clean
+.PHONY : src/pipeline/CMakeFiles/testBuilder_executables_pipeline.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

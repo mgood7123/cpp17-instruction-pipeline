@@ -1,11 +1,6 @@
-#define ELPP_THREAD_SAFE
-#define ELPP_FORCE_USE_STD_THREAD
-#define ELPP_STL_LOGGING
-// #define ELPP_HANDLE_SIGABRT
-// #define ELPP_FEATURE_CRASH_LOG
-#include <easyloggingpp/src/easylogging++.h>
+#include <easylogging++.h>
 INITIALIZE_EASYLOGGINGPP
-#include <SPSCQueue/include/rigtorp/SPSCQueue.h>
+#include <rigtorp/SPSCQueue.h>
 #include <iostream>
 #include <functional>
 #include <thread>
@@ -1006,7 +1001,7 @@ void twoStagedPipeline(bool sequential) {
 // see Digital Design and Computer Architecture Chapter 7: Microarchitecture
 
 int main() {
-//     twoStagedPipeline(false);
+    twoStagedPipeline(true);
 //     hardwareTest();
     return 0;
 }

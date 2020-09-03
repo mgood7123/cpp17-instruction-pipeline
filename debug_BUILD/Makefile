@@ -222,17 +222,17 @@ gtest/fast:
 .PHONY : gtest/fast
 
 #=============================================================================
-# Target rules for targets named testBuilder_executables_Hardware_Tests
+# Target rules for targets named testBuilder_executables_pipeline
 
 # Build rule for target.
-testBuilder_executables_Hardware_Tests: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 testBuilder_executables_Hardware_Tests
-.PHONY : testBuilder_executables_Hardware_Tests
+testBuilder_executables_pipeline: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 testBuilder_executables_pipeline
+.PHONY : testBuilder_executables_pipeline
 
 # fast build rule for target.
-testBuilder_executables_Hardware_Tests/fast:
-	$(MAKE) -f tests/CMakeFiles/testBuilder_executables_Hardware_Tests.dir/build.make tests/CMakeFiles/testBuilder_executables_Hardware_Tests.dir/build
-.PHONY : testBuilder_executables_Hardware_Tests/fast
+testBuilder_executables_pipeline/fast:
+	$(MAKE) -f src/pipeline/CMakeFiles/testBuilder_executables_pipeline.dir/build.make src/pipeline/CMakeFiles/testBuilder_executables_pipeline.dir/build
+.PHONY : testBuilder_executables_pipeline/fast
 
 dependancies/easyloggingpp/src/easylogging++.o: dependancies/easyloggingpp/src/easylogging++.cc.o
 
@@ -278,7 +278,7 @@ help:
 	@echo "... gmock"
 	@echo "... gtest_main"
 	@echo "... gtest"
-	@echo "... testBuilder_executables_Hardware_Tests"
+	@echo "... testBuilder_executables_pipeline"
 	@echo "... dependancies/easyloggingpp/src/easylogging++.o"
 	@echo "... dependancies/easyloggingpp/src/easylogging++.i"
 	@echo "... dependancies/easyloggingpp/src/easylogging++.s"

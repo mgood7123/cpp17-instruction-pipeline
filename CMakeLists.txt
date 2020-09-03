@@ -31,13 +31,17 @@ endif()
 
 # add_subdirectory(tests)
 
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -D ELPP_THREAD_SAFE")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -D ELPP_FORCE_USE_STD_THREAD")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -D ELPP_STL_LOGGING")
+
 include_directories(dependancies/easyloggingpp/src)
 testBuilder_add_source(easyloggingpp dependancies/easyloggingpp/src/easylogging++.cc)
 testBuilder_build_shared_library(easyloggingpp)
 
 include_directories(dependancies/SPSCQueue/include)
 
-# add_subdirectory(src)
-add_subdirectory(tests)
+add_subdirectory(src)
+# add_subdirectory(tests)
 
 set(Pipeline_INCLUDE ${CMAKE_CURRENT_SOURCE_DIR}/include PARENT_SCOPE)

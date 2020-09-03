@@ -437,3 +437,801 @@
 2020-09-02 22:05:29,333 WARNING [default] Aborting application. Reason: Fatal log at [/home/smallville7123/AndroidCompositor/app/src/main/jni/GLIS/dependancies/pipeline/include/Hardware.hpp:257]
 2020-09-02 22:05:49,036 FATAL [default] Check failed: [find_component(wire_2).has_value() == true] wire does not exist: F
 2020-09-02 22:05:49,036 WARNING [default] Aborting application. Reason: Fatal log at [/home/smallville7123/AndroidCompositor/app/src/main/jni/GLIS/dependancies/pipeline/include/Hardware.hpp:257]
+2020-09-03 16:37:20,055 INFO [default] test
+2020-09-03 16:37:43,020 INFO [default] test
+[00:000:050:762] [pipeline:pipelined:INFO] [13, 0, 55, 2]
+[00:000:345:696] [pipeline:pipelined:INFO] [Stage 0] STARTED
+[00:000:466:437] [pipeline:pipelined:INFO] [Stage 1] STARTED
+[00:000:560:140] [pipeline:pipelined:INFO] [Stage 1] locking this mutex
+[00:000:629:178] [pipeline:pipelined:INFO] [Stage 1] locked this mutex
+[00:000:720:858] [pipeline:pipelined:INFO] [Stage 2] STARTED
+[00:000:783:138] [pipeline:pipelined:INFO] [Stage 2] locking this mutex
+[00:000:855:176] [pipeline:pipelined:INFO] [Stage 1] waiting on this_input_is_not_empty
+[00:000:931:820] [pipeline:pipelined:INFO] [Stage 0] locking this mutex
+[00:000:993:074] [pipeline:pipelined:INFO] [Stage 2] locked this mutex
+[00:001:074:669] [pipeline:pipelined:INFO] [Stage 0] locked this mutex
+[00:001:148:039] [pipeline:pipelined:INFO] [Stage 2] waiting on this_input_is_not_empty
+[00:001:242:423] [pipeline:pipelined:INFO] [Stage 0] waiting on this_input_is_not_empty
+[00:001:295:126] [pipeline:pipelined:INFO] [Stage 0] waited on this_input_is_not_empty
+[00:001:335:941] [pipeline:pipelined:INFO] [Stage 0] unlocking this mutex
+[00:001:385:376] [pipeline:pipelined:INFO] [Stage 0] unlocked this mutex
+[00:001:425:868] [pipeline:pipelined:INFO] [Stage 0] this_input_is_not_empty: true
+[00:001:466:048] [pipeline:pipelined:INFO] Stage 0: clock: 0: fetch BEGIN, PC: 0
+[00:001:507:836] [pipeline:pipelined:INFO] Stage 0: clock: 0: fetch END
+[00:001:547:136] [pipeline:pipelined:INFO] Stage 0: clock: 0: decode BEGIN
+[00:001:586:191] [pipeline:pipelined:INFO] Stage 0: clock: 0: decode END: load
+[00:001:626:144] [pipeline:pipelined:INFO] Stage 0: clock: 0: output:[13]
+[00:001:674:957] [pipeline:pipelined:INFO] [Stage 0] locking next mutex
+[00:001:715:162] [pipeline:pipelined:INFO] [Stage 1] waited on this_input_is_not_empty
+[00:001:796:865] [pipeline:pipelined:INFO] [Stage 1] unlocking this mutex
+[00:001:871:959] [pipeline:pipelined:INFO] [Stage 1] unlocked this mutex
+[00:001:936:757] [pipeline:pipelined:INFO] [Stage 0] locked next mutex
+[00:001:993:466] [pipeline:pipelined:INFO] [Stage 1] this_input_is_not_empty: true
+[00:002:073:398] [pipeline:pipelined:INFO] [Stage 0] waiting on next_input_is_empty
+[00:002:137:047] [pipeline:pipelined:INFO] [Stage 1] pushing flip-flop input
+[00:002:223:682] [pipeline:pipelined:INFO] [Stage 0] output->empty(): false
+[00:002:288:476] [pipeline:pipelined:INFO] [Stage 1] pushed flip-flop input
+[00:002:373:570] [pipeline:pipelined:INFO] [Stage 1] consuming normal input
+[00:002:446:867] [pipeline:pipelined:INFO] [Stage 1] consumed normal input
+[00:002:503:269] [pipeline:pipelined:INFO] [Stage 1] functions.this_flip_flop->input: 13, functions.this_flip_flop->output: 0
+[00:002:592:618] [pipeline:pipelined:INFO] [Stage 0] output->empty(): true
+[00:002:659:268] [pipeline:pipelined:INFO] [Stage 1] pushing flip-flop output and consuming flip-flop input
+[00:002:746:025] [pipeline:pipelined:INFO] [Stage 0] waited on next_input_is_empty
+[00:002:816:510] [pipeline:pipelined:INFO] [Stage 1] pushed flip-flop output and consumed flip-flop input
+[00:002:916:104] [pipeline:pipelined:INFO] [Stage 0] next_input_is_empty: true
+[00:002:982:921] [pipeline:pipelined:INFO] [Stage 1] functions.this_flip_flop->input: 13, functions.this_flip_flop->output: 13
+[00:003:091:636] [pipeline:pipelined:INFO] [Stage 1] consuming flip-flop output and pushing normal output
+[00:003:175:478] [pipeline:pipelined:INFO] [Stage 0] unlocking next mutex
+[00:003:242:249] [pipeline:pipelined:INFO] [Stage 1] consumed flip-flop output and pushed normal output
+[00:003:339:827] [pipeline:pipelined:INFO] [Stage 0] unlocked next mutex
+[00:003:418:578] [pipeline:pipelined:INFO] [Stage 1] locking next mutex
+[00:003:526:972] [pipeline:pipelined:INFO] [Stage 2] waited on this_input_is_not_empty
+[00:003:593:087] [pipeline:pipelined:INFO] [Stage 0] locking this mutex
+[00:003:691:729] [pipeline:pipelined:INFO] [Stage 2] unlocking this mutex
+[00:003:768:858] [pipeline:pipelined:INFO] [Stage 0] locked this mutex
+[00:003:858:503] [pipeline:pipelined:INFO] [Stage 2] unlocked this mutex
+[00:003:924:361] [pipeline:pipelined:INFO] [Stage 1] locked next mutex
+[00:004:009:498] [pipeline:pipelined:INFO] [Stage 1] waiting on next_input_is_empty
+[00:004:086:144] [pipeline:pipelined:INFO] [Stage 1] output->empty(): false
+[00:004:190:365] [pipeline:pipelined:INFO] [Stage 0] waiting on this_input_is_not_empty
+[00:004:261:909] [pipeline:pipelined:INFO] [Stage 2] this_input_is_not_empty: true
+[00:004:357:185] [pipeline:pipelined:INFO] Stage 2: clock: 0: input:[13]
+[00:004:442:230] [pipeline:pipelined:INFO] Stage 2: clock: 0: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 0
+[00:004:538:346] [pipeline:pipelined:INFO] [Stage 2] reg->ACC: 1
+[00:004:613:175] [pipeline:pipelined:INFO] [Stage 0] waited on this_input_is_not_empty
+[00:004:708:047] [pipeline:pipelined:INFO] Stage 2: clock: 0: execute END,   pipeline memory: [1, 2, 0], ACC: 1
+[00:004:798:180] [pipeline:pipelined:INFO] [Stage 0] unlocking this mutex
+[00:004:866:654] [pipeline:pipelined:INFO] --- clock: 0: Cycle END             ---
+[00:004:951:228] [pipeline:pipelined:INFO] [Stage 0] unlocked this mutex
+[00:005:016:481] [pipeline:pipelined:INFO] --- clock: 1: Cycle BEGIN           ---
+[00:005:102:504] [pipeline:pipelined:INFO] [Stage 0] this_input_is_not_empty: true
+[00:005:180:127] [pipeline:pipelined:INFO] [Stage 2] consuming normal input
+[00:005:268:779] [pipeline:pipelined:INFO] [Stage 2] consumed normal input
+[00:005:359:452] [pipeline:pipelined:INFO] Stage 0: clock: 1: fetch BEGIN, PC: 2
+[00:005:443:379] [pipeline:pipelined:INFO] [Stage 1] output->empty(): true
+[00:005:481:447] [pipeline:pipelined:INFO] [Stage 2] locking this mutex
+[00:005:518:233] [pipeline:pipelined:INFO] Stage 0: clock: 1: fetch END
+[00:005:554:728] [pipeline:pipelined:INFO] [Stage 1] waited on next_input_is_empty
+[00:005:592:729] [pipeline:pipelined:INFO] Stage 0: clock: 1: decode BEGIN
+[00:005:629:358] [pipeline:pipelined:INFO] [Stage 1] next_input_is_empty: true
+[00:005:665:317] [pipeline:pipelined:INFO] Stage 0: clock: 1: decode END: store
+[00:005:701:144] [pipeline:pipelined:INFO] [Stage 1] unlocking next mutex
+[00:005:739:815] [pipeline:pipelined:INFO] Stage 0: clock: 1: output:[55]
+[00:005:781:498] [pipeline:pipelined:INFO] [Stage 1] unlocked next mutex
+[00:005:825:304] [pipeline:pipelined:INFO] [Stage 2] locked this mutex
+[00:005:875:742] [pipeline:pipelined:INFO] [Stage 0] locking next mutex
+[00:005:920:203] [pipeline:pipelined:INFO] [Stage 0] locked next mutex
+[00:005:949:715] [pipeline:pipelined:INFO] [Stage 0] waiting on next_input_is_empty
+[00:005:987:858] [pipeline:pipelined:INFO] [Stage 1] locking this mutex
+[00:006:024:571] [pipeline:pipelined:INFO] [Stage 2] waiting on input_is_empty
+[00:006:061:262] [pipeline:pipelined:INFO] [Stage 0] output->empty(): false
+[00:006:102:798] [pipeline:pipelined:INFO] [Stage 2] input->empty(): true
+[00:006:140:355] [pipeline:pipelined:INFO] [Stage 1] locked this mutex
+[00:006:177:005] [pipeline:pipelined:INFO] [Stage 1] waiting on input_is_empty
+[00:006:210:408] [pipeline:pipelined:INFO] [Stage 2] input_is_empty: true
+[00:006:246:824] [pipeline:pipelined:INFO] [Stage 1] functions.this_flip_flop->hasInput: false
+[00:006:282:242] [pipeline:pipelined:INFO] [Stage 2] recieved_halt: false
+[00:006:318:618] [pipeline:pipelined:INFO] [Stage 1] input->empty(): false
+[00:006:361:447] [pipeline:pipelined:INFO] [Stage 2] input_is_empty || (recieved_halt && input_is_empty): true
+[00:006:400:969] [pipeline:pipelined:INFO] [Stage 2] waited on input_is_empty
+[00:006:440:457] [pipeline:pipelined:INFO] [Stage 2] unlocking this mutex
+[00:006:474:450] [pipeline:pipelined:INFO] [Stage 2] unlocked this mutex
+[00:006:507:773] [pipeline:pipelined:INFO] [Stage 1] input_is_empty: false
+[00:006:546:115] [pipeline:pipelined:INFO] [Stage 2] recieved_halt: false
+[00:006:582:899] [pipeline:pipelined:INFO] [Stage 1] recieved_halt: false
+[00:006:618:559] [pipeline:pipelined:INFO] [Stage 2] input_is_empty: true
+[00:006:654:555] [pipeline:pipelined:INFO] [Stage 1] input_is_empty || (recieved_halt && input_is_empty): false
+[00:006:692:137] [pipeline:pipelined:INFO] [Stage 2] locking this mutex
+[00:006:721:237] [pipeline:pipelined:INFO] [Stage 2] locked this mutex
+[00:006:747:329] [pipeline:pipelined:INFO] [Stage 2] waiting on this_input_is_not_empty
+[00:000:046:476] [pipeline:pipelined:INFO] [13, 0, 55, 2]
+[00:000:352:208] [pipeline:pipelined:INFO] [Stage 1] STARTED
+[00:000:422:563] [pipeline:pipelined:INFO] [Stage 1] locking this mutex
+[00:000:484:870] [pipeline:pipelined:INFO] [Stage 1] locked this mutex
+[00:000:525:974] [pipeline:pipelined:INFO] [Stage 1] waiting on this_input_is_not_empty
+[00:000:599:218] [pipeline:pipelined:INFO] [Stage 2] STARTED
+[00:000:667:529] [pipeline:pipelined:INFO] [Stage 0] STARTED
+[00:000:721:996] [pipeline:pipelined:INFO] [Stage 0] locking this mutex
+[00:000:766:443] [pipeline:pipelined:INFO] [Stage 0] locked this mutex
+[00:000:818:342] [pipeline:pipelined:INFO] [Stage 0] waiting on this_input_is_not_empty
+[00:000:863:952] [pipeline:pipelined:INFO] [Stage 0] waited on this_input_is_not_empty
+[00:000:907:307] [pipeline:pipelined:INFO] [Stage 2] locking this mutex
+[00:000:947:200] [pipeline:pipelined:INFO] [Stage 0] unlocking this mutex
+[00:000:982:702] [pipeline:pipelined:INFO] [Stage 2] locked this mutex
+[00:001:017:113] [pipeline:pipelined:INFO] [Stage 0] unlocked this mutex
+[00:001:055:191] [pipeline:pipelined:INFO] [Stage 2] waiting on this_input_is_not_empty
+[00:001:090:359] [pipeline:pipelined:INFO] [Stage 0] this_input_is_not_empty: true
+[00:001:123:090] [pipeline:pipelined:INFO] Stage 0: clock: 0: fetch BEGIN, PC: 0
+[00:001:151:021] [pipeline:pipelined:INFO] Stage 0: clock: 0: fetch END
+[00:001:177:275] [pipeline:pipelined:INFO] Stage 0: clock: 0: decode BEGIN
+[00:001:203:350] [pipeline:pipelined:INFO] Stage 0: clock: 0: decode END: load
+[00:001:230:102] [pipeline:pipelined:INFO] Stage 0: clock: 0: output:[13]
+[00:001:262:431] [pipeline:pipelined:INFO] [Stage 0] locking next mutex
+[00:001:301:605] [pipeline:pipelined:INFO] [Stage 1] waited on this_input_is_not_empty
+[00:001:346:304] [pipeline:pipelined:INFO] [Stage 1] unlocking this mutex
+[00:001:388:623] [pipeline:pipelined:INFO] [Stage 1] unlocked this mutex
+[00:001:429:266] [pipeline:pipelined:INFO] [Stage 0] locked next mutex
+[00:001:469:355] [pipeline:pipelined:INFO] [Stage 1] this_input_is_not_empty: true
+[00:001:508:888] [pipeline:pipelined:INFO] [Stage 0] waiting on next_input_is_empty
+[00:001:539:610] [pipeline:pipelined:INFO] [Stage 0] output->empty(): false
+[00:001:587:430] [pipeline:pipelined:INFO] [Stage 1] pushing flip-flop input
+[00:001:628:828] [pipeline:pipelined:INFO] [Stage 1] pushed flip-flop input
+[00:001:665:916] [pipeline:pipelined:INFO] [Stage 1] consuming normal input
+[00:001:703:801] [pipeline:pipelined:INFO] [Stage 1] consumed normal input
+[00:001:748:609] [pipeline:pipelined:INFO] [Stage 1] functions.this_flip_flop->input: 13, functions.this_flip_flop->output: 0
+[00:001:790:891] [pipeline:pipelined:INFO] [Stage 0] output->empty(): true
+[00:001:831:073] [pipeline:pipelined:INFO] [Stage 1] pushing flip-flop output and consuming flip-flop input
+[00:001:873:093] [pipeline:pipelined:INFO] [Stage 0] waited on next_input_is_empty
+[00:001:910:553] [pipeline:pipelined:INFO] [Stage 1] pushed flip-flop output and consumed flip-flop input
+[00:001:946:702] [pipeline:pipelined:INFO] [Stage 0] next_input_is_empty: true
+[00:001:989:353] [pipeline:pipelined:INFO] [Stage 1] functions.this_flip_flop->input: 13, functions.this_flip_flop->output: 13
+[00:002:023:774] [pipeline:pipelined:INFO] [Stage 0] unlocking next mutex
+[00:002:060:023] [pipeline:pipelined:INFO] [Stage 1] consuming flip-flop output and pushing normal output
+[00:002:094:378] [pipeline:pipelined:INFO] [Stage 0] unlocked next mutex
+[00:002:129:549] [pipeline:pipelined:INFO] [Stage 0] locking this mutex
+[00:002:169:128] [pipeline:pipelined:INFO] [Stage 0] locked this mutex
+[00:002:208:801] [pipeline:pipelined:INFO] [Stage 1] consumed flip-flop output and pushed normal output
+[00:002:252:941] [pipeline:pipelined:INFO] [Stage 0] waiting on this_input_is_not_empty
+[00:002:290:644] [pipeline:pipelined:INFO] [Stage 1] locking next mutex
+[00:002:331:183] [pipeline:pipelined:INFO] [Stage 2] waited on this_input_is_not_empty
+[00:002:365:559] [pipeline:pipelined:INFO] [Stage 0] waited on this_input_is_not_empty
+[00:002:399:358] [pipeline:pipelined:INFO] [Stage 2] unlocking this mutex
+[00:002:433:652] [pipeline:pipelined:INFO] [Stage 0] unlocking this mutex
+[00:002:466:699] [pipeline:pipelined:INFO] [Stage 2] unlocked this mutex
+[00:002:496:872] [pipeline:pipelined:INFO] [Stage 2] this_input_is_not_empty: true
+[00:002:526:600] [pipeline:pipelined:INFO] [Stage 0] unlocked this mutex
+[00:002:560:977] [pipeline:pipelined:INFO] [Stage 1] locked next mutex
+[00:002:596:621] [pipeline:pipelined:INFO] Stage 2: clock: 0: input:[13]
+[00:002:630:958] [pipeline:pipelined:INFO] [Stage 0] this_input_is_not_empty: true
+[00:002:665:018] [pipeline:pipelined:INFO] [Stage 1] waiting on next_input_is_empty
+[00:002:701:307] [pipeline:pipelined:INFO] Stage 2: clock: 0: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 0
+[00:002:736:042] [pipeline:pipelined:INFO] Stage 0: clock: 0: fetch BEGIN, PC: 2
+[00:002:770:801] [pipeline:pipelined:INFO] [Stage 1] output->empty(): false
+[00:002:805:405] [pipeline:pipelined:INFO] [Stage 2] reg->ACC: 1
+[00:002:839:177] [pipeline:pipelined:INFO] Stage 0: clock: 0: fetch END
+[00:002:873:578] [pipeline:pipelined:INFO] Stage 2: clock: 0: execute END,   pipeline memory: [1, 2, 0], ACC: 1
+[00:002:907:036] [pipeline:pipelined:INFO] Stage 0: clock: 0: decode BEGIN
+[00:002:940:694] [pipeline:pipelined:INFO] --- clock: 0: Cycle END             ---
+[00:002:973:922] [pipeline:pipelined:INFO] Stage 0: clock: 1: decode END: store
+[00:003:006:459] [pipeline:pipelined:INFO] --- clock: 1: Cycle BEGIN           ---
+[00:003:040:718] [pipeline:pipelined:INFO] Stage 0: clock: 1: output:[55]
+[00:003:075:366] [pipeline:pipelined:INFO] [Stage 2] consuming normal input
+[00:003:109:990] [pipeline:pipelined:INFO] [Stage 0] locking next mutex
+[00:003:144:214] [pipeline:pipelined:INFO] [Stage 1] output->empty(): true
+[00:003:178:549] [pipeline:pipelined:INFO] [Stage 2] consumed normal input
+[00:003:212:593] [pipeline:pipelined:INFO] [Stage 0] locked next mutex
+[00:003:246:596] [pipeline:pipelined:INFO] [Stage 1] waited on next_input_is_empty
+[00:003:280:919] [pipeline:pipelined:INFO] [Stage 2] locking this mutex
+[00:003:314:160] [pipeline:pipelined:INFO] [Stage 0] waiting on next_input_is_empty
+[00:003:348:159] [pipeline:pipelined:INFO] [Stage 1] next_input_is_empty: true
+[00:003:381:338] [pipeline:pipelined:INFO] [Stage 0] output->empty(): false
+[00:003:414:004] [pipeline:pipelined:INFO] [Stage 1] unlocking next mutex
+[00:003:443:454] [pipeline:pipelined:INFO] [Stage 1] unlocked next mutex
+[00:003:471:912] [pipeline:pipelined:INFO] [Stage 1] locking this mutex
+[00:003:501:963] [pipeline:pipelined:INFO] [Stage 2] locked this mutex
+[00:003:534:892] [pipeline:pipelined:INFO] [Stage 1] locked this mutex
+[00:003:567:528] [pipeline:pipelined:INFO] [Stage 2] waiting on input_is_empty
+[00:003:600:368] [pipeline:pipelined:INFO] [Stage 1] waiting on input_is_empty
+[00:003:633:086] [pipeline:pipelined:INFO] [Stage 2] input->empty(): true
+[00:003:666:170] [pipeline:pipelined:INFO] [Stage 1] functions.this_flip_flop->hasInput: false
+[00:003:698:710] [pipeline:pipelined:INFO] [Stage 2] input_is_empty: true
+[00:003:738:265] [pipeline:pipelined:INFO] [Stage 1] input->empty(): false
+[00:003:771:535] [pipeline:pipelined:INFO] [Stage 2] recieved_halt: false
+[00:003:804:251] [pipeline:pipelined:INFO] [Stage 1] input_is_empty: false
+[00:003:837:292] [pipeline:pipelined:INFO] [Stage 2] input_is_empty || (recieved_halt && input_is_empty): true
+[00:003:870:454] [pipeline:pipelined:INFO] [Stage 1] recieved_halt: false
+[00:003:903:080] [pipeline:pipelined:INFO] [Stage 2] waited on input_is_empty
+[00:003:935:991] [pipeline:pipelined:INFO] [Stage 1] input_is_empty || (recieved_halt && input_is_empty): false
+[00:003:968:544] [pipeline:pipelined:INFO] [Stage 2] unlocking this mutex
+[00:003:995:839] [pipeline:pipelined:INFO] [Stage 2] unlocked this mutex
+[00:004:018:064] [pipeline:pipelined:INFO] [Stage 2] recieved_halt: false
+[00:004:039:527] [pipeline:pipelined:INFO] [Stage 2] input_is_empty: true
+[00:004:067:445] [pipeline:pipelined:INFO] [Stage 2] locking this mutex
+[00:004:099:058] [pipeline:pipelined:INFO] [Stage 1] functions.this_flip_flop->hasInput: false
+[00:004:132:587] [pipeline:pipelined:INFO] [Stage 2] locked this mutex
+[00:004:165:760] [pipeline:pipelined:INFO] [Stage 1] input->empty(): false
+[00:004:198:679] [pipeline:pipelined:INFO] [Stage 2] waiting on this_input_is_not_empty
+[00:004:231:287] [pipeline:pipelined:INFO] [Stage 1] input_is_empty: false
+[00:004:257:855] [pipeline:pipelined:INFO] [Stage 1] recieved_halt: false
+[00:004:279:860] [pipeline:pipelined:INFO] [Stage 1] input_is_empty || (recieved_halt && input_is_empty): false
+[00:000:028:535] [pipeline:pipelined:INFO] [13, 0, 55, 2]
+[00:000:221:550] [pipeline:pipelined:INFO] [Stage 0] STARTED
+[00:000:358:227] [pipeline:pipelined:INFO] [Stage 1] STARTED
+[00:000:417:209] [pipeline:pipelined:INFO] [Stage 1] locking this mutex
+[00:000:451:960] [pipeline:pipelined:INFO] [Stage 1] locked this mutex
+[00:000:485:689] [pipeline:pipelined:INFO] [Stage 1] waiting on this_input_is_not_empty
+[00:000:520:809] [pipeline:pipelined:INFO] [Stage 0] locking this mutex
+[00:000:571:112] [pipeline:pipelined:INFO] [Stage 2] STARTED
+[00:000:610:865] [pipeline:pipelined:INFO] [Stage 2] locking this mutex
+[00:000:645:260] [pipeline:pipelined:INFO] [Stage 2] locked this mutex
+[00:000:684:383] [pipeline:pipelined:INFO] [Stage 0] locked this mutex
+[00:000:730:137] [pipeline:pipelined:INFO] [Stage 2] waiting on this_input_is_not_empty
+[00:000:782:851] [pipeline:pipelined:INFO] [Stage 0] waiting on this_input_is_not_empty
+[00:000:836:119] [pipeline:pipelined:INFO] [Stage 0] waited on this_input_is_not_empty
+[00:000:875:795] [pipeline:pipelined:INFO] [Stage 0] unlocking this mutex
+[00:000:916:408] [pipeline:pipelined:INFO] [Stage 0] unlocked this mutex
+[00:000:955:164] [pipeline:pipelined:INFO] [Stage 0] this_input_is_not_empty: true
+[00:000:995:894] [pipeline:pipelined:INFO] Stage 0: clock: 0: fetch BEGIN, PC: 0
+[00:001:038:775] [pipeline:pipelined:INFO] Stage 0: clock: 0: fetch END
+[00:001:078:918] [pipeline:pipelined:INFO] Stage 0: clock: 0: decode BEGIN
+[00:001:117:434] [pipeline:pipelined:INFO] Stage 0: clock: 0: decode END: load
+[00:001:158:209] [pipeline:pipelined:INFO] Stage 0: clock: 0: output:[13]
+[00:001:206:254] [pipeline:pipelined:INFO] [Stage 0] locking next mutex
+[00:001:249:152] [pipeline:pipelined:INFO] [Stage 1] waited on this_input_is_not_empty
+[00:001:278:792] [pipeline:pipelined:INFO] [Stage 1] unlocking this mutex
+[00:001:311:486] [pipeline:pipelined:INFO] [Stage 1] unlocked this mutex
+[00:001:349:975] [pipeline:pipelined:INFO] [Stage 0] locked next mutex
+[00:001:391:274] [pipeline:pipelined:INFO] [Stage 1] this_input_is_not_empty: true
+[00:001:422:574] [pipeline:pipelined:INFO] [Stage 1] pushing flip-flop input
+[00:001:465:868] [pipeline:pipelined:INFO] [Stage 0] waiting on next_input_is_empty
+[00:001:506:511] [pipeline:pipelined:INFO] [Stage 1] pushed flip-flop input
+[00:001:541:570] [pipeline:pipelined:INFO] [Stage 1] consuming normal input
+[00:001:566:777] [pipeline:pipelined:INFO] [Stage 1] consumed normal input
+[00:001:610:105] [pipeline:pipelined:INFO] [Stage 0] output->empty(): true
+[00:001:663:850] [pipeline:pipelined:INFO] [Stage 1] functions.this_flip_flop->input: 13, functions.this_flip_flop->output: 0
+[00:001:697:296] [pipeline:pipelined:INFO] [Stage 1] pushing flip-flop output and consuming flip-flop input
+[00:001:733:554] [pipeline:pipelined:INFO] [Stage 0] waited on next_input_is_empty
+[00:001:773:907] [pipeline:pipelined:INFO] [Stage 1] pushed flip-flop output and consumed flip-flop input
+[00:001:815:827] [pipeline:pipelined:INFO] [Stage 0] next_input_is_empty: true
+[00:001:856:252] [pipeline:pipelined:INFO] [Stage 1] functions.this_flip_flop->input: 13, functions.this_flip_flop->output: 13
+[00:001:893:233] [pipeline:pipelined:INFO] [Stage 0] unlocking next mutex
+[00:001:933:808] [pipeline:pipelined:INFO] [Stage 1] consuming flip-flop output and pushing normal output
+[00:001:972:052] [pipeline:pipelined:INFO] [Stage 0] unlocked next mutex
+[00:002:010:506] [pipeline:pipelined:INFO] [Stage 1] consumed flip-flop output and pushed normal output
+[00:002:046:326] [pipeline:pipelined:INFO] [Stage 0] locking this mutex
+[00:002:093:007] [pipeline:pipelined:INFO] [Stage 1] locking next mutex
+[00:002:131:799] [pipeline:pipelined:INFO] [Stage 2] waited on this_input_is_not_empty
+[00:002:167:691] [pipeline:pipelined:INFO] [Stage 0] locked this mutex
+[00:002:201:505] [pipeline:pipelined:INFO] [Stage 2] unlocking this mutex
+[00:002:237:209] [pipeline:pipelined:INFO] [Stage 0] waiting on this_input_is_not_empty
+[00:002:284:750] [pipeline:pipelined:INFO] [Stage 2] unlocked this mutex
+[00:002:326:744] [pipeline:pipelined:INFO] [Stage 1] locked next mutex
+[00:002:359:292] [pipeline:pipelined:INFO] [Stage 1] waiting on next_input_is_empty
+[00:002:386:109] [pipeline:pipelined:INFO] [Stage 1] output->empty(): false
+[00:002:422:329] [pipeline:pipelined:INFO] [Stage 0] waited on this_input_is_not_empty
+[00:002:468:007] [pipeline:pipelined:INFO] [Stage 2] this_input_is_not_empty: true
+[00:002:510:335] [pipeline:pipelined:INFO] [Stage 0] unlocking this mutex
+[00:002:549:225] [pipeline:pipelined:INFO] [Stage 0] unlocked this mutex
+[00:002:590:964] [pipeline:pipelined:INFO] Stage 2: clock: 0: input:[13]
+[00:002:630:141] [pipeline:pipelined:INFO] [Stage 0] this_input_is_not_empty: true
+[00:002:670:657] [pipeline:pipelined:INFO] Stage 2: clock: 0: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 0
+[00:002:714:329] [pipeline:pipelined:INFO] Stage 0: clock: 0: fetch BEGIN, PC: 2
+[00:002:756:698] [pipeline:pipelined:INFO] [Stage 2] reg->ACC: 1
+[00:002:807:737] [pipeline:pipelined:INFO] Stage 0: clock: 0: fetch END
+[00:002:840:137] [pipeline:pipelined:INFO] Stage 0: clock: 0: decode BEGIN
+[00:002:878:447] [pipeline:pipelined:INFO] Stage 2: clock: 0: execute END,   pipeline memory: [1, 2, 0], ACC: 1
+[00:002:919:682] [pipeline:pipelined:INFO] Stage 0: clock: 0: decode END: store
+[00:002:957:690] [pipeline:pipelined:INFO] Stage 0: clock: 0: output:[55]
+[00:003:000:442] [pipeline:pipelined:INFO] --- clock: 0: Cycle END             ---
+[00:003:044:673] [pipeline:pipelined:INFO] [Stage 0] locking next mutex
+[00:003:083:732] [pipeline:pipelined:INFO] [Stage 1] output->empty(): false
+[00:003:122:955] [pipeline:pipelined:INFO] --- clock: 1: Cycle BEGIN           ---
+[00:003:165:854] [pipeline:pipelined:INFO] [Stage 0] locked next mutex
+[00:003:199:170] [pipeline:pipelined:INFO] [Stage 0] waiting on next_input_is_empty
+[00:003:243:317] [pipeline:pipelined:INFO] [Stage 2] consuming normal input
+[00:003:286:686] [pipeline:pipelined:INFO] [Stage 0] output->empty(): false
+[00:003:328:280] [pipeline:pipelined:INFO] [Stage 2] consumed normal input
+[00:003:373:786] [pipeline:pipelined:INFO] [Stage 2] locking this mutex
+[00:003:411:871] [pipeline:pipelined:INFO] [Stage 1] output->empty(): true
+[00:003:453:393] [pipeline:pipelined:INFO] [Stage 1] waited on next_input_is_empty
+[00:003:478:847] [pipeline:pipelined:INFO] [Stage 1] next_input_is_empty: true
+[00:003:507:740] [pipeline:pipelined:INFO] [Stage 1] unlocking next mutex
+[00:003:539:193] [pipeline:pipelined:INFO] [Stage 1] unlocked next mutex
+[00:003:579:383] [pipeline:pipelined:INFO] [Stage 1] locking this mutex
+[00:003:615:828] [pipeline:pipelined:INFO] [Stage 2] locked this mutex
+[00:003:656:591] [pipeline:pipelined:INFO] [Stage 1] locked this mutex
+[00:003:695:540] [pipeline:pipelined:INFO] [Stage 2] waiting on input_is_empty
+[00:003:734:720] [pipeline:pipelined:INFO] [Stage 1] waiting on input_is_empty
+[00:003:772:261] [pipeline:pipelined:INFO] [Stage 2] input->empty(): true
+[00:003:815:385] [pipeline:pipelined:INFO] [Stage 1] functions.this_flip_flop->hasInput: false
+[00:003:856:503] [pipeline:pipelined:INFO] [Stage 2] input_is_empty: true
+[00:003:896:676] [pipeline:pipelined:INFO] [Stage 1] input->empty(): false
+[00:003:935:108] [pipeline:pipelined:INFO] [Stage 2] recieved_halt: false
+[00:003:975:299] [pipeline:pipelined:INFO] [Stage 1] input_is_empty: false
+[00:004:018:033] [pipeline:pipelined:INFO] [Stage 2] input_is_empty || (recieved_halt && input_is_empty): true
+[00:004:058:971] [pipeline:pipelined:INFO] [Stage 1] recieved_halt: false
+[00:004:096:188] [pipeline:pipelined:INFO] [Stage 2] waited on input_is_empty
+[00:004:135:219] [pipeline:pipelined:INFO] [Stage 1] input_is_empty || (recieved_halt && input_is_empty): false
+[00:004:177:806] [pipeline:pipelined:INFO] [Stage 2] unlocking this mutex
+[00:004:221:429] [pipeline:pipelined:INFO] [Stage 2] unlocked this mutex
+[00:004:259:650] [pipeline:pipelined:INFO] [Stage 2] recieved_halt: false
+[00:004:296:409] [pipeline:pipelined:INFO] [Stage 2] input_is_empty: true
+[00:004:336:841] [pipeline:pipelined:INFO] [Stage 2] locking this mutex
+[00:004:375:338] [pipeline:pipelined:INFO] [Stage 1] functions.this_flip_flop->hasInput: false
+[00:004:419:152] [pipeline:pipelined:INFO] [Stage 2] locked this mutex
+[00:004:458:174] [pipeline:pipelined:INFO] [Stage 1] input->empty(): false
+[00:004:500:359] [pipeline:pipelined:INFO] [Stage 2] waiting on this_input_is_not_empty
+[00:004:543:947] [pipeline:pipelined:INFO] [Stage 1] input_is_empty: false
+[00:004:577:726] [pipeline:pipelined:INFO] [Stage 1] recieved_halt: false
+[00:004:611:723] [pipeline:pipelined:INFO] [Stage 1] input_is_empty || (recieved_halt && input_is_empty): false
+[00:000:032:601] [pipeline:pipelined:INFO] [13, 0, 55, 2]
+[00:000:243:420] [pipeline:pipelined:INFO] [Stage 0] STARTED
+[00:000:324:640] [pipeline:pipelined:INFO] [Stage 0] locking this mutex
+[00:000:380:855] [pipeline:pipelined:INFO] [Stage 0] locked this mutex
+[00:000:428:624] [pipeline:pipelined:INFO] [Stage 0] waiting on this_input_is_not_empty
+[00:000:469:264] [pipeline:pipelined:INFO] [Stage 0] waited on this_input_is_not_empty
+[00:000:509:151] [pipeline:pipelined:INFO] [Stage 0] unlocking this mutex
+[00:000:549:167] [pipeline:pipelined:INFO] [Stage 0] unlocked this mutex
+[00:000:591:094] [pipeline:pipelined:INFO] [Stage 0] this_input_is_not_empty: true
+[00:000:682:894] [pipeline:pipelined:INFO] [Stage 2] STARTED
+[00:000:764:691] [pipeline:pipelined:INFO] [Stage 1] STARTED
+[00:000:820:168] [pipeline:pipelined:INFO] [Stage 1] locking this mutex
+[00:000:890:312] [pipeline:pipelined:INFO] [Stage 2] locking this mutex
+[00:000:955:556] [pipeline:pipelined:INFO] Stage 0: clock: 0: fetch BEGIN, PC: 0
+[00:001:035:810] [pipeline:pipelined:INFO] [Stage 1] locked this mutex
+[00:001:107:083] [pipeline:pipelined:INFO] [Stage 1] waiting on this_input_is_not_empty
+[00:001:151:553] [pipeline:pipelined:INFO] Stage 0: clock: 0: fetch END
+[00:001:208:429] [pipeline:pipelined:INFO] Stage 0: clock: 0: decode BEGIN
+[00:001:268:029] [pipeline:pipelined:INFO] Stage 0: clock: 0: decode END: load
+[00:001:315:779] [pipeline:pipelined:INFO] [Stage 2] locked this mutex
+[00:001:375:890] [pipeline:pipelined:INFO] Stage 0: clock: 0: output:[13]
+[00:001:441:764] [pipeline:pipelined:INFO] [Stage 2] waiting on this_input_is_not_empty
+[00:001:494:801] [pipeline:pipelined:INFO] [Stage 0] locking next mutex
+[00:001:558:434] [pipeline:pipelined:INFO] [Stage 1] waited on this_input_is_not_empty
+[00:001:607:084] [pipeline:pipelined:INFO] [Stage 1] unlocking this mutex
+[00:001:654:389] [pipeline:pipelined:INFO] [Stage 1] unlocked this mutex
+[00:001:704:866] [pipeline:pipelined:INFO] [Stage 0] locked next mutex
+[00:001:761:751] [pipeline:pipelined:INFO] [Stage 0] waiting on next_input_is_empty
+[00:001:821:185] [pipeline:pipelined:INFO] [Stage 0] output->empty(): false
+[00:001:904:053] [pipeline:pipelined:INFO] [Stage 1] this_input_is_not_empty: true
+[00:001:964:863] [pipeline:pipelined:INFO] [Stage 1] pushing flip-flop input
+[00:002:008:437] [pipeline:pipelined:INFO] [Stage 1] pushed flip-flop input
+[00:002:051:109] [pipeline:pipelined:INFO] [Stage 1] consuming normal input
+[00:002:092:297] [pipeline:pipelined:INFO] [Stage 1] consumed normal input
+[00:002:141:175] [pipeline:pipelined:INFO] [Stage 1] functions.this_flip_flop->input: 13, functions.this_flip_flop->output: 0
+[00:002:189:560] [pipeline:pipelined:INFO] [Stage 0] output->empty(): true
+[00:002:262:491] [pipeline:pipelined:INFO] [Stage 1] pushing flip-flop output and consuming flip-flop input
+[00:002:318:832] [pipeline:pipelined:INFO] [Stage 0] waited on next_input_is_empty
+[00:002:379:400] [pipeline:pipelined:INFO] [Stage 1] pushed flip-flop output and consumed flip-flop input
+[00:002:438:122] [pipeline:pipelined:INFO] [Stage 0] next_input_is_empty: true
+[00:002:493:437] [pipeline:pipelined:INFO] [Stage 0] unlocking next mutex
+[00:002:546:050] [pipeline:pipelined:INFO] [Stage 1] functions.this_flip_flop->input: 13, functions.this_flip_flop->output: 13
+[00:002:602:627] [pipeline:pipelined:INFO] [Stage 0] unlocked next mutex
+[00:002:661:935] [pipeline:pipelined:INFO] [Stage 1] consuming flip-flop output and pushing normal output
+[00:002:717:231] [pipeline:pipelined:INFO] [Stage 0] locking this mutex
+[00:002:777:846] [pipeline:pipelined:INFO] [Stage 1] consumed flip-flop output and pushed normal output
+[00:002:837:044] [pipeline:pipelined:INFO] [Stage 0] locked this mutex
+[00:002:897:268] [pipeline:pipelined:INFO] [Stage 1] locking next mutex
+[00:002:951:628] [pipeline:pipelined:INFO] [Stage 0] waiting on this_input_is_not_empty
+[00:003:003:855] [pipeline:pipelined:INFO] [Stage 0] waited on this_input_is_not_empty
+[00:003:049:019] [pipeline:pipelined:INFO] [Stage 2] waited on this_input_is_not_empty
+[00:003:111:154] [pipeline:pipelined:INFO] [Stage 0] unlocking this mutex
+[00:003:160:263] [pipeline:pipelined:INFO] [Stage 2] unlocking this mutex
+[00:003:210:831] [pipeline:pipelined:INFO] [Stage 0] unlocked this mutex
+[00:003:271:357] [pipeline:pipelined:INFO] [Stage 0] this_input_is_not_empty: true
+[00:003:324:756] [pipeline:pipelined:INFO] [Stage 1] locked next mutex
+[00:003:380:563] [pipeline:pipelined:INFO] [Stage 2] unlocked this mutex
+[00:003:439:905] [pipeline:pipelined:INFO] Stage 0: clock: 0: fetch BEGIN, PC: 2
+[00:003:497:777] [pipeline:pipelined:INFO] [Stage 1] waiting on next_input_is_empty
+[00:003:557:395] [pipeline:pipelined:INFO] [Stage 2] this_input_is_not_empty: true
+[00:003:618:499] [pipeline:pipelined:INFO] Stage 0: clock: 0: fetch END
+[00:003:671:184] [pipeline:pipelined:INFO] [Stage 1] output->empty(): false
+[00:003:723:143] [pipeline:pipelined:INFO] Stage 2: clock: 0: input:[13]
+[00:003:773:398] [pipeline:pipelined:INFO] Stage 0: clock: 0: decode BEGIN
+[00:003:823:710] [pipeline:pipelined:INFO] Stage 2: clock: 0: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 0
+[00:003:875:010] [pipeline:pipelined:INFO] Stage 0: clock: 0: decode END: store
+[00:003:926:500] [pipeline:pipelined:INFO] [Stage 2] reg->ACC: 0
+[00:003:976:885] [pipeline:pipelined:INFO] Stage 0: clock: 0: output:[55]
+[00:004:030:093] [pipeline:pipelined:INFO] Stage 2: clock: 0: execute END,   pipeline memory: [1, 2, 0], ACC: 0
+[00:004:083:708] [pipeline:pipelined:INFO] [Stage 1] output->empty(): false
+[00:004:134:609] [pipeline:pipelined:INFO] [Stage 0] locking next mutex
+[00:004:187:184] [pipeline:pipelined:INFO] --- clock: 0: Cycle END             ---
+[00:004:237:792] [pipeline:pipelined:INFO] [Stage 0] locked next mutex
+[00:004:288:588] [pipeline:pipelined:INFO] --- clock: 1: Cycle BEGIN           ---
+[00:004:339:136] [pipeline:pipelined:INFO] [Stage 0] waiting on next_input_is_empty
+[00:004:389:965] [pipeline:pipelined:INFO] [Stage 2] consuming normal input
+[00:004:453:327] [pipeline:pipelined:INFO] [Stage 0] output->empty(): false
+[00:004:504:613] [pipeline:pipelined:INFO] [Stage 2] consumed normal input
+[00:004:557:250] [pipeline:pipelined:INFO] [Stage 2] locking this mutex
+[00:004:604:001] [pipeline:pipelined:INFO] [Stage 1] output->empty(): true
+[00:004:657:530] [pipeline:pipelined:INFO] [Stage 1] waited on next_input_is_empty
+[00:004:696:725] [pipeline:pipelined:INFO] [Stage 1] next_input_is_empty: true
+[00:004:733:865] [pipeline:pipelined:INFO] [Stage 1] unlocking next mutex
+[00:004:778:176] [pipeline:pipelined:INFO] [Stage 1] unlocked next mutex
+[00:004:841:634] [pipeline:pipelined:INFO] [Stage 2] locked this mutex
+[00:004:894:437] [pipeline:pipelined:INFO] [Stage 1] locking this mutex
+[00:004:970:546] [pipeline:pipelined:INFO] [Stage 1] locked this mutex
+[00:005:012:777] [pipeline:pipelined:INFO] [Stage 2] waiting on input_is_empty
+[00:005:050:308] [pipeline:pipelined:INFO] [Stage 1] waiting on input_is_empty
+[00:005:086:748] [pipeline:pipelined:INFO] [Stage 2] input->empty(): true
+[00:005:122:393] [pipeline:pipelined:INFO] [Stage 1] functions.this_flip_flop->hasInput: false
+[00:005:159:296] [pipeline:pipelined:INFO] [Stage 2] input_is_empty: true
+[00:005:206:967] [pipeline:pipelined:INFO] [Stage 2] recieved_halt: false
+[00:005:252:525] [pipeline:pipelined:INFO] [Stage 1] input->empty(): false
+[00:005:311:395] [pipeline:pipelined:INFO] [Stage 2] input_is_empty || (recieved_halt && input_is_empty): true
+[00:005:351:886] [pipeline:pipelined:INFO] [Stage 1] input_is_empty: false
+[00:005:392:359] [pipeline:pipelined:INFO] [Stage 2] waited on input_is_empty
+[00:005:468:425] [pipeline:pipelined:INFO] [Stage 1] recieved_halt: false
+[00:005:526:566] [pipeline:pipelined:INFO] [Stage 2] unlocking this mutex
+[00:005:567:130] [pipeline:pipelined:INFO] [Stage 1] input_is_empty || (recieved_halt && input_is_empty): false
+[00:005:643:387] [pipeline:pipelined:INFO] [Stage 2] unlocked this mutex
+[00:005:696:035] [pipeline:pipelined:INFO] [Stage 2] recieved_halt: false
+[00:005:743:941] [pipeline:pipelined:INFO] [Stage 2] input_is_empty: true
+[00:005:779:822] [pipeline:pipelined:INFO] [Stage 2] locking this mutex
+[00:005:866:720] [pipeline:pipelined:INFO] [Stage 1] functions.this_flip_flop->hasInput: false
+[00:005:928:183] [pipeline:pipelined:INFO] [Stage 2] locked this mutex
+[00:005:986:408] [pipeline:pipelined:INFO] [Stage 1] input->empty(): false
+[00:006:026:691] [pipeline:pipelined:INFO] [Stage 2] waiting on this_input_is_not_empty
+[00:006:083:879] [pipeline:pipelined:INFO] [Stage 1] input_is_empty: false
+[00:006:118:932] [pipeline:pipelined:INFO] [Stage 1] recieved_halt: false
+[00:006:185:703] [pipeline:pipelined:INFO] [Stage 1] input_is_empty || (recieved_halt && input_is_empty): false
+[00:000:027:238] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 0: fetch BEGIN, PC: 0, p->instruction_memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+[00:000:100:319] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 0: fetch END
+[00:000:135:080] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 0: decode BEGIN
+[00:000:165:282] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 0: decode END: unknown
+[00:000:194:704] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 0: output: 0
+[00:000:222:348] [pipeline:sequential:without debug output:INFO] Flop encountered, executing due to sequential mode
+[00:000:256:116] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 0: execute BEGIN, input: 0, pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:000:288:267] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 0: execute END,   pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:000:316:483] [pipeline:sequential:without debug output:INFO] --- clock: 0: Cycle END             ---
+[00:000:343:193] [pipeline:sequential:without debug output:INFO] --- clock: 1: Cycle BEGIN           ---
+[00:000:373:078] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 1: fetch BEGIN, PC: 2, p->instruction_memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+[00:000:417:667] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 1: fetch END
+[00:000:447:069] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 1: decode BEGIN
+[00:000:474:169] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 1: decode END: unknown
+[00:000:500:667] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 1: output: 2
+[00:000:527:132] [pipeline:sequential:without debug output:INFO] Flop encountered, executing due to sequential mode
+[00:000:558:077] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 1: execute BEGIN, input: 2, pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:000:587:364] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 1: execute END,   pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:000:614:255] [pipeline:sequential:without debug output:INFO] --- clock: 1: Cycle END             ---
+[00:000:640:556] [pipeline:sequential:without debug output:INFO] --- clock: 2: Cycle BEGIN           ---
+[00:000:670:035] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 2: fetch BEGIN, PC: 4, p->instruction_memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+[00:000:697:573] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 2: fetch END
+[00:000:724:099] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 2: decode BEGIN
+[00:000:765:937] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 2: decode END: unknown
+[00:000:794:875] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 2: output: 4
+[00:000:821:511] [pipeline:sequential:without debug output:INFO] Flop encountered, executing due to sequential mode
+[00:000:852:646] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 2: execute BEGIN, input: 4, pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:000:881:618] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 2: execute END,   pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:000:908:594] [pipeline:sequential:without debug output:INFO] --- clock: 2: Cycle END             ---
+[00:000:935:124] [pipeline:sequential:without debug output:INFO] --- clock: 3: Cycle BEGIN           ---
+[00:000:964:401] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 3: fetch BEGIN, PC: 6, p->instruction_memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+[00:000:991:592] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 3: fetch END
+[00:001:018:022] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 3: decode BEGIN
+[00:001:044:882] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 3: decode END: unknown
+[00:001:071:385] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 3: output: 6
+[00:001:097:781] [pipeline:sequential:without debug output:INFO] Flop encountered, executing due to sequential mode
+[00:001:128:541] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 3: execute BEGIN, input: 6, pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:001:157:570] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 3: execute END,   pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:001:184:149] [pipeline:sequential:without debug output:INFO] --- clock: 3: Cycle END             ---
+[00:001:210:455] [pipeline:sequential:without debug output:INFO] --- clock: 4: Cycle BEGIN           ---
+[00:001:239:474] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 4: fetch BEGIN, PC: 8, p->instruction_memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+[00:001:266:735] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 4: fetch END
+[00:001:293:036] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 4: decode BEGIN
+[00:001:319:808] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 4: decode END: unknown
+[00:001:352:816] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 4: output: 8
+[00:001:380:091] [pipeline:sequential:without debug output:INFO] Flop encountered, executing due to sequential mode
+[00:001:411:102] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 4: execute BEGIN, input: 8, pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:001:440:481] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 4: execute END,   pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:001:467:648] [pipeline:sequential:without debug output:INFO] --- clock: 4: Cycle END             ---
+[00:001:493:885] [pipeline:sequential:without debug output:INFO] --- clock: 5: Cycle BEGIN           ---
+[00:001:523:112] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 5: fetch BEGIN, PC: 10, p->instruction_memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+[00:001:550:618] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 5: fetch END
+[00:001:577:141] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 5: decode BEGIN
+[00:001:604:017] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 5: decode END: unknown
+[00:001:630:236] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 5: output: 10
+[00:001:656:701] [pipeline:sequential:without debug output:INFO] Flop encountered, executing due to sequential mode
+[00:001:687:379] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 5: execute BEGIN, input: 10, pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:001:716:429] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 5: execute END,   pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:001:743:448] [pipeline:sequential:without debug output:INFO] --- clock: 5: Cycle END             ---
+[00:001:769:765] [pipeline:sequential:without debug output:INFO] --- clock: 6: Cycle BEGIN           ---
+[00:000:024:279] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 0: fetch BEGIN, PC: 0, p->instruction_memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+[00:000:098:339] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 0: fetch END
+[00:000:136:549] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 0: decode BEGIN
+[00:000:178:285] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 0: decode END: unknown
+[00:000:217:766] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 0: output: 0
+[00:000:255:144] [pipeline:sequential:without debug output:INFO] Flop encountered, executing due to sequential mode
+[00:000:306:782] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 0: execute BEGIN, input: 0, pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:000:357:095] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 0: execute END,   pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:000:391:646] [pipeline:sequential:without debug output:INFO] --- clock: 0: Cycle END             ---
+[00:000:423:351] [pipeline:sequential:without debug output:INFO] --- clock: 1: Cycle BEGIN           ---
+[00:000:460:090] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 1: fetch BEGIN, PC: 2, p->instruction_memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+[00:000:494:236] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 1: fetch END
+[00:000:524:853] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 1: decode BEGIN
+[00:000:557:904] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 1: decode END: unknown
+[00:000:591:114] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 1: output: 2
+[00:000:623:903] [pipeline:sequential:without debug output:INFO] Flop encountered, executing due to sequential mode
+[00:000:662:880] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 1: execute BEGIN, input: 2, pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:000:699:855] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 1: execute END,   pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:000:744:032] [pipeline:sequential:without debug output:INFO] --- clock: 1: Cycle END             ---
+[00:000:774:363] [pipeline:sequential:without debug output:INFO] --- clock: 2: Cycle BEGIN           ---
+[00:000:809:365] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 2: fetch BEGIN, PC: 4, p->instruction_memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+[00:000:842:368] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 2: fetch END
+[00:000:872:998] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 2: decode BEGIN
+[00:000:904:687] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 2: decode END: unknown
+[00:000:935:489] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 2: output: 4
+[00:000:967:133] [pipeline:sequential:without debug output:INFO] Flop encountered, executing due to sequential mode
+[00:001:007:212] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 2: execute BEGIN, input: 4, pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:001:043:137] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 2: execute END,   pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:001:074:396] [pipeline:sequential:without debug output:INFO] --- clock: 2: Cycle END             ---
+[00:001:104:327] [pipeline:sequential:without debug output:INFO] --- clock: 3: Cycle BEGIN           ---
+[00:001:141:459] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 3: fetch BEGIN, PC: 6, p->instruction_memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+[00:001:173:611] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 3: fetch END
+[00:001:204:895] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 3: decode BEGIN
+[00:001:236:160] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 3: decode END: unknown
+[00:001:268:117] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 3: output: 6
+[00:001:299:065] [pipeline:sequential:without debug output:INFO] Flop encountered, executing due to sequential mode
+[00:001:337:960] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 3: execute BEGIN, input: 6, pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:001:373:511] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 3: execute END,   pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:001:405:539] [pipeline:sequential:without debug output:INFO] --- clock: 3: Cycle END             ---
+[00:001:436:984] [pipeline:sequential:without debug output:INFO] --- clock: 4: Cycle BEGIN           ---
+[00:001:473:472] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 4: fetch BEGIN, PC: 8, p->instruction_memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+[00:001:504:201] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 4: fetch END
+[00:001:534:116] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 4: decode BEGIN
+[00:001:565:714] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 4: decode END: unknown
+[00:001:596:718] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 4: output: 8
+[00:001:626:997] [pipeline:sequential:without debug output:INFO] Flop encountered, executing due to sequential mode
+[00:001:665:071] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 4: execute BEGIN, input: 8, pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:001:700:409] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 4: execute END,   pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:001:732:584] [pipeline:sequential:without debug output:INFO] --- clock: 4: Cycle END             ---
+[00:001:763:253] [pipeline:sequential:without debug output:INFO] --- clock: 5: Cycle BEGIN           ---
+[00:001:799:623] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 5: fetch BEGIN, PC: 10, p->instruction_memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+[00:001:840:866] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 5: fetch END
+[00:001:872:004] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 5: decode BEGIN
+[00:001:903:447] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 5: decode END: unknown
+[00:001:933:661] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 5: output: 10
+[00:001:964:486] [pipeline:sequential:without debug output:INFO] Flop encountered, executing due to sequential mode
+[00:002:003:269] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 5: execute BEGIN, input: 10, pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:002:050:459] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 5: execute END,   pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:002:098:403] [pipeline:sequential:without debug output:INFO] --- clock: 5: Cycle END             ---
+[00:002:132:579] [pipeline:sequential:without debug output:INFO] --- clock: 6: Cycle BEGIN           ---
+[00:000:038:716] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 0: fetch BEGIN, PC: 0, p->instruction_memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+[00:000:152:037] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 0: fetch END
+[00:000:196:106] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 0: decode BEGIN
+[00:000:219:912] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 0: decode END: unknown
+[00:000:242:028] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 0: output: 0
+[00:000:264:867] [pipeline:sequential:without debug output:INFO] Flop encountered, executing due to sequential mode
+[00:000:293:629] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 0: execute BEGIN, input: 0, pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:000:319:074] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 0: execute END,   pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:000:341:658] [pipeline:sequential:without debug output:INFO] --- clock: 0: Cycle END             ---
+[00:000:362:634] [pipeline:sequential:without debug output:INFO] --- clock: 1: Cycle BEGIN           ---
+[00:000:387:127] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 1: fetch BEGIN, PC: 2, p->instruction_memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+[00:000:415:286] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 1: fetch END
+[00:000:451:992] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 1: decode BEGIN
+[00:000:475:312] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 1: decode END: unknown
+[00:000:511:221] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 1: output: 2
+[00:000:544:874] [pipeline:sequential:without debug output:INFO] Flop encountered, executing due to sequential mode
+[00:000:589:024] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 1: execute BEGIN, input: 2, pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:000:622:377] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 1: execute END,   pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:000:652:949] [pipeline:sequential:without debug output:INFO] --- clock: 1: Cycle END             ---
+[00:000:683:150] [pipeline:sequential:without debug output:INFO] --- clock: 2: Cycle BEGIN           ---
+[00:000:708:940] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 2: fetch BEGIN, PC: 4, p->instruction_memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+[00:000:740:595] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 2: fetch END
+[00:000:771:047] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 2: decode BEGIN
+[00:000:802:181] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 2: decode END: unknown
+[00:000:833:419] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 2: output: 4
+[00:000:876:890] [pipeline:sequential:without debug output:INFO] Flop encountered, executing due to sequential mode
+[00:000:918:660] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 2: execute BEGIN, input: 4, pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:000:952:698] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 2: execute END,   pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:000:983:140] [pipeline:sequential:without debug output:INFO] --- clock: 2: Cycle END             ---
+[00:001:004:661] [pipeline:sequential:without debug output:INFO] --- clock: 3: Cycle BEGIN           ---
+[00:001:038:668] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 3: fetch BEGIN, PC: 6, p->instruction_memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+[00:001:069:375] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 3: fetch END
+[00:001:099:765] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 3: decode BEGIN
+[00:001:128:660] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 3: decode END: unknown
+[00:001:158:761] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 3: output: 6
+[00:001:188:033] [pipeline:sequential:without debug output:INFO] Flop encountered, executing due to sequential mode
+[00:001:222:979] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 3: execute BEGIN, input: 6, pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:001:258:192] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 3: execute END,   pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:001:293:675] [pipeline:sequential:without debug output:INFO] --- clock: 3: Cycle END             ---
+[00:001:325:363] [pipeline:sequential:without debug output:INFO] --- clock: 4: Cycle BEGIN           ---
+[00:001:360:681] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 4: fetch BEGIN, PC: 8, p->instruction_memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+[00:001:384:554] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 4: fetch END
+[00:001:411:194] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 4: decode BEGIN
+[00:001:445:600] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 4: decode END: unknown
+[00:001:476:012] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 4: output: 8
+[00:001:508:604] [pipeline:sequential:without debug output:INFO] Flop encountered, executing due to sequential mode
+[00:001:542:929] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 4: execute BEGIN, input: 8, pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:001:577:063] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 4: execute END,   pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:001:612:763] [pipeline:sequential:without debug output:INFO] --- clock: 4: Cycle END             ---
+[00:001:641:110] [pipeline:sequential:without debug output:INFO] --- clock: 5: Cycle BEGIN           ---
+[00:001:679:854] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 5: fetch BEGIN, PC: 10, p->instruction_memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+[00:001:711:810] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 5: fetch END
+[00:001:741:946] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 5: decode BEGIN
+[00:001:774:160] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 5: decode END: unknown
+[00:001:805:235] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 5: output: 10
+[00:001:834:641] [pipeline:sequential:without debug output:INFO] Flop encountered, executing due to sequential mode
+[00:001:860:953] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 5: execute BEGIN, input: 10, pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:001:892:671] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 5: execute END,   pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:001:946:799] [pipeline:sequential:without debug output:INFO] --- clock: 5: Cycle END             ---
+[00:001:983:853] [pipeline:sequential:without debug output:INFO] --- clock: 6: Cycle BEGIN           ---
+[00:000:026:379] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 0: fetch BEGIN, PC: 0, p->instruction_memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+[00:000:102:307] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 0: fetch END
+[00:000:135:558] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 0: decode BEGIN
+[00:000:162:300] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 0: decode END: unknown
+[00:000:189:768] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 0: output: 0
+[00:000:214:818] [pipeline:sequential:without debug output:INFO] Flop encountered, executing due to sequential mode
+[00:000:246:456] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 0: execute BEGIN, input: 0, pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:000:273:697] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 0: execute END,   pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:000:298:730] [pipeline:sequential:without debug output:INFO] --- clock: 0: Cycle END             ---
+[00:000:322:431] [pipeline:sequential:without debug output:INFO] --- clock: 1: Cycle BEGIN           ---
+[00:000:349:736] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 1: fetch BEGIN, PC: 2, p->instruction_memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+[00:000:375:582] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 1: fetch END
+[00:000:405:886] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 1: decode BEGIN
+[00:000:430:372] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 1: decode END: unknown
+[00:000:454:318] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 1: output: 2
+[00:000:477:806] [pipeline:sequential:without debug output:INFO] Flop encountered, executing due to sequential mode
+[00:000:506:521] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 1: execute BEGIN, input: 2, pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:000:532:982] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 1: execute END,   pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:000:557:516] [pipeline:sequential:without debug output:INFO] --- clock: 1: Cycle END             ---
+[00:000:581:020] [pipeline:sequential:without debug output:INFO] --- clock: 2: Cycle BEGIN           ---
+[00:000:607:657] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 2: fetch BEGIN, PC: 4, p->instruction_memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+[00:000:633:001] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 2: fetch END
+[00:000:656:311] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 2: decode BEGIN
+[00:000:679:980] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 2: decode END: unknown
+[00:000:703:794] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 2: output: 4
+[00:000:727:338] [pipeline:sequential:without debug output:INFO] Flop encountered, executing due to sequential mode
+[00:000:755:807] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 2: execute BEGIN, input: 4, pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:000:782:063] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 2: execute END,   pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:000:806:286] [pipeline:sequential:without debug output:INFO] --- clock: 2: Cycle END             ---
+[00:000:829:294] [pipeline:sequential:without debug output:INFO] --- clock: 3: Cycle BEGIN           ---
+[00:000:856:061] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 3: fetch BEGIN, PC: 6, p->instruction_memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+[00:000:889:592] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 3: fetch END
+[00:000:913:362] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 3: decode BEGIN
+[00:000:956:457] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 3: decode END: unknown
+[00:000:980:864] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 3: output: 6
+[00:001:004:135] [pipeline:sequential:without debug output:INFO] Flop encountered, executing due to sequential mode
+[00:001:032:642] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 3: execute BEGIN, input: 6, pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:001:058:827] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 3: execute END,   pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:001:082:951] [pipeline:sequential:without debug output:INFO] --- clock: 3: Cycle END             ---
+[00:001:106:003] [pipeline:sequential:without debug output:INFO] --- clock: 4: Cycle BEGIN           ---
+[00:001:132:018] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 4: fetch BEGIN, PC: 8, p->instruction_memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+[00:001:155:915] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 4: fetch END
+[00:001:179:013] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 4: decode BEGIN
+[00:001:202:339] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 4: decode END: unknown
+[00:001:225:592] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 4: output: 8
+[00:001:248:447] [pipeline:sequential:without debug output:INFO] Flop encountered, executing due to sequential mode
+[00:001:276:292] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 4: execute BEGIN, input: 8, pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:001:302:088] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 4: execute END,   pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:001:325:902] [pipeline:sequential:without debug output:INFO] --- clock: 4: Cycle END             ---
+[00:001:348:904] [pipeline:sequential:without debug output:INFO] --- clock: 5: Cycle BEGIN           ---
+[00:001:374:747] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 5: fetch BEGIN, PC: 10, p->instruction_memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+[00:001:398:400] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 5: fetch END
+[00:001:421:328] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 5: decode BEGIN
+[00:001:444:726] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 5: decode END: unknown
+[00:001:467:715] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 5: output: 10
+[00:001:490:741] [pipeline:sequential:without debug output:INFO] Flop encountered, executing due to sequential mode
+[00:001:518:501] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 5: execute BEGIN, input: 10, pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:001:544:157] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 5: execute END,   pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:001:567:880] [pipeline:sequential:without debug output:INFO] --- clock: 5: Cycle END             ---
+[00:001:590:511] [pipeline:sequential:without debug output:INFO] --- clock: 6: Cycle BEGIN           ---
+[00:000:117:658] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 0: fetch BEGIN, PC: 0, p->instruction_memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+[00:000:204:575] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 0: fetch END
+[00:000:237:510] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 0: decode BEGIN
+[00:000:266:855] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 0: decode END: unknown
+[00:000:294:858] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 0: output: 0
+[00:000:334:187] [pipeline:sequential:without debug output:INFO] Flop encountered, executing due to sequential mode
+[00:000:369:404] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 0: execute BEGIN, input: 0, pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:000:400:216] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 0: execute END,   pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:000:427:793] [pipeline:sequential:without debug output:INFO] --- clock: 0: Cycle END             ---
+[00:000:454:257] [pipeline:sequential:without debug output:INFO] --- clock: 1: Cycle BEGIN           ---
+[00:000:498:921] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 1: fetch BEGIN, PC: 2, p->instruction_memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+[00:000:529:520] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 1: fetch END
+[00:000:571:738] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 1: decode BEGIN
+[00:000:614:389] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 1: decode END: unknown
+[00:000:645:837] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 1: output: 2
+[00:000:681:050] [pipeline:sequential:without debug output:INFO] Flop encountered, executing due to sequential mode
+[00:000:729:224] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 1: execute BEGIN, input: 2, pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:000:767:814] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 1: execute END,   pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:000:803:907] [pipeline:sequential:without debug output:INFO] --- clock: 1: Cycle END             ---
+[00:000:842:724] [pipeline:sequential:without debug output:INFO] --- clock: 2: Cycle BEGIN           ---
+[00:000:887:156] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 2: fetch BEGIN, PC: 4, p->instruction_memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+[00:000:922:020] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 2: fetch END
+[00:000:957:135] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 2: decode BEGIN
+[00:001:000:602] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 2: decode END: unknown
+[00:001:037:898] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 2: output: 4
+[00:001:079:197] [pipeline:sequential:without debug output:INFO] Flop encountered, executing due to sequential mode
+[00:001:117:054] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 2: execute BEGIN, input: 4, pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:001:160:167] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 2: execute END,   pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:001:202:859] [pipeline:sequential:without debug output:INFO] --- clock: 2: Cycle END             ---
+[00:001:230:872] [pipeline:sequential:without debug output:INFO] --- clock: 3: Cycle BEGIN           ---
+[00:001:273:976] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 3: fetch BEGIN, PC: 6, p->instruction_memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+[00:001:312:860] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 3: fetch END
+[00:001:354:948] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 3: decode BEGIN
+[00:001:383:710] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 3: decode END: unknown
+[00:001:426:477] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 3: output: 6
+[00:001:465:018] [pipeline:sequential:without debug output:INFO] Flop encountered, executing due to sequential mode
+[00:001:508:773] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 3: execute BEGIN, input: 6, pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:001:546:804] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 3: execute END,   pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:001:597:840] [pipeline:sequential:without debug output:INFO] --- clock: 3: Cycle END             ---
+[00:001:632:809] [pipeline:sequential:without debug output:INFO] --- clock: 4: Cycle BEGIN           ---
+[00:001:667:743] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 4: fetch BEGIN, PC: 8, p->instruction_memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+[00:001:707:843] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 4: fetch END
+[00:001:749:619] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 4: decode BEGIN
+[00:001:784:870] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 4: decode END: unknown
+[00:001:821:234] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 4: output: 8
+[00:001:860:403] [pipeline:sequential:without debug output:INFO] Flop encountered, executing due to sequential mode
+[00:001:907:188] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 4: execute BEGIN, input: 8, pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:001:941:714] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 4: execute END,   pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:001:977:632] [pipeline:sequential:without debug output:INFO] --- clock: 4: Cycle END             ---
+[00:002:018:527] [pipeline:sequential:without debug output:INFO] --- clock: 5: Cycle BEGIN           ---
+[00:002:049:704] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 5: fetch BEGIN, PC: 10, p->instruction_memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+[00:002:093:163] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 5: fetch END
+[00:002:132:511] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 5: decode BEGIN
+[00:002:170:168] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 5: decode END: unknown
+[00:002:198:638] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 5: output: 10
+[00:002:241:349] [pipeline:sequential:without debug output:INFO] Flop encountered, executing due to sequential mode
+[00:002:288:595] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 5: execute BEGIN, input: 10, pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:002:326:660] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 5: execute END,   pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:002:362:807] [pipeline:sequential:without debug output:INFO] --- clock: 5: Cycle END             ---
+[00:002:400:523] [pipeline:sequential:without debug output:INFO] --- clock: 6: Cycle BEGIN           ---
+[00:000:100:465] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 0: fetch BEGIN, PC: 0, p->instruction_memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+[00:000:190:516] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 0: fetch END
+[00:000:234:920] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 0: decode BEGIN
+[00:000:289:177] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 0: decode END: unknown
+[00:000:341:273] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 0: output: 0
+[00:000:390:754] [pipeline:sequential:without debug output:INFO] Flop encountered, executing due to sequential mode
+[00:000:455:254] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 0: execute BEGIN, input: 0, pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:000:512:393] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 0: execute END,   pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:000:564:941] [pipeline:sequential:without debug output:INFO] --- clock: 0: Cycle END             ---
+[00:000:616:488] [pipeline:sequential:without debug output:INFO] --- clock: 1: Cycle BEGIN           ---
+[00:000:673:771] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 1: fetch BEGIN, PC: 2, p->instruction_memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+[00:000:736:095] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 1: fetch END
+[00:000:787:601] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 1: decode BEGIN
+[00:000:840:390] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 1: decode END: unknown
+[00:000:891:513] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 1: output: 2
+[00:000:941:378] [pipeline:sequential:without debug output:INFO] Flop encountered, executing due to sequential mode
+[00:000:999:735] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 1: execute BEGIN, input: 2, pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:001:055:237] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 1: execute END,   pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:001:125:611] [pipeline:sequential:without debug output:INFO] --- clock: 1: Cycle END             ---
+[00:001:178:832] [pipeline:sequential:without debug output:INFO] --- clock: 2: Cycle BEGIN           ---
+[00:001:235:106] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 2: fetch BEGIN, PC: 4, p->instruction_memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+[00:001:288:403] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 2: fetch END
+[00:001:341:205] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 2: decode BEGIN
+[00:001:394:089] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 2: decode END: unknown
+[00:001:445:636] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 2: output: 4
+[00:001:496:253] [pipeline:sequential:without debug output:INFO] Flop encountered, executing due to sequential mode
+[00:001:553:441] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 2: execute BEGIN, input: 4, pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:001:610:225] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 2: execute END,   pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:001:661:495] [pipeline:sequential:without debug output:INFO] --- clock: 2: Cycle END             ---
+[00:001:710:825] [pipeline:sequential:without debug output:INFO] --- clock: 3: Cycle BEGIN           ---
+[00:001:765:104] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 3: fetch BEGIN, PC: 6, p->instruction_memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+[00:001:820:987] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 3: fetch END
+[00:001:869:813] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 3: decode BEGIN
+[00:001:921:864] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 3: decode END: unknown
+[00:001:969:178] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 3: output: 6
+[00:002:017:560] [pipeline:sequential:without debug output:INFO] Flop encountered, executing due to sequential mode
+[00:002:078:966] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 3: execute BEGIN, input: 6, pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:002:134:091] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 3: execute END,   pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:002:183:370] [pipeline:sequential:without debug output:INFO] --- clock: 3: Cycle END             ---
+[00:002:233:130] [pipeline:sequential:without debug output:INFO] --- clock: 4: Cycle BEGIN           ---
+[00:002:289:001] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 4: fetch BEGIN, PC: 8, p->instruction_memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+[00:002:341:543] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 4: fetch END
+[00:002:393:684] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 4: decode BEGIN
+[00:002:445:142] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 4: decode END: unknown
+[00:002:496:252] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 4: output: 8
+[00:002:545:644] [pipeline:sequential:without debug output:INFO] Flop encountered, executing due to sequential mode
+[00:002:615:545] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 4: execute BEGIN, input: 8, pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:002:671:497] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 4: execute END,   pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:002:722:102] [pipeline:sequential:without debug output:INFO] --- clock: 4: Cycle END             ---
+[00:002:769:963] [pipeline:sequential:without debug output:INFO] --- clock: 5: Cycle BEGIN           ---
+[00:002:824:885] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 5: fetch BEGIN, PC: 10, p->instruction_memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+[00:002:876:521] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 5: fetch END
+[00:002:928:811] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 5: decode BEGIN
+[00:002:978:989] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 5: decode END: unknown
+[00:003:028:239] [pipeline:sequential:without debug output:INFO] [Stage 0] clock: 5: output: 10
+[00:003:078:591] [pipeline:sequential:without debug output:INFO] Flop encountered, executing due to sequential mode
+[00:003:138:255] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 5: execute BEGIN, input: 10, pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:003:194:077] [pipeline:sequential:without debug output:INFO] [Stage 2] clock: 5: execute END,   pipeline memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ACC: 0
+[00:003:243:152] [pipeline:sequential:without debug output:INFO] --- clock: 5: Cycle END             ---
+[00:003:292:002] [pipeline:sequential:without debug output:INFO] --- clock: 6: Cycle BEGIN           ---
