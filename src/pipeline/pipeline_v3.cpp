@@ -522,6 +522,9 @@ struct Pipeline {
                             PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << "consumed normal input";
                         }
                         {
+                            //
+                            // NOTE: this WILL cause the stages to execute out of sync
+                            //
                             // emulate clock tick
                             // we move the flip-flop's input into its output
                             PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << "pushing flip-flop output and consuming flip-flop input";
@@ -781,6 +784,7 @@ struct Pipeline {
                         PipelineQueueType<T> * output = stages[i].output;
                         if (i != 0) {
                             if (stages[i-1].type == PipelineStageTypes::Flop) {
+                                // there may be multiple flip-flops with no stages in between them
                                 stages[i].flop.push_input(std::move(stages[i-1].flop.pull_output()));
                             } else {
                                 if (stages[i-1].output->front()) {
@@ -849,6 +853,58 @@ struct Instructions {
     }
 };
 
+template <typename T>
+struct Synchronized_Variable {
+    rigtorp::SPSCQueue<T> value = rigtorp::SPSCQueue<T>(1);
+    std::condition_variable condition_queue_is_empty;
+    std::mutex queue_is_empty_mutex;
+
+    Synchronized_Variable() {} // default initialization
+    
+    Synchronized_Variable(const Synchronized_Variable & synchronized_Variable) = delete;
+    
+    Synchronized_Variable(const T & val) {
+        store(val);
+    };
+    
+    Synchronized_Variable(Synchronized_Variable && synchronized_Variable) {
+        // move constructor
+        std::swap(value, synchronized_Variable.value);
+    }
+    
+    Synchronized_Variable & operator=(const Synchronized_Variable & synchronized_Variable) = delete;
+    
+    Synchronized_Variable & operator=(Synchronized_Variable && synchronized_Variable) {
+        // move assign
+        std::swap(value, synchronized_Variable.value);
+        return *this;
+    }
+    
+    void store(const T & val) {
+        value.push(val);
+        condition_queue_is_empty.notify_one();
+    }
+    
+    T & peek() {
+        std::unique_lock<std::mutex> l (queue_is_empty_mutex);
+        condition_queue_is_empty.wait(l, [&] {
+            // return false to keep waiting
+            // if value->front() returns nullptr
+            // then the expression evaluates to false
+            // because it is equal to nullptr
+            return value.front() != nullptr;
+        });
+        T * ptr = value.front();
+        return *ptr;
+    }
+    
+    T & load() {
+        T & val = peek();
+        value.pop();
+        return val;
+    }
+};
+
 void twoStagedPipeline(bool sequential) {
     Pipeline<int, 1> pipeline(false);
     
@@ -863,9 +919,9 @@ void twoStagedPipeline(bool sequential) {
         int PC = 0;
         int * CIR = 0;
         int * CIRPlusOne = 0;
-        int MAR = 0;
-        int * MDR = 0;
-        int * MDRPlusOne = 0;
+        Synchronized_Variable<int> MAR;
+        Synchronized_Variable<int *> MDR;
+        Synchronized_Variable<int *> MDRPlusOne;
         int ACC = 0;
     } a;
     
@@ -901,24 +957,48 @@ void twoStagedPipeline(bool sequential) {
 //     pipeline.addFlop();
     pipeline.add(PipelineLambda(val, i, p) {
         struct registers * reg = static_cast<struct registers*>(p->externalData);
+        
         PipelinePrintStage(i) << "clock: " << reg->clock << ": fetch BEGIN, PC: " << reg->PC
         << ", " << PipelinePrintModifiersPrintValue(p->instruction_memory);
-        reg->MAR = reg->PC;
-        PipelinePrintStageIf(p->debug_output, i) << "clock: " << reg->clock << ": " << PipelinePrintModifiersPrintValue(reg->MAR);
-        reg->MDR = &p->instruction_memory.at(reg->MAR);
-        PipelinePrintStageIf(p->debug_output, i) << "clock: " << reg->clock << ": " << PipelinePrintModifiersPrintValue(*reg->MDR);
-        reg->MDRPlusOne = &p->instruction_memory.at(reg->MAR+1);
-        PipelinePrintStageIf(p->debug_output, i) << "clock: " << reg->clock << ": " << PipelinePrintModifiersPrintValue(*reg->MDRPlusOne);
-        reg->CIR = reg->MDR;
-        reg->CIRPlusOne = reg->MDRPlusOne;
+        
+        // for efficiency, load the value immediately after storing it
+        
+        reg->MAR.store(reg->PC);
+        int memoryAddressRegisterValue = reg->MAR.load();
+        
+        // MDR is written here
+        PipelinePrintStage(i) << "clock: " << reg->clock << ": storing MDR with address of instruction memory location " << memoryAddressRegisterValue;
+        int * addr1 = &p->instruction_memory.at(memoryAddressRegisterValue);
+        reg->MDR.store(addr1);
+        PipelinePrintStage(i) << "clock: " << reg->clock << ": stored MDR with address " << addr1;
+        PipelinePrintStage(i) << "clock: " << reg->clock << ": loading MDR";
+        int * memoryDataRegisterValue = reg->MDR.load();
+        PipelinePrintStage(i) << "clock: " << reg->clock << ": loaded MDR with address " << memoryDataRegisterValue;
+        
+        reg->MDRPlusOne.store(&p->instruction_memory.at(memoryAddressRegisterValue+1));
+        int * memoryDataRegisterValuePlusOne = reg->MDRPlusOne.load();
+        
+        // MDR is loaded here
+        reg->CIR = memoryDataRegisterValue;
+        reg->CIRPlusOne = memoryDataRegisterValuePlusOne;
         reg->PC += 2;
+        output->push(*memoryDataRegisterValuePlusOne);
         PipelinePrintStage(i) << "clock: " << reg->clock << ": fetch END";
+    });
+    pipeline.addFlop();
+    pipeline.add(PipelineLambda(val, i, p) {
+        struct registers * reg = static_cast<struct registers*>(p->externalData);
         PipelinePrintStage(i) << "clock: " << reg->clock << ": decode BEGIN";
-        PipelinePrintStageIf(p->debug_output, i) << "clock: " << reg->clock << ": " << PipelinePrintModifiersPrintValue(*reg->MDRPlusOne);
-        reg->MAR = *reg->MDRPlusOne;
-        PipelinePrintStageIf(p->debug_output, i) << "clock: " << reg->clock << ": " << PipelinePrintModifiersPrintValue(reg->MAR);
-        reg->MDR = &p->data_memory.at(reg->MAR);
-        PipelinePrintStageIf(p->debug_output, i) << "clock: " << reg->clock << ": " << PipelinePrintModifiersPrintValue(*reg->MDR);
+        
+        reg->MAR.store(*input->front());
+        int memoryAddressRegisterValue = reg->MAR.load();
+        
+        // MDR is written here
+        PipelinePrintStage(i) << "clock: " << reg->clock << ": storing MDR with address of data memory location " << memoryAddressRegisterValue;
+        int * addr2 = &p->data_memory.at(memoryAddressRegisterValue);
+        reg->MDR.store(addr2);
+        PipelinePrintStage(i) << "clock: " << reg->clock << ": stored MDR with address " << addr2;
+        
         PipelinePrintStage(i) << "clock: " << reg->clock << ": decode END: "
             << Instructions::toString(*reg->CIR);
         
@@ -932,9 +1012,15 @@ void twoStagedPipeline(bool sequential) {
         int o = *input->front();
         PipelinePrintStage(i) << "clock: " << reg->clock << ": execute BEGIN, input: " << o << ", "
             << "pipeline memory: " << p->data_memory << ", ACC: " << reg->ACC;
+            
+        // MDR is loaded here
+        PipelinePrintStage(i) << "clock: " << reg->clock << ": loading MDR";
+        int * memoryDataRegisterValue = reg->MDR.load();
+        PipelinePrintStage(i) << "clock: " << reg->clock << ": loaded MDR with address " << memoryDataRegisterValue;
+        
         switch(o) {
             case Instructions::load: {
-                reg->ACC = *reg->MDR;
+                reg->ACC = *memoryDataRegisterValue;
                 PipelinePrintStage(i) << PipelinePrintModifiersPrintValue(reg->ACC);
                 break;
             }
@@ -942,14 +1028,14 @@ void twoStagedPipeline(bool sequential) {
                 // add instruction is passed to ALU
                 // contents of accumulator are moved to another place ready to be worked with
                 int tmp = reg->ACC;
-                reg->ACC = *reg->MDR;
+                reg->ACC = *memoryDataRegisterValue;
                 
                 // ALU add ACC and tmp together and store it in ACC
                 reg->ACC += tmp;
                 break;
             }
             case Instructions::store: {
-                *reg->MDR = reg->ACC;
+                *memoryDataRegisterValue = reg->ACC;
                 break;
             }
             default: break;
@@ -963,45 +1049,24 @@ void twoStagedPipeline(bool sequential) {
     pipeline.manual_increment = true;
     
     pipeline.instruction_memory = {
-        0,1,
-        2,3,
-        4,5,
-        6,7,
-        8,9,
-        10,11
+        // load the contents of memory location of 0 into the accumulator
+        Instructions::load, 0,
+        // add the contents of memory location 1 to what ever is in the accumulator
+        Instructions::add, 1,
+        // store what ever is in the accumulator back back into location 2
+        Instructions::store, 2
     };
     
     pipeline.data_memory = {
-        0,1,
-        2,3,
-        4,5,
-        6,7,
-        8,9,
-        10,11
+        1,
+        2,
+        0
     };
     
     pipeline.run().join();
 }
 
-// void build_single_cycle_instruction_path(Pipeline<int, 0> & mips_processor) {
-//     // Chapter 7 . 3 . 1 - Single-Cycle Datapath
-//     //
-//     // the PC is simply connected to the address input of the instruction memory
-//     // the instruction memory reads out, or fetches, the 32-bit instruction, labeled Instr.
-//     //
-//     // 
-//     mips_processor.add_
-// }
-// 
-// void mips_single_cycle_processor() {
-//     Pipeline<int, 0> mips_processor;
-//     build_single_cycle_instruction_path(mips_processor);
-// }
-
-// see Digital Design and Computer Architecture Chapter 7: Microarchitecture
-
 int main() {
-    twoStagedPipeline(true);
-//     hardwareTest();
+    twoStagedPipeline(false);
     return 0;
 }

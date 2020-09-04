@@ -25,13 +25,18 @@ macro(testBuilder_add_source testName sourceFile)
     set(testBuilder_SOURCES_LIST_${testName} ${testBuilder_SOURCES_LIST_${testName}};${sourceFile})
 endmacro()
 
+macro(testBuilder_add_definition testName definition)
+    set(testBuilder_DEFINITION_LIST_${testName} ${testBuilder_DEFINITION_LIST_${testName}};${definition})
+endmacro()
 
-# libraries can be specified as a space seperated list, or as individual calls
+macro(testBuilder_add_global_definition definition)
+    set(testBuilder_GLOBAL_DEFINITION_LIST ${testBuilder_GLOBAL_DEFINITION_LIST};${definition})
+endmacro()
+
 macro(testBuilder_add_library testName libraryName)
     set(testBuilder_LIBRARIES_LIST_${testName} ${testBuilder_LIBRARIES_LIST_${testName}};${libraryName})
 endmacro()
 
-# libraries can be specified as a space seperated list, or as individual calls
 macro(testBuilder_add_dependency testName dependencyName)
     set(testBuilder_DEPENDENCY_LIST_${testName} ${testBuilder_DEPENDENCY_LIST_${testName}};${dependencyName})
 endmacro()
@@ -56,7 +61,6 @@ macro(testBuilder_build testName outDirectory)
 
     set(testBuilder_OUT_FILE ${testBuilder_WORKING_DIRECTORY}/${outDirectory}/${testName})
 
-
     add_custom_command(
             TARGET testBuilder_executables_${testName}
             POST_BUILD
@@ -66,6 +70,12 @@ endmacro()
 
 macro(testBuilder_build_shared_library testName)
     add_library(${testName} SHARED ${testBuilder_SOURCES_LIST_${testName}})
+    if (testBuilder_DEFINITION_LIST_${testName})
+        target_compile_definitions(${testName} PUBLIC ${testBuilder_DEFINITION_LIST_${testName}})
+    endif()
+    if (testBuilder_GLOBAL_DEFINITION_LIST)
+        target_compile_definitions(${testName} PUBLIC ${testBuilder_GLOBAL_DEFINITION_LIST})
+    endif()
     if (testBuilder_DEPENDENCY_LIST_${testName})
         add_dependencies(${testName} ${testBuilder_DEPENDENCY_LIST_${testName}})
     endif()

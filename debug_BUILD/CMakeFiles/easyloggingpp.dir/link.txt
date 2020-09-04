@@ -1,1 +1,1 @@
-/usr/bin/c++ -fPIC  -D ELPP_THREAD_SAFE -D ELPP_FORCE_USE_STD_THREAD -D ELPP_STL_LOGGING -g3 -O0  -shared -Wl,-soname,libeasyloggingpp.so -o libeasyloggingpp.so CMakeFiles/easyloggingpp.dir/dependancies/easyloggingpp/src/easylogging++.cc.o 
+/usr/bin/c++ -fPIC -g3 -O0  -shared -Wl,-soname,libeasyloggingpp.so -o libeasyloggingpp.so CMakeFiles/easyloggingpp.dir/dependancies/easyloggingpp/src/easylogging++.cc.o 
