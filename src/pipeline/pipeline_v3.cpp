@@ -344,11 +344,26 @@ struct Pipeline {
     
     std::deque<Stage> stages;
     
-    #define PipelineLambdaArguments Pipeline * pipeline, const Stage * stage, int index, PipelineQueueType<T> * input, PipelineQueueType<T> * output, std::atomic<bool> * haltC, std::atomic<bool> * haltN, std::condition_variable * cvP, std::condition_variable * cvC, std::condition_variable * cvN, std::condition_variable * cvF, std::mutex * mC, std::mutex * mN, Cycle cycle
+    #define PipelineLambdaArguments Pipeline * pipeline, const Stage * stage, int index, PipelineQueueType<T> * input, PipelineQueueType<T> * output, std::atomic<bool> * haltC, std::atomic<bool> * haltN, std::condition_variable * cvP, std::condition_variable * cvC, std::condition_variable * cvN, std::condition_variable * cvF, std::mutex * mC, std::mutex * mN
+    
+    #define PipelineLambdaTickArguments Pipeline * pipeline
     
     typedef std::function<void(PipelineLambdaArguments)> TaskCallback;
+    typedef std::function<void(PipelineLambdaTickArguments)> TickCallback;
     
     #define PipelineLambdaCallback [] (PipelineLambdaArguments)
+    #define PipelineLambdaTickCallback [] (PipelineLambdaTickArguments)
+    
+    TickCallback tickcallback = PipelineLambdaTickCallback {
+        while(true) {
+            PipelinePrint << "[TICK   ] sleeping for 1 second";
+            std::this_thread::sleep_for(1s);
+            PipelinePrint << "[TICK   ] slept for 1 second";
+            PipelinePrint << "[TICK   ] ticking";
+            pipeline->cycleFunc(pipeline);
+            PipelinePrint << "[TICK   ] ticked";
+        }
+    };
     
     struct Functions {
         Pipeline<T, CAPACITY> * pipeline = nullptr;
@@ -427,7 +442,7 @@ struct Pipeline {
                 std::timeout(1s, [&] {
                     try {
                         unique_lock.lock();
-                        // suceeded
+                        // succeeded
                         return true;
                     } catch (const std::system_error& e) {
                         PipelinePrintStageIf(pipeline->debug_output, index_of_this_stage)
@@ -444,18 +459,6 @@ struct Pipeline {
                 << "For example, a conditional wait not being satisfied" << std::endl;
         }
     };
-    
-// [07:23] <cbreak> why not implement a simple threadsafe queue?
-// [07:23] <cbreak> that's how producer / consumer is implemented normally
-// [07:23] <cbreak> and it prevents you from having to deal with any mutex / cv outside the queue itself
-// [07:23] <cbreak> no passing around or any other error prone code
-// [07:23] <TacoCodedSalad> i did ;)
-// [07:25] <TacoCodedSalad> https://ghostbin.co/paste/2ro87
-// [07:25] <RePaste> Paste 2ro87 was moved to https://wandbox.org/permlink/ixLtsFLgEwGCic2c TacoCodedSalad, for the twenty-fifth time, do not use paste sites that can't compile code.
-// [07:34] <TacoCodedSalad> "notify next stage that we have input" should say "notify next stage that we have output" or "notify next stage that it has input"
-// [07:36] <cbreak> there's no need for that
-// [07:36] <cbreak> once a stage is done, it simply pushes into the queue
-// [07:36] <cbreak> the queue itself will handle notification of waiters, if there are any
     
     TaskCallback callback = PipelineLambdaCallback {
         Functions functions(pipeline);
@@ -522,16 +525,16 @@ struct Pipeline {
                             PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << "consumed normal input";
                         }
                         {
-                            //
-                            // NOTE: this WILL cause the stages to execute out of sync
-                            //
-                            // emulate clock tick
-                            // we move the flip-flop's input into its output
-                            PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << "pushing flip-flop output and consuming flip-flop input";
-                            
-                            functions.this_flip_flop->exec();
-                            
-                            PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << "pushed flip-flop output and consumed flip-flop input";
+//                             //
+//                             // NOTE: this WILL cause the stages to execute out of sync
+//                             //
+//                             // emulate clock tick
+//                             // we move the flip-flop's input into its output
+//                             PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << "pushing flip-flop output and consuming flip-flop input";
+//                             
+//                             functions.this_flip_flop->exec();
+//                             
+//                             PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << "pushed flip-flop output and consumed flip-flop input";
                         }
                         {
                             // and then we move the flip-flop's output into our output
@@ -562,7 +565,7 @@ struct Pipeline {
                         // NOTE: the pipeline run function automatically assigns
                         //       a NO-OP function to ALL stages except for the LAST stage
                         //
-                        cycle(pipeline);
+//                         cycle(pipeline);
                         
                         // pop our input based on our current PC
                         //
@@ -748,10 +751,13 @@ struct Pipeline {
                         queues[i], i+1 == ss ? nullptr : queues[i+1],
                         halts[i], halts[i+1],
                         i == 0 ? nullptr : conditions[i-1], conditions[i], conditions[i+1], conditions[i+2],
-                        mutexes[i], mutexes[i+1], i+1 == ss ? cycleFunc : cycleFuncNoop
+                        mutexes[i], mutexes[i+1]
                     )
                 );
             }
+            pool.push_back(
+                std::thread(tickcallback, this)
+            );
         } else {
             auto qs = queues.front()->size();
             while(*PC < qs) {
@@ -934,13 +940,13 @@ void twoStagedPipeline(bool sequential) {
         struct registers * reg = static_cast<struct registers*>(p->externalData);
         PipelinePrint << "--- clock: " << reg->clock << ": Cycle END             ---";
 //         if ((++reg->clocktmp % 2) == 0) {
-//             PipelinePrint << "--- clock: " << reg->clock << ": Cycle Sub-Stage BEGIN ---";
-//             for (auto & stage : p->stages) if (stage.type == PipelineStageTypes::Flop) {
+            PipelinePrint << "--- clock: " << reg->clock << ": Cycle Sub-Stage BEGIN ---";
+            for (auto & stage : p->stages) if (stage.type == PipelineStageTypes::Flop) {
 //                 PipelinePrint << "--- clock: " << reg->clock << ": Cycle Sub-Stage: processing Flop";
-//                 stage.flop.exec();
+                stage.flop.exec();
 //                 PipelinePrint << "--- clock: " << reg->clock << ": Cycle Sub-Stage: processed Flop";
-//             }
-//             PipelinePrint << "--- clock: " << reg->clock << ": Cycle Sub-Stage END   ---";
+            }
+            PipelinePrint << "--- clock: " << reg->clock << ": Cycle Sub-Stage END   ---";
             reg->clock_last = reg->clock;
             reg->clock++;
 //         }
@@ -1050,11 +1056,11 @@ void twoStagedPipeline(bool sequential) {
     
     pipeline.instruction_memory = {
         // load the contents of memory location of 0 into the accumulator
-        Instructions::load, 0,
+        Instructions::load, 0
         // add the contents of memory location 1 to what ever is in the accumulator
-        Instructions::add, 1,
+//         Instructions::add, 1,
         // store what ever is in the accumulator back back into location 2
-        Instructions::store, 2
+//         Instructions::store, 2
     };
     
     pipeline.data_memory = {
