@@ -138,8 +138,7 @@ struct Electronics {
     struct Flop {
         rigtorp::SPSCQueue<T> * input = nullptr;
         rigtorp::SPSCQueue<T> * output = nullptr;
-        bool hasOutput = false;
-        bool hasInput = false;
+        rigtorp::SPSCQueue<T> * intermediateOutput = nullptr;
         bool debug_output = false;
         
         Flop() {
@@ -200,13 +199,16 @@ struct Electronics {
             return output->front() != nullptr;
         }
         
+        bool has_intermediateOutput() {
+            return intermediateOutput != nullptr ? intermediateOutput->front() != nullptr : false;
+        }
+
         void push_input(T && in) {
             PipelinePrintIf(debug_output) << "[FLOP   ] " << "pushing input";
             PipelinePrintIf(debug_output) << "[FLOP   ] " << PipelinePrintModifiersPrintValue(input->size());
             input->push(std::move(in));
             PipelinePrintIf(debug_output) << "[FLOP   ] " << "pushed input";
             PipelinePrintIf(debug_output) << "[FLOP   ] " << PipelinePrintModifiersPrintValue(input->size());
-            hasInput = true;
         }
         
         void push_output(T && out) {
@@ -215,9 +217,16 @@ struct Electronics {
             output->push(std::move(out));
             PipelinePrintIf(debug_output) << "[FLOP   ] " << "pushed ouput";
             PipelinePrintIf(debug_output) << "[FLOP   ] " << PipelinePrintModifiersPrintValue(output->size());
-            hasOutput = true;
         }
         
+        void push_intermediateOutput(T && out) {
+            PipelinePrintIf(debug_output) << "[FLOP   ] " << "pushing intermediate output";
+            PipelinePrintIf(debug_output) << "[FLOP   ] " << PipelinePrintModifiersPrintValue(intermediateOutput->size());
+            intermediateOutput->push(std::move(out));
+            PipelinePrintIf(debug_output) << "[FLOP   ] " << "pushed intermediate output";
+            PipelinePrintIf(debug_output) << "[FLOP   ] " << PipelinePrintModifiersPrintValue(intermediateOutput->size());
+        }
+
         T pull_input() {
             PipelinePrintIf(debug_output) << "[FLOP   ] " << "pulling input";
             PipelinePrintIf(debug_output) << "[FLOP   ] " << PipelinePrintModifiersPrintValue(input->size());
@@ -225,7 +234,6 @@ struct Electronics {
             input->pop();
             PipelinePrintIf(debug_output) << "[FLOP   ] " << "pulled input";
             PipelinePrintIf(debug_output) << "[FLOP   ] " << PipelinePrintModifiersPrintValue(input->size());
-            hasInput = false;
             return std::move(in);
         }
         
@@ -236,14 +244,14 @@ struct Electronics {
             output->pop();
             PipelinePrintIf(debug_output) << "[FLOP   ] " << "pulled output";
             PipelinePrintIf(debug_output) << "[FLOP   ] " << PipelinePrintModifiersPrintValue(output->size());
-            hasOutput = false;
             return std::move(out);
         }
         
         void exec() {
             PipelinePrintIf(debug_output) << "[FLOP   ] " << PipelinePrintModifiersPrintValue(input->front());
             if (input->front()) {
-                push_output(std::move(pull_input()));
+                if (intermediateOutput != nullptr) push_intermediateOutput(std::move(pull_input()));
+                else push_output(std::move(pull_input()));
             }
         }
     };
@@ -296,11 +304,14 @@ struct Pipeline {
 
     struct Stage {
         int type = PipelineStageTypes::Undefined;
-        PipelineQueueType<T> * output;
+        PipelineQueueType<T> * output = nullptr;
         Task pre = nullptr;
         Task run = nullptr;
         Task post = nullptr;
         Electronics::Flop<T, CAPACITY> flop;
+        
+        bool terminated = false;
+        std::atomic<bool> executedInThisCycle {false};
 
         Stage() {
             output = new rigtorp::SPSCQueue<T>(CAPACITY);
@@ -344,9 +355,9 @@ struct Pipeline {
     
     std::deque<Stage> stages;
     
-    #define PipelineLambdaArguments Pipeline * pipeline, const Stage * stage, int index, PipelineQueueType<T> * input, PipelineQueueType<T> * output, std::atomic<bool> * haltC, std::atomic<bool> * haltN, std::condition_variable * cvP, std::condition_variable * cvC, std::condition_variable * cvN, std::condition_variable * cvF, std::mutex * mC, std::mutex * mN
+    #define PipelineLambdaArguments Pipeline * pipeline, Stage * stage, int index, PipelineQueueType<T> * input, PipelineQueueType<T> * output, std::atomic<bool> * current_halt, std::atomic<bool> * next_halt, std::atomic<int> * halted_cycle
     
-    #define PipelineLambdaTickArguments Pipeline * pipeline
+    #define PipelineLambdaTickArguments Pipeline * pipeline, std::atomic<bool> * current_halt
     
     typedef std::function<void(PipelineLambdaArguments)> TaskCallback;
     typedef std::function<void(PipelineLambdaTickArguments)> TickCallback;
@@ -355,13 +366,17 @@ struct Pipeline {
     #define PipelineLambdaTickCallback [] (PipelineLambdaTickArguments)
     
     TickCallback tickcallback = PipelineLambdaTickCallback {
-        while(true) {
-            PipelinePrint << "[TICK   ] sleeping for 1 second";
+        while(!current_halt->load()) {
+            PipelinePrintIf(pipeline->debug_output) << "[TICK   ] sleeping for 1 second";
             std::this_thread::sleep_for(1s);
-            PipelinePrint << "[TICK   ] slept for 1 second";
-            PipelinePrint << "[TICK   ] ticking";
+            PipelinePrintIf(pipeline->debug_output) << "[TICK   ] slept for 1 second";
+            PipelinePrintIf(pipeline->debug_output) << "[TICK   ] ticking";
             pipeline->cycleFunc(pipeline);
-            PipelinePrint << "[TICK   ] ticked";
+            // new cycle, reset execution status of all stages
+            for (Stage & stage : pipeline->stages) {
+                stage.executedInThisCycle = false;
+            }
+            PipelinePrintIf(pipeline->debug_output) << "[TICK   ] ticked";
         }
     };
     
@@ -460,6 +475,19 @@ struct Pipeline {
         }
     };
     
+    std::deque<std::thread> pool;
+    std::deque<PipelineQueueType<T> *> queues;
+    std::deque<std::condition_variable*> conditions;
+    std::deque<std::mutex*> mutexes;
+    std::deque<std::atomic<bool>*> halts;
+    std::atomic<int> halted_cycle {0};
+    std::deque<T> instruction_memory;
+    std::deque<T> data_memory;
+    
+    void * externalData = nullptr;
+    int * PC = nullptr;
+    int * Current_Cycle = nullptr;
+    
     TaskCallback callback = PipelineLambdaCallback {
         Functions functions(pipeline);
         functions.aquire_indexes_stages_and_flip_flops(index);
@@ -482,138 +510,134 @@ struct Pipeline {
             int newPC = 0;
             
             while(!should_exit) { // LOOP START
-                // ok, new IO design, nothing to worry about, just be very careful
-                // and do same prev/this/next stage rules as last-time
-                if (input->front() == nullptr) {
-                    if (output == nullptr ? true : output->front() == nullptr) {
-                        // we can halt safely if we have NO input and NO output to send
-                        if (functions.index_of_this_stage == 0) {
-                            // if the current stage is the very first stage
-                            
-                            if (functions.program_counter_is_greater_than_instruction_length()) {
-                                // and we have reached the end of our instructions
-                                // then jump to halt
-                                goto halt;
-                            }
-                        } else {
-                            // otherwise
-                            if (haltC->load()) {
-                                // if we have recieved a halt
-                                // then jump to halt
-                                goto halt;
-                            }
-                        }
-                    }
-                } else {
-                    if (functions.this_stage_is_flip_flop) {
-                        // if this stage is a flip flop
-                        {
-                            // we move the input into the flip-flop
-                            
-                            PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << "pushing flip-flop input";
-
-                            functions.this_flip_flop->push_input(std::move(*input->front()));
-
-                            PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << "pushed flip-flop input";
-                        }
-                        {
-                            // consume input
-                            PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << "consuming normal input";
-
-                            input->pop();
-
-                            PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << "consumed normal input";
-                        }
-                        {
-//                             //
-//                             // NOTE: this WILL cause the stages to execute out of sync
-//                             //
-//                             // emulate clock tick
-//                             // we move the flip-flop's input into its output
-//                             PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << "pushing flip-flop output and consuming flip-flop input";
-//                             
-//                             functions.this_flip_flop->exec();
-//                             
-//                             PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << "pushed flip-flop output and consumed flip-flop input";
-                        }
-                        {
-                            // and then we move the flip-flop's output into our output
-                            if (functions.this_flip_flop->has_output()) {
-                                // make sure we only push if we have output
-                                PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << "consuming flip-flop output and pushing normal output";
-
-                                output->push(std::move(functions.this_flip_flop->pull_output()));
-
-                                PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << "consumed flip-flop output and pushed normal output";
+                if (!stage->executedInThisCycle.load()) {
+                    if (input->front() == nullptr) {
+                        // we do not have input
+                        if (output == nullptr ? true : output->front() == nullptr) {
+                            // we can halt safely if we have NO input and NO output to send
+                            if (functions.index_of_this_stage == 0) {
+                                // if the current stage is the very first stage
+                                
+                                if (functions.program_counter_is_greater_than_instruction_length()) {
+                                    // and we have reached the end of our instructions
+                                    // then jump to halt
+                                    goto halt;
+                                }
+                            } else {
+                                // otherwise
+                                if (pipeline->Current_Cycle[0]-1 >= halted_cycle->load() && current_halt->load()) {
+                                    // if we have recieved a halt
+                                    // then jump to halt
+                                    goto halt;
+                                }
                             }
                         }
                     } else {
-                        CHECK_NE(stage->run, nullptr) << "at " << "Stage: " << functions.index_of_this_stage;
-                        PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << "running stage";
-                        
-                        // take note of the program counters before and after, as it may or may not change
-                        lastPC = *pipeline->PC;
-                        stage->run(std::move(val), index, pipeline, input, output);
-                        newPC = *pipeline->PC;
-                        
-                        PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << "ran stage";
-                        PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << PipelinePrintModifiersPrintValue(input->size());
-                        PipelinePrintStageIf(pipeline->debug_output && output != nullptr, functions.index_of_this_stage) << PipelinePrintModifiersPrintValue(output->size());
-                        
-                        // invoke a cycle end
-                        //
-                        // NOTE: the pipeline run function automatically assigns
-                        //       a NO-OP function to ALL stages except for the LAST stage
-                        //
-//                         cycle(pipeline);
-                        
-                        // pop our input based on our current PC
-                        //
-                        // TODO: divise a way to determine if a stage expects the input
-                        //       to be popped based on the current PC
-                        //
-                        if (functions.index_of_this_stage == 0) {
-                            // assume stage 0 manages the current PC
-                            if (newPC != lastPC) {
-                                // if our PC has changed, then pop based on the difference
-                                // example: lastPC = 2, PC = 4, pop twice
-                                auto ims = pipeline->instruction_memory.size();
-                                auto is = input->size();
-                                auto diff = newPC - lastPC;
-                                auto diff_diff = diff;
-                                CHECK_LE(newPC, ims)
-                                    << "\n\nError: The saved program counter will exceed instruction memory\n\n"
-                                    << "Stage: " << functions.index_of_this_stage << "\n"
-                                    << "saved program counter: " << newPC << "\n"
-                                    << "previous program counter: " << lastPC << "\n"
-                                    << "instruction memory size: " << ims << "\n"
-                                    << "minimum required input size to complete operation: " << diff << "\n"
-                                    << "input size: " << is << "\n";
+                        // we have input
+                        stage->executedInThisCycle.store(true);
+                        if (functions.this_stage_is_flip_flop) {
+                            // if this stage is a flip flop
+                            {
+                                // we move the input into the flip-flop
                                 
-                                int PC = lastPC;
-                                bool timed_out = std::timeout(1s, [&] {
-                                    bool ret = false;
-                                    if (PC < newPC) {
-                                        if (input->front()) {
-                                            PC++;
-                                            diff_diff--;
-                                            PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << "popping " << PipelinePrintModifiersPrintValue(*input->front());
-                                            input->pop();
-                                        };
-                                    } else ret = true;
-                                    return ret;
-                                });
-                                CHECK_NE(timed_out, true) << "timeout exceeded:\n\n"
-                                    << "Stage: " << functions.index_of_this_stage << "\n"
-                                    << "saved program counter: " << newPC << "\n"
-                                    << "previous program counter: " << lastPC << "\n"
-                                    << "instruction memory size: " << ims << "\n"
-                                    << "input size needed to complete operation: " << diff_diff << "\n"
-                                    << "input size: " << input->size() << "\n";
-                                ;
+                                PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << "pushing flip-flop input";
+
+                                functions.this_flip_flop->push_input(std::move(*input->front()));
+
+                                PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << "pushed flip-flop input";
+                            }
+                            {
+                                // consume input
+                                PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << "consuming normal input";
+
+                                input->pop();
+
+                                PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << "consumed normal input";
+                            }
+                            {
+    //                             //
+    //                             // NOTE: this WILL cause the stages to execute out of sync
+    //                             //
+    //                             // emulate clock tick
+    //                             // we move the flip-flop's input into its output
+    //                             PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << "pushing flip-flop output and consuming flip-flop input";
+    //                             
+    //                             functions.this_flip_flop->exec();
+    //                             
+    //                             PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << "pushed flip-flop output and consumed flip-flop input";
+                            }
+                            {
+                                // and then we move the flip-flop's output into our output
+                                if (functions.this_flip_flop->has_output()) {
+                                    // make sure we only push if we have output
+                                    PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << "consuming flip-flop output and pushing normal output";
+
+                                    output->push(std::move(functions.this_flip_flop->pull_output()));
+
+                                    PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << "consumed flip-flop output and pushed normal output";
+                                }
                             }
                         } else {
-                            input->pop();
+                            CHECK_NE(stage->run, nullptr) << "at " << "Stage: " << functions.index_of_this_stage;
+                            PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << "running stage";
+                            
+                            // take note of the program counters before and after, as it may or may not change
+                            lastPC = *pipeline->PC;
+                            stage->run(std::move(val), index, pipeline, input, output);
+                            newPC = *pipeline->PC;
+                            
+                            PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << "ran stage";
+                            PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << PipelinePrintModifiersPrintValue(input->size());
+                            PipelinePrintStageIf(pipeline->debug_output && output != nullptr, functions.index_of_this_stage) << PipelinePrintModifiersPrintValue(output->size());
+                            
+                            // pop our input based on our current PC
+                            //
+                            // TODO: divise a way to determine if a stage expects the input
+                            //       to be popped based on the current PC
+                            //
+                            if (functions.index_of_this_stage == 0) {
+                                // assume stage 0 manages the current PC
+                                if (newPC != lastPC) {
+                                    // if our PC has changed, then pop based on the difference
+                                    // example: lastPC = 2, PC = 4, pop twice
+                                    auto ims = pipeline->instruction_memory.size();
+                                    auto is = input->size();
+                                    auto diff = newPC - lastPC;
+                                    auto diff_diff = diff;
+                                    CHECK_LE(newPC, ims)
+                                        << "\n\nError: The saved program counter will exceed instruction memory\n\n"
+                                        << "Stage: " << functions.index_of_this_stage << "\n"
+                                        << "saved program counter: " << newPC << "\n"
+                                        << "previous program counter: " << lastPC << "\n"
+                                        << "instruction memory size: " << ims << "\n"
+                                        << "minimum required input size to complete operation: " << diff << "\n"
+                                        << "input size: " << is << "\n";
+                                    
+                                    int PC = lastPC;
+                                    bool timed_out = std::timeout(1s, [&] {
+                                        bool ret = false;
+                                        if (PC < newPC) {
+                                            if (input->front()) {
+                                                PC++;
+                                                diff_diff--;
+                                                PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << "popping " << PipelinePrintModifiersPrintValue(*input->front());
+                                                input->pop();
+                                            };
+                                        } else ret = true;
+                                        return ret;
+                                    });
+                                    CHECK_NE(timed_out, true) << "timeout exceeded:\n\n"
+                                        << "Stage: " << functions.index_of_this_stage << "\n"
+                                        << "saved program counter: " << newPC << "\n"
+                                        << "previous program counter: " << lastPC << "\n"
+                                        << "instruction memory size: " << ims << "\n"
+                                        << "input size needed to complete operation: " << diff_diff << "\n"
+                                        << "input size: " << input->size() << "\n";
+                                    ;
+                                }
+                            } else {
+                                input->pop();
+                            }
                         }
                     }
                 }
@@ -629,13 +653,15 @@ struct Pipeline {
 //             goto end;
         }
     halt:
+        // store the current halted cycle so the next stage can halt on the next cycle
         // simply send the HALT signal to the next stage
         PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << "HALTING, input size: "
             << (input != nullptr ? input->size() : 0) << ", "
             << "output size: " << (output != nullptr ? output->size() : 0);
         if (input != nullptr) CHECK_EQ(input->size(), 0);
         if (output != nullptr) CHECK_EQ(output->size(), 0);
-        haltN->store(true);
+        next_halt->store(true);
+        halted_cycle->store(pipeline->Current_Cycle[0]);
     end:
         PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage)
             << "Terminated, input size: " << (input != nullptr ? input->size() : 0) << ", "
@@ -643,12 +669,6 @@ struct Pipeline {
         if (input != nullptr) CHECK_EQ(input->size(), 0);
         if (output != nullptr) CHECK_EQ(output->size(), 0);
     };
-
-    std::deque<std::thread> pool;
-    std::deque<PipelineQueueType<T> *> queues;
-    std::deque<std::condition_variable*> conditions;
-    std::deque<std::mutex*> mutexes;
-    std::deque<std::atomic<bool>*> halts;
 
     void add(Task task) {
         Stage anomynous_stage(debug_output);
@@ -706,16 +726,6 @@ struct Pipeline {
         }
         return flops;
     }
-
-    // in order to support address increment we will need to support two things:
-    // 1. obtaining the current value in lambda from the current stage
-    // 2. 
-    
-    std::deque<T> instruction_memory;
-    std::deque<T> data_memory;
-    
-    void * externalData = nullptr;
-    int * PC = nullptr;
     
     Pipeline & run() {
         std::string fmt = "[%TIMESINCESTART] [%logger:";
@@ -745,19 +755,23 @@ struct Pipeline {
                 conditions.push_back(new std::condition_variable);
                 mutexes.push_back(new std::mutex);
                 halts.push_back(new std::atomic<bool>{false});
+                if (i != 0) {
+                    if (stages[i-1].type == PipelineStageTypes::Flop) {
+                        // connect the this stages input to the previous flop's output
+                        stages[i-1].flop.intermediateOutput = queues[i];
+                    }
+                }
                 pool.push_back(
                     std::thread(
                         callback, this, &stages[i], i,
                         queues[i], i+1 == ss ? nullptr : queues[i+1],
-                        halts[i], halts[i+1],
-                        i == 0 ? nullptr : conditions[i-1], conditions[i], conditions[i+1], conditions[i+2],
-                        mutexes[i], mutexes[i+1]
+                        halts[i], halts[i+1], &halted_cycle
                     )
                 );
+                if (i+1 == ss) pool.push_back(
+                    std::thread(tickcallback, this, halts[i])
+                );
             }
-            pool.push_back(
-                std::thread(tickcallback, this)
-            );
         } else {
             auto qs = queues.front()->size();
             while(*PC < qs) {
@@ -772,7 +786,7 @@ struct Pipeline {
                         if (i != 0) {
                             if (stages[i-1].type == PipelineStageTypes::Flop) {
                                 input = &_input;
-                                if (stages[i-1].flop.hasOutput) {
+                                if (stages[i-1].flop.has_output()) {
                                     input->push(std::move(stages[i-1].flop.pull_output()));
                                 }
                             } else {
@@ -785,7 +799,7 @@ struct Pipeline {
                         stages[i].run(std::move(val), i, this, i == 0 ? nullptr : input, output);
                         
                     } else {
-                        PipelinePrint << "Flop encountered, executing due to sequential mode";
+                        PipelinePrintIf(debug_output) << "Flop encountered, executing due to sequential mode";
                         PipelineQueueType<T> * input  = i == 0 ? nullptr : stages[i-1].output;
                         PipelineQueueType<T> * output = stages[i].output;
                         if (i != 0) {
@@ -933,23 +947,20 @@ void twoStagedPipeline(bool sequential) {
     
     pipeline.externalData = &a;
     pipeline.PC = &a.PC;
+    pipeline.Current_Cycle = &a.clock;
     
     // in a 5 stage pipeline, PC is stored in a latch before being sent to fetch
     
     pipeline.cycleFunc = PipelineCycleLambda(p) {
         struct registers * reg = static_cast<struct registers*>(p->externalData);
         PipelinePrint << "--- clock: " << reg->clock << ": Cycle END             ---";
-//         if ((++reg->clocktmp % 2) == 0) {
-            PipelinePrint << "--- clock: " << reg->clock << ": Cycle Sub-Stage BEGIN ---";
-            for (auto & stage : p->stages) if (stage.type == PipelineStageTypes::Flop) {
-//                 PipelinePrint << "--- clock: " << reg->clock << ": Cycle Sub-Stage: processing Flop";
-                stage.flop.exec();
-//                 PipelinePrint << "--- clock: " << reg->clock << ": Cycle Sub-Stage: processed Flop";
-            }
-            PipelinePrint << "--- clock: " << reg->clock << ": Cycle Sub-Stage END   ---";
-            reg->clock_last = reg->clock;
-            reg->clock++;
-//         }
+        PipelinePrint << "--- clock: " << reg->clock << ": Cycle Sub-Stage BEGIN ---";
+        for (auto & stage : p->stages) if (stage.type == PipelineStageTypes::Flop) {
+            stage.flop.exec();
+        }
+        PipelinePrint << "--- clock: " << reg->clock << ": Cycle Sub-Stage END   ---";
+        reg->clock_last = reg->clock;
+        reg->clock++;
         PipelinePrint << "--- clock: " << reg->clock << ": Cycle BEGIN           ---";
     };
     
@@ -1049,18 +1060,17 @@ void twoStagedPipeline(bool sequential) {
         PipelinePrintStage(i) << "clock: " << reg->clock << ": execute END,   "
             << "pipeline memory: " << p->data_memory << ", ACC: " << reg->ACC;
     });
-//     pipeline.addFlop();
     
     pipeline.sequential = sequential;
     pipeline.manual_increment = true;
     
     pipeline.instruction_memory = {
         // load the contents of memory location of 0 into the accumulator
-        Instructions::load, 0
+        Instructions::load, 0,
         // add the contents of memory location 1 to what ever is in the accumulator
-//         Instructions::add, 1,
+        Instructions::add, 1,
         // store what ever is in the accumulator back back into location 2
-//         Instructions::store, 2
+        Instructions::store, 2
     };
     
     pipeline.data_memory = {
