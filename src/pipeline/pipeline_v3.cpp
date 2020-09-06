@@ -964,6 +964,8 @@ void twoStagedPipeline(bool sequential) {
         PipelinePrint << "--- clock: " << reg->clock << ": Cycle BEGIN           ---";
     };
     
+    // NOTE: ALL STAGES MUST BE DEPENDENCY FREE
+    
 //     pipeline.add(PipelineLambda(val, i, p) {
 //         struct registers * reg = static_cast<struct registers*>(p->externalData);
 //         output->push(reg->PC + 2);
@@ -985,17 +987,15 @@ void twoStagedPipeline(bool sequential) {
         
         // MDR is written here
         PipelinePrintStage(i) << "clock: " << reg->clock << ": storing MDR with address of instruction memory location " << memoryAddressRegisterValue;
-        int * addr1 = &p->instruction_memory.at(memoryAddressRegisterValue);
-        reg->MDR.store(addr1);
-        PipelinePrintStage(i) << "clock: " << reg->clock << ": stored MDR with address " << addr1;
-        PipelinePrintStage(i) << "clock: " << reg->clock << ": loading MDR";
+        reg->MDR.store(&p->instruction_memory.at(memoryAddressRegisterValue));
         int * memoryDataRegisterValue = reg->MDR.load();
+        PipelinePrintStage(i) << "clock: " << reg->clock << ": stored MDR with address " << memoryDataRegisterValue;
+        PipelinePrintStage(i) << "clock: " << reg->clock << ": loading MDR";
         PipelinePrintStage(i) << "clock: " << reg->clock << ": loaded MDR with address " << memoryDataRegisterValue;
         
         reg->MDRPlusOne.store(&p->instruction_memory.at(memoryAddressRegisterValue+1));
         int * memoryDataRegisterValuePlusOne = reg->MDRPlusOne.load();
         
-        // MDR is loaded here
         reg->CIR = memoryDataRegisterValue;
         reg->CIRPlusOne = memoryDataRegisterValuePlusOne;
         reg->PC += 2;

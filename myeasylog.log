@@ -5311,3 +5311,72 @@ deque::_M_range_check: __n (which is 4)>= this->size() (which is 3)
 [06:018:621:231] [pipeline:pipelined:without debug output:INFO] --- clock: 5: Cycle Sub-Stage BEGIN ---
 [06:018:677:947] [pipeline:pipelined:without debug output:INFO] --- clock: 5: Cycle Sub-Stage END   ---
 [06:018:725:728] [pipeline:pipelined:without debug output:INFO] --- clock: 6: Cycle BEGIN           ---
+[00:000:463:420] [pipeline:pipelined:without debug output:INFO] [Stage 0] clock: 0: fetch BEGIN, PC: 0, p->instruction_memory: [13, 0, 86, 1, 55, 2]
+[00:001:189:325] [pipeline:pipelined:without debug output:INFO] [Stage 0] clock: 0: storing MDR with address of instruction memory location 0
+[00:001:355:753] [pipeline:pipelined:without debug output:INFO] [Stage 0] clock: 0: stored MDR with address 0x563823f629a8
+[00:001:506:155] [pipeline:pipelined:without debug output:INFO] [Stage 0] clock: 0: loading MDR
+[00:001:658:564] [pipeline:pipelined:without debug output:INFO] [Stage 0] clock: 0: loaded MDR with address 0x563823f629a8
+[00:001:806:414] [pipeline:pipelined:without debug output:INFO] [Stage 0] clock: 0: fetch END
+[01:000:742:612] [pipeline:pipelined:without debug output:INFO] --- clock: 0: Cycle END             ---
+[01:000:830:949] [pipeline:pipelined:without debug output:INFO] --- clock: 0: Cycle Sub-Stage BEGIN ---
+[01:000:881:305] [pipeline:pipelined:without debug output:INFO] --- clock: 0: Cycle Sub-Stage END   ---
+[01:000:922:033] [pipeline:pipelined:without debug output:INFO] --- clock: 1: Cycle BEGIN           ---
+[01:000:977:885] [pipeline:pipelined:without debug output:INFO] [Stage 0] clock: 1: fetch BEGIN, PC: 2, p->instruction_memory: [13, 0, 86, 1, 55, 2]
+[01:001:038:145] [pipeline:pipelined:without debug output:INFO] [Stage 0] clock: 1: storing MDR with address of instruction memory location 2
+[01:001:097:795] [pipeline:pipelined:without debug output:INFO] [Stage 0] clock: 1: stored MDR with address 0x563823f629b0
+[01:001:164:543] [pipeline:pipelined:without debug output:INFO] [Stage 0] clock: 1: loading MDR
+[01:001:215:810] [pipeline:pipelined:without debug output:INFO] [Stage 0] clock: 1: loaded MDR with address 0x563823f629b0
+[01:001:267:252] [pipeline:pipelined:without debug output:INFO] [Stage 0] clock: 1: fetch END
+[01:001:524:469] [pipeline:pipelined:without debug output:INFO] [Stage 2] clock: 1: decode BEGIN
+[01:001:735:011] [pipeline:pipelined:without debug output:INFO] [Stage 2] clock: 1: storing MDR with address of data memory location 0
+[01:001:918:659] [pipeline:pipelined:without debug output:INFO] [Stage 2] clock: 1: stored MDR with address 0x563823f697e4
+[01:002:118:475] [pipeline:pipelined:without debug output:INFO] [Stage 2] clock: 1: decode END: add
+[01:002:305:437] [pipeline:pipelined:without debug output:INFO] [Stage 2] clock: 1: output: 86
+[02:001:065:632] [pipeline:pipelined:without debug output:INFO] --- clock: 1: Cycle END             ---
+[02:001:166:439] [pipeline:pipelined:without debug output:INFO] --- clock: 1: Cycle Sub-Stage BEGIN ---
+[02:001:220:879] [pipeline:pipelined:without debug output:INFO] --- clock: 1: Cycle Sub-Stage END   ---
+[02:001:326:153] [pipeline:pipelined:without debug output:INFO] [Stage 4] clock: 2: execute BEGIN, input: 86, pipeline memory: [1, 2, 0], ACC: 0
+[02:001:391:192] [pipeline:pipelined:without debug output:INFO] --- clock: 2: Cycle BEGIN           ---
+[02:001:452:889] [pipeline:pipelined:without debug output:INFO] [Stage 4] clock: 2: loading MDR
+[02:001:519:340] [pipeline:pipelined:without debug output:INFO] [Stage 0] clock: 2: fetch BEGIN, PC: 4, p->instruction_memory: [13, 0, 86, 1, 55, 2]
+[02:001:582:447] [pipeline:pipelined:without debug output:INFO] [Stage 4] clock: 2: loaded MDR with address 0x563823f697e4
+[02:001:640:799] [pipeline:pipelined:without debug output:INFO] [Stage 4] clock: 2: execute END,   pipeline memory: [1, 2, 0], ACC: 1
+[02:001:696:941] [pipeline:pipelined:without debug output:INFO] [Stage 2] clock: 2: decode BEGIN
+[02:001:757:294] [pipeline:pipelined:without debug output:INFO] [Stage 2] clock: 2: storing MDR with address of data memory location 1
+[02:001:811:014] [pipeline:pipelined:without debug output:INFO] [Stage 2] clock: 2: stored MDR with address 0x563823f697e8
+[02:001:861:409] [pipeline:pipelined:without debug output:INFO] [Stage 2] clock: 2: decode END: add
+[02:001:911:827] [pipeline:pipelined:without debug output:INFO] [Stage 2] clock: 2: output: 86
+[02:002:103:193] [pipeline:pipelined:without debug output:INFO] [Stage 0] clock: 2: storing MDR with address of instruction memory location 4
+[03:001:540:621] [pipeline:pipelined:without debug output:INFO] --- clock: 2: Cycle END             ---
+[03:001:620:361] [pipeline:pipelined:without debug output:INFO] --- clock: 2: Cycle Sub-Stage BEGIN ---
+[03:001:665:703] [pipeline:pipelined:without debug output:INFO] --- clock: 2: Cycle Sub-Stage END   ---
+[03:001:704:338] [pipeline:pipelined:without debug output:INFO] --- clock: 3: Cycle BEGIN           ---
+[03:013:051:883] [pipeline:pipelined:without debug output:INFO] [Stage 4] clock: 3: execute BEGIN, input: 86, pipeline memory: [1, 2, 0], ACC: 1
+[03:013:119:338] [pipeline:pipelined:without debug output:INFO] [Stage 4] clock: 3: loading MDR
+[03:013:161:620] [pipeline:pipelined:without debug output:INFO] [Stage 4] clock: 3: loaded MDR with address 0x563823f697e8
+[03:013:212:764] [pipeline:pipelined:without debug output:INFO] [Stage 4] clock: 3: execute END,   pipeline memory: [1, 2, 0], ACC: 3
+[03:013:260:736] [pipeline:pipelined:without debug output:INFO] [Stage 0] clock: 3: stored MDR with address 0x563823f629b8
+[03:013:308:031] [pipeline:pipelined:without debug output:INFO] [Stage 0] clock: 3: loading MDR
+[03:013:347:131] [pipeline:pipelined:without debug output:INFO] [Stage 0] clock: 3: loaded MDR with address 0x563823f629b8
+[03:013:387:672] [pipeline:pipelined:without debug output:INFO] [Stage 0] clock: 3: fetch END
+[04:001:842:784] [pipeline:pipelined:without debug output:INFO] --- clock: 3: Cycle END             ---
+[04:001:936:838] [pipeline:pipelined:without debug output:INFO] --- clock: 3: Cycle Sub-Stage BEGIN ---
+[04:001:982:333] [pipeline:pipelined:without debug output:INFO] --- clock: 3: Cycle Sub-Stage END   ---
+[04:002:025:497] [pipeline:pipelined:without debug output:INFO] --- clock: 4: Cycle BEGIN           ---
+[04:002:119:520] [pipeline:pipelined:without debug output:INFO] [Stage 2] clock: 4: decode BEGIN
+[04:002:196:025] [pipeline:pipelined:without debug output:INFO] [Stage 2] clock: 4: storing MDR with address of data memory location 2
+[04:002:264:344] [pipeline:pipelined:without debug output:INFO] [Stage 2] clock: 4: stored MDR with address 0x563823f697ec
+[04:002:330:362] [pipeline:pipelined:without debug output:INFO] [Stage 2] clock: 4: decode END: store
+[04:002:394:544] [pipeline:pipelined:without debug output:INFO] [Stage 2] clock: 4: output: 55
+[05:002:171:820] [pipeline:pipelined:without debug output:INFO] --- clock: 4: Cycle END             ---
+[05:002:538:940] [pipeline:pipelined:without debug output:INFO] --- clock: 4: Cycle Sub-Stage BEGIN ---
+[05:002:732:874] [pipeline:pipelined:without debug output:INFO] --- clock: 4: Cycle Sub-Stage END   ---
+[05:002:796:739] [pipeline:pipelined:without debug output:INFO] [Stage 4] clock: 5: execute BEGIN, input: 55, pipeline memory: [1, 2, 0], ACC: 3
+[05:002:856:217] [pipeline:pipelined:without debug output:INFO] [Stage 4] clock: 5: loading MDR
+[05:002:901:639] [pipeline:pipelined:without debug output:INFO] [Stage 4] clock: 5: loaded MDR with address 0x563823f697ec
+[05:002:944:847] [pipeline:pipelined:without debug output:INFO] [Stage 4] clock: 5: execute END,   pipeline memory: [1, 2, 3], ACC: 3
+[05:003:063:173] [pipeline:pipelined:without debug output:INFO] --- clock: 5: Cycle BEGIN           ---
+[06:003:210:433] [pipeline:pipelined:without debug output:INFO] --- clock: 5: Cycle END             ---
+[06:003:289:150] [pipeline:pipelined:without debug output:INFO] --- clock: 5: Cycle Sub-Stage BEGIN ---
+[06:003:332:757] [pipeline:pipelined:without debug output:INFO] --- clock: 5: Cycle Sub-Stage END   ---
+[06:003:379:150] [pipeline:pipelined:without debug output:INFO] --- clock: 6: Cycle BEGIN           ---
