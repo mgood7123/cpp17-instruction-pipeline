@@ -4,6 +4,7 @@ INITIALIZE_EASYLOGGINGPP
 #include <iostream>
 #include <functional>
 #include <thread>
+#include <pthread.h>
 #include <atomic>
 #include <mutex>
 #include <unistd.h>
@@ -16,7 +17,18 @@ using namespace std::chrono_literals;
 
 #define PipelinePrintModifiersPrintValue(value) #value << ": " << value
 #define PipelinePrintModifiersAlphaBool(boolean) #boolean << ": " << (boolean ? "true" : "false")
-#define PipelinePrintModifiersPrintStage(stage) "[Stage " << stage << "]"
+// hardcode stage names
+#define PipelinePrintModifiersPrintStage(stage) "[Stage " << \
+    (stage == 0 ?                       "fetch  " : \
+        (stage == 1 ?                   "flop A " : \
+            (stage == 2 ?               "decode " : \
+                ( stage == 3 ?          "flop B " : \
+                                        "execute" \
+                ) \
+            ) \
+        ) \
+    ) \
+    << "]"
 #define PipelinePrintIf(condition) CLOG_IF(condition, INFO, "pipeline")
 #define PipelinePrint CLOG(INFO, "pipeline")
 #define PipelineFPrintIf(condition, type) CLOG_IF(condition, type, "pipeline")
@@ -38,7 +50,27 @@ namespace std {
         } while(std::chrono::high_resolution_clock::now() < end);
         return status;
     }
+    
+    static constexpr bool timed_out = true;
 }
+
+// possible implementation of condition_variable::wait
+//
+// template< class Predicate >
+// void wait( std::unique_lock<std::mutex>& lock, Predicate pred ) {
+//     bool f = true;
+//     bool status = false;
+//     while(status == false) {
+//         lock.unlock();
+//         if (f == false) {
+//             wait_for_notify();
+//         } else {
+//             f = false;
+//         }
+//         lock.lock();
+//         status = pred();
+//     }
+// }
 
 struct TimeSince {
     struct duration {
@@ -365,21 +397,6 @@ struct Pipeline {
     #define PipelineLambdaCallback [] (PipelineLambdaArguments)
     #define PipelineLambdaTickCallback [] (PipelineLambdaTickArguments)
     
-    TickCallback tickcallback = PipelineLambdaTickCallback {
-        while(!current_halt->load()) {
-            PipelinePrintIf(pipeline->debug_output) << "[TICK   ] sleeping for 1 second";
-            std::this_thread::sleep_for(1s);
-            PipelinePrintIf(pipeline->debug_output) << "[TICK   ] slept for 1 second";
-            PipelinePrintIf(pipeline->debug_output) << "[TICK   ] ticking";
-            pipeline->cycleFunc(pipeline);
-            // new cycle, reset execution status of all stages
-            for (Stage & stage : pipeline->stages) {
-                stage.executedInThisCycle = false;
-            }
-            PipelinePrintIf(pipeline->debug_output) << "[TICK   ] ticked";
-        }
-    };
-    
     struct Functions {
         Pipeline<T, CAPACITY> * pipeline = nullptr;
         
@@ -488,6 +505,58 @@ struct Pipeline {
     int * PC = nullptr;
     int * Current_Cycle = nullptr;
     
+    pthread_barrier_t flop_start_barrier;
+    pthread_barrier_t flop_end_barrier;
+    pthread_barrier_t stage_start_barrier;
+    pthread_barrier_t stage_end_barrier;
+    
+    // pipeline->Current_Cycle[0]
+    
+    
+    TickCallback tickcallback = PipelineLambdaTickCallback {
+        while(!current_halt->load()) {
+            PipelinePrintIf(true) << "[TICK   ] sleeping for 50 milliseconds";
+            std::this_thread::sleep_for(50ms);
+            PipelinePrintIf(true) << "[TICK   ] slept for 50 milliseconds";
+            
+            // a tick must wait for the all other stages to reach their end
+            
+            PipelinePrintIf(true) << "[TICK   ] waiting on flop end barrier";
+            pthread_barrier_wait(&pipeline->flop_end_barrier);
+            PipelinePrintIf(true) << "[TICK   ] waited on flop end barrier";
+            PipelinePrintIf(true) << "[TICK   ] waiting on stage end barrier";
+            pthread_barrier_wait(&pipeline->stage_end_barrier);
+            PipelinePrintIf(true) << "[TICK   ] waited on stage end barrier";
+            
+            // all other stages have ended
+            
+            // start flop stages
+            
+            PipelinePrintIf(true) << "[TICK   ] waiting on flop start barrier";
+            pthread_barrier_wait(&pipeline->flop_start_barrier);
+            PipelinePrintIf(true) << "[TICK   ] waited on flop start barrier";
+            
+            PipelinePrintIf(true) << "[TICK   ] ticking";
+            pipeline->cycleFunc(pipeline);
+            PipelinePrintIf(true) << "[TICK   ] ticked";
+            
+            // a tick must wait for the all other stages to start up again
+            
+            PipelinePrintIf(true) << "[TICK   ] waiting on stage start barrier";
+            pthread_barrier_wait(&pipeline->stage_start_barrier);
+            PipelinePrintIf(true) << "[TICK   ] waited on stage start barrier";
+            
+            // all other stages have started up again
+        }
+        
+//         PipelinePrintIf(pipeline->debug_output)
+//             << "[TICK   ] " << PipelinePrintModifiersPrintValue(current_halt);
+        PipelinePrintIf(pipeline->debug_output)
+            << "[TICK   ] HALTING, input size: 0, output size: 0";
+        PipelinePrintIf(pipeline->debug_output)
+            << "[TICK   ] Terminated, input size: 0, output size: 0";
+    };
+    
     TaskCallback callback = PipelineLambdaCallback {
         Functions functions(pipeline);
         functions.aquire_indexes_stages_and_flip_flops(index);
@@ -510,134 +579,156 @@ struct Pipeline {
             int newPC = 0;
             
             while(!should_exit) { // LOOP START
-                if (!stage->executedInThisCycle.load()) {
-                    if (input->front() == nullptr) {
-                        // we do not have input
-                        if (output == nullptr ? true : output->front() == nullptr) {
-                            // we can halt safely if we have NO input and NO output to send
-                            if (functions.index_of_this_stage == 0) {
-                                // if the current stage is the very first stage
-                                
-                                if (functions.program_counter_is_greater_than_instruction_length()) {
-                                    // and we have reached the end of our instructions
-                                    // then jump to halt
-                                    goto halt;
-                                }
-                            } else {
-                                // otherwise
-                                if (pipeline->Current_Cycle[0]-1 >= halted_cycle->load() && current_halt->load()) {
-                                    // if we have recieved a halt
-                                    // then jump to halt
-                                    goto halt;
-                                }
-                            }
-                        }
-                    } else {
-                        // we have input
-                        stage->executedInThisCycle.store(true);
-                        if (functions.this_stage_is_flip_flop) {
-                            // if this stage is a flip flop
-                            {
-                                // we move the input into the flip-flop
-                                
-                                PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << "pushing flip-flop input";
-
-                                functions.this_flip_flop->push_input(std::move(*input->front()));
-
-                                PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << "pushed flip-flop input";
-                            }
-                            {
-                                // consume input
-                                PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << "consuming normal input";
-
-                                input->pop();
-
-                                PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << "consumed normal input";
-                            }
-                            {
-    //                             //
-    //                             // NOTE: this WILL cause the stages to execute out of sync
-    //                             //
-    //                             // emulate clock tick
-    //                             // we move the flip-flop's input into its output
-    //                             PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << "pushing flip-flop output and consuming flip-flop input";
-    //                             
-    //                             functions.this_flip_flop->exec();
-    //                             
-    //                             PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << "pushed flip-flop output and consumed flip-flop input";
-                            }
-                            {
-                                // and then we move the flip-flop's output into our output
-                                if (functions.this_flip_flop->has_output()) {
-                                    // make sure we only push if we have output
-                                    PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << "consuming flip-flop output and pushing normal output";
-
-                                    output->push(std::move(functions.this_flip_flop->pull_output()));
-
-                                    PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << "consumed flip-flop output and pushed normal output";
-                                }
+                if (input->size() == 0) {
+                    // we do not have input
+//                     PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << "input->front() is nullptr, "
+//                     << PipelinePrintModifiersPrintValue(input->size());
+                    if (output == nullptr ? true : output->size() == 0) {
+                        // we can halt safely if we have NO input and NO output to send
+//                         PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage)
+//                             << "output is nullptr or output->front() is nullptr, "
+//                             << "output->size() = " << (output == nullptr ? 0 : output->size());
+                        if (output != nullptr) CHECK_EQ(output->size(), 0);
+                        if (functions.index_of_this_stage == 0) {
+                            // if the current stage is the very first stage
+                            
+                            if (functions.program_counter_is_greater_than_instruction_length()) {
+                                // and we have reached the end of our instructions
+                                // then jump to halt
+                                goto halt;
                             }
                         } else {
-                            CHECK_NE(stage->run, nullptr) << "at " << "Stage: " << functions.index_of_this_stage;
-                            PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << "running stage";
-                            
-                            // take note of the program counters before and after, as it may or may not change
-                            lastPC = *pipeline->PC;
-                            stage->run(std::move(val), index, pipeline, input, output);
-                            newPC = *pipeline->PC;
-                            
-                            PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << "ran stage";
-                            PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << PipelinePrintModifiersPrintValue(input->size());
-                            PipelinePrintStageIf(pipeline->debug_output && output != nullptr, functions.index_of_this_stage) << PipelinePrintModifiersPrintValue(output->size());
-                            
-                            // pop our input based on our current PC
-                            //
-                            // TODO: divise a way to determine if a stage expects the input
-                            //       to be popped based on the current PC
-                            //
-                            if (functions.index_of_this_stage == 0) {
-                                // assume stage 0 manages the current PC
-                                if (newPC != lastPC) {
-                                    // if our PC has changed, then pop based on the difference
-                                    // example: lastPC = 2, PC = 4, pop twice
-                                    auto ims = pipeline->instruction_memory.size();
-                                    auto is = input->size();
-                                    auto diff = newPC - lastPC;
-                                    auto diff_diff = diff;
-                                    CHECK_LE(newPC, ims)
-                                        << "\n\nError: The saved program counter will exceed instruction memory\n\n"
-                                        << "Stage: " << functions.index_of_this_stage << "\n"
-                                        << "saved program counter: " << newPC << "\n"
-                                        << "previous program counter: " << lastPC << "\n"
-                                        << "instruction memory size: " << ims << "\n"
-                                        << "minimum required input size to complete operation: " << diff << "\n"
-                                        << "input size: " << is << "\n";
-                                    
-                                    int PC = lastPC;
-                                    bool timed_out = std::timeout(1s, [&] {
-                                        bool ret = false;
-                                        if (PC < newPC) {
-                                            if (input->front()) {
-                                                PC++;
-                                                diff_diff--;
-                                                PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << "popping " << PipelinePrintModifiersPrintValue(*input->front());
-                                                input->pop();
-                                            };
-                                        } else ret = true;
-                                        return ret;
-                                    });
-                                    CHECK_NE(timed_out, true) << "timeout exceeded:\n\n"
-                                        << "Stage: " << functions.index_of_this_stage << "\n"
-                                        << "saved program counter: " << newPC << "\n"
-                                        << "previous program counter: " << lastPC << "\n"
-                                        << "instruction memory size: " << ims << "\n"
-                                        << "input size needed to complete operation: " << diff_diff << "\n"
-                                        << "input size: " << input->size() << "\n";
-                                    ;
-                                }
-                            } else {
-                                input->pop();
+                            // otherwise
+                            if (pipeline->Current_Cycle[0]-1 >= halted_cycle->load() && current_halt->load()) {
+                                // if we have recieved a halt
+                                // then jump to halt
+                                goto halt;
                             }
+                        }
+                    }
+                    if (functions.this_stage_is_flip_flop) {
+                        // if this stage is a flip flop
+                        PipelinePrintStageIf(true, functions.index_of_this_stage) << "waiting on flop end barrier";
+                        pthread_barrier_wait(&pipeline->flop_end_barrier);
+                        PipelinePrintStageIf(true, functions.index_of_this_stage) << "waited on flop end barrier";
+                        PipelinePrintStageIf(true, functions.index_of_this_stage) << "waiting on flop start barrier";
+                        pthread_barrier_wait(&pipeline->flop_start_barrier);
+                        PipelinePrintStageIf(true, functions.index_of_this_stage) << "waited on flop start barrier";
+                    } else {
+                        // if this stage is not a flip flop
+                        PipelinePrintStageIf(true, functions.index_of_this_stage) << "waiting on stage end barrier";
+                        pthread_barrier_wait(&pipeline->stage_end_barrier);
+                        PipelinePrintStageIf(true, functions.index_of_this_stage) << "waited on stage end barrier";
+                        PipelinePrintStageIf(true, functions.index_of_this_stage) << "waiting on stage start barrier";
+                        pthread_barrier_wait(&pipeline->stage_start_barrier);
+                        PipelinePrintStageIf(true, functions.index_of_this_stage) << "waited on stage start barrier";
+                    }
+                } else {
+                    // we have input
+                    if (functions.this_stage_is_flip_flop) {
+                        // if this stage is a flip flop
+                        {
+                            // we move the input into the flip-flop
+                            
+                            PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << "pushing flip-flop input";
+
+                            functions.this_flip_flop->push_input(std::move(*input->front()));
+
+                            PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << "pushed flip-flop input";
+                        }
+                        {
+                            // consume input
+                            PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << "consuming normal input";
+
+                            input->pop();
+
+                            PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << "consumed normal input";
+                        }
+                        {
+                            // and then we move the flip-flop's output into our output
+                            if (functions.this_flip_flop->has_output()) {
+                                // make sure we only push if we have output
+                                PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << "consuming flip-flop output and pushing normal output";
+
+                                output->push(std::move(functions.this_flip_flop->pull_output()));
+
+                                PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << "consumed flip-flop output and pushed normal output";
+                            }
+                        }
+                        PipelinePrintStageIf(true, functions.index_of_this_stage) << "waiting on flop end barrier";
+                        pthread_barrier_wait(&pipeline->flop_end_barrier);
+                        PipelinePrintStageIf(true, functions.index_of_this_stage) << "waited on flop end barrier";
+                        PipelinePrintStageIf(true, functions.index_of_this_stage) << "waiting on flop start barrier";
+                        pthread_barrier_wait(&pipeline->flop_start_barrier);
+                        PipelinePrintStageIf(true, functions.index_of_this_stage) << "waited on flop start barrier";
+                    } else {
+                        // if this stage is not a flip flop
+                        CHECK_NE(stage->run, nullptr) << "at " << "Stage: " << functions.index_of_this_stage;
+                        PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << "running stage";
+                        
+                        // take note of the program counters before and after, as it may or may not change
+                        lastPC = *pipeline->PC;
+                        stage->run(std::move(val), index, pipeline, input, output);
+                        newPC = *pipeline->PC;
+                        
+                        PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << "ran stage";
+                        PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << PipelinePrintModifiersPrintValue(input->size());
+                        PipelinePrintStageIf(pipeline->debug_output && output != nullptr, functions.index_of_this_stage) << PipelinePrintModifiersPrintValue(output->size());
+                        
+                        PipelinePrintStageIf(true, functions.index_of_this_stage) << "waiting on stage end barrier";
+                        pthread_barrier_wait(&pipeline->stage_end_barrier);
+                        PipelinePrintStageIf(true, functions.index_of_this_stage) << "waited on stage end barrier";
+                        PipelinePrintStageIf(true, functions.index_of_this_stage) << "waiting on stage start barrier";
+                        pthread_barrier_wait(&pipeline->stage_start_barrier);
+                        PipelinePrintStageIf(true, functions.index_of_this_stage) << "waited on stage start barrier";
+                        
+                        // pop our input based on our current PC
+                        //
+                        // TODO: divise a way to determine if a stage expects the input
+                        //       to be popped based on the current PC
+                        //
+                        if (functions.index_of_this_stage == 0) {
+                            // assume stage 0 manages the current PC
+                            if (newPC != lastPC) {
+                                // if our PC has changed, then pop based on the difference
+                                // example: lastPC = 2, PC = 4, pop twice
+                                auto ims = pipeline->instruction_memory.size();
+                                auto is = input->size();
+                                auto diff = newPC - lastPC;
+                                auto diff_diff = diff;
+                                CHECK_LE(newPC, ims)
+                                    << "\n\nError: The saved program counter will exceed instruction memory\n\n"
+                                    << "Stage: " << functions.index_of_this_stage << "\n"
+                                    << "saved program counter: " << newPC << "\n"
+                                    << "previous program counter: " << lastPC << "\n"
+                                    << "instruction memory size: " << ims << "\n"
+                                    << "minimum required input size to complete operation: " << diff << "\n"
+                                    << "input size: " << is << "\n";
+                                
+                                int PC = lastPC;
+                                bool timed_out = std::timeout(1s, [&] {
+                                    bool ret = false;
+                                    if (PC < newPC) {
+                                        if (input->front()) {
+                                            PC++;
+                                            diff_diff--;
+                                            PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << "popping " << PipelinePrintModifiersPrintValue(*input->front());
+                                            input->pop();
+                                        };
+                                    } else ret = true;
+                                    return ret;
+                                });
+                                CHECK_NE(timed_out, true) << "timeout exceeded:\n\n"
+                                    << "Stage: " << functions.index_of_this_stage << "\n"
+                                    << "saved program counter: " << newPC << "\n"
+                                    << "previous program counter: " << lastPC << "\n"
+                                    << "instruction memory size: " << ims << "\n"
+                                    << "input size needed to complete operation: " << diff_diff << "\n"
+                                    << "input size: " << input->size() << "\n";
+                                ;
+                            }
+                        } else {
+                            input->pop();
                         }
                     }
                 }
@@ -660,14 +751,18 @@ struct Pipeline {
             << "output size: " << (output != nullptr ? output->size() : 0);
         if (input != nullptr) CHECK_EQ(input->size(), 0);
         if (output != nullptr) CHECK_EQ(output->size(), 0);
+//         PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << PipelinePrintModifiersPrintValue(next_halt);
         next_halt->store(true);
         halted_cycle->store(pipeline->Current_Cycle[0]);
     end:
         PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage)
-            << "Terminated, input size: " << (input != nullptr ? input->size() : 0) << ", "
+            << "Terminating, input size: " << (input != nullptr ? input->size() : 0) << ", "
             << "output size: " << (output != nullptr ? output->size() : 0);
         if (input != nullptr) CHECK_EQ(input->size(), 0);
         if (output != nullptr) CHECK_EQ(output->size(), 0);
+//         PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << "Terminating, waiting on stage barrier";
+//         pthread_barrier_wait(&pipeline->stage_barrier);
+//         PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << "Terminated, waited on stage barrier";
     };
 
     void add(Task task) {
@@ -682,7 +777,7 @@ struct Pipeline {
     }
     
     void addFlop() {
-        Stage anomynous_stage(debug_output);
+        Stage anomynous_stage(true);
         anomynous_stage.type = PipelineStageTypes::Flop;
         stages.push_back(std::move(anomynous_stage));
     }
@@ -728,7 +823,7 @@ struct Pipeline {
     }
     
     Pipeline & run() {
-        std::string fmt = "[%TIMESINCESTART] [%logger:";
+        std::string fmt = "[%TIMESINCESTART] [%logger:THREAD ID (%thread):";
         fmt += sequential ? "sequential" : "pipelined";
         fmt += ":";
         fmt += debug_output ? "with debug output" : "without debug output";
@@ -744,6 +839,11 @@ struct Pipeline {
         for (int i = 0; i < s; i++) queues.front()->push(std::move(instruction_memory.at(i)));
         
         auto ss = stages.size();
+        
+        pthread_barrier_init (&flop_start_barrier, nullptr, 2+1);
+        pthread_barrier_init (&flop_end_barrier, nullptr, 2+1);
+        pthread_barrier_init (&stage_start_barrier, nullptr, 3+1);
+        pthread_barrier_init (&stage_end_barrier, nullptr, 3+1);
         
         if (!sequential) {
             conditions.push_back(new std::condition_variable);
@@ -769,7 +869,7 @@ struct Pipeline {
                     )
                 );
                 if (i+1 == ss) pool.push_back(
-                    std::thread(tickcallback, this, halts[i])
+                    std::thread(tickcallback, this, halts[i+1])
                 );
             }
         } else {
@@ -873,54 +973,116 @@ struct Instructions {
     }
 };
 
+struct Ordered_Access_Set_Name {
+    const char * name = "no name given";
+    Ordered_Access_Set_Name() {}
+    Ordered_Access_Set_Name(const char * name) {
+        this->name = name;
+    }
+};
+
 template <typename T>
-struct Synchronized_Variable {
+struct Ordered_Access {
     rigtorp::SPSCQueue<T> value = rigtorp::SPSCQueue<T>(1);
     std::condition_variable condition_queue_is_empty;
     std::mutex queue_is_empty_mutex;
+    
+    // implement ordering
+    const int access_order_initialization_value = -1;
+    std::atomic<int> order {access_order_initialization_value};
+    std::condition_variable order_obtained;
+    std::mutex order_obtained_mutex;
+    
+    const char * name = "no name given";
 
-    Synchronized_Variable() {} // default initialization
+    Ordered_Access() {} // default initialization
     
-    Synchronized_Variable(const Synchronized_Variable & synchronized_Variable) = delete;
+    Ordered_Access(const Ordered_Access_Set_Name & name) {
+        this->name = name.name;
+    }
     
-    Synchronized_Variable(const T & val) {
-        store(val);
+    Ordered_Access(const T & val) {
+        order.store(access_order_initialization_value - 1);
+        store(val,  access_order_initialization_value - 0, "constructor");
     };
     
-    Synchronized_Variable(Synchronized_Variable && synchronized_Variable) {
-        // move constructor
-        std::swap(value, synchronized_Variable.value);
+    Ordered_Access(const Ordered_Access_Set_Name & name, const T & val) {
+        this->name = name.name;
+        order.store(access_order_initialization_value - 1);
+        store(val,  access_order_initialization_value - 0, "constructor");
+    };
+    
+    Ordered_Access(const Ordered_Access & ordered_access) = delete;
+    
+    Ordered_Access(Ordered_Access && ordered_access) = delete;
+    
+    Ordered_Access & operator=(const Ordered_Access & ordered_access) = delete;
+    
+    Ordered_Access & operator=(Ordered_Access && ordered_access) = delete;
+    
+    void set_order(const int & access_order, const char * tag) {
+        std::unique_lock<std::mutex> lA (order_obtained_mutex);
+        PipelinePrint << "[ORDERED ACCESS: " << name << ", TAG: " << tag << "] setting order to " << access_order;
+        order.store(access_order);
+        PipelinePrint << "[ORDERED ACCESS: " << name << ", TAG: " << tag << "] set order to " << access_order;
+        PipelinePrint << "[ORDERED ACCESS: " << name << ", TAG: " << tag << "] notifying all order_obtained";
+        order_obtained.notify_all();
+        PipelinePrint << "[ORDERED ACCESS: " << name << ", TAG: " << tag << "] notified all order_obtained";
+    };
+    
+    void reset_order(const char * tag) {
+        set_order(access_order_initialization_value, tag);
+    };
+    
+    void wait_for_order(const int & access_order, const char * tag) {
+        std::unique_lock<std::mutex> lA (order_obtained_mutex);
+        PipelinePrint << "[ORDERED ACCESS: " << name << ", TAG: " << tag << "] waiting for order to increment to " << access_order;
+        order_obtained.wait(lA, [&] {
+            PipelinePrint << "[ORDERED ACCESS: " << name << ", TAG: " << tag << "] entered order_obtained.wait()";
+            PipelinePrint << "[ORDERED ACCESS: " << name << ", TAG: " << tag << "] checking if order has incremented to " << access_order;
+            bool val = (order.load() + 1) == access_order;
+            PipelinePrintIf(val) << "[ORDERED ACCESS: " << name << ", TAG: " << tag << "] order has incremented to " << access_order;
+            PipelinePrintIf(!val) << "[ORDERED ACCESS: " << name << ", TAG: " << tag << "] order has not incremented to " << access_order;
+            PipelinePrint << "[ORDERED ACCESS: " << name << ", TAG: " << tag << "] returning from order_obtained.wait()";
+            return val;
+        });
+        PipelinePrint << "[ORDERED ACCESS: " << name << ", TAG: " << tag << "] waited for order to increment to " << access_order;
     }
     
-    Synchronized_Variable & operator=(const Synchronized_Variable & synchronized_Variable) = delete;
-    
-    Synchronized_Variable & operator=(Synchronized_Variable && synchronized_Variable) {
-        // move assign
-        std::swap(value, synchronized_Variable.value);
-        return *this;
-    }
-    
-    void store(const T & val) {
+    void store(const T & val, const int & access_order, const char * tag) {
+        PipelinePrint << "[ORDERED ACCESS: " << name << ", TAG: " << tag << "] storing";
+        wait_for_order(access_order, tag);
         value.push(val);
         condition_queue_is_empty.notify_one();
+        order.fetch_add(1);
+        order_obtained.notify_all();
+        PipelinePrint << "[ORDERED ACCESS: " << name << ", TAG: " << tag << "] stored";
     }
     
-    T & peek() {
-        std::unique_lock<std::mutex> l (queue_is_empty_mutex);
-        condition_queue_is_empty.wait(l, [&] {
-            // return false to keep waiting
-            // if value->front() returns nullptr
-            // then the expression evaluates to false
-            // because it is equal to nullptr
-            return value.front() != nullptr;
-        });
-        T * ptr = value.front();
-        return *ptr;
+    T & peek(const int & access_order, const char * tag) {
+        PipelinePrint << "[ORDERED ACCESS: " << name << ", TAG: " << tag << "] peeking";
+        wait_for_order(access_order, tag);
+        
+        std::unique_lock<std::mutex> lB (queue_is_empty_mutex);
+        condition_queue_is_empty.wait(lB, [&] { return value.front() != nullptr; });
+        T & val = *value.front();
+        order.fetch_add(1);
+        order_obtained.notify_all();
+        PipelinePrint << "[ORDERED ACCESS: " << name << ", TAG: " << tag << "] peeked";
+        return val;
     }
     
-    T & load() {
-        T & val = peek();
+    T & load(const int & access_order, const char * tag) {
+        PipelinePrint << "[ORDERED ACCESS: " << name << ", TAG: " << tag << "] loading";
+        wait_for_order(access_order, tag);
+        
+        std::unique_lock<std::mutex> lB (queue_is_empty_mutex);
+        condition_queue_is_empty.wait(lB, [&] { return value.front() != nullptr; });
+        T & val = *value.front();
         value.pop();
+        order.fetch_add(1);
+        order_obtained.notify_all();
+        PipelinePrint << "[ORDERED ACCESS: " << name << ", TAG: " << tag << "] loaded";
         return val;
     }
 };
@@ -939,9 +1101,9 @@ void twoStagedPipeline(bool sequential) {
         int PC = 0;
         int * CIR = 0;
         int * CIRPlusOne = 0;
-        Synchronized_Variable<int> MAR;
-        Synchronized_Variable<int *> MDR;
-        Synchronized_Variable<int *> MDRPlusOne;
+        Ordered_Access<int> MAR = Ordered_Access_Set_Name("MAR");
+        Ordered_Access<int *> MDR = Ordered_Access_Set_Name("MDR");
+        Ordered_Access<int *> MDRPlusOne = Ordered_Access_Set_Name("MDRPlusOne");
         int ACC = 0;
     } a;
     
@@ -982,19 +1144,23 @@ void twoStagedPipeline(bool sequential) {
         
         // for efficiency, load the value immediately after storing it
         
-        reg->MAR.store(reg->PC);
-        int memoryAddressRegisterValue = reg->MAR.load();
+        reg->MAR.store(reg->PC, 0, "fetch");
+        int memoryAddressRegisterValue = reg->MAR.load(1, "fetch");
+        
+        PipelinePrintStage(i) << "clock: " << reg->clock << ": storing MDR with address of instruction memory location " << memoryAddressRegisterValue;
         
         // MDR is written here
-        PipelinePrintStage(i) << "clock: " << reg->clock << ": storing MDR with address of instruction memory location " << memoryAddressRegisterValue;
-        reg->MDR.store(&p->instruction_memory.at(memoryAddressRegisterValue));
-        int * memoryDataRegisterValue = reg->MDR.load();
+        reg->MDR.store(&p->instruction_memory.at(memoryAddressRegisterValue), 0, "fetch");
+        int * memoryDataRegisterValue = reg->MDR.load(1, "fetch");
+        
         PipelinePrintStage(i) << "clock: " << reg->clock << ": stored MDR with address " << memoryDataRegisterValue;
         PipelinePrintStage(i) << "clock: " << reg->clock << ": loading MDR";
         PipelinePrintStage(i) << "clock: " << reg->clock << ": loaded MDR with address " << memoryDataRegisterValue;
         
-        reg->MDRPlusOne.store(&p->instruction_memory.at(memoryAddressRegisterValue+1));
-        int * memoryDataRegisterValuePlusOne = reg->MDRPlusOne.load();
+        reg->MDRPlusOne.store(&p->instruction_memory.at(memoryAddressRegisterValue+1), 0, "fetch");
+        int * memoryDataRegisterValuePlusOne = reg->MDRPlusOne.load(1, "fetch");
+        // MDRPlusOne is not accessed in later stages, reset it to older stages can continue
+        reg->MDRPlusOne.reset_order("fetch");
         
         reg->CIR = memoryDataRegisterValue;
         reg->CIRPlusOne = memoryDataRegisterValuePlusOne;
@@ -1007,13 +1173,19 @@ void twoStagedPipeline(bool sequential) {
         struct registers * reg = static_cast<struct registers*>(p->externalData);
         PipelinePrintStage(i) << "clock: " << reg->clock << ": decode BEGIN";
         
-        reg->MAR.store(*input->front());
-        int memoryAddressRegisterValue = reg->MAR.load();
+        // MAR is written here
+        reg->MAR.store(*input->front(), 2, "decode");
+        int memoryAddressRegisterValue = reg->MAR.load(3, "decode");
+
+        // MAR is not accessed in later stages, reset it to older stages can continue
+        reg->MAR.reset_order("decode");
+        
+        PipelinePrintStage(i) << "clock: " << reg->clock << ": storing MDR with address of data memory location " << memoryAddressRegisterValue;
         
         // MDR is written here
-        PipelinePrintStage(i) << "clock: " << reg->clock << ": storing MDR with address of data memory location " << memoryAddressRegisterValue;
         int * addr2 = &p->data_memory.at(memoryAddressRegisterValue);
-        reg->MDR.store(addr2);
+        reg->MDR.store(addr2, 2, "decode");
+        
         PipelinePrintStage(i) << "clock: " << reg->clock << ": stored MDR with address " << addr2;
         
         PipelinePrintStage(i) << "clock: " << reg->clock << ": decode END: "
@@ -1032,13 +1204,17 @@ void twoStagedPipeline(bool sequential) {
             
         // MDR is loaded here
         PipelinePrintStage(i) << "clock: " << reg->clock << ": loading MDR";
-        int * memoryDataRegisterValue = reg->MDR.load();
+        int * memoryDataRegisterValue = reg->MDR.load(3, "execute");
+        
+        // MDR is not accessed in later stages, reset it to older stages can continue
+        reg->MDR.reset_order("execute");
+        
         PipelinePrintStage(i) << "clock: " << reg->clock << ": loaded MDR with address " << memoryDataRegisterValue;
         
         switch(o) {
             case Instructions::load: {
                 reg->ACC = *memoryDataRegisterValue;
-                PipelinePrintStage(i) << PipelinePrintModifiersPrintValue(reg->ACC);
+                PipelinePrintStage(i) << "clock: " << reg->clock << ": " << PipelinePrintModifiersPrintValue(reg->ACC);
                 break;
             }
             case Instructions::add: {
@@ -1053,6 +1229,7 @@ void twoStagedPipeline(bool sequential) {
             }
             case Instructions::store: {
                 *memoryDataRegisterValue = reg->ACC;
+                reg->ACC = 0;
                 break;
             }
             default: break;
@@ -1080,6 +1257,10 @@ void twoStagedPipeline(bool sequential) {
     };
     
     pipeline.run().join();
+    CHECK_EQ(pipeline.data_memory[0], 1);
+    CHECK_EQ(pipeline.data_memory[1], 2);
+    CHECK_EQ(pipeline.data_memory[2], 3);
+    CHECK_EQ(a.ACC, 0);
 }
 
 int main() {
