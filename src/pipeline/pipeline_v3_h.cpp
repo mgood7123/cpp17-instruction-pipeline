@@ -1,47 +1,3 @@
-#include <mutex>
-#include <condition_variable>
-struct Barrier {
-    // http://byronlai.com/jekyll/update/2015/12/26/barrier.html
-    // replace pthread with std equivilants
-    std::mutex mutex;
-    std::condition_variable condition_variable;
-    int threads_required = 0;
-    int threads_left = 0;
-    unsigned int cycle = 0;
-    bool terminate = false;
-    
-    Barrier (const int & count) {
-        threads_required = count;
-        threads_left = count;
-        cycle = 0;
-    }
-    
-    static constexpr int return_code_terminated = 2;
-    
-    int wait(bool terminate_) {
-        std::unique_lock<std::mutex> lock (mutex);
-        if (terminate_) terminate = terminate_;
-        if (--threads_left == 0) {
-            cycle++;
-            threads_left = threads_required;
-            condition_variable.notify_all();
-            return terminate ? return_code_terminated : 1;
-        } else {
-            const unsigned int cycle_ = cycle;
-            while(cycle_ == cycle) condition_variable.wait(lock);
-            return terminate ? return_code_terminated : 0;
-        }
-    }
-    
-    int wait() {
-        return wait(false);
-    }
-    
-    int wait_and_terminate() {
-        return wait(true);
-    }
-};
-
 #include <easylogging++.h>
 INITIALIZE_EASYLOGGINGPP
 #include <rigtorp/SPSCQueue.h>
@@ -49,36 +5,38 @@ INITIALIZE_EASYLOGGINGPP
 #include <functional>
 #include <thread>
 #include <atomic>
+#include <mutex>
 #include <unistd.h>
 #include <queue>
+#include <condition_variable>
 #include <chrono>
 using namespace std::chrono_literals;
 #include <deque>
 #include <cassert>
 
 #define PipelinePrintModifiersPrintValue(value) #value << ": " << value
-#define PipelinePrintModifiersAlphaBoolNoPrintName(boolean) (boolean ? "true" : "false")
-#define PipelinePrintModifiersAlphaBool(boolean) #boolean << ": " << PipelinePrintModifiersAlphaBoolNoPrintName(boolean)
+#define PipelinePrintModifiersAlphaBool(boolean) #boolean << ": " << (boolean ? "true" : "false")
 // hardcode stage names
-#define PipelineStageToString(stage) \
-    (stage == 0 ?                       "Stage fetch  " : \
-        (stage == 1 ?                   "Stage flop A " : \
-            (stage == 2 ?               "Stage decode " : \
-                ( stage == 3 ?          "Stage flop B " : \
-                                        "Stage execute" \
+#define PipelinePrintModifiersPrintStage(stage) "[Stage " << \
+    (stage == 0 ?                       "fetch  " : \
+        (stage == 1 ?                   "flop A " : \
+            (stage == 2 ?               "decode " : \
+                ( stage == 3 ?          "flop B " : \
+                                        "execute" \
                 ) \
             ) \
         ) \
     ) \
+<< "]"
 
 #define PipelinePrintIf(condition) CLOG_IF(condition, INFO, "pipeline")
 #define PipelinePrint CLOG(INFO, "pipeline")
-#define PipelineFPrintIf(type, condition) CLOG_IF(condition, type, "pipeline")
+#define PipelineFPrintIf(condition, type) CLOG_IF(condition, type, "pipeline")
 #define PipelineFPrint(type) CLOG(type, "pipeline")
-#define PipelinePrintStageIf(condition, stage) PipelinePrintIf(condition) << "[" << PipelineStageToString(stage) << "]: "
-#define PipelinePrintStage(stage) PipelinePrint << "[" << PipelineStageToString(stage) << "]: "
-#define PipelineFPrintStageIf(type, condition, stage) PipelineFPrintIf(type, condition) << "[" << PipelineStageToString(stage) << "]: "
-#define PipelineFPrintStage(type, stage) PipelineFPrint(type) << "[" << PipelineStageToString(stage) << "]: "
+#define PipelinePrintStageIf(condition, stage) PipelinePrintIf(condition) << PipelinePrintModifiersPrintStage(stage) << " "
+#define PipelinePrintStage(stage) PipelinePrint << PipelinePrintModifiersPrintStage(stage) << " "
+#define PipelineFPrintStageIf(condition, type, stage) PipelineFPrintIf(condition, type) << PipelinePrintModifiersPrintStage(stage) << " "
+#define PipelineFPrintStage(type, stage) PipelineFPrint(type) << PipelinePrintModifiersPrintStage(stage) << " "
 
 namespace std {
     template< class Rep, class Period, class Predicate >
@@ -569,7 +527,7 @@ struct Pipeline {
     
     std::deque<Stage> stages;
     
-    #define PipelineLambdaArguments Pipeline * pipeline, Stage * stage, int index, PipelineQueueType<T> * input, PipelineQueueType<T> * output, std::atomic<bool> * current_halt, std::atomic<bool> * next_halt, std::atomic<int> * halted_cycle
+    #define PipelineLambdaArguments Pipeline * pipeline, Stage * stage, int index, PipelineQueueType<T> * input, PipelineQueueType<T> * output, std::atomic<bool> * current_halt, std::atomic<bool> * next_halt, std::atomic<int> * halted_cycle, std::atomic<bool> * final_termination
     
     #define PipelineLambdaTickArguments Pipeline * pipeline, std::atomic<bool> * current_halt
     
@@ -653,7 +611,7 @@ struct Pipeline {
         
         void lock(std::unique_lock<std::mutex> & unique_lock) {
             PipelineFPrintStageIf(
-                FATAL, std::timeout(1s, [&] {
+                std::timeout(1s, [&] {
                     try {
                         unique_lock.lock();
                         // succeeded
@@ -665,7 +623,8 @@ struct Pipeline {
                         // try again
                         return false;
                     }
-                }), index_of_this_stage
+                }),
+                FATAL, index_of_this_stage
             ) << std::endl << std::endl
                 << "Failed to aquire a lock within 1 second." << std::endl
                 << "There is likely a hang somewhere." << std::endl
@@ -678,6 +637,7 @@ struct Pipeline {
     std::deque<std::condition_variable*> conditions;
     std::deque<std::mutex*> mutexes;
     std::deque<std::atomic<bool>*> halts;
+    std::deque<std::atomic<bool>*> final_terminations;
     std::atomic<int> halted_cycle {0};
     std::deque<T> instruction_memory;
     std::deque<T> data_memory;
@@ -685,59 +645,121 @@ struct Pipeline {
     void * externalData = nullptr;
     int * PC = nullptr;
     int * Current_Cycle = nullptr;
+    
+    struct Barrier {
+        // http://byronlai.com/jekyll/update/2015/12/26/barrier.html
+        // replace pthread with std equivilants
+        std::mutex mutex;
+        std::condition_variable condition_variable;
+        int threads_required = 0;
+        int threads_left = 0;
+        unsigned int cycle = 0;
+        Barrier(const int & count) {
+            threads_required = count;
+            threads_left = count;
+            cycle = 0;
+        }
+        
+        int wait() {
+            std::unique_lock<std::mutex> lock (mutex);
+            std::cout << "waiting on " << threads_required << " threads with " << threads_left << " threads left" << std::endl;
+            
+            if (--threads_left == 0) {
+                cycle++;
+                threads_left = threads_required;
+                condition_variable.notify_all();
+                return 1;
+            } else {
+                const unsigned int cycle_ = cycle;
+                
+                while(cycle_ == cycle) condition_variable.wait(lock);
+                return 0;
+            }
+        }
+    };
 
     Barrier flop_start_barrier      {2+1};
     Barrier flop_end_barrier        {2+1};
     Barrier stage_start_barrier     {3+1};
     Barrier stage_end_barrier       {3+1};
+    Barrier tick_terminated_barrier {3+2+1};
+    std::atomic<bool> tick_terminated {false};
     
     TickCallback tickcallback = PipelineLambdaTickCallback {
-        const char * tick_stage = "TICK         ";
         while(!current_halt->load()) {
-            PipelinePrintIf(pipeline->debug_output) << "[" << tick_stage << "]" << " sleeping for 50 milliseconds";
+            PipelinePrintIf(pipeline->debug_output) << "[TICK         ] sleeping for 50 milliseconds";
             std::this_thread::sleep_for(50ms);
-            PipelinePrintIf(pipeline->debug_output) << "[" << tick_stage << "]" << " slept for 50 milliseconds";
+            PipelinePrintIf(pipeline->debug_output) << "[TICK         ] slept for 50 milliseconds";
             
             // a tick must wait for the all other stages to reach their end
             
-            PipelinePrintIf(true) << "[" << tick_stage << "]" << " waiting on stage end barrier";
+            PipelinePrintIf(true) << "[TICK         ] waiting on stage end barrier";
             pipeline->stage_end_barrier.wait();
-            PipelinePrintIf(true) << "[" << tick_stage << "]" << " waited on stage end barrier";
+            PipelinePrintIf(true) << "[TICK         ] waited on stage end barrier";
             
             // all other stages have ended
             
             // start flop stages
             
-            PipelinePrintIf(true) << "[" << tick_stage << "]" << " waiting on flop start barrier";
+            PipelinePrintIf(true) << "[TICK         ] waiting on flop start barrier";
             pipeline->flop_start_barrier.wait();
-            PipelinePrintIf(true) << "[" << tick_stage << "]" << " waited on flop start barrier";
+            PipelinePrintIf(true) << "[TICK         ] waited on flop start barrier";
             
             // wait for flop stages to end before ticking
             
-            PipelinePrintIf(true) << "[" << tick_stage << "]" << " waiting on flop end barrier";
+            PipelinePrintIf(true) << "[TICK         ] waiting on flop end barrier";
             pipeline->flop_end_barrier.wait();
-            PipelinePrintIf(true) << "[" << tick_stage << "]" << " waited on flop end barrier";
+            PipelinePrintIf(true) << "[TICK         ] waited on flop end barrier";
 
-            PipelinePrintIf(true) << "[" << tick_stage << "]" << " ticking";
+            PipelinePrintIf(true) << "[TICK         ] ticking";
             pipeline->cycleFunc(pipeline);
-            PipelinePrintIf(true) << "[" << tick_stage << "]" << " ticked";
+            PipelinePrintIf(true) << "[TICK         ] ticked";
             
             // a tick must wait for the all other stages to start up again
             
-            PipelinePrintIf(true) << "[" << tick_stage << "]" << " waiting on stage start barrier";
+            PipelinePrintIf(true) << "[TICK         ] waiting on stage start barrier";
             pipeline->stage_start_barrier.wait();
-            PipelinePrintIf(true) << "[" << tick_stage << "]" << " waited on stage start barrier";
+            PipelinePrintIf(true) << "[TICK         ] waited on stage start barrier";
             
             // all other stages have started up again
         }
         
-        PipelineFPrintIf(WARNING, true) << "[" << tick_stage << "]" << " [HALTING] : input size: 0, output size: 0";
-        PipelineFPrintIf(ERROR, true) << "[" << tick_stage << "]" << " [TERMINATING] : pipeline memory: " << pipeline->data_memory;
-        pipeline->flop_start_barrier.wait_and_terminate();
-        pipeline->flop_end_barrier.wait_and_terminate();
-        pipeline->stage_end_barrier.wait_and_terminate();
-        pipeline->stage_start_barrier.wait_and_terminate();
-        PipelineFPrintIf(ERROR, true) << "[" << tick_stage << "]" << " [TERMINATING] [COMPLETE]";
+        PipelineFPrintIf(true, WARNING) << "[TICK         ] [HALTING] : input size: 0, output size: 0";
+        PipelineFPrintIf(true, ERROR) << "[TICK         ] [TERMINATING] : input size: 0, output size: 0";
+
+        pipeline->tick_terminated.store(true);
+        PipelineFPrintIf(true, ERROR) << "[TICK         ] [TERMINATING] : set tick_terminated to true";
+        
+        PipelineFPrintIf(true, ERROR) << "[TICK         ] [TERMINATING] waiting on stage end barrier";
+        pipeline->stage_end_barrier.wait();
+        PipelineFPrintIf(true, ERROR) << "[TICK         ] [TERMINATING] waited on stage end barrier";
+        
+        PipelineFPrintIf(true, ERROR) << "[TICK         ] [TERMINATING] waiting on flop start barrier";
+        pipeline->flop_start_barrier.wait();
+        PipelineFPrintIf(true, ERROR) << "[TICK         ] [TERMINATING] waited on flop start barrier";
+        
+        PipelineFPrintIf(true, ERROR) << "[TICK         ] [TERMINATING] waiting on flop end barrier";
+        pipeline->flop_end_barrier.wait();
+        PipelineFPrintIf(true, ERROR) << "[TICK         ] [TERMINATING] waited on flop end barrier";
+        
+        PipelineFPrintIf(true, ERROR) << "[TICK         ] [TERMINATING] waiting on stage start barrier";
+        pipeline->stage_start_barrier.wait();
+        PipelineFPrintIf(true, ERROR) << "[TICK         ] [TERMINATING] waited on stage start barrier";
+        
+        PipelineFPrintIf(true, ERROR) << "[TICK         ] [TERMINATING] : waiting on tick terminated barrier";
+        pipeline->tick_terminated_barrier.wait();
+        PipelineFPrintIf(true, ERROR) << "[TICK         ] [TERMINATING] : waited on tick terminated barrier";
+        
+        int required_terminations = pipeline->final_terminations.size();
+        int termination_count = 0;
+        while(termination_count != required_terminations) {
+            bool termination = true;
+            for (termination_count = 0; termination && termination_count < required_terminations; termination_count++) {
+                termination = pipeline->final_terminations[termination_count]->load();
+                PipelineFPrintIf(true, ERROR) << "[TICK         ] [TERMINATING] : pipeline->final_terminations[" << termination_count+1 << "] = " << (termination ? "true" : "false");
+            }
+        }
+        PipelineFPrintIf(true, ERROR) << "[TICK         ] [TERMINATING]";
     };
     
     TaskCallback callback = PipelineLambdaCallback {
@@ -787,13 +809,7 @@ struct Pipeline {
                             }
                         } else {
                             // otherwise
-                            int current_cycle = pipeline->Current_Cycle[0];
-                            int cycle_to_halt_on = halted_cycle->load();
-                            bool should_halt = current_halt->load();
-                            PipelineFPrintStageIf(WARNING, true, functions.index_of_this_stage) << PipelinePrintModifiersPrintValue(current_cycle);
-                            PipelineFPrintStageIf(WARNING, true, functions.index_of_this_stage) << PipelinePrintModifiersAlphaBool(should_halt);
-                            PipelineFPrintStageIf(WARNING, true, functions.index_of_this_stage) << PipelinePrintModifiersPrintValue(cycle_to_halt_on);
-                            if (current_cycle > cycle_to_halt_on && should_halt) {
+                            if (pipeline->Current_Cycle[0]-1 >= halted_cycle->load() && current_halt->load()) {
                                 // if we have recieved a halt
                                 // then jump to halt
                                 goto halt;
@@ -897,7 +913,7 @@ struct Pipeline {
                                     } else ret = true;
                                     return ret;
                                 });
-                                CHECK_NE(timed_out, std::timed_out) << "[" << PipelineStageToString(functions.index_of_this_stage) << "]: " << " timeout exceeded:\n\n"
+                                CHECK_NE(timed_out, std::timed_out) << PipelinePrintModifiersPrintStage(functions.index_of_this_stage) << " timeout exceeded:\n\n"
                                     << "Stage: " << functions.index_of_this_stage << "\n"
                                     << "saved program counter: " << newPC << "\n"
                                     << "previous program counter: " << lastPC << "\n"
@@ -924,42 +940,56 @@ struct Pipeline {
                 << ex.what() << std::endl << std::endl
                 // << "    ======= Backtrace: =========" << std::endl << el::base::debug::StackTrace()
             ;
-            // should we abort or should we let the thread end?
+            // should abort or should we let the thread end?
             std::abort();
 //             goto end;
         }
     halt:
         // store the current halted cycle so the next stage can halt on the next cycle
         // simply send the HALT signal to the next stage
-        PipelineFPrintStageIf(WARNING, pipeline->debug_output, functions.index_of_this_stage) << "[HALTING] : input size: "
+        PipelineFPrintStageIf(pipeline->debug_output, WARNING, functions.index_of_this_stage) << "[HALTING] : input size: "
             << (input != nullptr ? input->size() : 0) << ", "
             << "output size: " << (output != nullptr ? output->size() : 0);
         if (input != nullptr) CHECK_EQ(input->size(), 0);
         if (output != nullptr) CHECK_EQ(output->size(), 0);
+//         PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << PipelinePrintModifiersPrintValue(next_halt);
         next_halt->store(true);
         halted_cycle->store(pipeline->Current_Cycle[0]);
     end:
-        PipelineFPrintStageIf(ERROR, pipeline->debug_output, functions.index_of_this_stage)
+        PipelineFPrintStageIf(pipeline->debug_output, ERROR, functions.index_of_this_stage)
             << "[TERMINATING] : input size: " << (input != nullptr ? input->size() : 0) << ", "
             << "output size: " << (output != nullptr ? output->size() : 0);
         if (input != nullptr) CHECK_EQ(input->size(), 0);
         if (output != nullptr) CHECK_EQ(output->size(), 0);
         
-        PipelineFPrintStageIf(ERROR, true, functions.index_of_this_stage) << "[TERMINATING]";
-        while(true) {
+        while(pipeline->tick_terminated.load() != true) {
+            PipelineFPrintStageIf(true, ERROR, functions.index_of_this_stage) << "[TERMINATING] : tick_terminated = false";
             if (functions.this_stage_is_flip_flop) {
                 // if this stage is a flip flop
-                auto ret_1 = pipeline->flop_start_barrier.wait();
-                auto ret_2 = pipeline->flop_end_barrier.wait();
-                if (ret_1 == Barrier::return_code_terminated && ret_2 == Barrier::return_code_terminated) break;
+                PipelineFPrintStageIf(true, ERROR, functions.index_of_this_stage) << "[TERMINATING] : waiting on flop start barrier";
+                pipeline->flop_start_barrier.wait();
+                PipelineFPrintStageIf(true, ERROR, functions.index_of_this_stage) << "[TERMINATING] : waited on flop start barrier";
+                PipelineFPrintStageIf(true, ERROR, functions.index_of_this_stage) << "[TERMINATING] : waiting on flop end barrier";
+                pipeline->flop_end_barrier.wait();
+                PipelineFPrintStageIf(true, ERROR, functions.index_of_this_stage) << "[TERMINATING] : waited on flop end barrier";
             } else {
                 // if this stage is not a flip flop
-                auto ret_2 = pipeline->stage_end_barrier.wait();
-                auto ret_1 = pipeline->stage_start_barrier.wait();
-                if (ret_1 == Barrier::return_code_terminated && ret_2 == Barrier::return_code_terminated) break;
+                PipelineFPrintStageIf(true, ERROR, functions.index_of_this_stage) << "[TERMINATING] : waiting on stage end barrier";
+                pipeline->stage_end_barrier.wait();
+                PipelineFPrintStageIf(true, ERROR, functions.index_of_this_stage) << "[TERMINATING] : waited on stage end barrier";
+                PipelineFPrintStageIf(true, ERROR, functions.index_of_this_stage) << "[TERMINATING] : waiting on stage start barrier";
+                pipeline->stage_start_barrier.wait();
+                PipelineFPrintStageIf(true, ERROR, functions.index_of_this_stage) << "[TERMINATING] : waited on stage start barrier";
             }
         }
-        PipelineFPrintStageIf(ERROR, true, functions.index_of_this_stage) << "[TERMINATING] [COMPLETE]";
+        PipelineFPrintStageIf(true, ERROR, functions.index_of_this_stage) << "[TERMINATING] : tick_terminated = true";
+        PipelineFPrintStageIf(true, ERROR, functions.index_of_this_stage) << "[TERMINATING]";
+        
+        PipelineFPrintStageIf(true, ERROR, functions.index_of_this_stage) << "[TERMINATING] : waiting on tick termination barrier";
+        pipeline->tick_terminated_barrier.wait();
+        PipelineFPrintStageIf(true, ERROR, functions.index_of_this_stage) << "[TERMINATING] : waited on tick termination barrier";
+        
+        final_termination->store(true);
     };
 
     void add(Task task) {
@@ -974,7 +1004,7 @@ struct Pipeline {
     }
     
     void addFlop() {
-        Stage anomynous_stage(debug_output);
+        Stage anomynous_stage(true);
         anomynous_stage.type = PipelineStageTypes::Flop;
         stages.push_back(std::move(anomynous_stage));
     }
@@ -1047,6 +1077,7 @@ struct Pipeline {
                 conditions.push_back(new std::condition_variable);
                 mutexes.push_back(new std::mutex);
                 halts.push_back(new std::atomic<bool>{false});
+                final_terminations.push_back(new std::atomic<bool>{false});
                 if (i != 0) {
                     if (stages[i-1].type == PipelineStageTypes::Flop) {
                         // connect the this stages input to the previous flop's output
@@ -1057,7 +1088,7 @@ struct Pipeline {
                     std::thread(
                         callback, this, &stages[i], i,
                         queues[i], i+1 == ss ? nullptr : queues[i+1],
-                        halts[i], halts[i+1], &halted_cycle
+                        halts[i], halts[i+1], &halted_cycle, final_terminations[i]
                     )
                 );
                 if (i+1 == ss) pool.push_back(
@@ -1136,6 +1167,8 @@ struct Pipeline {
         mutexes.clear();
         for (auto * halt : halts) delete halt;
         halts.clear();
+        for (auto * termination : final_terminations) delete termination;
+        final_terminations.clear();
         return *this;
     }
     
@@ -1166,7 +1199,7 @@ struct Instructions {
 };
 
 void simplePipeline(bool sequential) {
-    Pipeline<int, 1> pipeline(true);
+    Pipeline<int, 1> pipeline(false);
     
     struct registers {
         int clocktmp = 0;
@@ -1295,6 +1328,183 @@ void simplePipeline(bool sequential) {
     CHECK_EQ(pipeline.data_memory[1], 2);
     CHECK_EQ(pipeline.data_memory[2], 3);
     CHECK_EQ(a.ACC, 3);
+}
+
+void twoStagedPipeline(bool sequential) {
+    Pipeline<int, 1> pipeline(false);
+    
+    // two-staged pipeline
+    
+    // during the cycle "stage" the flop is triggered, stores its input into its output, and then the cycle ends, at which point a new fetch begins
+    
+    struct registers {
+        int clocktmp = 0;
+        int clock = 0;
+        int clock_last = 0;
+        int PC = 0;
+        int * CIR = 0;
+        int * CIRPlusOne = 0;
+        Ordered_Access<int> MAR = Ordered_Access_Set_Name("MAR");
+        Ordered_Access<int *> MDR = Ordered_Access_Set_Name("MDR");
+        Ordered_Access<int *> MDRPlusOne = Ordered_Access_Set_Name("MDRPlusOne");
+        int ACC = 0;
+    } a;
+    
+    pipeline.externalData = &a;
+    pipeline.PC = &a.PC;
+    pipeline.Current_Cycle = &a.clock;
+    
+    // in a 5 stage pipeline, PC is stored in a latch before being sent to fetch
+    
+    pipeline.cycleFunc = PipelineCycleLambda(p) {
+        struct registers * reg = static_cast<struct registers*>(p->externalData);
+        PipelinePrint << "--- clock: " << reg->clock << ": Cycle END             ---";
+        PipelinePrint << "--- clock: " << reg->clock << ": Cycle Sub-Stage BEGIN ---";
+        for (auto & stage : p->stages) if (stage.type == PipelineStageTypes::Flop) {
+            stage.flop.exec();
+        }
+        PipelinePrint << "--- clock: " << reg->clock << ": Cycle Sub-Stage END   ---";
+        reg->clock_last = reg->clock;
+        reg->clock++;
+        PipelinePrint << "--- clock: " << reg->clock << ": Cycle BEGIN           ---";
+    };
+    
+    // NOTE: ALL STAGES MUST BE DEPENDENCY FREE
+    
+//     pipeline.add(PipelineLambda(val, i, p) {
+//         struct registers * reg = static_cast<struct registers*>(p->externalData);
+//         output->push(reg->PC + 2);
+//     });
+    // TODO: pipeline.addFlop(number_of_flop_inputs, number_of_flop_outputs), PipelineFlopLambda(p, flop) {});
+    // TODO: ability to name stages, and locate them by name
+    // TODO: ability to manually specity inputs and outputs for next stage inside lambda
+//     pipeline.addFlop();
+    pipeline.add(PipelineLambda(val, i, p) {
+        struct registers * reg = static_cast<struct registers*>(p->externalData);
+        
+        PipelinePrintStage(i) << "clock: " << reg->clock << ": fetch BEGIN, PC: " << reg->PC
+        << ", " << PipelinePrintModifiersPrintValue(p->instruction_memory);
+        
+        // for efficiency, load the value immediately after storing it
+        
+        reg->MAR.store(reg->PC, 0, "fetch");
+        int memoryAddressRegisterValue = reg->MAR.load(1, "fetch");
+        
+        PipelinePrintStage(i) << "clock: " << reg->clock << ": storing MDR with address of instruction memory location " << memoryAddressRegisterValue;
+        
+        // MDR is written here
+        reg->MDR.store(&p->instruction_memory.at(memoryAddressRegisterValue), 0, "fetch");
+        int * memoryDataRegisterValue = reg->MDR.load(1, "fetch");
+        
+        PipelinePrintStage(i) << "clock: " << reg->clock << ": stored MDR with address " << memoryDataRegisterValue;
+        PipelinePrintStage(i) << "clock: " << reg->clock << ": loading MDR";
+        PipelinePrintStage(i) << "clock: " << reg->clock << ": loaded MDR with address " << memoryDataRegisterValue;
+        
+        reg->MDRPlusOne.store(&p->instruction_memory.at(memoryAddressRegisterValue+1), 0, "fetch");
+        int * memoryDataRegisterValuePlusOne = reg->MDRPlusOne.load(1, "fetch");
+        // MDRPlusOne is not accessed in later stages, reset it to older stages can continue
+        reg->MDRPlusOne.reset_order("fetch");
+        
+        reg->CIR = memoryDataRegisterValue;
+        reg->CIRPlusOne = memoryDataRegisterValuePlusOne;
+        reg->PC += 2;
+        output->push(*memoryDataRegisterValuePlusOne);
+        PipelinePrintStage(i) << "clock: " << reg->clock << ": fetch END";
+    });
+    pipeline.addFlop();
+    pipeline.add(PipelineLambda(val, i, p) {
+        struct registers * reg = static_cast<struct registers*>(p->externalData);
+        PipelinePrintStage(i) << "clock: " << reg->clock << ": decode BEGIN";
+        
+        // MAR is written here
+        reg->MAR.store(*input->front(), 2, "decode");
+        int memoryAddressRegisterValue = reg->MAR.load(3, "decode");
+
+        // MAR is not accessed in later stages, reset it to older stages can continue
+        reg->MAR.reset_order("decode");
+        
+        PipelinePrintStage(i) << "clock: " << reg->clock << ": storing MDR with address of data memory location " << memoryAddressRegisterValue;
+        
+        // MDR is written here
+        int * addr2 = &p->data_memory.at(memoryAddressRegisterValue);
+        reg->MDR.store(addr2, 2, "decode");
+        
+        PipelinePrintStage(i) << "clock: " << reg->clock << ": stored MDR with address " << addr2;
+        
+        PipelinePrintStage(i) << "clock: " << reg->clock << ": decode END: "
+            << Instructions::toString(*reg->CIR);
+        
+        output->push(*reg->CIR);
+        
+        PipelinePrintStage(i) << "clock: " << reg->clock << ": output: " << *reg->CIR;
+    });
+    pipeline.addFlop();
+    pipeline.add(PipelineLambda(val, i, p) {
+        struct registers * reg = static_cast<struct registers*>(p->externalData);
+        int o = *input->front();
+        PipelinePrintStage(i) << "clock: " << reg->clock << ": execute BEGIN, input: " << o << ", "
+            << "pipeline memory: " << p->data_memory << ", ACC: " << reg->ACC;
+            
+        // MDR is loaded here
+        PipelinePrintStage(i) << "clock: " << reg->clock << ": loading MDR";
+        int * memoryDataRegisterValue = reg->MDR.load(3, "execute");
+        
+        // MDR is not accessed in later stages, reset it to older stages can continue
+        reg->MDR.reset_order("execute");
+        
+        PipelinePrintStage(i) << "clock: " << reg->clock << ": loaded MDR with address " << memoryDataRegisterValue;
+        PipelinePrintStage(i) << "clock: " << reg->clock << ": executing instruction: " << Instructions::toString(o);
+        
+        switch(o) {
+            case Instructions::load: {
+                reg->ACC = *memoryDataRegisterValue;
+                PipelinePrintStage(i) << "clock: " << reg->clock << ": " << PipelinePrintModifiersPrintValue(reg->ACC);
+                break;
+            }
+            case Instructions::add: {
+                // add instruction is passed to ALU
+                // contents of accumulator are moved to another place ready to be worked with
+                int tmp = reg->ACC;
+                reg->ACC = *memoryDataRegisterValue;
+                
+                // ALU add ACC and tmp together and store it in ACC
+                reg->ACC += tmp;
+                break;
+            }
+            case Instructions::store: {
+                *memoryDataRegisterValue = reg->ACC;
+                reg->ACC = 0;
+                break;
+            }
+            default: break;
+        }
+        PipelinePrintStage(i) << "clock: " << reg->clock << ": execute END,   "
+            << "pipeline memory: " << p->data_memory << ", ACC: " << reg->ACC;
+    });
+    
+    pipeline.sequential = sequential;
+    pipeline.manual_increment = true;
+    
+    pipeline.instruction_memory = {
+        // load the contents of memory location of 0 into the accumulator
+        Instructions::load, 0,
+        // add the contents of memory location 1 to what ever is in the accumulator
+        Instructions::add, 1,
+        // store what ever is in the accumulator back back into location 2
+        Instructions::store, 2
+    };
+    
+    pipeline.data_memory = {
+        1,
+        2,
+        0
+    };
+    
+    pipeline.run().join();
+    CHECK_EQ(pipeline.data_memory[0], 1);
+    CHECK_EQ(pipeline.data_memory[1], 2);
+    CHECK_EQ(pipeline.data_memory[2], 3);
+    CHECK_EQ(a.ACC, 0);
 }
 
 int main() {

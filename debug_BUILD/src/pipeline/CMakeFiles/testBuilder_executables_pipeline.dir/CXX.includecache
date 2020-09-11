@@ -163,6 +163,10 @@ wx/vector.h
 -
 
 /home/smallville7123/AndroidCompositor/app/src/main/jni/GLIS/dependancies/pipeline/src/pipeline/pipeline_v3.cpp
+mutex
+-
+condition_variable
+-
 easylogging++.h
 -
 rigtorp/SPSCQueue.h
@@ -173,17 +177,11 @@ functional
 -
 thread
 -
-pthread.h
--
 atomic
--
-mutex
 -
 unistd.h
 -
 queue
--
-condition_variable
 -
 chrono
 -
