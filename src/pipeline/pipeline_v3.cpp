@@ -1016,6 +1016,9 @@ struct Pipeline {
     }
     
     Pipeline & run() {
+        if (sequential) puts("\nsequential");
+        else puts("\npipelined");
+        
         std::string fmt = "[%TIMESINCESTART] [%logger:THREAD ID (%thread):";
         fmt += sequential ? "sequential" : "pipelined";
         fmt += ":";
@@ -1085,7 +1088,7 @@ struct Pipeline {
                         PipelineQueueType<T> * output = stages[i].output;
                         
                         stages[i].run(std::move(val), i, this, i == 0 ? nullptr : input, output);
-                        
+                        cycleFunc(this);
                     } else {
                         PipelinePrintIf(debug_output) << "Flop encountered, executing due to sequential mode";
                         PipelineQueueType<T> * input  = i == 0 ? nullptr : stages[i-1].output;
@@ -1104,8 +1107,6 @@ struct Pipeline {
                         }
                         stages[i].flop.exec();
                     }
-                    
-                    i+1 == ss ? cycleFunc(this) : cycleFuncNoop(this);
                 }
             }
         }
@@ -1162,7 +1163,7 @@ struct Instructions {
 };
 
 void simplePipeline(bool sequential) {
-    Pipeline<int, 1> pipeline(false);
+    Pipeline<int, 1> pipeline(true);
     
     struct registers {
         int clocktmp = 0;
@@ -1196,6 +1197,8 @@ void simplePipeline(bool sequential) {
         PipelinePrintStage(i) << "clock: " << reg->clock << ": fetch BEGIN, PC: " << reg->PC
         << ", " << PipelinePrintModifiersPrintValue(p->instruction_memory);
         
+//         std::this_thread::sleep_for(250ms);
+        
         // in the fetch stage:
         
         // we store the address of the instruction pointed to by PC, in R1
@@ -1215,6 +1218,7 @@ void simplePipeline(bool sequential) {
         struct registers * reg = static_cast<struct registers*>(p->externalData);
         PipelinePrintStage(i) << "clock: " << reg->clock << ": decode BEGIN";
         
+//         std::this_thread::sleep_for(250ms);
         // in the decode stage:
         
         // first we need context
@@ -1240,6 +1244,7 @@ void simplePipeline(bool sequential) {
         PipelinePrintStage(i) << "clock: " << reg->clock << ": execute BEGIN, "
             << "pipeline memory: " << p->data_memory << ", ACC: " << reg->ACC;
             
+//         std::this_thread::sleep_for(250ms);
         // in the execute stage:
         
         // R3 points to the instruction to execute
@@ -1273,11 +1278,11 @@ void simplePipeline(bool sequential) {
     
     pipeline.instruction_memory = {
         // load the contents of memory location of 0 into the accumulator
-        Instructions::load, 0,
+        Instructions::load, 0
         // add the contents of memory location 1 to what ever is in the accumulator
-        Instructions::add, 1,
+//         Instructions::add, 1,
         // store what ever is in the accumulator back back into location 2
-        Instructions::store, 2
+//         Instructions::store, 2
     };
     
     pipeline.data_memory = {
@@ -1287,14 +1292,11 @@ void simplePipeline(bool sequential) {
     };
     
     pipeline.run().join();
-    CHECK_EQ(pipeline.data_memory[0], 1);
-    CHECK_EQ(pipeline.data_memory[1], 2);
-    CHECK_EQ(pipeline.data_memory[2], 3);
-    CHECK_EQ(a.ACC, 3);
 }
 
 int main() {
     el::Loggers::addFlag(el::LoggingFlag::ColoredTerminalOutput);
+    simplePipeline(true);
     simplePipeline(false);
     return 0;
 }

@@ -1,0 +1,1351 @@
+[00:000:683:706] [pipeline:THREAD ID (140349270791936):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 0: fetch BEGIN, PC: 0, p->instruction_memory: [13, 0, 86, 1, 55, 2]
+[00:251:180:430] [pipeline:THREAD ID (140349270791936):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 0: fetch END
+[00:251:617:144] [pipeline:THREAD ID (140349228828416):pipelined:without debug output:INFO] --- clock: 0: Cycle END             ---
+[00:251:695:710] [pipeline:THREAD ID (140349228828416):pipelined:without debug output:INFO] --- clock: 1: Cycle BEGIN           ---
+[00:251:802:594] [pipeline:THREAD ID (140349270791936):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 1: fetch BEGIN, PC: 2, p->instruction_memory: [13, 0, 86, 1, 55, 2]
+[00:251:899:493] [pipeline:THREAD ID (140349254006528):pipelined:without debug output:INFO] [Stage decode ]: clock: 1: decode BEGIN
+[00:502:216:400] [pipeline:THREAD ID (140349254006528):pipelined:without debug output:INFO] [Stage decode ]: clock: 1: decode END: load
+[00:502:487:455] [pipeline:THREAD ID (140349270791936):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 1: fetch END
+[00:502:702:457] [pipeline:THREAD ID (140349228828416):pipelined:without debug output:INFO] --- clock: 1: Cycle END             ---
+[00:502:797:997] [pipeline:THREAD ID (140349228828416):pipelined:without debug output:INFO] --- clock: 2: Cycle BEGIN           ---
+[00:502:894:271] [pipeline:THREAD ID (140349270791936):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 2: fetch BEGIN, PC: 4, p->instruction_memory: [13, 0, 86, 1, 55, 2]
+[00:502:968:277] [pipeline:THREAD ID (140349254006528):pipelined:without debug output:INFO] [Stage decode ]: clock: 2: decode BEGIN
+[00:503:134:502] [pipeline:THREAD ID (140349237221120):pipelined:without debug output:INFO] [Stage execute]: clock: 2: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 0
+[00:753:456:328] [pipeline:THREAD ID (140349237221120):pipelined:without debug output:INFO] [Stage execute]: clock: 2: executing instruction: load
+[00:753:705:776] [pipeline:THREAD ID (140349270791936):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 2: fetch END
+[00:753:838:642] [pipeline:THREAD ID (140349237221120):pipelined:without debug output:INFO] [Stage execute]: clock: 2: execute END, pipeline memory: [1, 2, 0], ACC: 1
+[00:754:030:210] [pipeline:THREAD ID (140349254006528):pipelined:without debug output:INFO] [Stage decode ]: clock: 2: decode END: add
+[00:754:217:510] [pipeline:THREAD ID (140349228828416):pipelined:without debug output:INFO] --- clock: 2: Cycle END             ---
+[00:754:320:205] [pipeline:THREAD ID (140349228828416):pipelined:without debug output:INFO] --- clock: 3: Cycle BEGIN           ---
+[00:754:465:195] [pipeline:THREAD ID (140349254006528):pipelined:without debug output:INFO] [Stage decode ]: clock: 3: decode BEGIN
+[00:754:582:307] [pipeline:THREAD ID (140349237221120):pipelined:without debug output:INFO] [Stage execute]: clock: 3: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 1
+[01:004:836:243] [pipeline:THREAD ID (140349237221120):pipelined:without debug output:INFO] [Stage execute]: clock: 3: executing instruction: add
+[01:005:054:018] [pipeline:THREAD ID (140349237221120):pipelined:without debug output:INFO] [Stage execute]: clock: 3: execute END, pipeline memory: [1, 2, 0], ACC: 3
+[01:005:187:480] [pipeline:THREAD ID (140349254006528):pipelined:without debug output:INFO] [Stage decode ]: clock: 3: decode END: store
+[01:005:343:434] [pipeline:THREAD ID (140349228828416):pipelined:without debug output:INFO] --- clock: 3: Cycle END             ---
+[01:005:411:638] [pipeline:THREAD ID (140349228828416):pipelined:without debug output:INFO] --- clock: 4: Cycle BEGIN           ---
+[01:005:509:572] [pipeline:THREAD ID (140349237221120):pipelined:without debug output:INFO] [Stage execute]: clock: 4: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 3
+[01:255:833:857] [pipeline:THREAD ID (140349237221120):pipelined:without debug output:INFO] [Stage execute]: clock: 4: executing instruction: store
+[01:256:124:165] [pipeline:THREAD ID (140349237221120):pipelined:without debug output:INFO] [Stage execute]: clock: 4: execute END, pipeline memory: [1, 2, 3], ACC: 3
+[01:256:585:478] [pipeline:THREAD ID (140349228828416):pipelined:without debug output:INFO] --- clock: 4: Cycle END             ---
+[01:256:725:637] [pipeline:THREAD ID (140349228828416):pipelined:without debug output:INFO] --- clock: 5: Cycle BEGIN           ---
+[01:257:217:012] [pipeline:THREAD ID (140349228828416):pipelined:without debug output:INFO] --- clock: 5: Cycle END             ---
+[01:257:382:229] [pipeline:THREAD ID (140349228828416):pipelined:without debug output:INFO] --- clock: 6: Cycle BEGIN           ---
+[01:257:632:289] [pipeline:THREAD ID (140349228828416):pipelined:without debug output:INFO] --- clock: 6: Cycle END             ---
+[01:257:787:789] [pipeline:THREAD ID (140349228828416):pipelined:without debug output:INFO] --- clock: 7: Cycle BEGIN           ---
+[00:000:326:458] [pipeline:THREAD ID (139761948038912):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 0: fetch BEGIN, PC: 0, p->instruction_memory: [13, 0, 86, 1, 55, 2]
+[00:250:649:856] [pipeline:THREAD ID (139761948038912):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 0: fetch END
+[00:250:948:180] [pipeline:THREAD ID (139761842902784):pipelined:without debug output:INFO] --- clock: 0: Cycle END             ---
+[00:251:036:876] [pipeline:THREAD ID (139761842902784):pipelined:without debug output:INFO] --- clock: 1: Cycle BEGIN           ---
+[00:251:180:335] [pipeline:THREAD ID (139761948038912):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 1: fetch BEGIN, PC: 2, p->instruction_memory: [13, 0, 86, 1, 55, 2]
+[00:251:325:644] [pipeline:THREAD ID (139761797035776):pipelined:without debug output:INFO] [Stage decode ]: clock: 1: decode BEGIN
+[00:501:614:773] [pipeline:THREAD ID (139761948038912):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 1: fetch END
+[00:501:846:052] [pipeline:THREAD ID (139761797035776):pipelined:without debug output:INFO] [Stage decode ]: clock: 1: decode END: load
+[00:502:041:377] [pipeline:THREAD ID (139761842902784):pipelined:without debug output:INFO] --- clock: 1: Cycle END             ---
+[00:502:098:601] [pipeline:THREAD ID (139761842902784):pipelined:without debug output:INFO] --- clock: 2: Cycle BEGIN           ---
+[00:502:168:344] [pipeline:THREAD ID (139761948038912):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 2: fetch BEGIN, PC: 4, p->instruction_memory: [13, 0, 86, 1, 55, 2]
+[00:502:268:230] [pipeline:THREAD ID (139761851295488):pipelined:without debug output:INFO] [Stage execute]: clock: 2: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 0
+[00:502:340:706] [pipeline:THREAD ID (139761797035776):pipelined:without debug output:INFO] [Stage decode ]: clock: 2: decode BEGIN
+[00:752:513:039] [pipeline:THREAD ID (139761851295488):pipelined:without debug output:INFO] [Stage execute]: clock: 2: executing instruction: load
+[00:752:801:252] [pipeline:THREAD ID (139761948038912):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 2: fetch END
+[00:753:006:843] [pipeline:THREAD ID (139761851295488):pipelined:without debug output:INFO] [Stage execute]: clock: 2: execute END, pipeline memory: [1, 2, 0], ACC: 1
+[00:753:177:244] [pipeline:THREAD ID (139761797035776):pipelined:without debug output:INFO] [Stage decode ]: clock: 2: decode END: add
+[00:753:454:585] [pipeline:THREAD ID (139761842902784):pipelined:without debug output:INFO] --- clock: 2: Cycle END             ---
+[00:753:579:259] [pipeline:THREAD ID (139761842902784):pipelined:without debug output:INFO] --- clock: 3: Cycle BEGIN           ---
+[00:753:724:545] [pipeline:THREAD ID (139761851295488):pipelined:without debug output:INFO] [Stage execute]: clock: 3: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 1
+[00:753:856:500] [pipeline:THREAD ID (139761797035776):pipelined:without debug output:INFO] [Stage decode ]: clock: 3: decode BEGIN
+[01:004:022:886] [pipeline:THREAD ID (139761851295488):pipelined:without debug output:INFO] [Stage execute]: clock: 3: executing instruction: add
+[01:004:291:806] [pipeline:THREAD ID (139761851295488):pipelined:without debug output:INFO] [Stage execute]: clock: 3: execute END, pipeline memory: [1, 2, 0], ACC: 3
+[01:004:425:129] [pipeline:THREAD ID (139761797035776):pipelined:without debug output:INFO] [Stage decode ]: clock: 3: decode END: store
+[01:004:620:395] [pipeline:THREAD ID (139761842902784):pipelined:without debug output:INFO] --- clock: 3: Cycle END             ---
+[01:004:724:378] [pipeline:THREAD ID (139761842902784):pipelined:without debug output:INFO] --- clock: 4: Cycle BEGIN           ---
+[01:004:893:723] [pipeline:THREAD ID (139761851295488):pipelined:without debug output:INFO] [Stage execute]: clock: 4: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 3
+[01:255:112:355] [pipeline:THREAD ID (139761851295488):pipelined:without debug output:INFO] [Stage execute]: clock: 4: executing instruction: store
+[01:255:246:868] [pipeline:THREAD ID (139761851295488):pipelined:without debug output:INFO] [Stage execute]: clock: 4: execute END, pipeline memory: [1, 2, 3], ACC: 3
+[01:255:396:300] [pipeline:THREAD ID (139761842902784):pipelined:without debug output:INFO] --- clock: 4: Cycle END             ---
+[01:255:473:885] [pipeline:THREAD ID (139761842902784):pipelined:without debug output:INFO] --- clock: 5: Cycle BEGIN           ---
+[01:255:669:022] [pipeline:THREAD ID (139761842902784):pipelined:without debug output:INFO] --- clock: 5: Cycle END             ---
+[01:255:742:959] [pipeline:THREAD ID (139761842902784):pipelined:without debug output:INFO] --- clock: 6: Cycle BEGIN           ---
+[01:256:038:535] [pipeline:THREAD ID (139761842902784):pipelined:without debug output:INFO] --- clock: 6: Cycle END             ---
+[01:256:128:554] [pipeline:THREAD ID (139761842902784):pipelined:without debug output:INFO] --- clock: 7: Cycle BEGIN           ---
+[01:256:302:031] [pipeline:THREAD ID (139761842902784):pipelined:without debug output:INFO] --- clock: 7: Cycle END             ---
+[01:256:385:856] [pipeline:THREAD ID (139761842902784):pipelined:without debug output:INFO] --- clock: 8: Cycle BEGIN           ---
+[00:000:318:009] [pipeline:THREAD ID (140489243219712):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 0: fetch BEGIN, PC: 0, p->instruction_memory: [13, 0, 86, 1, 55, 2]
+[00:250:619:313] [pipeline:THREAD ID (140489243219712):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 0: fetch END
+[00:250:882:306] [pipeline:THREAD ID (140489201256192):pipelined:without debug output:INFO] --- clock: 0: Cycle END             ---
+[00:250:967:389] [pipeline:THREAD ID (140489201256192):pipelined:without debug output:INFO] --- clock: 1: Cycle BEGIN           ---
+[00:251:086:738] [pipeline:THREAD ID (140489226434304):pipelined:without debug output:INFO] [Stage decode ]: clock: 1: decode BEGIN
+[00:251:176:593] [pipeline:THREAD ID (140489243219712):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 1: fetch BEGIN, PC: 2, p->instruction_memory: [13, 0, 86, 1, 55, 2]
+[00:501:282:195] [pipeline:THREAD ID (140489226434304):pipelined:without debug output:INFO] [Stage decode ]: clock: 1: decode END: load
+[00:501:441:074] [pipeline:THREAD ID (140489243219712):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 1: fetch END
+[00:503:536:120] [pipeline:THREAD ID (140489201256192):pipelined:without debug output:INFO] --- clock: 1: Cycle END             ---
+[00:503:640:237] [pipeline:THREAD ID (140489201256192):pipelined:without debug output:INFO] --- clock: 2: Cycle BEGIN           ---
+[00:503:799:775] [pipeline:THREAD ID (140489209648896):pipelined:without debug output:INFO] [Stage execute]: clock: 2: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 0
+[00:503:881:784] [pipeline:THREAD ID (140489243219712):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 2: fetch BEGIN, PC: 4, p->instruction_memory: [13, 0, 86, 1, 55, 2]
+[00:503:959:719] [pipeline:THREAD ID (140489226434304):pipelined:without debug output:INFO] [Stage decode ]: clock: 2: decode BEGIN
+[00:753:990:970] [pipeline:THREAD ID (140489209648896):pipelined:without debug output:INFO] [Stage execute]: clock: 2: executing instruction: load
+[00:754:165:998] [pipeline:THREAD ID (140489243219712):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 2: fetch END
+[00:754:253:336] [pipeline:THREAD ID (140489209648896):pipelined:without debug output:INFO] [Stage execute]: clock: 2: execute END, pipeline memory: [1, 2, 0], ACC: 1
+[00:754:339:683] [pipeline:THREAD ID (140489226434304):pipelined:without debug output:INFO] [Stage decode ]: clock: 2: decode END: add
+[00:754:483:562] [pipeline:THREAD ID (140489201256192):pipelined:without debug output:INFO] --- clock: 2: Cycle END             ---
+[00:754:556:980] [pipeline:THREAD ID (140489201256192):pipelined:without debug output:INFO] --- clock: 3: Cycle BEGIN           ---
+[00:754:650:716] [pipeline:THREAD ID (140489209648896):pipelined:without debug output:INFO] [Stage execute]: clock: 3: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 1
+[00:754:707:344] [pipeline:THREAD ID (140489226434304):pipelined:without debug output:INFO] [Stage decode ]: clock: 3: decode BEGIN
+[01:004:832:557] [pipeline:THREAD ID (140489209648896):pipelined:without debug output:INFO] [Stage execute]: clock: 3: executing instruction: add
+[01:004:967:844] [pipeline:THREAD ID (140489209648896):pipelined:without debug output:INFO] [Stage execute]: clock: 3: execute END, pipeline memory: [1, 2, 0], ACC: 3
+[01:005:036:117] [pipeline:THREAD ID (140489226434304):pipelined:without debug output:INFO] [Stage decode ]: clock: 3: decode END: store
+[01:005:199:306] [pipeline:THREAD ID (140489201256192):pipelined:without debug output:INFO] --- clock: 3: Cycle END             ---
+[01:005:320:759] [pipeline:THREAD ID (140489201256192):pipelined:without debug output:INFO] --- clock: 4: Cycle BEGIN           ---
+[01:005:412:542] [pipeline:THREAD ID (140489209648896):pipelined:without debug output:INFO] [Stage execute]: clock: 4: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 3
+[01:255:598:596] [pipeline:THREAD ID (140489209648896):pipelined:without debug output:INFO] [Stage execute]: clock: 4: executing instruction: store
+[01:255:717:784] [pipeline:THREAD ID (140489209648896):pipelined:without debug output:INFO] [Stage execute]: clock: 4: execute END, pipeline memory: [1, 2, 3], ACC: 3
+[01:255:857:060] [pipeline:THREAD ID (140489201256192):pipelined:without debug output:INFO] --- clock: 4: Cycle END             ---
+[01:255:924:671] [pipeline:THREAD ID (140489201256192):pipelined:without debug output:INFO] --- clock: 5: Cycle BEGIN           ---
+[01:256:973:891] [pipeline:THREAD ID (140489201256192):pipelined:without debug output:INFO] --- clock: 5: Cycle END             ---
+[01:257:074:273] [pipeline:THREAD ID (140489201256192):pipelined:without debug output:INFO] --- clock: 6: Cycle BEGIN           ---
+[01:257:277:441] [pipeline:THREAD ID (140489201256192):pipelined:without debug output:INFO] --- clock: 6: Cycle END             ---
+[01:257:374:280] [pipeline:THREAD ID (140489201256192):pipelined:without debug output:INFO] --- clock: 7: Cycle BEGIN           ---
+[01:257:560:223] [pipeline:THREAD ID (140489201256192):pipelined:without debug output:INFO] --- clock: 7: Cycle END             ---
+[01:257:662:510] [pipeline:THREAD ID (140489201256192):pipelined:without debug output:INFO] --- clock: 8: Cycle BEGIN           ---
+[00:000:196:257] [pipeline:THREAD ID (140217803429696):sequential:without debug output:INFO] [Stage fetch  ]: clock: 0: fetch BEGIN, PC: 0, p->instruction_memory: [13, 0, 86, 1, 55, 2]
+[00:250:486:362] [pipeline:THREAD ID (140217803429696):sequential:without debug output:INFO] [Stage fetch  ]: clock: 0: fetch END
+[00:250:620:957] [pipeline:THREAD ID (140217803429696):sequential:without debug output:INFO] [Stage decode ]: clock: 0: decode BEGIN
+[00:500:812:609] [pipeline:THREAD ID (140217803429696):sequential:without debug output:INFO] [Stage decode ]: clock: 0: decode END: load
+[00:500:923:300] [pipeline:THREAD ID (140217803429696):sequential:without debug output:INFO] [Stage execute]: clock: 0: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 0
+[00:751:119:225] [pipeline:THREAD ID (140217803429696):sequential:without debug output:INFO] [Stage execute]: clock: 0: executing instruction: load
+[00:751:276:989] [pipeline:THREAD ID (140217803429696):sequential:without debug output:INFO] [Stage execute]: clock: 0: execute END, pipeline memory: [1, 2, 0], ACC: 1
+[00:751:364:305] [pipeline:THREAD ID (140217803429696):sequential:without debug output:INFO] --- clock: 0: Cycle END             ---
+[00:751:429:135] [pipeline:THREAD ID (140217803429696):sequential:without debug output:INFO] --- clock: 1: Cycle BEGIN           ---
+[00:751:496:211] [pipeline:THREAD ID (140217803429696):sequential:without debug output:INFO] [Stage fetch  ]: clock: 1: fetch BEGIN, PC: 2, p->instruction_memory: [13, 0, 86, 1, 55, 2]
+[01:001:652:563] [pipeline:THREAD ID (140217803429696):sequential:without debug output:INFO] [Stage fetch  ]: clock: 1: fetch END
+[01:001:802:293] [pipeline:THREAD ID (140217803429696):sequential:without debug output:INFO] [Stage decode ]: clock: 1: decode BEGIN
+[01:252:000:556] [pipeline:THREAD ID (140217803429696):sequential:without debug output:INFO] [Stage decode ]: clock: 1: decode END: add
+[01:252:127:555] [pipeline:THREAD ID (140217803429696):sequential:without debug output:INFO] [Stage execute]: clock: 1: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 1
+[01:502:293:356] [pipeline:THREAD ID (140217803429696):sequential:without debug output:INFO] [Stage execute]: clock: 1: executing instruction: add
+[01:502:403:120] [pipeline:THREAD ID (140217803429696):sequential:without debug output:INFO] [Stage execute]: clock: 1: execute END, pipeline memory: [1, 2, 0], ACC: 3
+[01:502:447:067] [pipeline:THREAD ID (140217803429696):sequential:without debug output:INFO] --- clock: 1: Cycle END             ---
+[01:502:484:018] [pipeline:THREAD ID (140217803429696):sequential:without debug output:INFO] --- clock: 2: Cycle BEGIN           ---
+[01:502:541:848] [pipeline:THREAD ID (140217803429696):sequential:without debug output:INFO] [Stage fetch  ]: clock: 2: fetch BEGIN, PC: 4, p->instruction_memory: [13, 0, 86, 1, 55, 2]
+[01:752:725:454] [pipeline:THREAD ID (140217803429696):sequential:without debug output:INFO] [Stage fetch  ]: clock: 2: fetch END
+[01:752:869:156] [pipeline:THREAD ID (140217803429696):sequential:without debug output:INFO] [Stage decode ]: clock: 2: decode BEGIN
+[02:003:061:594] [pipeline:THREAD ID (140217803429696):sequential:without debug output:INFO] [Stage decode ]: clock: 2: decode END: store
+[02:003:200:668] [pipeline:THREAD ID (140217803429696):sequential:without debug output:INFO] [Stage execute]: clock: 2: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 3
+[02:253:403:398] [pipeline:THREAD ID (140217803429696):sequential:without debug output:INFO] [Stage execute]: clock: 2: executing instruction: store
+[02:253:557:897] [pipeline:THREAD ID (140217803429696):sequential:without debug output:INFO] [Stage execute]: clock: 2: execute END, pipeline memory: [1, 2, 3], ACC: 3
+[02:253:650:365] [pipeline:THREAD ID (140217803429696):sequential:without debug output:INFO] --- clock: 2: Cycle END             ---
+[02:253:720:091] [pipeline:THREAD ID (140217803429696):sequential:without debug output:INFO] --- clock: 3: Cycle BEGIN           ---
+[00:000:140:917] [pipeline:THREAD ID (139819379746624):sequential:without debug output:INFO] [Stage fetch  ]: clock: 0: fetch BEGIN, PC: 0, p->instruction_memory: [13, 0, 86, 1, 55, 2]
+[00:250:425:810] [pipeline:THREAD ID (139819379746624):sequential:without debug output:INFO] [Stage fetch  ]: clock: 0: fetch END
+[00:250:612:964] [pipeline:THREAD ID (139819379746624):sequential:without debug output:INFO] [Stage decode ]: clock: 0: decode BEGIN
+[00:500:903:170] [pipeline:THREAD ID (139819379746624):sequential:without debug output:INFO] [Stage decode ]: clock: 0: decode END: load
+[00:501:158:865] [pipeline:THREAD ID (139819379746624):sequential:without debug output:INFO] [Stage execute]: clock: 0: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 0
+[00:751:473:056] [pipeline:THREAD ID (139819379746624):sequential:without debug output:INFO] [Stage execute]: clock: 0: executing instruction: load
+[00:751:769:329] [pipeline:THREAD ID (139819379746624):sequential:without debug output:INFO] [Stage execute]: clock: 0: execute END, pipeline memory: [1, 2, 0], ACC: 1
+[00:751:967:116] [pipeline:THREAD ID (139819379746624):sequential:without debug output:INFO] --- clock: 0: Cycle END             ---
+[00:752:120:577] [pipeline:THREAD ID (139819379746624):sequential:without debug output:INFO] --- clock: 1: Cycle BEGIN           ---
+[00:752:282:305] [pipeline:THREAD ID (139819379746624):sequential:without debug output:INFO] [Stage fetch  ]: clock: 1: fetch BEGIN, PC: 2, p->instruction_memory: [13, 0, 86, 1, 55, 2]
+[01:002:576:599] [pipeline:THREAD ID (139819379746624):sequential:without debug output:INFO] [Stage fetch  ]: clock: 1: fetch END
+[01:002:779:205] [pipeline:THREAD ID (139819379746624):sequential:without debug output:INFO] [Stage decode ]: clock: 1: decode BEGIN
+[01:253:080:243] [pipeline:THREAD ID (139819379746624):sequential:without debug output:INFO] [Stage decode ]: clock: 1: decode END: add
+[01:253:291:361] [pipeline:THREAD ID (139819379746624):sequential:without debug output:INFO] [Stage execute]: clock: 1: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 1
+[01:503:535:011] [pipeline:THREAD ID (139819379746624):sequential:without debug output:INFO] [Stage execute]: clock: 1: executing instruction: add
+[01:503:743:249] [pipeline:THREAD ID (139819379746624):sequential:without debug output:INFO] [Stage execute]: clock: 1: execute END, pipeline memory: [1, 2, 0], ACC: 3
+[01:503:837:642] [pipeline:THREAD ID (139819379746624):sequential:without debug output:INFO] --- clock: 1: Cycle END             ---
+[01:503:945:148] [pipeline:THREAD ID (139819379746624):sequential:without debug output:INFO] --- clock: 2: Cycle BEGIN           ---
+[01:504:063:644] [pipeline:THREAD ID (139819379746624):sequential:without debug output:INFO] [Stage fetch  ]: clock: 2: fetch BEGIN, PC: 4, p->instruction_memory: [13, 0, 86, 1, 55, 2]
+[01:754:363:948] [pipeline:THREAD ID (139819379746624):sequential:without debug output:INFO] [Stage fetch  ]: clock: 2: fetch END
+[01:754:573:371] [pipeline:THREAD ID (139819379746624):sequential:without debug output:INFO] [Stage decode ]: clock: 2: decode BEGIN
+[02:004:833:921] [pipeline:THREAD ID (139819379746624):sequential:without debug output:INFO] [Stage decode ]: clock: 2: decode END: store
+[02:005:068:496] [pipeline:THREAD ID (139819379746624):sequential:without debug output:INFO] [Stage execute]: clock: 2: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 3
+[02:255:315:180] [pipeline:THREAD ID (139819379746624):sequential:without debug output:INFO] [Stage execute]: clock: 2: executing instruction: store
+[02:255:481:010] [pipeline:THREAD ID (139819379746624):sequential:without debug output:INFO] [Stage execute]: clock: 2: execute END, pipeline memory: [1, 2, 3], ACC: 3
+[02:255:528:073] [pipeline:THREAD ID (139819379746624):sequential:without debug output:INFO] --- clock: 2: Cycle END             ---
+[02:255:572:439] [pipeline:THREAD ID (139819379746624):sequential:without debug output:INFO] --- clock: 3: Cycle BEGIN           ---
+[00:000:197:582] [pipeline:THREAD ID (139789075670848):sequential:without debug output:INFO] [Stage fetch  ]: clock: 0: fetch BEGIN, PC: 0, p->instruction_memory: [13, 0, 86, 1, 55, 2]
+[00:250:593:374] [pipeline:THREAD ID (139789075670848):sequential:without debug output:INFO] [Stage fetch  ]: clock: 0: fetch END
+[00:250:744:811] [pipeline:THREAD ID (139789075670848):sequential:without debug output:INFO] [Stage decode ]: clock: 0: decode BEGIN
+[00:500:981:901] [pipeline:THREAD ID (139789075670848):sequential:without debug output:INFO] [Stage decode ]: clock: 0: decode END: load
+[00:501:146:667] [pipeline:THREAD ID (139789075670848):sequential:without debug output:INFO] [Stage execute]: clock: 0: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 0
+[00:751:358:913] [pipeline:THREAD ID (139789075670848):sequential:without debug output:INFO] [Stage execute]: clock: 0: executing instruction: load
+[00:751:499:743] [pipeline:THREAD ID (139789075670848):sequential:without debug output:INFO] [Stage execute]: clock: 0: execute END, pipeline memory: [1, 2, 0], ACC: 1
+[00:751:606:783] [pipeline:THREAD ID (139789075670848):sequential:without debug output:INFO] --- clock: 0: Cycle END             ---
+[00:751:677:698] [pipeline:THREAD ID (139789075670848):sequential:without debug output:INFO] --- clock: 1: Cycle BEGIN           ---
+[00:751:742:707] [pipeline:THREAD ID (139789075670848):sequential:without debug output:INFO] [Stage fetch  ]: clock: 1: fetch BEGIN, PC: 2, p->instruction_memory: [13, 0, 86, 1, 55, 2]
+[01:001:920:801] [pipeline:THREAD ID (139789075670848):sequential:without debug output:INFO] [Stage fetch  ]: clock: 1: fetch END
+[01:002:058:112] [pipeline:THREAD ID (139789075670848):sequential:without debug output:INFO] [Stage decode ]: clock: 1: decode BEGIN
+[01:252:253:405] [pipeline:THREAD ID (139789075670848):sequential:without debug output:INFO] [Stage decode ]: clock: 1: decode END: add
+[01:252:438:436] [pipeline:THREAD ID (139789075670848):sequential:without debug output:INFO] [Stage execute]: clock: 1: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 1
+[01:502:646:021] [pipeline:THREAD ID (139789075670848):sequential:without debug output:INFO] [Stage execute]: clock: 1: executing instruction: add
+[01:502:793:886] [pipeline:THREAD ID (139789075670848):sequential:without debug output:INFO] [Stage execute]: clock: 1: execute END, pipeline memory: [1, 2, 0], ACC: 3
+[01:502:877:466] [pipeline:THREAD ID (139789075670848):sequential:without debug output:INFO] --- clock: 1: Cycle END             ---
+[01:502:949:714] [pipeline:THREAD ID (139789075670848):sequential:without debug output:INFO] --- clock: 2: Cycle BEGIN           ---
+[01:503:027:813] [pipeline:THREAD ID (139789075670848):sequential:without debug output:INFO] [Stage fetch  ]: clock: 2: fetch BEGIN, PC: 4, p->instruction_memory: [13, 0, 86, 1, 55, 2]
+[01:753:232:819] [pipeline:THREAD ID (139789075670848):sequential:without debug output:INFO] [Stage fetch  ]: clock: 2: fetch END
+[01:753:382:141] [pipeline:THREAD ID (139789075670848):sequential:without debug output:INFO] [Stage decode ]: clock: 2: decode BEGIN
+[02:003:562:416] [pipeline:THREAD ID (139789075670848):sequential:without debug output:INFO] [Stage decode ]: clock: 2: decode END: store
+[02:003:693:503] [pipeline:THREAD ID (139789075670848):sequential:without debug output:INFO] [Stage execute]: clock: 2: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 3
+[02:253:872:429] [pipeline:THREAD ID (139789075670848):sequential:without debug output:INFO] [Stage execute]: clock: 2: executing instruction: store
+[02:254:006:961] [pipeline:THREAD ID (139789075670848):sequential:without debug output:INFO] [Stage execute]: clock: 2: execute END, pipeline memory: [1, 2, 3], ACC: 3
+[02:254:093:334] [pipeline:THREAD ID (139789075670848):sequential:without debug output:INFO] --- clock: 2: Cycle END             ---
+[02:254:171:161] [pipeline:THREAD ID (139789075670848):sequential:without debug output:INFO] --- clock: 3: Cycle BEGIN           ---
+[00:000:252:428] [pipeline:THREAD ID (139789075666688):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 0: fetch BEGIN, PC: 0, p->instruction_memory: [13, 0, 86, 1, 55, 2]
+[00:250:487:358] [pipeline:THREAD ID (139789075666688):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 0: fetch END
+[00:250:748:257] [pipeline:THREAD ID (139788963276544):pipelined:without debug output:INFO] --- clock: 0: Cycle END             ---
+[00:250:831:145] [pipeline:THREAD ID (139788963276544):pipelined:without debug output:INFO] --- clock: 1: Cycle BEGIN           ---
+[00:250:938:422] [pipeline:THREAD ID (139789058881280):pipelined:without debug output:INFO] [Stage decode ]: clock: 1: decode BEGIN
+[00:251:020:305] [pipeline:THREAD ID (139789075666688):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 1: fetch BEGIN, PC: 2, p->instruction_memory: [13, 0, 86, 1, 55, 2]
+[00:501:182:914] [pipeline:THREAD ID (139789058881280):pipelined:without debug output:INFO] [Stage decode ]: clock: 1: decode END: load
+[00:501:442:643] [pipeline:THREAD ID (139789075666688):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 1: fetch END
+[00:501:884:963] [pipeline:THREAD ID (139788963276544):pipelined:without debug output:INFO] --- clock: 1: Cycle END             ---
+[00:502:000:153] [pipeline:THREAD ID (139788963276544):pipelined:without debug output:INFO] --- clock: 2: Cycle BEGIN           ---
+[00:502:156:713] [pipeline:THREAD ID (139788971669248):pipelined:without debug output:INFO] [Stage execute]: clock: 2: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 0
+[00:502:281:998] [pipeline:THREAD ID (139789075666688):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 2: fetch BEGIN, PC: 4, p->instruction_memory: [13, 0, 86, 1, 55, 2]
+[00:502:430:941] [pipeline:THREAD ID (139789058881280):pipelined:without debug output:INFO] [Stage decode ]: clock: 2: decode BEGIN
+[00:752:391:926] [pipeline:THREAD ID (139788971669248):pipelined:without debug output:INFO] [Stage execute]: clock: 2: executing instruction: load
+[00:752:538:717] [pipeline:THREAD ID (139788971669248):pipelined:without debug output:INFO] [Stage execute]: clock: 2: execute END, pipeline memory: [1, 2, 0], ACC: 1
+[00:752:641:833] [pipeline:THREAD ID (139789058881280):pipelined:without debug output:INFO] [Stage decode ]: clock: 2: decode END: add
+[00:752:783:875] [pipeline:THREAD ID (139789075666688):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 2: fetch END
+[00:752:942:747] [pipeline:THREAD ID (139788963276544):pipelined:without debug output:INFO] --- clock: 2: Cycle END             ---
+[00:753:065:725] [pipeline:THREAD ID (139788963276544):pipelined:without debug output:INFO] --- clock: 3: Cycle BEGIN           ---
+[00:753:222:469] [pipeline:THREAD ID (139788971669248):pipelined:without debug output:INFO] [Stage execute]: clock: 3: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 1
+[00:753:332:510] [pipeline:THREAD ID (139789058881280):pipelined:without debug output:INFO] [Stage decode ]: clock: 3: decode BEGIN
+[01:003:483:283] [pipeline:THREAD ID (139788971669248):pipelined:without debug output:INFO] [Stage execute]: clock: 3: executing instruction: add
+[01:003:664:174] [pipeline:THREAD ID (139788971669248):pipelined:without debug output:INFO] [Stage execute]: clock: 3: execute END, pipeline memory: [1, 2, 0], ACC: 3
+[01:003:789:060] [pipeline:THREAD ID (139789058881280):pipelined:without debug output:INFO] [Stage decode ]: clock: 3: decode END: store
+[01:004:038:470] [pipeline:THREAD ID (139788963276544):pipelined:without debug output:INFO] --- clock: 3: Cycle END             ---
+[01:004:173:128] [pipeline:THREAD ID (139788963276544):pipelined:without debug output:INFO] --- clock: 4: Cycle BEGIN           ---
+[01:004:531:813] [pipeline:THREAD ID (139788971669248):pipelined:without debug output:INFO] [Stage execute]: clock: 4: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 3
+[01:254:784:080] [pipeline:THREAD ID (139788971669248):pipelined:without debug output:INFO] [Stage execute]: clock: 4: executing instruction: store
+[01:254:933:764] [pipeline:THREAD ID (139788971669248):pipelined:without debug output:INFO] [Stage execute]: clock: 4: execute END, pipeline memory: [1, 2, 3], ACC: 3
+[01:255:438:623] [pipeline:THREAD ID (139788963276544):pipelined:without debug output:INFO] --- clock: 4: Cycle END             ---
+[01:255:541:349] [pipeline:THREAD ID (139788963276544):pipelined:without debug output:INFO] --- clock: 5: Cycle BEGIN           ---
+[01:255:889:103] [pipeline:THREAD ID (139788963276544):pipelined:without debug output:INFO] --- clock: 5: Cycle END             ---
+[01:255:980:650] [pipeline:THREAD ID (139788963276544):pipelined:without debug output:INFO] --- clock: 6: Cycle BEGIN           ---
+[01:256:135:129] [pipeline:THREAD ID (139788963276544):pipelined:without debug output:INFO] --- clock: 6: Cycle END             ---
+[01:256:222:226] [pipeline:THREAD ID (139788963276544):pipelined:without debug output:INFO] --- clock: 7: Cycle BEGIN           ---
+[01:256:386:347] [pipeline:THREAD ID (139788963276544):pipelined:without debug output:INFO] --- clock: 7: Cycle END             ---
+[01:256:465:460] [pipeline:THREAD ID (139788963276544):pipelined:without debug output:INFO] --- clock: 8: Cycle BEGIN           ---
+[00:000:153:659] [pipeline:THREAD ID (140660466235200):sequential:without debug output:INFO] [Stage fetch  ]: clock: 0: fetch BEGIN, PC: 0, p->instruction_memory: [13, 0, 86, 1, 55, 2]
+[00:250:455:615] [pipeline:THREAD ID (140660466235200):sequential:without debug output:INFO] [Stage fetch  ]: clock: 0: fetch END
+[00:250:577:200] [pipeline:THREAD ID (140660466235200):sequential:without debug output:INFO] [Stage decode ]: clock: 0: decode BEGIN
+[00:500:801:598] [pipeline:THREAD ID (140660466235200):sequential:without debug output:INFO] [Stage decode ]: clock: 0: decode END: load
+[00:500:957:636] [pipeline:THREAD ID (140660466235200):sequential:without debug output:INFO] [Stage execute]: clock: 0: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 0
+[00:751:159:252] [pipeline:THREAD ID (140660466235200):sequential:without debug output:INFO] [Stage execute]: clock: 0: executing instruction: load
+[00:751:322:243] [pipeline:THREAD ID (140660466235200):sequential:without debug output:INFO] [Stage execute]: clock: 0: execute END, pipeline memory: [1, 2, 0], ACC: 1
+[00:751:434:330] [pipeline:THREAD ID (140660466235200):sequential:without debug output:INFO] --- clock: 0: Cycle END             ---
+[00:751:530:789] [pipeline:THREAD ID (140660466235200):sequential:without debug output:INFO] --- clock: 1: Cycle BEGIN           ---
+[00:751:629:922] [pipeline:THREAD ID (140660466235200):sequential:without debug output:INFO] [Stage fetch  ]: clock: 1: fetch BEGIN, PC: 2, p->instruction_memory: [13, 0, 86, 1, 55, 2]
+[01:001:836:275] [pipeline:THREAD ID (140660466235200):sequential:without debug output:INFO] [Stage fetch  ]: clock: 1: fetch END
+[01:001:961:820] [pipeline:THREAD ID (140660466235200):sequential:without debug output:INFO] [Stage decode ]: clock: 1: decode BEGIN
+[01:252:160:063] [pipeline:THREAD ID (140660466235200):sequential:without debug output:INFO] [Stage decode ]: clock: 1: decode END: add
+[01:252:332:285] [pipeline:THREAD ID (140660466235200):sequential:without debug output:INFO] [Stage execute]: clock: 1: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 1
+[01:502:596:518] [pipeline:THREAD ID (140660466235200):sequential:without debug output:INFO] [Stage execute]: clock: 1: executing instruction: add
+[01:502:804:307] [pipeline:THREAD ID (140660466235200):sequential:without debug output:INFO] [Stage execute]: clock: 1: execute END, pipeline memory: [1, 2, 0], ACC: 3
+[01:502:920:004] [pipeline:THREAD ID (140660466235200):sequential:without debug output:INFO] --- clock: 1: Cycle END             ---
+[01:503:016:249] [pipeline:THREAD ID (140660466235200):sequential:without debug output:INFO] --- clock: 2: Cycle BEGIN           ---
+[01:503:138:317] [pipeline:THREAD ID (140660466235200):sequential:without debug output:INFO] [Stage fetch  ]: clock: 2: fetch BEGIN, PC: 4, p->instruction_memory: [13, 0, 86, 1, 55, 2]
+[01:753:396:925] [pipeline:THREAD ID (140660466235200):sequential:without debug output:INFO] [Stage fetch  ]: clock: 2: fetch END
+[01:753:802:850] [pipeline:THREAD ID (140660466235200):sequential:without debug output:INFO] [Stage decode ]: clock: 2: decode BEGIN
+[02:004:139:878] [pipeline:THREAD ID (140660466235200):sequential:without debug output:INFO] [Stage decode ]: clock: 2: decode END: store
+[02:004:730:848] [pipeline:THREAD ID (140660466235200):sequential:without debug output:INFO] [Stage execute]: clock: 2: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 3
+[02:255:138:237] [pipeline:THREAD ID (140660466235200):sequential:without debug output:INFO] [Stage execute]: clock: 2: executing instruction: store
+[02:255:322:613] [pipeline:THREAD ID (140660466235200):sequential:without debug output:INFO] [Stage execute]: clock: 2: execute END, pipeline memory: [1, 2, 3], ACC: 3
+[02:255:407:508] [pipeline:THREAD ID (140660466235200):sequential:without debug output:INFO] --- clock: 2: Cycle END             ---
+[02:255:484:605] [pipeline:THREAD ID (140660466235200):sequential:without debug output:INFO] --- clock: 3: Cycle BEGIN           ---
+[00:000:164:702] [pipeline:THREAD ID (140660466231040):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 0: fetch BEGIN, PC: 0, p->instruction_memory: [13, 0, 86, 1, 55, 2]
+[00:250:443:864] [pipeline:THREAD ID (140660466231040):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 0: fetch END
+[00:250:839:061] [pipeline:THREAD ID (140660355090176):pipelined:without debug output:INFO] --- clock: 0: Cycle END             ---
+[00:250:979:132] [pipeline:THREAD ID (140660355090176):pipelined:without debug output:INFO] --- clock: 1: Cycle BEGIN           ---
+[00:251:139:673] [pipeline:THREAD ID (140660466231040):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 1: fetch BEGIN, PC: 2, p->instruction_memory: [13, 0, 86, 1, 55, 2]
+[00:251:294:462] [pipeline:THREAD ID (140660380268288):pipelined:without debug output:INFO] [Stage decode ]: clock: 1: decode BEGIN
+[00:501:702:725] [pipeline:THREAD ID (140660380268288):pipelined:without debug output:INFO] [Stage decode ]: clock: 1: decode END: load
+[00:502:212:622] [pipeline:THREAD ID (140660466231040):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 1: fetch END
+[00:502:966:181] [pipeline:THREAD ID (140660355090176):pipelined:without debug output:INFO] --- clock: 1: Cycle END             ---
+[00:503:252:981] [pipeline:THREAD ID (140660355090176):pipelined:without debug output:INFO] --- clock: 2: Cycle BEGIN           ---
+[00:503:539:772] [pipeline:THREAD ID (140660380268288):pipelined:without debug output:INFO] [Stage decode ]: clock: 2: decode BEGIN
+[00:503:717:539] [pipeline:THREAD ID (140660466231040):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 2: fetch BEGIN, PC: 4, p->instruction_memory: [13, 0, 86, 1, 55, 2]
+[00:503:973:871] [pipeline:THREAD ID (140660363482880):pipelined:without debug output:INFO] [Stage execute]: clock: 2: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 0
+[00:754:279:385] [pipeline:THREAD ID (140660363482880):pipelined:without debug output:INFO] [Stage execute]: clock: 2: executing instruction: load
+[00:754:543:100] [pipeline:THREAD ID (140660466231040):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 2: fetch END
+[00:754:747:692] [pipeline:THREAD ID (140660363482880):pipelined:without debug output:INFO] [Stage execute]: clock: 2: execute END, pipeline memory: [1, 2, 0], ACC: 1
+[00:754:984:105] [pipeline:THREAD ID (140660380268288):pipelined:without debug output:INFO] [Stage decode ]: clock: 2: decode END: add
+[00:755:299:971] [pipeline:THREAD ID (140660355090176):pipelined:without debug output:INFO] --- clock: 2: Cycle END             ---
+[00:755:457:336] [pipeline:THREAD ID (140660355090176):pipelined:without debug output:INFO] --- clock: 3: Cycle BEGIN           ---
+[00:755:670:199] [pipeline:THREAD ID (140660363482880):pipelined:without debug output:INFO] [Stage execute]: clock: 3: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 1
+[00:755:870:614] [pipeline:THREAD ID (140660380268288):pipelined:without debug output:INFO] [Stage decode ]: clock: 3: decode BEGIN
+[01:006:033:678] [pipeline:THREAD ID (140660363482880):pipelined:without debug output:INFO] [Stage execute]: clock: 3: executing instruction: add
+[01:006:351:973] [pipeline:THREAD ID (140660363482880):pipelined:without debug output:INFO] [Stage execute]: clock: 3: execute END, pipeline memory: [1, 2, 0], ACC: 3
+[01:006:585:750] [pipeline:THREAD ID (140660380268288):pipelined:without debug output:INFO] [Stage decode ]: clock: 3: decode END: store
+[01:006:944:018] [pipeline:THREAD ID (140660355090176):pipelined:without debug output:INFO] --- clock: 3: Cycle END             ---
+[01:007:121:489] [pipeline:THREAD ID (140660355090176):pipelined:without debug output:INFO] --- clock: 4: Cycle BEGIN           ---
+[01:007:374:402] [pipeline:THREAD ID (140660363482880):pipelined:without debug output:INFO] [Stage execute]: clock: 4: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 3
+[01:257:758:715] [pipeline:THREAD ID (140660363482880):pipelined:without debug output:INFO] [Stage execute]: clock: 4: executing instruction: store
+[01:258:126:689] [pipeline:THREAD ID (140660363482880):pipelined:without debug output:INFO] [Stage execute]: clock: 4: execute END, pipeline memory: [1, 2, 3], ACC: 3
+[01:258:478:997] [pipeline:THREAD ID (140660355090176):pipelined:without debug output:INFO] --- clock: 4: Cycle END             ---
+[01:258:629:079] [pipeline:THREAD ID (140660355090176):pipelined:without debug output:INFO] --- clock: 5: Cycle BEGIN           ---
+[01:258:902:018] [pipeline:THREAD ID (140660355090176):pipelined:without debug output:INFO] --- clock: 5: Cycle END             ---
+[01:259:031:232] [pipeline:THREAD ID (140660355090176):pipelined:without debug output:INFO] --- clock: 6: Cycle BEGIN           ---
+[01:259:306:667] [pipeline:THREAD ID (140660355090176):pipelined:without debug output:INFO] --- clock: 6: Cycle END             ---
+[01:259:457:748] [pipeline:THREAD ID (140660355090176):pipelined:without debug output:INFO] --- clock: 7: Cycle BEGIN           ---
+[01:259:729:190] [pipeline:THREAD ID (140660355090176):pipelined:without debug output:INFO] --- clock: 7: Cycle END             ---
+[01:259:853:374] [pipeline:THREAD ID (140660355090176):pipelined:without debug output:INFO] --- clock: 8: Cycle BEGIN           ---
+[00:000:164:334] [pipeline:THREAD ID (139896222435136):sequential:without debug output:INFO] [Stage fetch  ]: clock: 0: fetch BEGIN, PC: 0, p->instruction_memory: [13, 0, 86, 1, 55, 2]
+[00:250:459:720] [pipeline:THREAD ID (139896222435136):sequential:without debug output:INFO] [Stage fetch  ]: clock: 0: fetch END
+[00:250:631:893] [pipeline:THREAD ID (139896222435136):sequential:without debug output:INFO] --- clock: 0: Cycle END             ---
+[00:250:750:140] [pipeline:THREAD ID (139896222435136):sequential:without debug output:INFO] --- clock: 1: Cycle BEGIN           ---
+[00:250:870:241] [pipeline:THREAD ID (139896222435136):sequential:without debug output:INFO] --- clock: 1: Cycle END             ---
+[00:250:969:966] [pipeline:THREAD ID (139896222435136):sequential:without debug output:INFO] --- clock: 2: Cycle BEGIN           ---
+[00:251:088:182] [pipeline:THREAD ID (139896222435136):sequential:without debug output:INFO] [Stage decode ]: clock: 2: decode BEGIN
+[00:501:392:069] [pipeline:THREAD ID (139896222435136):sequential:without debug output:INFO] [Stage decode ]: clock: 2: decode END: load
+[00:501:734:000] [pipeline:THREAD ID (139896222435136):sequential:without debug output:INFO] --- clock: 2: Cycle END             ---
+[00:502:071:046] [pipeline:THREAD ID (139896222435136):sequential:without debug output:INFO] --- clock: 3: Cycle BEGIN           ---
+[00:502:389:090] [pipeline:THREAD ID (139896222435136):sequential:without debug output:INFO] --- clock: 3: Cycle END             ---
+[00:502:542:877] [pipeline:THREAD ID (139896222435136):sequential:without debug output:INFO] --- clock: 4: Cycle BEGIN           ---
+[00:502:707:088] [pipeline:THREAD ID (139896222435136):sequential:without debug output:INFO] [Stage execute]: clock: 4: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 0
+[00:753:066:871] [pipeline:THREAD ID (139896222435136):sequential:without debug output:INFO] [Stage execute]: clock: 4: executing instruction: load
+[00:753:450:549] [pipeline:THREAD ID (139896222435136):sequential:without debug output:INFO] [Stage execute]: clock: 4: execute END, pipeline memory: [1, 2, 0], ACC: 1
+[00:753:826:781] [pipeline:THREAD ID (139896222435136):sequential:without debug output:INFO] --- clock: 4: Cycle END             ---
+[00:754:045:157] [pipeline:THREAD ID (139896222435136):sequential:without debug output:INFO] --- clock: 5: Cycle BEGIN           ---
+[00:754:192:653] [pipeline:THREAD ID (139896222435136):sequential:without debug output:INFO] [Stage fetch  ]: clock: 5: fetch BEGIN, PC: 2, p->instruction_memory: [13, 0, 86, 1, 55, 2]
+[01:004:532:809] [pipeline:THREAD ID (139896222435136):sequential:without debug output:INFO] [Stage fetch  ]: clock: 5: fetch END
+[01:004:776:880] [pipeline:THREAD ID (139896222435136):sequential:without debug output:INFO] --- clock: 5: Cycle END             ---
+[01:004:972:137] [pipeline:THREAD ID (139896222435136):sequential:without debug output:INFO] --- clock: 6: Cycle BEGIN           ---
+[01:005:122:579] [pipeline:THREAD ID (139896222435136):sequential:without debug output:INFO] --- clock: 6: Cycle END             ---
+[01:005:261:463] [pipeline:THREAD ID (139896222435136):sequential:without debug output:INFO] --- clock: 7: Cycle BEGIN           ---
+[01:005:406:386] [pipeline:THREAD ID (139896222435136):sequential:without debug output:INFO] [Stage decode ]: clock: 7: decode BEGIN
+[01:255:725:937] [pipeline:THREAD ID (139896222435136):sequential:without debug output:INFO] [Stage decode ]: clock: 7: decode END: add
+[01:255:965:125] [pipeline:THREAD ID (139896222435136):sequential:without debug output:INFO] --- clock: 7: Cycle END             ---
+[01:256:128:474] [pipeline:THREAD ID (139896222435136):sequential:without debug output:INFO] --- clock: 8: Cycle BEGIN           ---
+[01:256:305:247] [pipeline:THREAD ID (139896222435136):sequential:without debug output:INFO] --- clock: 8: Cycle END             ---
+[01:256:428:992] [pipeline:THREAD ID (139896222435136):sequential:without debug output:INFO] --- clock: 9: Cycle BEGIN           ---
+[01:256:571:470] [pipeline:THREAD ID (139896222435136):sequential:without debug output:INFO] [Stage execute]: clock: 9: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 1
+[01:506:953:822] [pipeline:THREAD ID (139896222435136):sequential:without debug output:INFO] [Stage execute]: clock: 9: executing instruction: add
+[01:507:333:361] [pipeline:THREAD ID (139896222435136):sequential:without debug output:INFO] [Stage execute]: clock: 9: execute END, pipeline memory: [1, 2, 0], ACC: 3
+[01:507:516:444] [pipeline:THREAD ID (139896222435136):sequential:without debug output:INFO] --- clock: 9: Cycle END             ---
+[01:507:681:126] [pipeline:THREAD ID (139896222435136):sequential:without debug output:INFO] --- clock: 10: Cycle BEGIN           ---
+[01:507:856:702] [pipeline:THREAD ID (139896222435136):sequential:without debug output:INFO] [Stage fetch  ]: clock: 10: fetch BEGIN, PC: 4, p->instruction_memory: [13, 0, 86, 1, 55, 2]
+[01:758:156:280] [pipeline:THREAD ID (139896222435136):sequential:without debug output:INFO] [Stage fetch  ]: clock: 10: fetch END
+[01:758:307:870] [pipeline:THREAD ID (139896222435136):sequential:without debug output:INFO] --- clock: 10: Cycle END             ---
+[01:758:392:220] [pipeline:THREAD ID (139896222435136):sequential:without debug output:INFO] --- clock: 11: Cycle BEGIN           ---
+[01:758:489:319] [pipeline:THREAD ID (139896222435136):sequential:without debug output:INFO] --- clock: 11: Cycle END             ---
+[01:758:572:815] [pipeline:THREAD ID (139896222435136):sequential:without debug output:INFO] --- clock: 12: Cycle BEGIN           ---
+[01:758:660:409] [pipeline:THREAD ID (139896222435136):sequential:without debug output:INFO] [Stage decode ]: clock: 12: decode BEGIN
+[02:008:962:372] [pipeline:THREAD ID (139896222435136):sequential:without debug output:INFO] [Stage decode ]: clock: 12: decode END: store
+[02:009:220:782] [pipeline:THREAD ID (139896222435136):sequential:without debug output:INFO] --- clock: 12: Cycle END             ---
+[02:009:385:530] [pipeline:THREAD ID (139896222435136):sequential:without debug output:INFO] --- clock: 13: Cycle BEGIN           ---
+[02:009:561:052] [pipeline:THREAD ID (139896222435136):sequential:without debug output:INFO] --- clock: 13: Cycle END             ---
+[02:009:724:481] [pipeline:THREAD ID (139896222435136):sequential:without debug output:INFO] --- clock: 14: Cycle BEGIN           ---
+[02:009:900:181] [pipeline:THREAD ID (139896222435136):sequential:without debug output:INFO] [Stage execute]: clock: 14: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 3
+[02:260:235:180] [pipeline:THREAD ID (139896222435136):sequential:without debug output:INFO] [Stage execute]: clock: 14: executing instruction: store
+[02:260:441:212] [pipeline:THREAD ID (139896222435136):sequential:without debug output:INFO] [Stage execute]: clock: 14: execute END, pipeline memory: [1, 2, 3], ACC: 3
+[02:260:591:464] [pipeline:THREAD ID (139896222435136):sequential:without debug output:INFO] --- clock: 14: Cycle END             ---
+[02:260:738:238] [pipeline:THREAD ID (139896222435136):sequential:without debug output:INFO] --- clock: 15: Cycle BEGIN           ---
+[00:000:340:618] [pipeline:THREAD ID (139896222430976):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 0: fetch BEGIN, PC: 0, p->instruction_memory: [13, 0, 86, 1, 55, 2]
+[00:250:741:088] [pipeline:THREAD ID (139896222430976):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 0: fetch END
+[00:251:544:028] [pipeline:THREAD ID (139896180467456):pipelined:without debug output:INFO] --- clock: 0: Cycle END             ---
+[00:252:041:797] [pipeline:THREAD ID (139896180467456):pipelined:without debug output:INFO] --- clock: 1: Cycle BEGIN           ---
+[00:252:350:564] [pipeline:THREAD ID (139896222430976):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 1: fetch BEGIN, PC: 2, p->instruction_memory: [13, 0, 86, 1, 55, 2]
+[00:252:616:650] [pipeline:THREAD ID (139896205645568):pipelined:without debug output:INFO] [Stage decode ]: clock: 1: decode BEGIN
+[00:503:142:615] [pipeline:THREAD ID (139896205645568):pipelined:without debug output:INFO] [Stage decode ]: clock: 1: decode END: load
+[00:503:512:536] [pipeline:THREAD ID (139896222430976):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 1: fetch END
+[00:503:987:711] [pipeline:THREAD ID (139896180467456):pipelined:without debug output:INFO] --- clock: 1: Cycle END             ---
+[00:504:134:679] [pipeline:THREAD ID (139896180467456):pipelined:without debug output:INFO] --- clock: 2: Cycle BEGIN           ---
+[00:504:451:764] [pipeline:THREAD ID (139896188860160):pipelined:without debug output:INFO] [Stage execute]: clock: 2: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 0
+[00:504:661:945] [pipeline:THREAD ID (139896205645568):pipelined:without debug output:INFO] [Stage decode ]: clock: 2: decode BEGIN
+[00:504:833:535] [pipeline:THREAD ID (139896222430976):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 2: fetch BEGIN, PC: 4, p->instruction_memory: [13, 0, 86, 1, 55, 2]
+[00:754:915:964] [pipeline:THREAD ID (139896188860160):pipelined:without debug output:INFO] [Stage execute]: clock: 2: executing instruction: load
+[00:755:220:071] [pipeline:THREAD ID (139896222430976):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 2: fetch END
+[00:755:506:051] [pipeline:THREAD ID (139896188860160):pipelined:without debug output:INFO] [Stage execute]: clock: 2: execute END, pipeline memory: [1, 2, 0], ACC: 1
+[00:755:804:177] [pipeline:THREAD ID (139896205645568):pipelined:without debug output:INFO] [Stage decode ]: clock: 2: decode END: add
+[00:756:097:208] [pipeline:THREAD ID (139896180467456):pipelined:without debug output:INFO] --- clock: 2: Cycle END             ---
+[00:756:307:566] [pipeline:THREAD ID (139896180467456):pipelined:without debug output:INFO] --- clock: 3: Cycle BEGIN           ---
+[00:756:533:127] [pipeline:THREAD ID (139896205645568):pipelined:without debug output:INFO] [Stage decode ]: clock: 3: decode BEGIN
+[00:756:723:173] [pipeline:THREAD ID (139896188860160):pipelined:without debug output:INFO] [Stage execute]: clock: 3: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 1
+[01:007:098:584] [pipeline:THREAD ID (139896188860160):pipelined:without debug output:INFO] [Stage execute]: clock: 3: executing instruction: add
+[01:007:541:573] [pipeline:THREAD ID (139896188860160):pipelined:without debug output:INFO] [Stage execute]: clock: 3: execute END, pipeline memory: [1, 2, 0], ACC: 3
+[01:008:019:220] [pipeline:THREAD ID (139896205645568):pipelined:without debug output:INFO] [Stage decode ]: clock: 3: decode END: store
+[01:008:437:360] [pipeline:THREAD ID (139896180467456):pipelined:without debug output:INFO] --- clock: 3: Cycle END             ---
+[01:008:590:966] [pipeline:THREAD ID (139896180467456):pipelined:without debug output:INFO] --- clock: 4: Cycle BEGIN           ---
+[01:008:799:506] [pipeline:THREAD ID (139896188860160):pipelined:without debug output:INFO] [Stage execute]: clock: 4: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 3
+[01:259:089:745] [pipeline:THREAD ID (139896188860160):pipelined:without debug output:INFO] [Stage execute]: clock: 4: executing instruction: store
+[01:259:320:325] [pipeline:THREAD ID (139896188860160):pipelined:without debug output:INFO] [Stage execute]: clock: 4: execute END, pipeline memory: [1, 2, 3], ACC: 3
+[01:259:692:975] [pipeline:THREAD ID (139896180467456):pipelined:without debug output:INFO] --- clock: 4: Cycle END             ---
+[01:259:922:830] [pipeline:THREAD ID (139896180467456):pipelined:without debug output:INFO] --- clock: 5: Cycle BEGIN           ---
+[01:260:386:302] [pipeline:THREAD ID (139896180467456):pipelined:without debug output:INFO] --- clock: 5: Cycle END             ---
+[01:260:551:922] [pipeline:THREAD ID (139896180467456):pipelined:without debug output:INFO] --- clock: 6: Cycle BEGIN           ---
+[01:260:856:529] [pipeline:THREAD ID (139896180467456):pipelined:without debug output:INFO] --- clock: 6: Cycle END             ---
+[01:261:026:720] [pipeline:THREAD ID (139896180467456):pipelined:without debug output:INFO] --- clock: 7: Cycle BEGIN           ---
+[01:261:310:429] [pipeline:THREAD ID (139896180467456):pipelined:without debug output:INFO] --- clock: 7: Cycle END             ---
+[01:261:441:478] [pipeline:THREAD ID (139896180467456):pipelined:without debug output:INFO] --- clock: 8: Cycle BEGIN           ---
+[00:000:208:101] [pipeline:THREAD ID (139854258894656):sequential:without debug output:INFO] [Stage fetch  ]: clock: 0: fetch BEGIN, PC: 0, p->instruction_memory: [13, 0, 86, 1, 55, 2]
+[00:250:525:948] [pipeline:THREAD ID (139854258894656):sequential:without debug output:INFO] [Stage fetch  ]: clock: 0: fetch END
+[00:250:672:715] [pipeline:THREAD ID (139854258894656):sequential:without debug output:INFO] --- clock: 0: Cycle END             ---
+[00:250:759:487] [pipeline:THREAD ID (139854258894656):sequential:without debug output:INFO] --- clock: 1: Cycle BEGIN           ---
+[00:250:868:555] [pipeline:THREAD ID (139854258894656):sequential:without debug output:INFO] [Stage decode ]: clock: 1: decode BEGIN
+[00:501:160:205] [pipeline:THREAD ID (139854258894656):sequential:without debug output:INFO] [Stage decode ]: clock: 1: decode END: load
+[00:501:551:845] [pipeline:THREAD ID (139854258894656):sequential:without debug output:INFO] --- clock: 1: Cycle END             ---
+[00:501:932:985] [pipeline:THREAD ID (139854258894656):sequential:without debug output:INFO] --- clock: 2: Cycle BEGIN           ---
+[00:502:283:482] [pipeline:THREAD ID (139854258894656):sequential:without debug output:INFO] [Stage execute]: clock: 2: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 0
+[00:752:663:690] [pipeline:THREAD ID (139854258894656):sequential:without debug output:INFO] [Stage execute]: clock: 2: executing instruction: load
+[00:753:079:427] [pipeline:THREAD ID (139854258894656):sequential:without debug output:INFO] [Stage execute]: clock: 2: execute END, pipeline memory: [1, 2, 0], ACC: 1
+[00:753:434:258] [pipeline:THREAD ID (139854258894656):sequential:without debug output:INFO] --- clock: 2: Cycle END             ---
+[00:753:659:402] [pipeline:THREAD ID (139854258894656):sequential:without debug output:INFO] --- clock: 3: Cycle BEGIN           ---
+[00:753:815:678] [pipeline:THREAD ID (139854258894656):sequential:without debug output:INFO] [Stage fetch  ]: clock: 3: fetch BEGIN, PC: 2, p->instruction_memory: [13, 0, 86, 1, 55, 2]
+[01:004:153:471] [pipeline:THREAD ID (139854258894656):sequential:without debug output:INFO] [Stage fetch  ]: clock: 3: fetch END
+[01:004:539:201] [pipeline:THREAD ID (139854258894656):sequential:without debug output:INFO] --- clock: 3: Cycle END             ---
+[01:004:888:265] [pipeline:THREAD ID (139854258894656):sequential:without debug output:INFO] --- clock: 4: Cycle BEGIN           ---
+[01:005:126:445] [pipeline:THREAD ID (139854258894656):sequential:without debug output:INFO] [Stage decode ]: clock: 4: decode BEGIN
+[01:255:464:490] [pipeline:THREAD ID (139854258894656):sequential:without debug output:INFO] [Stage decode ]: clock: 4: decode END: add
+[01:255:710:310] [pipeline:THREAD ID (139854258894656):sequential:without debug output:INFO] --- clock: 4: Cycle END             ---
+[01:255:865:480] [pipeline:THREAD ID (139854258894656):sequential:without debug output:INFO] --- clock: 5: Cycle BEGIN           ---
+[01:256:043:372] [pipeline:THREAD ID (139854258894656):sequential:without debug output:INFO] [Stage execute]: clock: 5: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 1
+[01:506:384:096] [pipeline:THREAD ID (139854258894656):sequential:without debug output:INFO] [Stage execute]: clock: 5: executing instruction: add
+[01:506:867:272] [pipeline:THREAD ID (139854258894656):sequential:without debug output:INFO] [Stage execute]: clock: 5: execute END, pipeline memory: [1, 2, 0], ACC: 3
+[01:507:257:342] [pipeline:THREAD ID (139854258894656):sequential:without debug output:INFO] --- clock: 5: Cycle END             ---
+[01:507:662:706] [pipeline:THREAD ID (139854258894656):sequential:without debug output:INFO] --- clock: 6: Cycle BEGIN           ---
+[01:507:987:007] [pipeline:THREAD ID (139854258894656):sequential:without debug output:INFO] [Stage fetch  ]: clock: 6: fetch BEGIN, PC: 4, p->instruction_memory: [13, 0, 86, 1, 55, 2]
+[01:758:357:476] [pipeline:THREAD ID (139854258894656):sequential:without debug output:INFO] [Stage fetch  ]: clock: 6: fetch END
+[01:758:746:824] [pipeline:THREAD ID (139854258894656):sequential:without debug output:INFO] --- clock: 6: Cycle END             ---
+[01:759:191:807] [pipeline:THREAD ID (139854258894656):sequential:without debug output:INFO] --- clock: 7: Cycle BEGIN           ---
+[01:759:621:333] [pipeline:THREAD ID (139854258894656):sequential:without debug output:INFO] [Stage decode ]: clock: 7: decode BEGIN
+[02:010:013:696] [pipeline:THREAD ID (139854258894656):sequential:without debug output:INFO] [Stage decode ]: clock: 7: decode END: store
+[02:010:251:119] [pipeline:THREAD ID (139854258894656):sequential:without debug output:INFO] --- clock: 7: Cycle END             ---
+[02:010:406:602] [pipeline:THREAD ID (139854258894656):sequential:without debug output:INFO] --- clock: 8: Cycle BEGIN           ---
+[02:010:586:448] [pipeline:THREAD ID (139854258894656):sequential:without debug output:INFO] [Stage execute]: clock: 8: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 3
+[02:260:909:560] [pipeline:THREAD ID (139854258894656):sequential:without debug output:INFO] [Stage execute]: clock: 8: executing instruction: store
+[02:261:200:590] [pipeline:THREAD ID (139854258894656):sequential:without debug output:INFO] [Stage execute]: clock: 8: execute END, pipeline memory: [1, 2, 3], ACC: 3
+[02:261:344:170] [pipeline:THREAD ID (139854258894656):sequential:without debug output:INFO] --- clock: 8: Cycle END             ---
+[02:261:442:566] [pipeline:THREAD ID (139854258894656):sequential:without debug output:INFO] --- clock: 9: Cycle BEGIN           ---
+[00:000:333:198] [pipeline:THREAD ID (139854258890496):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 0: fetch BEGIN, PC: 0, p->instruction_memory: [13, 0, 86, 1, 55, 2]
+[00:250:738:317] [pipeline:THREAD ID (139854258890496):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 0: fetch END
+[00:251:408:886] [pipeline:THREAD ID (139854225319680):pipelined:without debug output:INFO] --- clock: 0: Cycle END             ---
+[00:251:721:641] [pipeline:THREAD ID (139854225319680):pipelined:without debug output:INFO] --- clock: 1: Cycle BEGIN           ---
+[00:252:035:118] [pipeline:THREAD ID (139854134376192):pipelined:without debug output:INFO] [Stage decode ]: clock: 1: decode BEGIN
+[00:252:222:343] [pipeline:THREAD ID (139854258890496):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 1: fetch BEGIN, PC: 2, p->instruction_memory: [13, 0, 86, 1, 55, 2]
+[00:502:441:829] [pipeline:THREAD ID (139854134376192):pipelined:without debug output:INFO] [Stage decode ]: clock: 1: decode END: load
+[00:502:874:227] [pipeline:THREAD ID (139854258890496):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 1: fetch END
+[00:503:367:569] [pipeline:THREAD ID (139854225319680):pipelined:without debug output:INFO] --- clock: 1: Cycle END             ---
+[00:503:555:199] [pipeline:THREAD ID (139854225319680):pipelined:without debug output:INFO] --- clock: 2: Cycle BEGIN           ---
+[00:503:793:820] [pipeline:THREAD ID (139854258890496):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 2: fetch BEGIN, PC: 4, p->instruction_memory: [13, 0, 86, 1, 55, 2]
+[00:504:069:399] [pipeline:THREAD ID (139854233712384):pipelined:without debug output:INFO] [Stage execute]: clock: 2: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 0
+[00:504:292:462] [pipeline:THREAD ID (139854134376192):pipelined:without debug output:INFO] [Stage decode ]: clock: 2: decode BEGIN
+[00:754:437:340] [pipeline:THREAD ID (139854233712384):pipelined:without debug output:INFO] [Stage execute]: clock: 2: executing instruction: load
+[00:754:909:144] [pipeline:THREAD ID (139854258890496):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 2: fetch END
+[00:755:366:165] [pipeline:THREAD ID (139854233712384):pipelined:without debug output:INFO] [Stage execute]: clock: 2: execute END, pipeline memory: [1, 2, 0], ACC: 1
+[00:755:819:894] [pipeline:THREAD ID (139854134376192):pipelined:without debug output:INFO] [Stage decode ]: clock: 2: decode END: add
+[00:756:135:192] [pipeline:THREAD ID (139854225319680):pipelined:without debug output:INFO] --- clock: 2: Cycle END             ---
+[00:756:264:985] [pipeline:THREAD ID (139854225319680):pipelined:without debug output:INFO] --- clock: 3: Cycle BEGIN           ---
+[00:756:484:229] [pipeline:THREAD ID (139854134376192):pipelined:without debug output:INFO] [Stage decode ]: clock: 3: decode BEGIN
+[00:756:677:512] [pipeline:THREAD ID (139854233712384):pipelined:without debug output:INFO] [Stage execute]: clock: 3: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 1
+[01:007:077:486] [pipeline:THREAD ID (139854233712384):pipelined:without debug output:INFO] [Stage execute]: clock: 3: executing instruction: add
+[01:007:360:642] [pipeline:THREAD ID (139854233712384):pipelined:without debug output:INFO] [Stage execute]: clock: 3: execute END, pipeline memory: [1, 2, 0], ACC: 3
+[01:007:507:263] [pipeline:THREAD ID (139854134376192):pipelined:without debug output:INFO] [Stage decode ]: clock: 3: decode END: store
+[01:007:727:536] [pipeline:THREAD ID (139854225319680):pipelined:without debug output:INFO] --- clock: 3: Cycle END             ---
+[01:007:889:490] [pipeline:THREAD ID (139854225319680):pipelined:without debug output:INFO] --- clock: 4: Cycle BEGIN           ---
+[01:008:676:827] [pipeline:THREAD ID (139854233712384):pipelined:without debug output:INFO] [Stage execute]: clock: 4: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 3
+[01:258:939:022] [pipeline:THREAD ID (139854233712384):pipelined:without debug output:INFO] [Stage execute]: clock: 4: executing instruction: store
+[01:259:071:928] [pipeline:THREAD ID (139854233712384):pipelined:without debug output:INFO] [Stage execute]: clock: 4: execute END, pipeline memory: [1, 2, 3], ACC: 3
+[01:259:246:117] [pipeline:THREAD ID (139854225319680):pipelined:without debug output:INFO] --- clock: 4: Cycle END             ---
+[01:259:331:080] [pipeline:THREAD ID (139854225319680):pipelined:without debug output:INFO] --- clock: 5: Cycle BEGIN           ---
+[01:259:474:854] [pipeline:THREAD ID (139854225319680):pipelined:without debug output:INFO] --- clock: 5: Cycle END             ---
+[01:259:541:470] [pipeline:THREAD ID (139854225319680):pipelined:without debug output:INFO] --- clock: 6: Cycle BEGIN           ---
+[01:259:861:533] [pipeline:THREAD ID (139854225319680):pipelined:without debug output:INFO] --- clock: 6: Cycle END             ---
+[01:259:920:511] [pipeline:THREAD ID (139854225319680):pipelined:without debug output:INFO] --- clock: 7: Cycle BEGIN           ---
+[01:260:023:094] [pipeline:THREAD ID (139854225319680):pipelined:without debug output:INFO] --- clock: 7: Cycle END             ---
+[01:260:087:732] [pipeline:THREAD ID (139854225319680):pipelined:without debug output:INFO] --- clock: 8: Cycle BEGIN           ---
+[00:000:139:999] [pipeline:THREAD ID (140695030060864):sequential:without debug output:INFO] [Stage fetch  ]: clock: 0: fetch BEGIN, PC: 0, p->instruction_memory: [13, 0, 86, 1, 55, 2]
+[00:250:391:372] [pipeline:THREAD ID (140695030060864):sequential:without debug output:INFO] [Stage fetch  ]: clock: 0: fetch END
+[00:250:495:954] [pipeline:THREAD ID (140695030060864):sequential:without debug output:INFO] --- clock: 0: Cycle END             ---
+[00:250:559:791] [pipeline:THREAD ID (140695030060864):sequential:without debug output:INFO] --- clock: 1: Cycle BEGIN           ---
+[00:250:628:647] [pipeline:THREAD ID (140695030060864):sequential:without debug output:INFO] --- clock: 1: Cycle END             ---
+[00:250:683:633] [pipeline:THREAD ID (140695030060864):sequential:without debug output:INFO] --- clock: 2: Cycle BEGIN           ---
+[00:250:751:175] [pipeline:THREAD ID (140695030060864):sequential:without debug output:INFO] [Stage decode ]: clock: 2: decode BEGIN
+[00:500:926:804] [pipeline:THREAD ID (140695030060864):sequential:without debug output:INFO] [Stage decode ]: clock: 2: decode END: load
+[00:501:051:198] [pipeline:THREAD ID (140695030060864):sequential:without debug output:INFO] --- clock: 2: Cycle END             ---
+[00:504:242:740] [pipeline:THREAD ID (140695030060864):sequential:without debug output:INFO] --- clock: 3: Cycle BEGIN           ---
+[00:504:324:920] [pipeline:THREAD ID (140695030060864):sequential:without debug output:INFO] --- clock: 3: Cycle END             ---
+[00:504:430:015] [pipeline:THREAD ID (140695030060864):sequential:without debug output:INFO] --- clock: 4: Cycle BEGIN           ---
+[00:504:549:055] [pipeline:THREAD ID (140695030060864):sequential:without debug output:INFO] [Stage execute]: clock: 4: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 0
+[00:754:758:570] [pipeline:THREAD ID (140695030060864):sequential:without debug output:INFO] [Stage execute]: clock: 4: executing instruction: load
+[00:754:886:063] [pipeline:THREAD ID (140695030060864):sequential:without debug output:INFO] [Stage execute]: clock: 4: execute END, pipeline memory: [1, 2, 0], ACC: 1
+[00:754:956:782] [pipeline:THREAD ID (140695030060864):sequential:without debug output:INFO] --- clock: 4: Cycle END             ---
+[00:755:021:924] [pipeline:THREAD ID (140695030060864):sequential:without debug output:INFO] --- clock: 5: Cycle BEGIN           ---
+[00:755:097:904] [pipeline:THREAD ID (140695030060864):sequential:without debug output:INFO] [Stage fetch  ]: clock: 5: fetch BEGIN, PC: 2, p->instruction_memory: [13, 0, 86, 1, 55, 2]
+[01:005:330:456] [pipeline:THREAD ID (140695030060864):sequential:without debug output:INFO] [Stage fetch  ]: clock: 5: fetch END
+[01:005:483:495] [pipeline:THREAD ID (140695030060864):sequential:without debug output:INFO] --- clock: 5: Cycle END             ---
+[01:005:547:198] [pipeline:THREAD ID (140695030060864):sequential:without debug output:INFO] --- clock: 6: Cycle BEGIN           ---
+[01:005:610:238] [pipeline:THREAD ID (140695030060864):sequential:without debug output:INFO] --- clock: 6: Cycle END             ---
+[01:005:679:596] [pipeline:THREAD ID (140695030060864):sequential:without debug output:INFO] --- clock: 7: Cycle BEGIN           ---
+[01:005:748:530] [pipeline:THREAD ID (140695030060864):sequential:without debug output:INFO] [Stage decode ]: clock: 7: decode BEGIN
+[01:255:942:162] [pipeline:THREAD ID (140695030060864):sequential:without debug output:INFO] [Stage decode ]: clock: 7: decode END: add
+[01:256:098:923] [pipeline:THREAD ID (140695030060864):sequential:without debug output:INFO] --- clock: 7: Cycle END             ---
+[01:256:193:577] [pipeline:THREAD ID (140695030060864):sequential:without debug output:INFO] --- clock: 8: Cycle BEGIN           ---
+[01:256:298:868] [pipeline:THREAD ID (140695030060864):sequential:without debug output:INFO] --- clock: 8: Cycle END             ---
+[01:256:408:961] [pipeline:THREAD ID (140695030060864):sequential:without debug output:INFO] --- clock: 9: Cycle BEGIN           ---
+[01:256:493:132] [pipeline:THREAD ID (140695030060864):sequential:without debug output:INFO] [Stage execute]: clock: 9: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 1
+[01:506:686:743] [pipeline:THREAD ID (140695030060864):sequential:without debug output:INFO] [Stage execute]: clock: 9: executing instruction: add
+[01:506:809:124] [pipeline:THREAD ID (140695030060864):sequential:without debug output:INFO] [Stage execute]: clock: 9: execute END, pipeline memory: [1, 2, 0], ACC: 3
+[01:506:879:295] [pipeline:THREAD ID (140695030060864):sequential:without debug output:INFO] --- clock: 9: Cycle END             ---
+[01:506:943:684] [pipeline:THREAD ID (140695030060864):sequential:without debug output:INFO] --- clock: 10: Cycle BEGIN           ---
+[01:507:015:535] [pipeline:THREAD ID (140695030060864):sequential:without debug output:INFO] [Stage fetch  ]: clock: 10: fetch BEGIN, PC: 4, p->instruction_memory: [13, 0, 86, 1, 55, 2]
+[01:757:210:982] [pipeline:THREAD ID (140695030060864):sequential:without debug output:INFO] [Stage fetch  ]: clock: 10: fetch END
+[01:757:336:109] [pipeline:THREAD ID (140695030060864):sequential:without debug output:INFO] --- clock: 10: Cycle END             ---
+[01:757:403:748] [pipeline:THREAD ID (140695030060864):sequential:without debug output:INFO] --- clock: 11: Cycle BEGIN           ---
+[01:757:473:551] [pipeline:THREAD ID (140695030060864):sequential:without debug output:INFO] --- clock: 11: Cycle END             ---
+[01:757:538:244] [pipeline:THREAD ID (140695030060864):sequential:without debug output:INFO] --- clock: 12: Cycle BEGIN           ---
+[01:757:606:998] [pipeline:THREAD ID (140695030060864):sequential:without debug output:INFO] [Stage decode ]: clock: 12: decode BEGIN
+[02:007:802:631] [pipeline:THREAD ID (140695030060864):sequential:without debug output:INFO] [Stage decode ]: clock: 12: decode END: store
+[02:007:922:360] [pipeline:THREAD ID (140695030060864):sequential:without debug output:INFO] --- clock: 12: Cycle END             ---
+[02:007:989:521] [pipeline:THREAD ID (140695030060864):sequential:without debug output:INFO] --- clock: 13: Cycle BEGIN           ---
+[02:008:056:510] [pipeline:THREAD ID (140695030060864):sequential:without debug output:INFO] --- clock: 13: Cycle END             ---
+[02:008:120:418] [pipeline:THREAD ID (140695030060864):sequential:without debug output:INFO] --- clock: 14: Cycle BEGIN           ---
+[02:008:192:831] [pipeline:THREAD ID (140695030060864):sequential:without debug output:INFO] [Stage execute]: clock: 14: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 3
+[02:258:382:645] [pipeline:THREAD ID (140695030060864):sequential:without debug output:INFO] [Stage execute]: clock: 14: executing instruction: store
+[02:258:524:257] [pipeline:THREAD ID (140695030060864):sequential:without debug output:INFO] [Stage execute]: clock: 14: execute END, pipeline memory: [1, 2, 3], ACC: 3
+[02:258:617:183] [pipeline:THREAD ID (140695030060864):sequential:without debug output:INFO] --- clock: 14: Cycle END             ---
+[02:258:724:291] [pipeline:THREAD ID (140695030060864):sequential:without debug output:INFO] --- clock: 15: Cycle BEGIN           ---
+[00:000:159:096] [pipeline:THREAD ID (140695030056704):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 0: fetch BEGIN, PC: 0, p->instruction_memory: [13, 0, 86, 1, 55, 2]
+[00:250:382:068] [pipeline:THREAD ID (140695030056704):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 0: fetch END
+[00:250:604:088] [pipeline:THREAD ID (140694916155136):pipelined:without debug output:INFO] --- clock: 0: Cycle END             ---
+[00:250:682:780] [pipeline:THREAD ID (140694916155136):pipelined:without debug output:INFO] --- clock: 1: Cycle BEGIN           ---
+[00:250:821:888] [pipeline:THREAD ID (140694941333248):pipelined:without debug output:INFO] [Stage decode ]: clock: 1: decode BEGIN
+[00:250:930:613] [pipeline:THREAD ID (140695030056704):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 1: fetch BEGIN, PC: 2, p->instruction_memory: [13, 0, 86, 1, 55, 2]
+[00:501:045:317] [pipeline:THREAD ID (140694941333248):pipelined:without debug output:INFO] [Stage decode ]: clock: 1: decode END: load
+[00:501:179:068] [pipeline:THREAD ID (140695030056704):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 1: fetch END
+[00:501:309:156] [pipeline:THREAD ID (140694916155136):pipelined:without debug output:INFO] --- clock: 1: Cycle END             ---
+[00:501:362:310] [pipeline:THREAD ID (140694916155136):pipelined:without debug output:INFO] --- clock: 2: Cycle BEGIN           ---
+[00:501:448:021] [pipeline:THREAD ID (140694941333248):pipelined:without debug output:INFO] [Stage decode ]: clock: 2: decode BEGIN
+[00:501:564:447] [pipeline:THREAD ID (140694924547840):pipelined:without debug output:INFO] [Stage execute]: clock: 2: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 0
+[00:501:645:160] [pipeline:THREAD ID (140695030056704):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 2: fetch BEGIN, PC: 4, p->instruction_memory: [13, 0, 86, 1, 55, 2]
+[00:751:760:485] [pipeline:THREAD ID (140694924547840):pipelined:without debug output:INFO] [Stage execute]: clock: 2: executing instruction: load
+[00:751:905:441] [pipeline:THREAD ID (140695030056704):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 2: fetch END
+[00:751:987:749] [pipeline:THREAD ID (140694924547840):pipelined:without debug output:INFO] [Stage execute]: clock: 2: execute END, pipeline memory: [1, 2, 0], ACC: 1
+[00:752:072:298] [pipeline:THREAD ID (140694941333248):pipelined:without debug output:INFO] [Stage decode ]: clock: 2: decode END: add
+[00:752:177:866] [pipeline:THREAD ID (140694916155136):pipelined:without debug output:INFO] --- clock: 2: Cycle END             ---
+[00:752:225:330] [pipeline:THREAD ID (140694916155136):pipelined:without debug output:INFO] --- clock: 3: Cycle BEGIN           ---
+[00:752:321:147] [pipeline:THREAD ID (140694941333248):pipelined:without debug output:INFO] [Stage decode ]: clock: 3: decode BEGIN
+[00:752:389:328] [pipeline:THREAD ID (140694924547840):pipelined:without debug output:INFO] [Stage execute]: clock: 3: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 1
+[01:002:560:873] [pipeline:THREAD ID (140694924547840):pipelined:without debug output:INFO] [Stage execute]: clock: 3: executing instruction: add
+[01:002:686:074] [pipeline:THREAD ID (140694924547840):pipelined:without debug output:INFO] [Stage execute]: clock: 3: execute END, pipeline memory: [1, 2, 0], ACC: 3
+[01:002:763:363] [pipeline:THREAD ID (140694941333248):pipelined:without debug output:INFO] [Stage decode ]: clock: 3: decode END: store
+[01:002:882:368] [pipeline:THREAD ID (140694916155136):pipelined:without debug output:INFO] --- clock: 3: Cycle END             ---
+[01:002:942:282] [pipeline:THREAD ID (140694916155136):pipelined:without debug output:INFO] --- clock: 4: Cycle BEGIN           ---
+[01:003:022:226] [pipeline:THREAD ID (140694924547840):pipelined:without debug output:INFO] [Stage execute]: clock: 4: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 3
+[01:253:220:386] [pipeline:THREAD ID (140694924547840):pipelined:without debug output:INFO] [Stage execute]: clock: 4: executing instruction: store
+[01:253:339:302] [pipeline:THREAD ID (140694924547840):pipelined:without debug output:INFO] [Stage execute]: clock: 4: execute END, pipeline memory: [1, 2, 3], ACC: 3
+[01:253:489:924] [pipeline:THREAD ID (140694916155136):pipelined:without debug output:INFO] --- clock: 4: Cycle END             ---
+[01:253:581:488] [pipeline:THREAD ID (140694916155136):pipelined:without debug output:INFO] --- clock: 5: Cycle BEGIN           ---
+[01:253:814:244] [pipeline:THREAD ID (140694916155136):pipelined:without debug output:INFO] --- clock: 5: Cycle END             ---
+[01:253:912:690] [pipeline:THREAD ID (140694916155136):pipelined:without debug output:INFO] --- clock: 6: Cycle BEGIN           ---
+[01:254:098:357] [pipeline:THREAD ID (140694916155136):pipelined:without debug output:INFO] --- clock: 6: Cycle END             ---
+[01:254:216:457] [pipeline:THREAD ID (140694916155136):pipelined:without debug output:INFO] --- clock: 7: Cycle BEGIN           ---
+[01:254:529:583] [pipeline:THREAD ID (140694916155136):pipelined:without debug output:INFO] --- clock: 7: Cycle END             ---
+[01:254:614:197] [pipeline:THREAD ID (140694916155136):pipelined:without debug output:INFO] --- clock: 8: Cycle BEGIN           ---
+[00:000:158:567] [pipeline:THREAD ID (139720744548160):sequential:without debug output:INFO] [Stage fetch  ]: clock: 0: fetch BEGIN, PC: 0, p->instruction_memory: [13, 0, 86, 1, 55, 2]
+[00:250:516:250] [pipeline:THREAD ID (139720744548160):sequential:without debug output:INFO] [Stage fetch  ]: clock: 0: fetch END
+[00:250:806:711] [pipeline:THREAD ID (139720744548160):sequential:without debug output:INFO] --- clock: 0: Cycle END             ---
+[00:250:986:002] [pipeline:THREAD ID (139720744548160):sequential:without debug output:INFO] --- clock: 1: Cycle BEGIN           ---
+[00:251:151:826] [pipeline:THREAD ID (139720744548160):sequential:without debug output:INFO] [Stage decode ]: clock: 1: decode BEGIN
+[00:501:534:302] [pipeline:THREAD ID (139720744548160):sequential:without debug output:INFO] [Stage decode ]: clock: 1: decode END: load
+[00:501:969:486] [pipeline:THREAD ID (139720744548160):sequential:without debug output:INFO] --- clock: 1: Cycle END             ---
+[00:502:324:542] [pipeline:THREAD ID (139720744548160):sequential:without debug output:INFO] --- clock: 2: Cycle BEGIN           ---
+[00:502:815:623] [pipeline:THREAD ID (139720744548160):sequential:without debug output:INFO] [Stage execute]: clock: 2: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 0
+[00:753:313:236] [pipeline:THREAD ID (139720744548160):sequential:without debug output:INFO] [Stage execute]: clock: 2: executing instruction: load
+[00:753:670:685] [pipeline:THREAD ID (139720744548160):sequential:without debug output:INFO] [Stage execute]: clock: 2: execute END, pipeline memory: [1, 2, 0], ACC: 1
+[00:753:953:372] [pipeline:THREAD ID (139720744548160):sequential:without debug output:INFO] --- clock: 2: Cycle END             ---
+[00:754:250:501] [pipeline:THREAD ID (139720744548160):sequential:without debug output:INFO] --- clock: 3: Cycle BEGIN           ---
+[00:754:419:723] [pipeline:THREAD ID (139720744548160):sequential:without debug output:INFO] [Stage fetch  ]: clock: 3: fetch BEGIN, PC: 2, p->instruction_memory: [13, 0, 86, 1, 55, 2]
+[01:004:707:187] [pipeline:THREAD ID (139720744548160):sequential:without debug output:INFO] [Stage fetch  ]: clock: 3: fetch END
+[01:004:913:098] [pipeline:THREAD ID (139720744548160):sequential:without debug output:INFO] --- clock: 3: Cycle END             ---
+[01:005:054:553] [pipeline:THREAD ID (139720744548160):sequential:without debug output:INFO] --- clock: 4: Cycle BEGIN           ---
+[01:005:212:620] [pipeline:THREAD ID (139720744548160):sequential:without debug output:INFO] [Stage decode ]: clock: 4: decode BEGIN
+[01:255:522:525] [pipeline:THREAD ID (139720744548160):sequential:without debug output:INFO] [Stage decode ]: clock: 4: decode END: add
+[01:255:776:026] [pipeline:THREAD ID (139720744548160):sequential:without debug output:INFO] --- clock: 4: Cycle END             ---
+[01:258:717:017] [pipeline:THREAD ID (139720744548160):sequential:without debug output:INFO] --- clock: 5: Cycle BEGIN           ---
+[01:258:934:427] [pipeline:THREAD ID (139720744548160):sequential:without debug output:INFO] [Stage execute]: clock: 5: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 1
+[01:509:290:312] [pipeline:THREAD ID (139720744548160):sequential:without debug output:INFO] [Stage execute]: clock: 5: executing instruction: add
+[01:509:691:697] [pipeline:THREAD ID (139720744548160):sequential:without debug output:INFO] [Stage execute]: clock: 5: execute END, pipeline memory: [1, 2, 0], ACC: 3
+[01:510:089:206] [pipeline:THREAD ID (139720744548160):sequential:without debug output:INFO] --- clock: 5: Cycle END             ---
+[01:510:504:518] [pipeline:THREAD ID (139720744548160):sequential:without debug output:INFO] --- clock: 6: Cycle BEGIN           ---
+[01:510:936:672] [pipeline:THREAD ID (139720744548160):sequential:without debug output:INFO] [Stage fetch  ]: clock: 6: fetch BEGIN, PC: 4, p->instruction_memory: [13, 0, 86, 1, 55, 2]
+[01:761:315:149] [pipeline:THREAD ID (139720744548160):sequential:without debug output:INFO] [Stage fetch  ]: clock: 6: fetch END
+[01:761:685:416] [pipeline:THREAD ID (139720744548160):sequential:without debug output:INFO] --- clock: 6: Cycle END             ---
+[01:762:086:550] [pipeline:THREAD ID (139720744548160):sequential:without debug output:INFO] --- clock: 7: Cycle BEGIN           ---
+[01:762:497:840] [pipeline:THREAD ID (139720744548160):sequential:without debug output:INFO] [Stage decode ]: clock: 7: decode BEGIN
+[02:013:022:077] [pipeline:THREAD ID (139720744548160):sequential:without debug output:INFO] [Stage decode ]: clock: 7: decode END: store
+[02:013:395:685] [pipeline:THREAD ID (139720744548160):sequential:without debug output:INFO] --- clock: 7: Cycle END             ---
+[02:013:776:998] [pipeline:THREAD ID (139720744548160):sequential:without debug output:INFO] --- clock: 8: Cycle BEGIN           ---
+[02:014:220:421] [pipeline:THREAD ID (139720744548160):sequential:without debug output:INFO] [Stage execute]: clock: 8: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 3
+[02:264:691:015] [pipeline:THREAD ID (139720744548160):sequential:without debug output:INFO] [Stage execute]: clock: 8: executing instruction: store
+[02:265:100:029] [pipeline:THREAD ID (139720744548160):sequential:without debug output:INFO] [Stage execute]: clock: 8: execute END, pipeline memory: [1, 2, 3], ACC: 3
+[02:265:491:926] [pipeline:THREAD ID (139720744548160):sequential:without debug output:INFO] --- clock: 8: Cycle END             ---
+[02:265:891:510] [pipeline:THREAD ID (139720744548160):sequential:without debug output:INFO] --- clock: 9: Cycle BEGIN           ---
+[00:000:338:870] [pipeline:THREAD ID (139720744544000):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 0: fetch BEGIN, PC: 0, p->instruction_memory: [13, 0, 86, 1, 55, 2]
+[00:250:738:498] [pipeline:THREAD ID (139720744544000):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 0: fetch END
+[00:251:538:271] [pipeline:THREAD ID (139720702580480):pipelined:without debug output:INFO] --- clock: 0: Cycle END             ---
+[00:251:858:195] [pipeline:THREAD ID (139720702580480):pipelined:without debug output:INFO] --- clock: 1: Cycle BEGIN           ---
+[00:252:123:309] [pipeline:THREAD ID (139720727758592):pipelined:without debug output:INFO] [Stage decode ]: clock: 1: decode BEGIN
+[00:252:343:234] [pipeline:THREAD ID (139720744544000):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 1: fetch BEGIN, PC: 2, p->instruction_memory: [13, 0, 86, 1, 55, 2]
+[00:502:440:963] [pipeline:THREAD ID (139720727758592):pipelined:without debug output:INFO] [Stage decode ]: clock: 1: decode END: load
+[00:502:702:844] [pipeline:THREAD ID (139720744544000):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 1: fetch END
+[00:503:107:679] [pipeline:THREAD ID (139720702580480):pipelined:without debug output:INFO] --- clock: 1: Cycle END             ---
+[00:503:275:688] [pipeline:THREAD ID (139720702580480):pipelined:without debug output:INFO] --- clock: 2: Cycle BEGIN           ---
+[00:503:466:975] [pipeline:THREAD ID (139720727758592):pipelined:without debug output:INFO] [Stage decode ]: clock: 2: decode BEGIN
+[00:503:648:899] [pipeline:THREAD ID (139720744544000):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 2: fetch BEGIN, PC: 4, p->instruction_memory: [13, 0, 86, 1, 55, 2]
+[00:503:887:199] [pipeline:THREAD ID (139720710973184):pipelined:without debug output:INFO] [Stage execute]: clock: 2: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 0
+[00:754:221:463] [pipeline:THREAD ID (139720710973184):pipelined:without debug output:INFO] [Stage execute]: clock: 2: executing instruction: load
+[00:754:463:799] [pipeline:THREAD ID (139720744544000):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 2: fetch END
+[00:754:719:439] [pipeline:THREAD ID (139720710973184):pipelined:without debug output:INFO] [Stage execute]: clock: 2: execute END, pipeline memory: [1, 2, 0], ACC: 1
+[00:754:933:307] [pipeline:THREAD ID (139720727758592):pipelined:without debug output:INFO] [Stage decode ]: clock: 2: decode END: add
+[00:755:215:417] [pipeline:THREAD ID (139720702580480):pipelined:without debug output:INFO] --- clock: 2: Cycle END             ---
+[00:755:398:826] [pipeline:THREAD ID (139720702580480):pipelined:without debug output:INFO] --- clock: 3: Cycle BEGIN           ---
+[00:755:650:714] [pipeline:THREAD ID (139720727758592):pipelined:without debug output:INFO] [Stage decode ]: clock: 3: decode BEGIN
+[00:755:836:152] [pipeline:THREAD ID (139720710973184):pipelined:without debug output:INFO] [Stage execute]: clock: 3: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 1
+[01:006:172:311] [pipeline:THREAD ID (139720710973184):pipelined:without debug output:INFO] [Stage execute]: clock: 3: executing instruction: add
+[01:006:691:518] [pipeline:THREAD ID (139720710973184):pipelined:without debug output:INFO] [Stage execute]: clock: 3: execute END, pipeline memory: [1, 2, 0], ACC: 3
+[01:007:121:693] [pipeline:THREAD ID (139720727758592):pipelined:without debug output:INFO] [Stage decode ]: clock: 3: decode END: store
+[01:007:479:667] [pipeline:THREAD ID (139720702580480):pipelined:without debug output:INFO] --- clock: 3: Cycle END             ---
+[01:007:631:422] [pipeline:THREAD ID (139720702580480):pipelined:without debug output:INFO] --- clock: 4: Cycle BEGIN           ---
+[01:007:975:183] [pipeline:THREAD ID (139720710973184):pipelined:without debug output:INFO] [Stage execute]: clock: 4: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 3
+[01:258:330:101] [pipeline:THREAD ID (139720710973184):pipelined:without debug output:INFO] [Stage execute]: clock: 4: executing instruction: store
+[01:258:732:167] [pipeline:THREAD ID (139720710973184):pipelined:without debug output:INFO] [Stage execute]: clock: 4: execute END, pipeline memory: [1, 2, 3], ACC: 3
+[01:259:378:196] [pipeline:THREAD ID (139720702580480):pipelined:without debug output:INFO] --- clock: 4: Cycle END             ---
+[01:259:592:552] [pipeline:THREAD ID (139720702580480):pipelined:without debug output:INFO] --- clock: 5: Cycle BEGIN           ---
+[01:260:002:366] [pipeline:THREAD ID (139720702580480):pipelined:without debug output:INFO] --- clock: 5: Cycle END             ---
+[01:260:163:669] [pipeline:THREAD ID (139720702580480):pipelined:without debug output:INFO] --- clock: 6: Cycle BEGIN           ---
+[01:260:402:922] [pipeline:THREAD ID (139720702580480):pipelined:without debug output:INFO] --- clock: 6: Cycle END             ---
+[01:260:535:374] [pipeline:THREAD ID (139720702580480):pipelined:without debug output:INFO] --- clock: 7: Cycle BEGIN           ---
+[01:260:827:278] [pipeline:THREAD ID (139720702580480):pipelined:without debug output:INFO] --- clock: 7: Cycle END             ---
+[01:260:968:490] [pipeline:THREAD ID (139720702580480):pipelined:without debug output:INFO] --- clock: 8: Cycle BEGIN           ---
+[00:000:297:482] [pipeline:THREAD ID (140204855465792):sequential:without debug output:INFO] [Stage fetch  ]: clock: 0: fetch BEGIN, PC: 0, p->instruction_memory: [13, 0, 86, 1, 55, 2]
+[00:000:543:616] [pipeline:THREAD ID (140204855465792):sequential:without debug output:INFO] [Stage fetch  ]: clock: 0: fetch END
+[00:000:636:497] [pipeline:THREAD ID (140204855465792):sequential:without debug output:INFO] --- clock: 0: Cycle END             ---
+[00:000:717:121] [pipeline:THREAD ID (140204855465792):sequential:without debug output:INFO] --- clock: 1: Cycle BEGIN           ---
+[00:000:802:269] [pipeline:THREAD ID (140204855465792):sequential:without debug output:INFO] [Stage decode ]: clock: 1: decode BEGIN
+[00:000:898:728] [pipeline:THREAD ID (140204855465792):sequential:without debug output:INFO] [Stage decode ]: clock: 1: decode END: load
+[00:000:975:979] [pipeline:THREAD ID (140204855465792):sequential:without debug output:INFO] --- clock: 1: Cycle END             ---
+[00:001:071:364] [pipeline:THREAD ID (140204855465792):sequential:without debug output:INFO] --- clock: 2: Cycle BEGIN           ---
+[00:001:157:842] [pipeline:THREAD ID (140204855465792):sequential:without debug output:INFO] [Stage execute]: clock: 2: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 0
+[00:001:238:736] [pipeline:THREAD ID (140204855465792):sequential:without debug output:INFO] [Stage execute]: clock: 2: executing instruction: load
+[00:001:344:299] [pipeline:THREAD ID (140204855465792):sequential:without debug output:INFO] [Stage execute]: clock: 2: execute END, pipeline memory: [1, 2, 0], ACC: 1
+[00:001:419:975] [pipeline:THREAD ID (140204855465792):sequential:without debug output:INFO] --- clock: 2: Cycle END             ---
+[00:001:496:881] [pipeline:THREAD ID (140204855465792):sequential:without debug output:INFO] --- clock: 3: Cycle BEGIN           ---
+[00:001:582:328] [pipeline:THREAD ID (140204855465792):sequential:without debug output:INFO] [Stage fetch  ]: clock: 3: fetch BEGIN, PC: 2, p->instruction_memory: [13, 0, 86, 1, 55, 2]
+[00:001:670:201] [pipeline:THREAD ID (140204855465792):sequential:without debug output:INFO] [Stage fetch  ]: clock: 3: fetch END
+[00:001:748:087] [pipeline:THREAD ID (140204855465792):sequential:without debug output:INFO] --- clock: 3: Cycle END             ---
+[00:001:822:578] [pipeline:THREAD ID (140204855465792):sequential:without debug output:INFO] --- clock: 4: Cycle BEGIN           ---
+[00:001:905:032] [pipeline:THREAD ID (140204855465792):sequential:without debug output:INFO] [Stage decode ]: clock: 4: decode BEGIN
+[00:001:988:678] [pipeline:THREAD ID (140204855465792):sequential:without debug output:INFO] [Stage decode ]: clock: 4: decode END: add
+[00:002:066:014] [pipeline:THREAD ID (140204855465792):sequential:without debug output:INFO] --- clock: 4: Cycle END             ---
+[00:002:141:046] [pipeline:THREAD ID (140204855465792):sequential:without debug output:INFO] --- clock: 5: Cycle BEGIN           ---
+[00:002:227:100] [pipeline:THREAD ID (140204855465792):sequential:without debug output:INFO] [Stage execute]: clock: 5: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 1
+[00:002:310:167] [pipeline:THREAD ID (140204855465792):sequential:without debug output:INFO] [Stage execute]: clock: 5: executing instruction: add
+[00:002:389:726] [pipeline:THREAD ID (140204855465792):sequential:without debug output:INFO] [Stage execute]: clock: 5: execute END, pipeline memory: [1, 2, 0], ACC: 3
+[00:002:463:534] [pipeline:THREAD ID (140204855465792):sequential:without debug output:INFO] --- clock: 5: Cycle END             ---
+[00:002:535:950] [pipeline:THREAD ID (140204855465792):sequential:without debug output:INFO] --- clock: 6: Cycle BEGIN           ---
+[00:002:616:927] [pipeline:THREAD ID (140204855465792):sequential:without debug output:INFO] [Stage fetch  ]: clock: 6: fetch BEGIN, PC: 4, p->instruction_memory: [13, 0, 86, 1, 55, 2]
+[00:002:694:087] [pipeline:THREAD ID (140204855465792):sequential:without debug output:INFO] [Stage fetch  ]: clock: 6: fetch END
+[00:002:766:738] [pipeline:THREAD ID (140204855465792):sequential:without debug output:INFO] --- clock: 6: Cycle END             ---
+[00:002:845:920] [pipeline:THREAD ID (140204855465792):sequential:without debug output:INFO] --- clock: 7: Cycle BEGIN           ---
+[00:002:924:837] [pipeline:THREAD ID (140204855465792):sequential:without debug output:INFO] [Stage decode ]: clock: 7: decode BEGIN
+[00:003:003:757] [pipeline:THREAD ID (140204855465792):sequential:without debug output:INFO] [Stage decode ]: clock: 7: decode END: store
+[00:003:080:814] [pipeline:THREAD ID (140204855465792):sequential:without debug output:INFO] --- clock: 7: Cycle END             ---
+[00:003:153:329] [pipeline:THREAD ID (140204855465792):sequential:without debug output:INFO] --- clock: 8: Cycle BEGIN           ---
+[00:003:235:771] [pipeline:THREAD ID (140204855465792):sequential:without debug output:INFO] [Stage execute]: clock: 8: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 3
+[00:003:317:642] [pipeline:THREAD ID (140204855465792):sequential:without debug output:INFO] [Stage execute]: clock: 8: executing instruction: store
+[00:003:410:239] [pipeline:THREAD ID (140204855465792):sequential:without debug output:INFO] [Stage execute]: clock: 8: execute END, pipeline memory: [1, 2, 3], ACC: 3
+[00:003:488:663] [pipeline:THREAD ID (140204855465792):sequential:without debug output:INFO] --- clock: 8: Cycle END             ---
+[00:003:568:944] [pipeline:THREAD ID (140204855465792):sequential:without debug output:INFO] --- clock: 9: Cycle BEGIN           ---
+[00:000:198:917] [pipeline:THREAD ID (140204855461632):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 0: fetch BEGIN, PC: 0, p->instruction_memory: [13, 0, 86, 1, 55, 2]
+[00:000:309:968] [pipeline:THREAD ID (140204855461632):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 0: fetch END
+[00:000:543:769] [pipeline:THREAD ID (140204821890816):pipelined:without debug output:INFO] --- clock: 0: Cycle END             ---
+[00:000:619:866] [pipeline:THREAD ID (140204821890816):pipelined:without debug output:INFO] --- clock: 1: Cycle BEGIN           ---
+[00:000:744:472] [pipeline:THREAD ID (140204704458496):pipelined:without debug output:INFO] [Stage decode ]: clock: 1: decode BEGIN
+[00:000:844:729] [pipeline:THREAD ID (140204855461632):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 1: fetch BEGIN, PC: 2, p->instruction_memory: [13, 0, 86, 1, 55, 2]
+[00:000:918:512] [pipeline:THREAD ID (140204704458496):pipelined:without debug output:INFO] [Stage decode ]: clock: 1: decode END: load
+[00:000:990:613] [pipeline:THREAD ID (140204855461632):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 1: fetch END
+[00:001:137:846] [pipeline:THREAD ID (140204821890816):pipelined:without debug output:INFO] --- clock: 1: Cycle END             ---
+[00:001:202:414] [pipeline:THREAD ID (140204821890816):pipelined:without debug output:INFO] --- clock: 2: Cycle BEGIN           ---
+[00:001:296:117] [pipeline:THREAD ID (140204855461632):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 2: fetch BEGIN, PC: 4, p->instruction_memory: [13, 0, 86, 1, 55, 2]
+[00:001:394:156] [pipeline:THREAD ID (140204830283520):pipelined:without debug output:INFO] [Stage execute]: clock: 2: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 0
+[00:001:465:798] [pipeline:THREAD ID (140204704458496):pipelined:without debug output:INFO] [Stage decode ]: clock: 2: decode BEGIN
+[00:001:536:788] [pipeline:THREAD ID (140204830283520):pipelined:without debug output:INFO] [Stage execute]: clock: 2: executing instruction: load
+[00:001:610:281] [pipeline:THREAD ID (140204855461632):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 2: fetch END
+[00:001:691:556] [pipeline:THREAD ID (140204830283520):pipelined:without debug output:INFO] [Stage execute]: clock: 2: execute END, pipeline memory: [1, 2, 0], ACC: 1
+[00:001:770:841] [pipeline:THREAD ID (140204704458496):pipelined:without debug output:INFO] [Stage decode ]: clock: 2: decode END: add
+[00:001:917:334] [pipeline:THREAD ID (140204821890816):pipelined:without debug output:INFO] --- clock: 2: Cycle END             ---
+[00:001:982:075] [pipeline:THREAD ID (140204821890816):pipelined:without debug output:INFO] --- clock: 3: Cycle BEGIN           ---
+[00:002:073:187] [pipeline:THREAD ID (140204704458496):pipelined:without debug output:INFO] [Stage decode ]: clock: 3: decode BEGIN
+[00:002:150:328] [pipeline:THREAD ID (140204830283520):pipelined:without debug output:INFO] [Stage execute]: clock: 3: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 1
+[00:002:237:443] [pipeline:THREAD ID (140204830283520):pipelined:without debug output:INFO] [Stage execute]: clock: 3: executing instruction: add
+[00:002:320:337] [pipeline:THREAD ID (140204830283520):pipelined:without debug output:INFO] [Stage execute]: clock: 3: execute END, pipeline memory: [1, 2, 0], ACC: 3
+[00:002:398:555] [pipeline:THREAD ID (140204704458496):pipelined:without debug output:INFO] [Stage decode ]: clock: 3: decode END: store
+[00:002:549:961] [pipeline:THREAD ID (140204821890816):pipelined:without debug output:INFO] --- clock: 3: Cycle END             ---
+[00:002:624:437] [pipeline:THREAD ID (140204821890816):pipelined:without debug output:INFO] --- clock: 4: Cycle BEGIN           ---
+[00:002:720:169] [pipeline:THREAD ID (140204830283520):pipelined:without debug output:INFO] [Stage execute]: clock: 4: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 3
+[00:002:788:703] [pipeline:THREAD ID (140204830283520):pipelined:without debug output:INFO] [Stage execute]: clock: 4: executing instruction: store
+[00:002:854:980] [pipeline:THREAD ID (140204830283520):pipelined:without debug output:INFO] [Stage execute]: clock: 4: execute END, pipeline memory: [1, 2, 3], ACC: 3
+[00:002:995:297] [pipeline:THREAD ID (140204821890816):pipelined:without debug output:INFO] --- clock: 4: Cycle END             ---
+[00:003:080:682] [pipeline:THREAD ID (140204821890816):pipelined:without debug output:INFO] --- clock: 5: Cycle BEGIN           ---
+[00:003:294:263] [pipeline:THREAD ID (140204821890816):pipelined:without debug output:INFO] --- clock: 5: Cycle END             ---
+[00:003:396:541] [pipeline:THREAD ID (140204821890816):pipelined:without debug output:INFO] --- clock: 6: Cycle BEGIN           ---
+[00:003:593:012] [pipeline:THREAD ID (140204821890816):pipelined:without debug output:INFO] --- clock: 6: Cycle END             ---
+[00:003:644:317] [pipeline:THREAD ID (140204821890816):pipelined:without debug output:INFO] --- clock: 7: Cycle BEGIN           ---
+[00:003:744:634] [pipeline:THREAD ID (140204821890816):pipelined:without debug output:INFO] --- clock: 7: Cycle END             ---
+[00:003:793:418] [pipeline:THREAD ID (140204821890816):pipelined:without debug output:INFO] --- clock: 8: Cycle BEGIN           ---
+[00:000:135:289] [pipeline:THREAD ID (140555500136256):sequential:without debug output:INFO] [Stage fetch  ]: clock: 0: fetch BEGIN, PC: 0, p->instruction_memory: [13, 0, 86, 1, 55, 2]
+[00:000:259:896] [pipeline:THREAD ID (140555500136256):sequential:without debug output:INFO] [Stage fetch  ]: clock: 0: fetch END
+[00:000:311:539] [pipeline:THREAD ID (140555500136256):sequential:without debug output:INFO] --- clock: 0: Cycle END             ---
+[00:000:364:240] [pipeline:THREAD ID (140555500136256):sequential:without debug output:INFO] --- clock: 1: Cycle BEGIN           ---
+[00:000:410:553] [pipeline:THREAD ID (140555500136256):sequential:without debug output:INFO] [Stage decode ]: clock: 1: decode BEGIN
+[00:000:460:513] [pipeline:THREAD ID (140555500136256):sequential:without debug output:INFO] [Stage decode ]: clock: 1: decode END: load
+[00:000:505:153] [pipeline:THREAD ID (140555500136256):sequential:without debug output:INFO] --- clock: 1: Cycle END             ---
+[00:000:549:952] [pipeline:THREAD ID (140555500136256):sequential:without debug output:INFO] --- clock: 2: Cycle BEGIN           ---
+[00:000:601:462] [pipeline:THREAD ID (140555500136256):sequential:without debug output:INFO] [Stage execute]: clock: 2: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 0
+[00:000:649:591] [pipeline:THREAD ID (140555500136256):sequential:without debug output:INFO] [Stage execute]: clock: 2: executing instruction: load
+[00:000:698:142] [pipeline:THREAD ID (140555500136256):sequential:without debug output:INFO] [Stage execute]: clock: 2: execute END, pipeline memory: [1, 2, 0], ACC: 1
+[00:000:743:792] [pipeline:THREAD ID (140555500136256):sequential:without debug output:INFO] --- clock: 2: Cycle END             ---
+[00:000:789:037] [pipeline:THREAD ID (140555500136256):sequential:without debug output:INFO] --- clock: 3: Cycle BEGIN           ---
+[00:000:837:346] [pipeline:THREAD ID (140555500136256):sequential:without debug output:INFO] [Stage fetch  ]: clock: 3: fetch BEGIN, PC: 2, p->instruction_memory: [13, 0, 86, 1, 55, 2]
+[00:000:884:544] [pipeline:THREAD ID (140555500136256):sequential:without debug output:INFO] [Stage fetch  ]: clock: 3: fetch END
+[00:000:929:317] [pipeline:THREAD ID (140555500136256):sequential:without debug output:INFO] --- clock: 3: Cycle END             ---
+[00:000:973:400] [pipeline:THREAD ID (140555500136256):sequential:without debug output:INFO] --- clock: 4: Cycle BEGIN           ---
+[00:001:031:824] [pipeline:THREAD ID (140555500136256):sequential:without debug output:INFO] [Stage decode ]: clock: 4: decode BEGIN
+[00:001:080:305] [pipeline:THREAD ID (140555500136256):sequential:without debug output:INFO] [Stage decode ]: clock: 4: decode END: add
+[00:001:125:870] [pipeline:THREAD ID (140555500136256):sequential:without debug output:INFO] --- clock: 4: Cycle END             ---
+[00:001:170:211] [pipeline:THREAD ID (140555500136256):sequential:without debug output:INFO] --- clock: 5: Cycle BEGIN           ---
+[00:001:220:425] [pipeline:THREAD ID (140555500136256):sequential:without debug output:INFO] [Stage execute]: clock: 5: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 1
+[00:001:267:173] [pipeline:THREAD ID (140555500136256):sequential:without debug output:INFO] [Stage execute]: clock: 5: executing instruction: add
+[00:001:315:079] [pipeline:THREAD ID (140555500136256):sequential:without debug output:INFO] [Stage execute]: clock: 5: execute END, pipeline memory: [1, 2, 0], ACC: 3
+[00:001:360:303] [pipeline:THREAD ID (140555500136256):sequential:without debug output:INFO] --- clock: 5: Cycle END             ---
+[00:001:404:506] [pipeline:THREAD ID (140555500136256):sequential:without debug output:INFO] --- clock: 6: Cycle BEGIN           ---
+[00:001:452:119] [pipeline:THREAD ID (140555500136256):sequential:without debug output:INFO] [Stage fetch  ]: clock: 6: fetch BEGIN, PC: 4, p->instruction_memory: [13, 0, 86, 1, 55, 2]
+[00:001:498:852] [pipeline:THREAD ID (140555500136256):sequential:without debug output:INFO] [Stage fetch  ]: clock: 6: fetch END
+[00:001:543:512] [pipeline:THREAD ID (140555500136256):sequential:without debug output:INFO] --- clock: 6: Cycle END             ---
+[00:001:587:467] [pipeline:THREAD ID (140555500136256):sequential:without debug output:INFO] --- clock: 7: Cycle BEGIN           ---
+[00:001:634:946] [pipeline:THREAD ID (140555500136256):sequential:without debug output:INFO] [Stage decode ]: clock: 7: decode BEGIN
+[00:001:682:766] [pipeline:THREAD ID (140555500136256):sequential:without debug output:INFO] [Stage decode ]: clock: 7: decode END: store
+[00:001:728:212] [pipeline:THREAD ID (140555500136256):sequential:without debug output:INFO] --- clock: 7: Cycle END             ---
+[00:001:772:426] [pipeline:THREAD ID (140555500136256):sequential:without debug output:INFO] --- clock: 8: Cycle BEGIN           ---
+[00:001:821:935] [pipeline:THREAD ID (140555500136256):sequential:without debug output:INFO] [Stage execute]: clock: 8: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 3
+[00:001:868:691] [pipeline:THREAD ID (140555500136256):sequential:without debug output:INFO] [Stage execute]: clock: 8: executing instruction: store
+[00:001:916:675] [pipeline:THREAD ID (140555500136256):sequential:without debug output:INFO] [Stage execute]: clock: 8: execute END, pipeline memory: [1, 2, 3], ACC: 3
+[00:001:976:183] [pipeline:THREAD ID (140555500136256):sequential:without debug output:INFO] --- clock: 8: Cycle END             ---
+[00:002:022:938] [pipeline:THREAD ID (140555500136256):sequential:without debug output:INFO] --- clock: 9: Cycle BEGIN           ---
+[00:000:142:754] [pipeline:THREAD ID (140555500132096):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 0: fetch BEGIN, PC: 0, p->instruction_memory: [13, 0, 86, 1, 55, 2]
+[00:000:234:136] [pipeline:THREAD ID (140555500132096):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 0: fetch END
+[00:000:359:795] [pipeline:THREAD ID (140555458168576):pipelined:without debug output:INFO] --- clock: 0: Cycle END             ---
+[00:000:418:248] [pipeline:THREAD ID (140555458168576):pipelined:without debug output:INFO] --- clock: 1: Cycle BEGIN           ---
+[00:000:518:680] [pipeline:THREAD ID (140555483346688):pipelined:without debug output:INFO] [Stage decode ]: clock: 1: decode BEGIN
+[00:000:586:030] [pipeline:THREAD ID (140555500132096):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 1: fetch BEGIN, PC: 2, p->instruction_memory: [13, 0, 86, 1, 55, 2]
+[00:000:653:590] [pipeline:THREAD ID (140555483346688):pipelined:without debug output:INFO] [Stage decode ]: clock: 1: decode END: load
+[00:000:716:806] [pipeline:THREAD ID (140555500132096):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 1: fetch END
+[00:000:959:895] [pipeline:THREAD ID (140555458168576):pipelined:without debug output:INFO] --- clock: 1: Cycle END             ---
+[00:001:053:819] [pipeline:THREAD ID (140555458168576):pipelined:without debug output:INFO] --- clock: 2: Cycle BEGIN           ---
+[00:011:123:288] [pipeline:THREAD ID (140555500132096):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 2: fetch BEGIN, PC: 4, p->instruction_memory: [13, 0, 86, 1, 55, 2]
+[00:011:322:233] [pipeline:THREAD ID (140555466561280):pipelined:without debug output:INFO] [Stage execute]: clock: 2: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 0
+[00:011:433:371] [pipeline:THREAD ID (140555483346688):pipelined:without debug output:INFO] [Stage decode ]: clock: 2: decode BEGIN
+[00:011:521:376] [pipeline:THREAD ID (140555466561280):pipelined:without debug output:INFO] [Stage execute]: clock: 2: executing instruction: load
+[00:011:605:405] [pipeline:THREAD ID (140555500132096):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 2: fetch END
+[00:011:677:499] [pipeline:THREAD ID (140555466561280):pipelined:without debug output:INFO] [Stage execute]: clock: 2: execute END, pipeline memory: [1, 2, 0], ACC: 1
+[00:011:782:308] [pipeline:THREAD ID (140555483346688):pipelined:without debug output:INFO] [Stage decode ]: clock: 2: decode END: add
+[00:011:914:357] [pipeline:THREAD ID (140555458168576):pipelined:without debug output:INFO] --- clock: 2: Cycle END             ---
+[00:011:984:526] [pipeline:THREAD ID (140555458168576):pipelined:without debug output:INFO] --- clock: 3: Cycle BEGIN           ---
+[00:016:393:444] [pipeline:THREAD ID (140555466561280):pipelined:without debug output:INFO] [Stage execute]: clock: 3: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 1
+[00:016:524:934] [pipeline:THREAD ID (140555466561280):pipelined:without debug output:INFO] [Stage execute]: clock: 3: executing instruction: add
+[00:016:628:083] [pipeline:THREAD ID (140555466561280):pipelined:without debug output:INFO] [Stage execute]: clock: 3: execute END, pipeline memory: [1, 2, 0], ACC: 3
+[00:016:727:554] [pipeline:THREAD ID (140555483346688):pipelined:without debug output:INFO] [Stage decode ]: clock: 3: decode BEGIN
+[00:016:815:792] [pipeline:THREAD ID (140555483346688):pipelined:without debug output:INFO] [Stage decode ]: clock: 3: decode END: store
+[00:016:957:807] [pipeline:THREAD ID (140555458168576):pipelined:without debug output:INFO] --- clock: 3: Cycle END             ---
+[00:017:054:520] [pipeline:THREAD ID (140555458168576):pipelined:without debug output:INFO] --- clock: 4: Cycle BEGIN           ---
+[00:017:178:099] [pipeline:THREAD ID (140555466561280):pipelined:without debug output:INFO] [Stage execute]: clock: 4: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 3
+[00:017:256:425] [pipeline:THREAD ID (140555466561280):pipelined:without debug output:INFO] [Stage execute]: clock: 4: executing instruction: store
+[00:017:335:701] [pipeline:THREAD ID (140555466561280):pipelined:without debug output:INFO] [Stage execute]: clock: 4: execute END, pipeline memory: [1, 2, 3], ACC: 3
+[00:017:466:774] [pipeline:THREAD ID (140555458168576):pipelined:without debug output:INFO] --- clock: 4: Cycle END             ---
+[00:017:540:902] [pipeline:THREAD ID (140555458168576):pipelined:without debug output:INFO] --- clock: 5: Cycle BEGIN           ---
+[00:017:717:623] [pipeline:THREAD ID (140555458168576):pipelined:without debug output:INFO] --- clock: 5: Cycle END             ---
+[00:017:784:218] [pipeline:THREAD ID (140555458168576):pipelined:without debug output:INFO] --- clock: 6: Cycle BEGIN           ---
+[00:017:917:364] [pipeline:THREAD ID (140555458168576):pipelined:without debug output:INFO] --- clock: 6: Cycle END             ---
+[00:018:012:824] [pipeline:THREAD ID (140555458168576):pipelined:without debug output:INFO] --- clock: 7: Cycle BEGIN           ---
+[00:000:184:395] [pipeline:THREAD ID (139812258645824):sequential:without debug output:INFO] [Stage fetch  ]: clock: 0: fetch BEGIN, PC: 0, p->instruction_memory: [13, 0]
+[00:000:943:701] [pipeline:THREAD ID (139812258645824):sequential:without debug output:INFO] [Stage fetch  ]: clock: 0: fetch END
+[00:001:020:413] [pipeline:THREAD ID (139812258645824):sequential:without debug output:INFO] --- clock: 0: Cycle END             ---
+[00:001:080:670] [pipeline:THREAD ID (139812258645824):sequential:without debug output:INFO] --- clock: 1: Cycle BEGIN           ---
+[00:001:145:363] [pipeline:THREAD ID (139812258645824):sequential:without debug output:INFO] [Stage decode ]: clock: 1: decode BEGIN
+[00:001:206:486] [pipeline:THREAD ID (139812258645824):sequential:without debug output:INFO] [Stage decode ]: clock: 1: decode END: load
+[00:001:285:360] [pipeline:THREAD ID (139812258645824):sequential:without debug output:INFO] --- clock: 1: Cycle END             ---
+[00:001:361:493] [pipeline:THREAD ID (139812258645824):sequential:without debug output:INFO] --- clock: 2: Cycle BEGIN           ---
+[00:001:435:251] [pipeline:THREAD ID (139812258645824):sequential:without debug output:INFO] [Stage execute]: clock: 2: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 0
+[00:001:507:182] [pipeline:THREAD ID (139812258645824):sequential:without debug output:INFO] [Stage execute]: clock: 2: executing instruction: load
+[00:001:577:624] [pipeline:THREAD ID (139812258645824):sequential:without debug output:INFO] [Stage execute]: clock: 2: execute END, pipeline memory: [1, 2, 0], ACC: 1
+[00:001:638:241] [pipeline:THREAD ID (139812258645824):sequential:without debug output:INFO] --- clock: 2: Cycle END             ---
+[00:001:694:725] [pipeline:THREAD ID (139812258645824):sequential:without debug output:INFO] --- clock: 3: Cycle BEGIN           ---
+2020-09-11 15:11:52,190 FATAL [default] Check failed: [pipeline.data_memory[2] == 3] 
+2020-09-11 15:11:52,190 WARNING [default] Aborting application. Reason: Fatal log at [/home/smallville7123/AndroidCompositor/app/src/main/jni/GLIS/dependancies/pipeline/src/pipeline/pipeline_v3.cpp:1294]
+[00:000:209:675] [pipeline:THREAD ID (140319753316160):sequential:without debug output:INFO] [Stage fetch  ]: clock: 0: fetch BEGIN, PC: 0, p->instruction_memory: [13, 0]
+[00:000:377:709] [pipeline:THREAD ID (140319753316160):sequential:without debug output:INFO] [Stage fetch  ]: clock: 0: fetch END
+[00:000:461:476] [pipeline:THREAD ID (140319753316160):sequential:without debug output:INFO] --- clock: 0: Cycle END             ---
+[00:000:535:618] [pipeline:THREAD ID (140319753316160):sequential:without debug output:INFO] --- clock: 1: Cycle BEGIN           ---
+[00:000:621:774] [pipeline:THREAD ID (140319753316160):sequential:without debug output:INFO] [Stage decode ]: clock: 1: decode BEGIN
+[00:000:697:572] [pipeline:THREAD ID (140319753316160):sequential:without debug output:INFO] [Stage decode ]: clock: 1: decode END: load
+[00:000:771:927] [pipeline:THREAD ID (140319753316160):sequential:without debug output:INFO] --- clock: 1: Cycle END             ---
+[00:000:843:655] [pipeline:THREAD ID (140319753316160):sequential:without debug output:INFO] --- clock: 2: Cycle BEGIN           ---
+[00:000:926:246] [pipeline:THREAD ID (140319753316160):sequential:without debug output:INFO] [Stage execute]: clock: 2: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 0
+[00:001:002:171] [pipeline:THREAD ID (140319753316160):sequential:without debug output:INFO] [Stage execute]: clock: 2: executing instruction: load
+[00:001:081:984] [pipeline:THREAD ID (140319753316160):sequential:without debug output:INFO] [Stage execute]: clock: 2: execute END, pipeline memory: [1, 2, 0], ACC: 1
+[00:001:153:112] [pipeline:THREAD ID (140319753316160):sequential:without debug output:INFO] --- clock: 2: Cycle END             ---
+[00:001:228:948] [pipeline:THREAD ID (140319753316160):sequential:without debug output:INFO] --- clock: 3: Cycle BEGIN           ---
+[00:000:146:057] [pipeline:THREAD ID (140319753312000):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 0: fetch BEGIN, PC: 0, p->instruction_memory: [13, 0]
+[00:000:270:209] [pipeline:THREAD ID (140319753312000):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 0: fetch END
+[00:000:417:233] [pipeline:THREAD ID (140319643387648):pipelined:without debug output:INFO] --- clock: 0: Cycle END             ---
+[00:000:484:526] [pipeline:THREAD ID (140319643387648):pipelined:without debug output:INFO] --- clock: 1: Cycle BEGIN           ---
+[00:000:593:089] [pipeline:THREAD ID (140319668565760):pipelined:without debug output:INFO] [Stage decode ]: clock: 1: decode BEGIN
+[00:000:653:361] [pipeline:THREAD ID (140319668565760):pipelined:without debug output:INFO] [Stage decode ]: clock: 1: decode END: load
+[00:000:758:144] [pipeline:THREAD ID (140319643387648):pipelined:without debug output:INFO] --- clock: 1: Cycle END             ---
+[00:000:813:470] [pipeline:THREAD ID (140319643387648):pipelined:without debug output:INFO] --- clock: 2: Cycle BEGIN           ---
+[00:000:915:361] [pipeline:THREAD ID (140319651780352):pipelined:without debug output:INFO] [Stage execute]: clock: 2: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 0
+[00:000:970:223] [pipeline:THREAD ID (140319651780352):pipelined:without debug output:INFO] [Stage execute]: clock: 2: executing instruction: load
+[00:001:025:344] [pipeline:THREAD ID (140319651780352):pipelined:without debug output:INFO] [Stage execute]: clock: 2: execute END, pipeline memory: [1, 2, 0], ACC: 1
+[00:001:153:174] [pipeline:THREAD ID (140319643387648):pipelined:without debug output:INFO] --- clock: 2: Cycle END             ---
+[00:001:211:528] [pipeline:THREAD ID (140319643387648):pipelined:without debug output:INFO] --- clock: 3: Cycle BEGIN           ---
+[00:001:340:072] [pipeline:THREAD ID (140319643387648):pipelined:without debug output:INFO] --- clock: 3: Cycle END             ---
+[00:001:387:419] [pipeline:THREAD ID (140319643387648):pipelined:without debug output:INFO] --- clock: 4: Cycle BEGIN           ---
+[00:001:526:271] [pipeline:THREAD ID (140319643387648):pipelined:without debug output:INFO] --- clock: 4: Cycle END             ---
+[00:001:587:828] [pipeline:THREAD ID (140319643387648):pipelined:without debug output:INFO] --- clock: 5: Cycle BEGIN           ---
+[00:001:716:952] [pipeline:THREAD ID (140319643387648):pipelined:without debug output:INFO] --- clock: 5: Cycle END             ---
+[00:001:767:191] [pipeline:THREAD ID (140319643387648):pipelined:without debug output:INFO] --- clock: 6: Cycle BEGIN           ---
+[00:000:174:334] [pipeline:THREAD ID (140238462474048):sequential:without debug output:INFO] sequential
+[00:005:040:992] [pipeline:THREAD ID (140238462474048):sequential:without debug output:INFO] [Stage fetch  ]: clock: 0: fetch BEGIN, PC: 0, p->instruction_memory: [13, 0]
+[00:005:140:239] [pipeline:THREAD ID (140238462474048):sequential:without debug output:INFO] [Stage fetch  ]: clock: 0: fetch END
+[00:005:215:877] [pipeline:THREAD ID (140238462474048):sequential:without debug output:INFO] --- clock: 0: Cycle END             ---
+[00:005:278:684] [pipeline:THREAD ID (140238462474048):sequential:without debug output:INFO] --- clock: 1: Cycle BEGIN           ---
+[00:005:353:716] [pipeline:THREAD ID (140238462474048):sequential:without debug output:INFO] [Stage decode ]: clock: 1: decode BEGIN
+[00:005:457:797] [pipeline:THREAD ID (140238462474048):sequential:without debug output:INFO] [Stage decode ]: clock: 1: decode END: load
+[00:005:519:872] [pipeline:THREAD ID (140238462474048):sequential:without debug output:INFO] --- clock: 1: Cycle END             ---
+[00:005:594:714] [pipeline:THREAD ID (140238462474048):sequential:without debug output:INFO] --- clock: 2: Cycle BEGIN           ---
+[00:005:662:507] [pipeline:THREAD ID (140238462474048):sequential:without debug output:INFO] [Stage execute]: clock: 2: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 0
+[00:005:725:869] [pipeline:THREAD ID (140238462474048):sequential:without debug output:INFO] [Stage execute]: clock: 2: executing instruction: load
+[00:005:824:612] [pipeline:THREAD ID (140238462474048):sequential:without debug output:INFO] [Stage execute]: clock: 2: execute END, pipeline memory: [1, 2, 0], ACC: 1
+[00:005:886:454] [pipeline:THREAD ID (140238462474048):sequential:without debug output:INFO] --- clock: 2: Cycle END             ---
+[00:005:944:913] [pipeline:THREAD ID (140238462474048):sequential:without debug output:INFO] --- clock: 3: Cycle BEGIN           ---
+[00:000:019:093] [pipeline:THREAD ID (140238462474048):pipelined:without debug output:INFO] pipelined
+[00:000:215:689] [pipeline:THREAD ID (140238462469888):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 0: fetch BEGIN, PC: 0, p->instruction_memory: [13, 0]
+[00:000:325:194] [pipeline:THREAD ID (140238462469888):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 0: fetch END
+[00:000:610:386] [pipeline:THREAD ID (140238420506368):pipelined:without debug output:INFO] --- clock: 0: Cycle END             ---
+[00:000:715:506] [pipeline:THREAD ID (140238420506368):pipelined:without debug output:INFO] --- clock: 1: Cycle BEGIN           ---
+[00:000:925:207] [pipeline:THREAD ID (140238445684480):pipelined:without debug output:INFO] [Stage decode ]: clock: 1: decode BEGIN
+[00:001:019:259] [pipeline:THREAD ID (140238445684480):pipelined:without debug output:INFO] [Stage decode ]: clock: 1: decode END: load
+[00:001:160:578] [pipeline:THREAD ID (140238420506368):pipelined:without debug output:INFO] --- clock: 1: Cycle END             ---
+[00:001:311:680] [pipeline:THREAD ID (140238420506368):pipelined:without debug output:INFO] --- clock: 2: Cycle BEGIN           ---
+[00:001:539:645] [pipeline:THREAD ID (140238428899072):pipelined:without debug output:INFO] [Stage execute]: clock: 2: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 0
+[00:001:662:380] [pipeline:THREAD ID (140238428899072):pipelined:without debug output:INFO] [Stage execute]: clock: 2: executing instruction: load
+[00:001:793:388] [pipeline:THREAD ID (140238428899072):pipelined:without debug output:INFO] [Stage execute]: clock: 2: execute END, pipeline memory: [1, 2, 0], ACC: 1
+[00:002:059:538] [pipeline:THREAD ID (140238420506368):pipelined:without debug output:INFO] --- clock: 2: Cycle END             ---
+[00:002:177:927] [pipeline:THREAD ID (140238420506368):pipelined:without debug output:INFO] --- clock: 3: Cycle BEGIN           ---
+[00:002:547:453] [pipeline:THREAD ID (140238420506368):pipelined:without debug output:INFO] --- clock: 3: Cycle END             ---
+[00:002:639:298] [pipeline:THREAD ID (140238420506368):pipelined:without debug output:INFO] --- clock: 4: Cycle BEGIN           ---
+[00:002:851:210] [pipeline:THREAD ID (140238420506368):pipelined:without debug output:INFO] --- clock: 4: Cycle END             ---
+[00:002:966:418] [pipeline:THREAD ID (140238420506368):pipelined:without debug output:INFO] --- clock: 5: Cycle BEGIN           ---
+[00:003:984:042] [pipeline:THREAD ID (140238420506368):pipelined:without debug output:INFO] --- clock: 5: Cycle END             ---
+[00:004:072:491] [pipeline:THREAD ID (140238420506368):pipelined:without debug output:INFO] --- clock: 6: Cycle BEGIN           ---
+2020-09-11 15:14:18,022 INFO [pipeline] sequential
+[00:000:067:825] [pipeline:THREAD ID (140528078862144):sequential:without debug output:INFO] [Stage fetch  ]: clock: 0: fetch BEGIN, PC: 0, p->instruction_memory: [13, 0]
+[00:000:152:405] [pipeline:THREAD ID (140528078862144):sequential:without debug output:INFO] [Stage fetch  ]: clock: 0: fetch END
+[00:000:217:426] [pipeline:THREAD ID (140528078862144):sequential:without debug output:INFO] --- clock: 0: Cycle END             ---
+[00:000:327:275] [pipeline:THREAD ID (140528078862144):sequential:without debug output:INFO] --- clock: 1: Cycle BEGIN           ---
+[00:000:400:653] [pipeline:THREAD ID (140528078862144):sequential:without debug output:INFO] [Stage decode ]: clock: 1: decode BEGIN
+[00:000:452:218] [pipeline:THREAD ID (140528078862144):sequential:without debug output:INFO] [Stage decode ]: clock: 1: decode END: load
+[00:000:502:779] [pipeline:THREAD ID (140528078862144):sequential:without debug output:INFO] --- clock: 1: Cycle END             ---
+[00:000:541:196] [pipeline:THREAD ID (140528078862144):sequential:without debug output:INFO] --- clock: 2: Cycle BEGIN           ---
+[00:000:583:124] [pipeline:THREAD ID (140528078862144):sequential:without debug output:INFO] [Stage execute]: clock: 2: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 0
+[00:000:621:514] [pipeline:THREAD ID (140528078862144):sequential:without debug output:INFO] [Stage execute]: clock: 2: executing instruction: load
+[00:000:669:474] [pipeline:THREAD ID (140528078862144):sequential:without debug output:INFO] [Stage execute]: clock: 2: execute END, pipeline memory: [1, 2, 0], ACC: 1
+[00:000:720:277] [pipeline:THREAD ID (140528078862144):sequential:without debug output:INFO] --- clock: 2: Cycle END             ---
+[00:000:769:266] [pipeline:THREAD ID (140528078862144):sequential:without debug output:INFO] --- clock: 3: Cycle BEGIN           ---
+[00:001:095:020] [pipeline:THREAD ID (140528078862144):sequential:without debug output:INFO] pipelined
+[00:000:144:210] [pipeline:THREAD ID (140528078857984):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 0: fetch BEGIN, PC: 0, p->instruction_memory: [13, 0]
+[00:000:234:664] [pipeline:THREAD ID (140528078857984):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 0: fetch END
+[00:000:376:448] [pipeline:THREAD ID (140527966086912):pipelined:without debug output:INFO] --- clock: 0: Cycle END             ---
+[00:000:456:301] [pipeline:THREAD ID (140527966086912):pipelined:without debug output:INFO] --- clock: 1: Cycle BEGIN           ---
+[00:000:647:777] [pipeline:THREAD ID (140528062072576):pipelined:without debug output:INFO] [Stage decode ]: clock: 1: decode BEGIN
+[00:000:722:249] [pipeline:THREAD ID (140528062072576):pipelined:without debug output:INFO] [Stage decode ]: clock: 1: decode END: load
+[00:000:845:763] [pipeline:THREAD ID (140527966086912):pipelined:without debug output:INFO] --- clock: 1: Cycle END             ---
+[00:000:929:904] [pipeline:THREAD ID (140527966086912):pipelined:without debug output:INFO] --- clock: 2: Cycle BEGIN           ---
+[00:001:206:096] [pipeline:THREAD ID (140527974479616):pipelined:without debug output:INFO] [Stage execute]: clock: 2: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 0
+[00:001:280:297] [pipeline:THREAD ID (140527974479616):pipelined:without debug output:INFO] [Stage execute]: clock: 2: executing instruction: load
+[00:001:354:573] [pipeline:THREAD ID (140527974479616):pipelined:without debug output:INFO] [Stage execute]: clock: 2: execute END, pipeline memory: [1, 2, 0], ACC: 1
+[00:001:544:142] [pipeline:THREAD ID (140527966086912):pipelined:without debug output:INFO] --- clock: 2: Cycle END             ---
+[00:001:613:827] [pipeline:THREAD ID (140527966086912):pipelined:without debug output:INFO] --- clock: 3: Cycle BEGIN           ---
+[00:002:837:780] [pipeline:THREAD ID (140527966086912):pipelined:without debug output:INFO] --- clock: 3: Cycle END             ---
+[00:002:910:649] [pipeline:THREAD ID (140527966086912):pipelined:without debug output:INFO] --- clock: 4: Cycle BEGIN           ---
+[00:006:887:310] [pipeline:THREAD ID (140527966086912):pipelined:without debug output:INFO] --- clock: 4: Cycle END             ---
+[00:006:972:138] [pipeline:THREAD ID (140527966086912):pipelined:without debug output:INFO] --- clock: 5: Cycle BEGIN           ---
+[00:007:162:363] [pipeline:THREAD ID (140527966086912):pipelined:without debug output:INFO] --- clock: 5: Cycle END             ---
+[00:007:237:318] [pipeline:THREAD ID (140527966086912):pipelined:without debug output:INFO] --- clock: 6: Cycle BEGIN           ---
+2020-09-11 15:15:15,375 INFO [default] 
+[pipeline] sequential
+[00:000:082:853] [pipeline:THREAD ID (140014291527488):sequential:without debug output:INFO] [Stage fetch  ]: clock: 0: fetch BEGIN, PC: 0, p->instruction_memory: [13, 0]
+[00:000:206:121] [pipeline:THREAD ID (140014291527488):sequential:without debug output:INFO] [Stage fetch  ]: clock: 0: fetch END
+[00:000:302:148] [pipeline:THREAD ID (140014291527488):sequential:without debug output:INFO] --- clock: 0: Cycle END             ---
+[00:000:374:187] [pipeline:THREAD ID (140014291527488):sequential:without debug output:INFO] --- clock: 1: Cycle BEGIN           ---
+[00:000:449:865] [pipeline:THREAD ID (140014291527488):sequential:without debug output:INFO] [Stage decode ]: clock: 1: decode BEGIN
+[00:000:526:147] [pipeline:THREAD ID (140014291527488):sequential:without debug output:INFO] [Stage decode ]: clock: 1: decode END: load
+[00:000:594:750] [pipeline:THREAD ID (140014291527488):sequential:without debug output:INFO] --- clock: 1: Cycle END             ---
+[00:000:661:918] [pipeline:THREAD ID (140014291527488):sequential:without debug output:INFO] --- clock: 2: Cycle BEGIN           ---
+[00:000:739:573] [pipeline:THREAD ID (140014291527488):sequential:without debug output:INFO] [Stage execute]: clock: 2: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 0
+[00:000:809:650] [pipeline:THREAD ID (140014291527488):sequential:without debug output:INFO] [Stage execute]: clock: 2: executing instruction: load
+[00:000:880:545] [pipeline:THREAD ID (140014291527488):sequential:without debug output:INFO] [Stage execute]: clock: 2: execute END, pipeline memory: [1, 2, 0], ACC: 1
+[00:000:946:222] [pipeline:THREAD ID (140014291527488):sequential:without debug output:INFO] --- clock: 2: Cycle END             ---
+[00:001:011:326] [pipeline:THREAD ID (140014291527488):sequential:without debug output:INFO] --- clock: 3: Cycle BEGIN           ---
+2020-09-11 15:15:15,377 INFO [default] 
+[pipeline] pipelined
+[00:000:132:568] [pipeline:THREAD ID (140014291523328):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 0: fetch BEGIN, PC: 0, p->instruction_memory: [13, 0]
+[00:000:204:098] [pipeline:THREAD ID (140014291523328):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 0: fetch END
+[00:000:363:801] [pipeline:THREAD ID (140014180624128):pipelined:without debug output:INFO] --- clock: 0: Cycle END             ---
+[00:000:446:311] [pipeline:THREAD ID (140014180624128):pipelined:without debug output:INFO] --- clock: 1: Cycle BEGIN           ---
+[00:000:595:733] [pipeline:THREAD ID (140014274737920):pipelined:without debug output:INFO] [Stage decode ]: clock: 1: decode BEGIN
+[00:000:671:420] [pipeline:THREAD ID (140014274737920):pipelined:without debug output:INFO] [Stage decode ]: clock: 1: decode END: load
+[00:000:801:366] [pipeline:THREAD ID (140014180624128):pipelined:without debug output:INFO] --- clock: 1: Cycle END             ---
+[00:000:853:403] [pipeline:THREAD ID (140014180624128):pipelined:without debug output:INFO] --- clock: 2: Cycle BEGIN           ---
+[00:000:965:841] [pipeline:THREAD ID (140014189016832):pipelined:without debug output:INFO] [Stage execute]: clock: 2: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 0
+[00:001:037:777] [pipeline:THREAD ID (140014189016832):pipelined:without debug output:INFO] [Stage execute]: clock: 2: executing instruction: load
+[00:001:111:509] [pipeline:THREAD ID (140014189016832):pipelined:without debug output:INFO] [Stage execute]: clock: 2: execute END, pipeline memory: [1, 2, 0], ACC: 1
+[00:001:225:129] [pipeline:THREAD ID (140014180624128):pipelined:without debug output:INFO] --- clock: 2: Cycle END             ---
+[00:001:289:895] [pipeline:THREAD ID (140014180624128):pipelined:without debug output:INFO] --- clock: 3: Cycle BEGIN           ---
+[00:001:448:686] [pipeline:THREAD ID (140014180624128):pipelined:without debug output:INFO] --- clock: 3: Cycle END             ---
+[00:001:494:740] [pipeline:THREAD ID (140014180624128):pipelined:without debug output:INFO] --- clock: 4: Cycle BEGIN           ---
+[00:001:585:600] [pipeline:THREAD ID (140014180624128):pipelined:without debug output:INFO] --- clock: 4: Cycle END             ---
+[00:001:633:826] [pipeline:THREAD ID (140014180624128):pipelined:without debug output:INFO] --- clock: 5: Cycle BEGIN           ---
+[00:001:742:071] [pipeline:THREAD ID (140014180624128):pipelined:without debug output:INFO] --- clock: 5: Cycle END             ---
+[00:001:796:004] [pipeline:THREAD ID (140014180624128):pipelined:without debug output:INFO] --- clock: 6: Cycle BEGIN           ---
+2020-09-11 15:15:45,876 INFO [default] [pipeline] sequential
+[00:000:043:337] [pipeline:THREAD ID (140226452576064):sequential:without debug output:INFO] [Stage fetch  ]: clock: 0: fetch BEGIN, PC: 0, p->instruction_memory: [13, 0]
+[00:000:102:223] [pipeline:THREAD ID (140226452576064):sequential:without debug output:INFO] [Stage fetch  ]: clock: 0: fetch END
+[00:000:147:853] [pipeline:THREAD ID (140226452576064):sequential:without debug output:INFO] --- clock: 0: Cycle END             ---
+[00:000:186:299] [pipeline:THREAD ID (140226452576064):sequential:without debug output:INFO] --- clock: 1: Cycle BEGIN           ---
+[00:000:241:421] [pipeline:THREAD ID (140226452576064):sequential:without debug output:INFO] [Stage decode ]: clock: 1: decode BEGIN
+[00:000:297:031] [pipeline:THREAD ID (140226452576064):sequential:without debug output:INFO] [Stage decode ]: clock: 1: decode END: load
+[00:000:354:499] [pipeline:THREAD ID (140226452576064):sequential:without debug output:INFO] --- clock: 1: Cycle END             ---
+[00:000:405:114] [pipeline:THREAD ID (140226452576064):sequential:without debug output:INFO] --- clock: 2: Cycle BEGIN           ---
+[00:000:457:862] [pipeline:THREAD ID (140226452576064):sequential:without debug output:INFO] [Stage execute]: clock: 2: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 0
+[00:000:505:919] [pipeline:THREAD ID (140226452576064):sequential:without debug output:INFO] [Stage execute]: clock: 2: executing instruction: load
+[00:000:553:733] [pipeline:THREAD ID (140226452576064):sequential:without debug output:INFO] [Stage execute]: clock: 2: execute END, pipeline memory: [1, 2, 0], ACC: 1
+[00:000:597:407] [pipeline:THREAD ID (140226452576064):sequential:without debug output:INFO] --- clock: 2: Cycle END             ---
+[00:000:638:826] [pipeline:THREAD ID (140226452576064):sequential:without debug output:INFO] --- clock: 3: Cycle BEGIN           ---
+2020-09-11 15:15:45,880 INFO [default] [pipeline] pipelined
+[00:000:128:499] [pipeline:THREAD ID (140226452571904):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 0: fetch BEGIN, PC: 0, p->instruction_memory: [13, 0]
+[00:000:203:072] [pipeline:THREAD ID (140226452571904):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 0: fetch END
+[00:000:466:541] [pipeline:THREAD ID (140226410608384):pipelined:without debug output:INFO] --- clock: 0: Cycle END             ---
+[00:000:601:715] [pipeline:THREAD ID (140226410608384):pipelined:without debug output:INFO] --- clock: 1: Cycle BEGIN           ---
+[00:000:694:706] [pipeline:THREAD ID (140226435786496):pipelined:without debug output:INFO] [Stage decode ]: clock: 1: decode BEGIN
+[00:000:790:750] [pipeline:THREAD ID (140226435786496):pipelined:without debug output:INFO] [Stage decode ]: clock: 1: decode END: load
+[00:000:955:616] [pipeline:THREAD ID (140226410608384):pipelined:without debug output:INFO] --- clock: 1: Cycle END             ---
+[00:001:069:546] [pipeline:THREAD ID (140226410608384):pipelined:without debug output:INFO] --- clock: 2: Cycle BEGIN           ---
+[00:001:179:947] [pipeline:THREAD ID (140226419001088):pipelined:without debug output:INFO] [Stage execute]: clock: 2: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 0
+[00:001:254:914] [pipeline:THREAD ID (140226419001088):pipelined:without debug output:INFO] [Stage execute]: clock: 2: executing instruction: load
+[00:001:326:930] [pipeline:THREAD ID (140226419001088):pipelined:without debug output:INFO] [Stage execute]: clock: 2: execute END, pipeline memory: [1, 2, 0], ACC: 1
+[00:001:436:235] [pipeline:THREAD ID (140226410608384):pipelined:without debug output:INFO] --- clock: 2: Cycle END             ---
+[00:001:495:941] [pipeline:THREAD ID (140226410608384):pipelined:without debug output:INFO] --- clock: 3: Cycle BEGIN           ---
+[00:001:633:946] [pipeline:THREAD ID (140226410608384):pipelined:without debug output:INFO] --- clock: 3: Cycle END             ---
+[00:001:715:163] [pipeline:THREAD ID (140226410608384):pipelined:without debug output:INFO] --- clock: 4: Cycle BEGIN           ---
+[00:001:838:275] [pipeline:THREAD ID (140226410608384):pipelined:without debug output:INFO] --- clock: 4: Cycle END             ---
+[00:001:889:551] [pipeline:THREAD ID (140226410608384):pipelined:without debug output:INFO] --- clock: 5: Cycle BEGIN           ---
+[00:001:997:167] [pipeline:THREAD ID (140226410608384):pipelined:without debug output:INFO] --- clock: 5: Cycle END             ---
+[00:002:040:683] [pipeline:THREAD ID (140226410608384):pipelined:without debug output:INFO] --- clock: 6: Cycle BEGIN           ---
+[00:000:250:527] [pipeline:THREAD ID (140390349748032):sequential:without debug output:INFO] [Stage fetch  ]: clock: 0: fetch BEGIN, PC: 0, p->instruction_memory: [13, 0]
+[00:000:439:343] [pipeline:THREAD ID (140390349748032):sequential:without debug output:INFO] [Stage fetch  ]: clock: 0: fetch END
+[00:000:526:351] [pipeline:THREAD ID (140390349748032):sequential:without debug output:INFO] --- clock: 0: Cycle END             ---
+[00:000:590:683] [pipeline:THREAD ID (140390349748032):sequential:without debug output:INFO] --- clock: 1: Cycle BEGIN           ---
+[00:000:656:877] [pipeline:THREAD ID (140390349748032):sequential:without debug output:INFO] [Stage decode ]: clock: 1: decode BEGIN
+[00:000:721:492] [pipeline:THREAD ID (140390349748032):sequential:without debug output:INFO] [Stage decode ]: clock: 1: decode END: load
+[00:000:780:604] [pipeline:THREAD ID (140390349748032):sequential:without debug output:INFO] --- clock: 1: Cycle END             ---
+[00:000:836:676] [pipeline:THREAD ID (140390349748032):sequential:without debug output:INFO] --- clock: 2: Cycle BEGIN           ---
+[00:000:902:681] [pipeline:THREAD ID (140390349748032):sequential:without debug output:INFO] [Stage execute]: clock: 2: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 0
+[00:000:962:935] [pipeline:THREAD ID (140390349748032):sequential:without debug output:INFO] [Stage execute]: clock: 2: executing instruction: load
+[00:001:025:030] [pipeline:THREAD ID (140390349748032):sequential:without debug output:INFO] [Stage execute]: clock: 2: execute END, pipeline memory: [1, 2, 0], ACC: 1
+[00:001:084:429] [pipeline:THREAD ID (140390349748032):sequential:without debug output:INFO] --- clock: 2: Cycle END             ---
+[00:001:140:296] [pipeline:THREAD ID (140390349748032):sequential:without debug output:INFO] --- clock: 3: Cycle BEGIN           ---
+[00:000:152:727] [pipeline:THREAD ID (140390349743872):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 0: fetch BEGIN, PC: 0, p->instruction_memory: [13, 0]
+[00:000:266:019] [pipeline:THREAD ID (140390349743872):pipelined:without debug output:INFO] [Stage fetch  ]: clock: 0: fetch END
+[00:001:793:747] [pipeline:THREAD ID (140390307780352):pipelined:without debug output:INFO] --- clock: 0: Cycle END             ---
+[00:001:873:048] [pipeline:THREAD ID (140390307780352):pipelined:without debug output:INFO] --- clock: 1: Cycle BEGIN           ---
+[00:001:965:325] [pipeline:THREAD ID (140390332958464):pipelined:without debug output:INFO] [Stage decode ]: clock: 1: decode BEGIN
+[00:002:032:268] [pipeline:THREAD ID (140390332958464):pipelined:without debug output:INFO] [Stage decode ]: clock: 1: decode END: load
+[00:005:800:694] [pipeline:THREAD ID (140390307780352):pipelined:without debug output:INFO] --- clock: 1: Cycle END             ---
+[00:005:878:152] [pipeline:THREAD ID (140390307780352):pipelined:without debug output:INFO] --- clock: 2: Cycle BEGIN           ---
+[00:006:003:661] [pipeline:THREAD ID (140390316173056):pipelined:without debug output:INFO] [Stage execute]: clock: 2: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 0
+[00:006:079:253] [pipeline:THREAD ID (140390316173056):pipelined:without debug output:INFO] [Stage execute]: clock: 2: executing instruction: load
+[00:006:147:379] [pipeline:THREAD ID (140390316173056):pipelined:without debug output:INFO] [Stage execute]: clock: 2: execute END, pipeline memory: [1, 2, 0], ACC: 1
+[00:006:285:308] [pipeline:THREAD ID (140390307780352):pipelined:without debug output:INFO] --- clock: 2: Cycle END             ---
+[00:006:360:436] [pipeline:THREAD ID (140390307780352):pipelined:without debug output:INFO] --- clock: 3: Cycle BEGIN           ---
+[00:006:477:805] [pipeline:THREAD ID (140390307780352):pipelined:without debug output:INFO] --- clock: 3: Cycle END             ---
+[00:006:551:613] [pipeline:THREAD ID (140390307780352):pipelined:without debug output:INFO] --- clock: 4: Cycle BEGIN           ---
+[00:006:669:876] [pipeline:THREAD ID (140390307780352):pipelined:without debug output:INFO] --- clock: 4: Cycle END             ---
+[00:006:743:888] [pipeline:THREAD ID (140390307780352):pipelined:without debug output:INFO] --- clock: 5: Cycle BEGIN           ---
+[00:006:863:019] [pipeline:THREAD ID (140390307780352):pipelined:without debug output:INFO] --- clock: 5: Cycle END             ---
+[00:006:915:559] [pipeline:THREAD ID (140390307780352):pipelined:without debug output:INFO] --- clock: 6: Cycle BEGIN           ---
+[00:000:251:905] [pipeline:THREAD ID (140716153886528):sequential:with debug output:INFO] [Stage fetch  ]: clock: 0: fetch BEGIN, PC: 0, p->instruction_memory: [13, 0]
+[00:000:384:364] [pipeline:THREAD ID (140716153886528):sequential:with debug output:INFO] [Stage fetch  ]: clock: 0: fetch END
+[00:000:443:911] [pipeline:THREAD ID (140716153886528):sequential:with debug output:INFO] --- clock: 0: Cycle END             ---
+[00:000:507:282] [pipeline:THREAD ID (140716153886528):sequential:with debug output:INFO] --- clock: 1: Cycle BEGIN           ---
+[00:000:567:355] [pipeline:THREAD ID (140716153886528):sequential:with debug output:INFO] Flop encountered, executing due to sequential mode
+[00:000:630:352] [pipeline:THREAD ID (140716153886528):sequential:with debug output:INFO] [FLOP   ] pushing input
+[00:000:681:395] [pipeline:THREAD ID (140716153886528):sequential:with debug output:INFO] [FLOP   ] input->size(): 0
+[00:000:745:929] [pipeline:THREAD ID (140716153886528):sequential:with debug output:INFO] [FLOP   ] pushed input
+[00:000:805:103] [pipeline:THREAD ID (140716153886528):sequential:with debug output:INFO] [FLOP   ] input->size(): 1
+[00:000:867:600] [pipeline:THREAD ID (140716153886528):sequential:with debug output:INFO] [FLOP   ] input->front(): 0x55a78d705510
+[00:000:920:173] [pipeline:THREAD ID (140716153886528):sequential:with debug output:INFO] [FLOP   ] pulling input
+[00:000:980:651] [pipeline:THREAD ID (140716153886528):sequential:with debug output:INFO] [FLOP   ] input->size(): 1
+[00:001:036:515] [pipeline:THREAD ID (140716153886528):sequential:with debug output:INFO] [FLOP   ] pulled input
+[00:001:090:412] [pipeline:THREAD ID (140716153886528):sequential:with debug output:INFO] [FLOP   ] input->size(): 0
+[00:001:151:051] [pipeline:THREAD ID (140716153886528):sequential:with debug output:INFO] [FLOP   ] pushing output
+[00:001:205:432] [pipeline:THREAD ID (140716153886528):sequential:with debug output:INFO] [FLOP   ] output->size(): 0
+[00:001:253:910] [pipeline:THREAD ID (140716153886528):sequential:with debug output:INFO] [FLOP   ] pushed ouput
+[00:001:315:990] [pipeline:THREAD ID (140716153886528):sequential:with debug output:INFO] [FLOP   ] output->size(): 1
+[00:001:371:752] [pipeline:THREAD ID (140716153886528):sequential:with debug output:INFO] [FLOP   ] pulling output
+[00:001:421:728] [pipeline:THREAD ID (140716153886528):sequential:with debug output:INFO] [FLOP   ] output->size(): 1
+[00:001:478:478] [pipeline:THREAD ID (140716153886528):sequential:with debug output:INFO] [FLOP   ] pulled output
+[00:001:531:891] [pipeline:THREAD ID (140716153886528):sequential:with debug output:INFO] [FLOP   ] output->size(): 0
+[00:001:588:679] [pipeline:THREAD ID (140716153886528):sequential:with debug output:INFO] [Stage decode ]: clock: 1: decode BEGIN
+[00:001:650:308] [pipeline:THREAD ID (140716153886528):sequential:with debug output:INFO] [Stage decode ]: clock: 1: decode END: load
+[00:001:717:958] [pipeline:THREAD ID (140716153886528):sequential:with debug output:INFO] --- clock: 1: Cycle END             ---
+[00:001:785:148] [pipeline:THREAD ID (140716153886528):sequential:with debug output:INFO] --- clock: 2: Cycle BEGIN           ---
+[00:001:838:936] [pipeline:THREAD ID (140716153886528):sequential:with debug output:INFO] Flop encountered, executing due to sequential mode
+[00:001:890:133] [pipeline:THREAD ID (140716153886528):sequential:with debug output:INFO] [FLOP   ] pushing input
+[00:001:947:792] [pipeline:THREAD ID (140716153886528):sequential:with debug output:INFO] [FLOP   ] input->size(): 0
+[00:002:000:914] [pipeline:THREAD ID (140716153886528):sequential:with debug output:INFO] [FLOP   ] pushed input
+[00:002:052:754] [pipeline:THREAD ID (140716153886528):sequential:with debug output:INFO] [FLOP   ] input->size(): 1
+[00:002:106:657] [pipeline:THREAD ID (140716153886528):sequential:with debug output:INFO] [FLOP   ] input->front(): 0x55a78d7066c0
+[00:002:158:329] [pipeline:THREAD ID (140716153886528):sequential:with debug output:INFO] [FLOP   ] pulling input
+[00:002:210:009] [pipeline:THREAD ID (140716153886528):sequential:with debug output:INFO] [FLOP   ] input->size(): 1
+[00:002:263:068] [pipeline:THREAD ID (140716153886528):sequential:with debug output:INFO] [FLOP   ] pulled input
+[00:002:315:397] [pipeline:THREAD ID (140716153886528):sequential:with debug output:INFO] [FLOP   ] input->size(): 0
+[00:002:366:340] [pipeline:THREAD ID (140716153886528):sequential:with debug output:INFO] [FLOP   ] pushing output
+[00:002:417:986] [pipeline:THREAD ID (140716153886528):sequential:with debug output:INFO] [FLOP   ] output->size(): 0
+[00:002:467:457] [pipeline:THREAD ID (140716153886528):sequential:with debug output:INFO] [FLOP   ] pushed ouput
+[00:002:512:433] [pipeline:THREAD ID (140716153886528):sequential:with debug output:INFO] [FLOP   ] output->size(): 1
+[00:002:574:525] [pipeline:THREAD ID (140716153886528):sequential:with debug output:INFO] [FLOP   ] pulling output
+[00:002:623:545] [pipeline:THREAD ID (140716153886528):sequential:with debug output:INFO] [FLOP   ] output->size(): 1
+[00:002:671:114] [pipeline:THREAD ID (140716153886528):sequential:with debug output:INFO] [FLOP   ] pulled output
+[00:002:727:952] [pipeline:THREAD ID (140716153886528):sequential:with debug output:INFO] [FLOP   ] output->size(): 0
+[00:002:783:912] [pipeline:THREAD ID (140716153886528):sequential:with debug output:INFO] [Stage execute]: clock: 2: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 0
+[00:002:839:279] [pipeline:THREAD ID (140716153886528):sequential:with debug output:INFO] [Stage execute]: clock: 2: executing instruction: load
+[00:002:893:846] [pipeline:THREAD ID (140716153886528):sequential:with debug output:INFO] [Stage execute]: clock: 2: execute END, pipeline memory: [1, 2, 0], ACC: 1
+[00:002:969:115] [pipeline:THREAD ID (140716153886528):sequential:with debug output:INFO] --- clock: 2: Cycle END             ---
+[00:003:028:950] [pipeline:THREAD ID (140716153886528):sequential:with debug output:INFO] --- clock: 3: Cycle BEGIN           ---
+[00:000:156:654] [pipeline:THREAD ID (140716153882368):pipelined:with debug output:INFO] [Stage fetch  ]: STARTED
+[00:000:297:160] [pipeline:THREAD ID (140716153882368):pipelined:with debug output:INFO] [Stage fetch  ]: running stage
+[00:000:370:124] [pipeline:THREAD ID (140716153882368):pipelined:with debug output:INFO] [Stage fetch  ]: clock: 0: fetch BEGIN, PC: 0, p->instruction_memory: [13, 0]
+[00:000:431:579] [pipeline:THREAD ID (140716153882368):pipelined:with debug output:INFO] [Stage fetch  ]: clock: 0: fetch END
+[00:000:494:943] [pipeline:THREAD ID (140716153882368):pipelined:with debug output:INFO] [Stage fetch  ]: ran stage
+[00:000:556:211] [pipeline:THREAD ID (140716153882368):pipelined:with debug output:INFO] [Stage fetch  ]: input->size(): 2
+[00:000:620:088] [pipeline:THREAD ID (140716153882368):pipelined:with debug output:INFO] [Stage fetch  ]: output->size(): 1
+[00:000:678:014] [pipeline:THREAD ID (140716153882368):pipelined:with debug output:INFO] [Stage fetch  ]: popping *input->front(): 13
+[00:000:746:218] [pipeline:THREAD ID (140716153882368):pipelined:with debug output:INFO] [Stage fetch  ]: popping *input->front(): 0
+[00:000:803:176] [pipeline:THREAD ID (140716153882368):pipelined:with debug output:INFO] [Stage fetch  ]: waiting on stage end barrier
+[00:000:980:783] [pipeline:THREAD ID (140716145489664):pipelined:with debug output:INFO] [Stage flop A ]: STARTED
+[00:001:066:050] [pipeline:THREAD ID (140716120311552):pipelined:with debug output:INFO] [Stage execute]: STARTED
+[00:001:158:348] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] waiting on stage end barrier
+[00:001:248:783] [pipeline:THREAD ID (140716137096960):pipelined:with debug output:INFO] [Stage decode ]: STARTED
+[00:001:322:151] [pipeline:THREAD ID (140716145489664):pipelined:with debug output:INFO] [Stage flop A ]: waiting on flop start barrier
+[00:001:408:871] [pipeline:THREAD ID (140716128704256):pipelined:with debug output:INFO] [Stage flop B ]: STARTED
+[00:001:483:748] [pipeline:THREAD ID (140716120311552):pipelined:with debug output:WARNING] [Stage execute]: current_cycle: 0
+[00:001:559:572] [pipeline:THREAD ID (140716137096960):pipelined:with debug output:WARNING] [Stage decode ]: current_cycle: 0
+[00:001:623:817] [pipeline:THREAD ID (140716128704256):pipelined:with debug output:INFO] [Stage flop B ]: waiting on flop start barrier
+[00:001:684:567] [pipeline:THREAD ID (140716120311552):pipelined:with debug output:WARNING] [Stage execute]: should_halt: false
+[00:001:750:174] [pipeline:THREAD ID (140716137096960):pipelined:with debug output:WARNING] [Stage decode ]: should_halt: false
+[00:001:816:653] [pipeline:THREAD ID (140716120311552):pipelined:with debug output:WARNING] [Stage execute]: cycle_to_halt_on: 0
+[00:001:878:961] [pipeline:THREAD ID (140716137096960):pipelined:with debug output:WARNING] [Stage decode ]: cycle_to_halt_on: 0
+[00:001:937:877] [pipeline:THREAD ID (140716120311552):pipelined:with debug output:INFO] [Stage execute]: waiting on stage end barrier
+[00:002:003:682] [pipeline:THREAD ID (140716137096960):pipelined:with debug output:INFO] [Stage decode ]: waiting on stage end barrier
+[00:002:083:311] [pipeline:THREAD ID (140716137096960):pipelined:with debug output:INFO] [Stage decode ]: waited on stage end barrier
+[00:002:153:627] [pipeline:THREAD ID (140716120311552):pipelined:with debug output:INFO] [Stage execute]: waited on stage end barrier
+[00:002:219:049] [pipeline:THREAD ID (140716120311552):pipelined:with debug output:INFO] [Stage execute]: waiting on stage start barrier
+[00:002:278:916] [pipeline:THREAD ID (140716137096960):pipelined:with debug output:INFO] [Stage decode ]: waiting on stage start barrier
+[00:002:346:579] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] waited on stage end barrier
+[00:002:403:695] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] waiting on flop start barrier
+[00:002:472:730] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] waited on flop start barrier
+[00:002:544:854] [pipeline:THREAD ID (140716128704256):pipelined:with debug output:INFO] [Stage flop B ]: waited on flop start barrier
+[00:002:616:831] [pipeline:THREAD ID (140716145489664):pipelined:with debug output:INFO] [Stage flop A ]: waited on flop start barrier
+[00:002:683:581] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] waiting on flop end barrier
+[00:002:750:562] [pipeline:THREAD ID (140716128704256):pipelined:with debug output:INFO] [Stage flop B ]: waiting on flop end barrier
+[00:002:820:002] [pipeline:THREAD ID (140716145489664):pipelined:with debug output:INFO] [Stage flop A ]: pushing flip-flop input
+[00:002:878:132] [pipeline:THREAD ID (140716145489664):pipelined:with debug output:INFO] [FLOP   ] pushing input
+[00:002:934:089] [pipeline:THREAD ID (140716145489664):pipelined:with debug output:INFO] [FLOP   ] input->size(): 0
+[00:002:987:847] [pipeline:THREAD ID (140716145489664):pipelined:with debug output:INFO] [FLOP   ] pushed input
+[00:003:050:361] [pipeline:THREAD ID (140716145489664):pipelined:with debug output:INFO] [FLOP   ] input->size(): 1
+[00:003:103:149] [pipeline:THREAD ID (140716145489664):pipelined:with debug output:INFO] [Stage flop A ]: pushed flip-flop input
+[00:003:172:698] [pipeline:THREAD ID (140716145489664):pipelined:with debug output:INFO] [Stage flop A ]: consuming normal input
+[00:003:221:447] [pipeline:THREAD ID (140716145489664):pipelined:with debug output:INFO] [Stage flop A ]: consumed normal input
+[00:003:282:481] [pipeline:THREAD ID (140716145489664):pipelined:with debug output:INFO] [FLOP   ] input->front(): 0x55a78d705170
+[00:003:329:457] [pipeline:THREAD ID (140716145489664):pipelined:with debug output:INFO] [FLOP   ] pulling input
+[00:003:383:623] [pipeline:THREAD ID (140716145489664):pipelined:with debug output:INFO] [FLOP   ] input->size(): 1
+[00:003:436:056] [pipeline:THREAD ID (140716145489664):pipelined:with debug output:INFO] [FLOP   ] pulled input
+[00:003:488:134] [pipeline:THREAD ID (140716145489664):pipelined:with debug output:INFO] [FLOP   ] input->size(): 0
+[00:003:543:841] [pipeline:THREAD ID (140716145489664):pipelined:with debug output:INFO] [FLOP   ] pushing intermediate output
+[00:003:612:449] [pipeline:THREAD ID (140716145489664):pipelined:with debug output:INFO] [FLOP   ] intermediateOutput->size(): 0
+[00:003:674:435] [pipeline:THREAD ID (140716145489664):pipelined:with debug output:INFO] [FLOP   ] pushed intermediate output
+[00:003:749:405] [pipeline:THREAD ID (140716153882368):pipelined:with debug output:INFO] [Stage fetch  ]: waited on stage end barrier
+[00:003:832:388] [pipeline:THREAD ID (140716145489664):pipelined:with debug output:INFO] [FLOP   ] intermediateOutput->size(): 1
+[00:003:902:848] [pipeline:THREAD ID (140716145489664):pipelined:with debug output:INFO] [Stage flop A ]: waiting on flop end barrier
+[00:003:971:445] [pipeline:THREAD ID (140716145489664):pipelined:with debug output:INFO] [Stage flop A ]: waited on flop end barrier
+[00:004:047:224] [pipeline:THREAD ID (140716128704256):pipelined:with debug output:INFO] [Stage flop B ]: waited on flop end barrier
+[00:004:136:503] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] waited on flop end barrier
+[00:004:237:739] [pipeline:THREAD ID (140716145489664):pipelined:with debug output:INFO] [Stage flop A ]: waiting on flop start barrier
+[00:004:349:799] [pipeline:THREAD ID (140716128704256):pipelined:with debug output:WARNING] [Stage flop B ]: current_cycle: 0
+[00:004:448:671] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] ticking
+[00:004:517:967] [pipeline:THREAD ID (140716128704256):pipelined:with debug output:WARNING] [Stage flop B ]: should_halt: false
+[00:004:601:370] [pipeline:THREAD ID (140716128704256):pipelined:with debug output:WARNING] [Stage flop B ]: cycle_to_halt_on: 0
+[00:004:704:293] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] --- clock: 0: Cycle END             ---
+[00:004:799:153] [pipeline:THREAD ID (140716128704256):pipelined:with debug output:INFO] [Stage flop B ]: waiting on flop start barrier
+[00:004:927:289] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] --- clock: 1: Cycle BEGIN           ---
+[00:005:001:427] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] ticked
+[00:005:060:610] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] waiting on stage start barrier
+[00:005:277:442] [pipeline:THREAD ID (140716153882368):pipelined:with debug output:INFO] [Stage fetch  ]: waiting on stage start barrier
+[00:005:403:220] [pipeline:THREAD ID (140716137096960):pipelined:with debug output:INFO] [Stage decode ]: waited on stage start barrier
+[00:005:479:363] [pipeline:THREAD ID (140716153882368):pipelined:with debug output:INFO] [Stage fetch  ]: waited on stage start barrier
+[00:005:590:761] [pipeline:THREAD ID (140716120311552):pipelined:with debug output:INFO] [Stage execute]: waited on stage start barrier
+[00:005:688:706] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] waited on stage start barrier
+[00:005:792:570] [pipeline:THREAD ID (140716137096960):pipelined:with debug output:INFO] [Stage decode ]: running stage
+[00:005:915:844] [pipeline:THREAD ID (140716153882368):pipelined:with debug output:WARNING] [Stage fetch  ]: [HALTING] : input size: 0, output size: 0
+[00:006:016:068] [pipeline:THREAD ID (140716120311552):pipelined:with debug output:WARNING] [Stage execute]: current_cycle: 1
+[00:006:117:661] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] waiting on stage end barrier
+[00:006:233:900] [pipeline:THREAD ID (140716137096960):pipelined:with debug output:INFO] [Stage decode ]: clock: 1: decode BEGIN
+[00:006:327:686] [pipeline:THREAD ID (140716153882368):pipelined:with debug output:ERROR] [Stage fetch  ]: [TERMINATING] : input size: 0, output size: 0
+[00:006:443:267] [pipeline:THREAD ID (140716120311552):pipelined:with debug output:WARNING] [Stage execute]: should_halt: false
+[00:006:527:032] [pipeline:THREAD ID (140716137096960):pipelined:with debug output:INFO] [Stage decode ]: clock: 1: decode END: load
+[00:006:625:434] [pipeline:THREAD ID (140716153882368):pipelined:with debug output:ERROR] [Stage fetch  ]: [TERMINATING]
+[00:006:719:986] [pipeline:THREAD ID (140716120311552):pipelined:with debug output:WARNING] [Stage execute]: cycle_to_halt_on: 0
+[00:006:808:253] [pipeline:THREAD ID (140716137096960):pipelined:with debug output:INFO] [Stage decode ]: ran stage
+[00:006:925:893] [pipeline:THREAD ID (140716120311552):pipelined:with debug output:INFO] [Stage execute]: waiting on stage end barrier
+[00:007:023:353] [pipeline:THREAD ID (140716137096960):pipelined:with debug output:INFO] [Stage decode ]: input->size(): 1
+[00:007:133:549] [pipeline:THREAD ID (140716137096960):pipelined:with debug output:INFO] [Stage decode ]: output->size(): 1
+[00:007:218:279] [pipeline:THREAD ID (140716137096960):pipelined:with debug output:INFO] [Stage decode ]: waiting on stage end barrier
+[00:007:288:802] [pipeline:THREAD ID (140716137096960):pipelined:with debug output:INFO] [Stage decode ]: waited on stage end barrier
+[00:007:350:624] [pipeline:THREAD ID (140716120311552):pipelined:with debug output:INFO] [Stage execute]: waited on stage end barrier
+[00:007:419:731] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] waited on stage end barrier
+[00:007:484:921] [pipeline:THREAD ID (140716137096960):pipelined:with debug output:INFO] [Stage decode ]: waiting on stage start barrier
+[00:007:547:340] [pipeline:THREAD ID (140716120311552):pipelined:with debug output:INFO] [Stage execute]: waiting on stage start barrier
+[00:007:614:468] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] waiting on flop start barrier
+[00:007:667:553] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] waited on flop start barrier
+[00:007:728:545] [pipeline:THREAD ID (140716145489664):pipelined:with debug output:INFO] [Stage flop A ]: waited on flop start barrier
+[00:007:791:619] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] waiting on flop end barrier
+[00:007:864:733] [pipeline:THREAD ID (140716145489664):pipelined:with debug output:INFO] [Stage flop A ]: waiting on flop end barrier
+[00:008:010:222] [pipeline:THREAD ID (140716128704256):pipelined:with debug output:INFO] [Stage flop B ]: waited on flop start barrier
+[00:008:062:638] [pipeline:THREAD ID (140716128704256):pipelined:with debug output:INFO] [Stage flop B ]: pushing flip-flop input
+[00:008:103:015] [pipeline:THREAD ID (140716128704256):pipelined:with debug output:INFO] [FLOP   ] pushing input
+[00:008:140:323] [pipeline:THREAD ID (140716128704256):pipelined:with debug output:INFO] [FLOP   ] input->size(): 0
+[00:008:177:895] [pipeline:THREAD ID (140716128704256):pipelined:with debug output:INFO] [FLOP   ] pushed input
+[00:008:225:560] [pipeline:THREAD ID (140716128704256):pipelined:with debug output:INFO] [FLOP   ] input->size(): 1
+[00:008:267:572] [pipeline:THREAD ID (140716128704256):pipelined:with debug output:INFO] [Stage flop B ]: pushed flip-flop input
+[00:008:311:402] [pipeline:THREAD ID (140716128704256):pipelined:with debug output:INFO] [Stage flop B ]: consuming normal input
+[00:008:354:735] [pipeline:THREAD ID (140716128704256):pipelined:with debug output:INFO] [Stage flop B ]: consumed normal input
+[00:008:399:408] [pipeline:THREAD ID (140716128704256):pipelined:with debug output:INFO] [FLOP   ] input->front(): 0x55a78d705b30
+[00:008:442:558] [pipeline:THREAD ID (140716128704256):pipelined:with debug output:INFO] [FLOP   ] pulling input
+[00:008:480:143] [pipeline:THREAD ID (140716128704256):pipelined:with debug output:INFO] [FLOP   ] input->size(): 1
+[00:008:520:480] [pipeline:THREAD ID (140716128704256):pipelined:with debug output:INFO] [FLOP   ] pulled input
+[00:008:562:639] [pipeline:THREAD ID (140716128704256):pipelined:with debug output:INFO] [FLOP   ] input->size(): 0
+[00:008:604:530] [pipeline:THREAD ID (140716128704256):pipelined:with debug output:INFO] [FLOP   ] pushing intermediate output
+[00:008:647:028] [pipeline:THREAD ID (140716128704256):pipelined:with debug output:INFO] [FLOP   ] intermediateOutput->size(): 0
+[00:008:685:233] [pipeline:THREAD ID (140716128704256):pipelined:with debug output:INFO] [FLOP   ] pushed intermediate output
+[00:008:721:917] [pipeline:THREAD ID (140716128704256):pipelined:with debug output:INFO] [FLOP   ] intermediateOutput->size(): 1
+[00:008:761:398] [pipeline:THREAD ID (140716128704256):pipelined:with debug output:INFO] [Stage flop B ]: waiting on flop end barrier
+[00:008:811:828] [pipeline:THREAD ID (140716128704256):pipelined:with debug output:INFO] [Stage flop B ]: waited on flop end barrier
+[00:008:864:974] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] waited on flop end barrier
+[00:008:929:337] [pipeline:THREAD ID (140716145489664):pipelined:with debug output:INFO] [Stage flop A ]: waited on flop end barrier
+[00:009:000:389] [pipeline:THREAD ID (140716128704256):pipelined:with debug output:INFO] [Stage flop B ]: waiting on flop start barrier
+[00:009:062:097] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] ticking
+[00:009:126:825] [pipeline:THREAD ID (140716145489664):pipelined:with debug output:WARNING] [Stage flop A ]: current_cycle: 1
+[00:009:186:523] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] --- clock: 1: Cycle END             ---
+[00:009:247:972] [pipeline:THREAD ID (140716145489664):pipelined:with debug output:WARNING] [Stage flop A ]: should_halt: true
+[00:009:305:409] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] --- clock: 2: Cycle BEGIN           ---
+[00:009:365:122] [pipeline:THREAD ID (140716145489664):pipelined:with debug output:WARNING] [Stage flop A ]: cycle_to_halt_on: 1
+[00:009:422:719] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] ticked
+[00:009:482:513] [pipeline:THREAD ID (140716145489664):pipelined:with debug output:INFO] [Stage flop A ]: waiting on flop start barrier
+[00:009:541:428] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] waiting on stage start barrier
+[00:009:607:518] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] waited on stage start barrier
+[00:009:660:585] [pipeline:THREAD ID (140716137096960):pipelined:with debug output:INFO] [Stage decode ]: waited on stage start barrier
+[00:009:725:170] [pipeline:THREAD ID (140716120311552):pipelined:with debug output:INFO] [Stage execute]: waited on stage start barrier
+[00:009:791:120] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] waiting on stage end barrier
+[00:009:847:162] [pipeline:THREAD ID (140716137096960):pipelined:with debug output:WARNING] [Stage decode ]: current_cycle: 2
+[00:009:907:785] [pipeline:THREAD ID (140716120311552):pipelined:with debug output:INFO] [Stage execute]: running stage
+[00:009:980:416] [pipeline:THREAD ID (140716137096960):pipelined:with debug output:WARNING] [Stage decode ]: should_halt: false
+[00:010:049:901] [pipeline:THREAD ID (140716120311552):pipelined:with debug output:INFO] [Stage execute]: clock: 2: execute BEGIN, pipeline memory: [1, 2, 0], ACC: 0
+[00:010:113:806] [pipeline:THREAD ID (140716137096960):pipelined:with debug output:WARNING] [Stage decode ]: cycle_to_halt_on: 1
+[00:010:178:100] [pipeline:THREAD ID (140716120311552):pipelined:with debug output:INFO] [Stage execute]: clock: 2: executing instruction: load
+[00:010:237:652] [pipeline:THREAD ID (140716137096960):pipelined:with debug output:INFO] [Stage decode ]: waiting on stage end barrier
+[00:010:305:409] [pipeline:THREAD ID (140716120311552):pipelined:with debug output:INFO] [Stage execute]: clock: 2: execute END, pipeline memory: [1, 2, 0], ACC: 1
+[00:010:376:404] [pipeline:THREAD ID (140716120311552):pipelined:with debug output:INFO] [Stage execute]: ran stage
+[00:010:442:878] [pipeline:THREAD ID (140716120311552):pipelined:with debug output:INFO] [Stage execute]: input->size(): 1
+[00:010:507:897] [pipeline:THREAD ID (140716120311552):pipelined:with debug output:INFO] [Stage execute]: waiting on stage end barrier
+[00:010:594:416] [pipeline:THREAD ID (140716120311552):pipelined:with debug output:INFO] [Stage execute]: waited on stage end barrier
+[00:010:658:816] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] waited on stage end barrier
+[00:010:719:703] [pipeline:THREAD ID (140716137096960):pipelined:with debug output:INFO] [Stage decode ]: waited on stage end barrier
+[00:010:782:928] [pipeline:THREAD ID (140716120311552):pipelined:with debug output:INFO] [Stage execute]: waiting on stage start barrier
+[00:010:852:083] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] waiting on flop start barrier
+[00:010:925:320] [pipeline:THREAD ID (140716137096960):pipelined:with debug output:INFO] [Stage decode ]: waiting on stage start barrier
+[00:010:976:933] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] waited on flop start barrier
+[00:011:031:277] [pipeline:THREAD ID (140716128704256):pipelined:with debug output:INFO] [Stage flop B ]: waited on flop start barrier
+[00:011:094:632] [pipeline:THREAD ID (140716145489664):pipelined:with debug output:INFO] [Stage flop A ]: waited on flop start barrier
+[00:011:193:490] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] waiting on flop end barrier
+[00:011:257:244] [pipeline:THREAD ID (140716128704256):pipelined:with debug output:INFO] [Stage flop B ]: waiting on flop end barrier
+[00:011:318:353] [pipeline:THREAD ID (140716145489664):pipelined:with debug output:INFO] [Stage flop A ]: waiting on flop end barrier
+[00:011:400:974] [pipeline:THREAD ID (140716145489664):pipelined:with debug output:INFO] [Stage flop A ]: waited on flop end barrier
+[00:011:462:299] [pipeline:THREAD ID (140716128704256):pipelined:with debug output:INFO] [Stage flop B ]: waited on flop end barrier
+[00:011:514:489] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] waited on flop end barrier
+[00:011:580:073] [pipeline:THREAD ID (140716145489664):pipelined:with debug output:WARNING] [Stage flop A ]: current_cycle: 2
+[00:011:642:655] [pipeline:THREAD ID (140716128704256):pipelined:with debug output:WARNING] [Stage flop B ]: current_cycle: 2
+[00:011:693:073] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] ticking
+[00:011:755:993] [pipeline:THREAD ID (140716145489664):pipelined:with debug output:WARNING] [Stage flop A ]: should_halt: true
+[00:011:817:582] [pipeline:THREAD ID (140716128704256):pipelined:with debug output:WARNING] [Stage flop B ]: should_halt: false
+[00:011:870:856] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] --- clock: 2: Cycle END             ---
+[00:011:942:453] [pipeline:THREAD ID (140716145489664):pipelined:with debug output:WARNING] [Stage flop A ]: cycle_to_halt_on: 1
+[00:012:005:111] [pipeline:THREAD ID (140716128704256):pipelined:with debug output:WARNING] [Stage flop B ]: cycle_to_halt_on: 1
+[00:012:056:141] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] --- clock: 3: Cycle BEGIN           ---
+[00:012:121:684] [pipeline:THREAD ID (140716145489664):pipelined:with debug output:WARNING] [Stage flop A ]: [HALTING] : input size: 0, output size: 0
+[00:012:184:154] [pipeline:THREAD ID (140716128704256):pipelined:with debug output:INFO] [Stage flop B ]: waiting on flop start barrier
+[00:012:239:012] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] ticked
+[00:012:303:994] [pipeline:THREAD ID (140716145489664):pipelined:with debug output:ERROR] [Stage flop A ]: [TERMINATING] : input size: 0, output size: 0
+[00:012:370:325] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] waiting on stage start barrier
+[00:012:430:719] [pipeline:THREAD ID (140716145489664):pipelined:with debug output:ERROR] [Stage flop A ]: [TERMINATING]
+[00:012:490:051] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] waited on stage start barrier
+[00:012:543:796] [pipeline:THREAD ID (140716137096960):pipelined:with debug output:INFO] [Stage decode ]: waited on stage start barrier
+[00:012:607:438] [pipeline:THREAD ID (140716120311552):pipelined:with debug output:INFO] [Stage execute]: waited on stage start barrier
+[00:012:676:959] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] waiting on stage end barrier
+[00:012:734:087] [pipeline:THREAD ID (140716137096960):pipelined:with debug output:WARNING] [Stage decode ]: current_cycle: 3
+[00:012:794:674] [pipeline:THREAD ID (140716120311552):pipelined:with debug output:WARNING] [Stage execute]: current_cycle: 3
+[00:012:854:373] [pipeline:THREAD ID (140716137096960):pipelined:with debug output:WARNING] [Stage decode ]: should_halt: true
+[00:012:910:470] [pipeline:THREAD ID (140716120311552):pipelined:with debug output:WARNING] [Stage execute]: should_halt: false
+[00:012:971:153] [pipeline:THREAD ID (140716137096960):pipelined:with debug output:WARNING] [Stage decode ]: cycle_to_halt_on: 3
+[00:013:036:449] [pipeline:THREAD ID (140716120311552):pipelined:with debug output:WARNING] [Stage execute]: cycle_to_halt_on: 3
+[00:013:098:928] [pipeline:THREAD ID (140716137096960):pipelined:with debug output:INFO] [Stage decode ]: waiting on stage end barrier
+[00:013:161:229] [pipeline:THREAD ID (140716120311552):pipelined:with debug output:INFO] [Stage execute]: waiting on stage end barrier
+[00:013:244:864] [pipeline:THREAD ID (140716120311552):pipelined:with debug output:INFO] [Stage execute]: waited on stage end barrier
+[00:013:310:783] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] waited on stage end barrier
+[00:013:380:345] [pipeline:THREAD ID (140716120311552):pipelined:with debug output:INFO] [Stage execute]: waiting on stage start barrier
+[00:013:443:641] [pipeline:THREAD ID (140716137096960):pipelined:with debug output:INFO] [Stage decode ]: waited on stage end barrier
+[00:013:499:305] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] waiting on flop start barrier
+[00:013:566:894] [pipeline:THREAD ID (140716137096960):pipelined:with debug output:INFO] [Stage decode ]: waiting on stage start barrier
+[00:013:620:658] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] waited on flop start barrier
+[00:013:672:596] [pipeline:THREAD ID (140716128704256):pipelined:with debug output:INFO] [Stage flop B ]: waited on flop start barrier
+[00:013:725:228] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] waiting on flop end barrier
+[00:013:778:612] [pipeline:THREAD ID (140716128704256):pipelined:with debug output:INFO] [Stage flop B ]: waiting on flop end barrier
+[00:013:839:277] [pipeline:THREAD ID (140716128704256):pipelined:with debug output:INFO] [Stage flop B ]: waited on flop end barrier
+[00:013:889:783] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] waited on flop end barrier
+[00:013:944:335] [pipeline:THREAD ID (140716128704256):pipelined:with debug output:WARNING] [Stage flop B ]: current_cycle: 3
+[00:013:996:350] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] ticking
+[00:014:054:475] [pipeline:THREAD ID (140716128704256):pipelined:with debug output:WARNING] [Stage flop B ]: should_halt: false
+[00:014:116:055] [pipeline:THREAD ID (140716128704256):pipelined:with debug output:WARNING] [Stage flop B ]: cycle_to_halt_on: 3
+[00:014:170:002] [pipeline:THREAD ID (140716128704256):pipelined:with debug output:INFO] [Stage flop B ]: waiting on flop start barrier
+[00:014:268:020] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] --- clock: 3: Cycle END             ---
+[00:014:316:356] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] --- clock: 4: Cycle BEGIN           ---
+[00:014:360:991] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] ticked
+[00:014:399:299] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] waiting on stage start barrier
+[00:014:460:698] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] waited on stage start barrier
+[00:014:523:245] [pipeline:THREAD ID (140716137096960):pipelined:with debug output:INFO] [Stage decode ]: waited on stage start barrier
+[00:014:591:769] [pipeline:THREAD ID (140716120311552):pipelined:with debug output:INFO] [Stage execute]: waited on stage start barrier
+[00:014:661:517] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] waiting on stage end barrier
+[00:014:717:121] [pipeline:THREAD ID (140716137096960):pipelined:with debug output:WARNING] [Stage decode ]: current_cycle: 4
+[00:014:777:792] [pipeline:THREAD ID (140716120311552):pipelined:with debug output:WARNING] [Stage execute]: current_cycle: 4
+[00:014:845:521] [pipeline:THREAD ID (140716137096960):pipelined:with debug output:WARNING] [Stage decode ]: should_halt: true
+[00:014:907:839] [pipeline:THREAD ID (140716120311552):pipelined:with debug output:WARNING] [Stage execute]: should_halt: false
+[00:014:969:881] [pipeline:THREAD ID (140716137096960):pipelined:with debug output:WARNING] [Stage decode ]: cycle_to_halt_on: 3
+[00:015:032:062] [pipeline:THREAD ID (140716120311552):pipelined:with debug output:WARNING] [Stage execute]: cycle_to_halt_on: 3
+[00:015:091:903] [pipeline:THREAD ID (140716137096960):pipelined:with debug output:WARNING] [Stage decode ]: [HALTING] : input size: 0, output size: 0
+[00:015:171:570] [pipeline:THREAD ID (140716120311552):pipelined:with debug output:INFO] [Stage execute]: waiting on stage end barrier
+[00:015:244:416] [pipeline:THREAD ID (140716137096960):pipelined:with debug output:ERROR] [Stage decode ]: [TERMINATING] : input size: 0, output size: 0
+[00:015:296:324] [pipeline:THREAD ID (140716137096960):pipelined:with debug output:ERROR] [Stage decode ]: [TERMINATING]
+[00:015:369:193] [pipeline:THREAD ID (140716120311552):pipelined:with debug output:INFO] [Stage execute]: waited on stage end barrier
+[00:015:440:275] [pipeline:THREAD ID (140716120311552):pipelined:with debug output:INFO] [Stage execute]: waiting on stage start barrier
+[00:015:516:252] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] waited on stage end barrier
+[00:015:584:423] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] waiting on flop start barrier
+[00:015:666:231] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] waited on flop start barrier
+[00:015:730:755] [pipeline:THREAD ID (140716128704256):pipelined:with debug output:INFO] [Stage flop B ]: waited on flop start barrier
+[00:015:800:595] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] waiting on flop end barrier
+[00:015:869:364] [pipeline:THREAD ID (140716128704256):pipelined:with debug output:INFO] [Stage flop B ]: waiting on flop end barrier
+[00:015:929:335] [pipeline:THREAD ID (140716128704256):pipelined:with debug output:INFO] [Stage flop B ]: waited on flop end barrier
+[00:015:989:315] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] waited on flop end barrier
+[00:016:040:768] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] ticking
+[00:016:090:107] [pipeline:THREAD ID (140716128704256):pipelined:with debug output:WARNING] [Stage flop B ]: current_cycle: 4
+[00:016:141:014] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] --- clock: 4: Cycle END             ---
+[00:016:194:879] [pipeline:THREAD ID (140716128704256):pipelined:with debug output:WARNING] [Stage flop B ]: should_halt: true
+[00:016:245:584] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] --- clock: 5: Cycle BEGIN           ---
+[00:016:298:385] [pipeline:THREAD ID (140716128704256):pipelined:with debug output:WARNING] [Stage flop B ]: cycle_to_halt_on: 4
+[00:016:347:650] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] ticked
+[00:016:400:563] [pipeline:THREAD ID (140716128704256):pipelined:with debug output:INFO] [Stage flop B ]: waiting on flop start barrier
+[00:016:453:373] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] waiting on stage start barrier
+[00:016:517:380] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] waited on stage start barrier
+[00:016:581:429] [pipeline:THREAD ID (140716120311552):pipelined:with debug output:INFO] [Stage execute]: waited on stage start barrier
+[00:016:650:680] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] waiting on stage end barrier
+[00:016:713:544] [pipeline:THREAD ID (140716120311552):pipelined:with debug output:WARNING] [Stage execute]: current_cycle: 5
+[00:016:782:072] [pipeline:THREAD ID (140716120311552):pipelined:with debug output:WARNING] [Stage execute]: should_halt: false
+[00:016:845:406] [pipeline:THREAD ID (140716120311552):pipelined:with debug output:WARNING] [Stage execute]: cycle_to_halt_on: 4
+[00:016:907:599] [pipeline:THREAD ID (140716120311552):pipelined:with debug output:INFO] [Stage execute]: waiting on stage end barrier
+[00:016:986:441] [pipeline:THREAD ID (140716120311552):pipelined:with debug output:INFO] [Stage execute]: waited on stage end barrier
+[00:017:051:201] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] waited on stage end barrier
+[00:017:112:718] [pipeline:THREAD ID (140716120311552):pipelined:with debug output:INFO] [Stage execute]: waiting on stage start barrier
+[00:017:179:867] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] waiting on flop start barrier
+[00:017:237:269] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] waited on flop start barrier
+[00:017:289:863] [pipeline:THREAD ID (140716128704256):pipelined:with debug output:INFO] [Stage flop B ]: waited on flop start barrier
+[00:017:344:850] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] waiting on flop end barrier
+[00:017:399:409] [pipeline:THREAD ID (140716128704256):pipelined:with debug output:INFO] [Stage flop B ]: waiting on flop end barrier
+[00:017:454:871] [pipeline:THREAD ID (140716128704256):pipelined:with debug output:INFO] [Stage flop B ]: waited on flop end barrier
+[00:017:506:539] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] waited on flop end barrier
+[00:017:561:750] [pipeline:THREAD ID (140716128704256):pipelined:with debug output:WARNING] [Stage flop B ]: current_cycle: 5
+[00:017:612:986] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] ticking
+[00:017:672:162] [pipeline:THREAD ID (140716128704256):pipelined:with debug output:WARNING] [Stage flop B ]: should_halt: true
+[00:017:722:185] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] --- clock: 5: Cycle END             ---
+[00:017:774:910] [pipeline:THREAD ID (140716128704256):pipelined:with debug output:WARNING] [Stage flop B ]: cycle_to_halt_on: 4
+[00:017:824:885] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] --- clock: 6: Cycle BEGIN           ---
+[00:017:878:611] [pipeline:THREAD ID (140716128704256):pipelined:with debug output:WARNING] [Stage flop B ]: [HALTING] : input size: 0, output size: 0
+[00:017:929:256] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] ticked
+[00:017:982:239] [pipeline:THREAD ID (140716128704256):pipelined:with debug output:ERROR] [Stage flop B ]: [TERMINATING] : input size: 0, output size: 0
+[00:018:032:119] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] waiting on stage start barrier
+[00:018:088:102] [pipeline:THREAD ID (140716128704256):pipelined:with debug output:ERROR] [Stage flop B ]: [TERMINATING]
+[00:018:139:147] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] waited on stage start barrier
+[00:018:198:874] [pipeline:THREAD ID (140716120311552):pipelined:with debug output:INFO] [Stage execute]: waited on stage start barrier
+[00:018:267:608] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] waiting on stage end barrier
+[00:018:326:998] [pipeline:THREAD ID (140716120311552):pipelined:with debug output:WARNING] [Stage execute]: current_cycle: 6
+[00:018:394:750] [pipeline:THREAD ID (140716120311552):pipelined:with debug output:WARNING] [Stage execute]: should_halt: true
+[00:018:458:052] [pipeline:THREAD ID (140716120311552):pipelined:with debug output:WARNING] [Stage execute]: cycle_to_halt_on: 6
+[00:018:521:036] [pipeline:THREAD ID (140716120311552):pipelined:with debug output:INFO] [Stage execute]: waiting on stage end barrier
+[00:018:591:851] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] waited on stage end barrier
+[00:018:655:046] [pipeline:THREAD ID (140716120311552):pipelined:with debug output:INFO] [Stage execute]: waited on stage end barrier
+[00:018:722:887] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] waiting on flop start barrier
+[00:018:782:307] [pipeline:THREAD ID (140716120311552):pipelined:with debug output:INFO] [Stage execute]: waiting on stage start barrier
+[00:018:844:801] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] waited on flop start barrier
+[00:018:900:087] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] waiting on flop end barrier
+[00:018:961:247] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] waited on flop end barrier
+[00:019:000:517] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] ticking
+[00:019:039:127] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] --- clock: 6: Cycle END             ---
+[00:019:084:883] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] --- clock: 7: Cycle BEGIN           ---
+[00:019:144:051] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] ticked
+[00:019:198:715] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] waiting on stage start barrier
+[00:019:253:122] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] waited on stage start barrier
+[00:019:311:283] [pipeline:THREAD ID (140716120311552):pipelined:with debug output:INFO] [Stage execute]: waited on stage start barrier
+[00:019:374:463] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] waiting on stage end barrier
+[00:019:449:721] [pipeline:THREAD ID (140716120311552):pipelined:with debug output:WARNING] [Stage execute]: current_cycle: 7
+[00:019:516:871] [pipeline:THREAD ID (140716120311552):pipelined:with debug output:WARNING] [Stage execute]: should_halt: true
+[00:019:582:368] [pipeline:THREAD ID (140716120311552):pipelined:with debug output:WARNING] [Stage execute]: cycle_to_halt_on: 6
+[00:019:649:301] [pipeline:THREAD ID (140716120311552):pipelined:with debug output:WARNING] [Stage execute]: [HALTING] : input size: 0, output size: 0
+[00:019:714:927] [pipeline:THREAD ID (140716120311552):pipelined:with debug output:ERROR] [Stage execute]: [TERMINATING] : input size: 0, output size: 0
+[00:019:776:962] [pipeline:THREAD ID (140716120311552):pipelined:with debug output:ERROR] [Stage execute]: [TERMINATING]
+[00:019:852:815] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] waited on stage end barrier
+[00:019:903:944] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] waiting on flop start barrier
+[00:019:972:900] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] waited on flop start barrier
+[00:020:012:716] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] waiting on flop end barrier
+[00:020:072:270] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] waited on flop end barrier
+[00:020:115:951] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] ticking
+[00:020:154:381] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] --- clock: 7: Cycle END             ---
+[00:020:191:436] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] --- clock: 8: Cycle BEGIN           ---
+[00:020:227:755] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] ticked
+[00:020:268:492] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] waiting on stage start barrier
+[00:020:321:382] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:INFO] [TICK         ] waited on stage start barrier
+[00:020:364:740] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:WARNING] [TICK         ] [HALTING] : input size: 0, output size: 0
+[00:020:408:018] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:ERROR] [TICK         ] [TERMINATING] : pipeline memory: [1, 2, 0]
+[00:020:485:095] [pipeline:THREAD ID (140716128704256):pipelined:with debug output:ERROR] [Stage flop B ]: [TERMINATING] [COMPLETE]
+[00:020:544:647] [pipeline:THREAD ID (140716145489664):pipelined:with debug output:ERROR] [Stage flop A ]: [TERMINATING] [COMPLETE]
+[00:020:607:349] [pipeline:THREAD ID (140716137096960):pipelined:with debug output:ERROR] [Stage decode ]: [TERMINATING] [COMPLETE]
+[00:020:671:692] [pipeline:THREAD ID (140716153882368):pipelined:with debug output:ERROR] [Stage fetch  ]: [TERMINATING] [COMPLETE]
+[00:020:740:235] [pipeline:THREAD ID (140716111918848):pipelined:with debug output:ERROR] [TICK         ] [TERMINATING] [COMPLETE]
+[00:020:802:472] [pipeline:THREAD ID (140716120311552):pipelined:with debug output:ERROR] [Stage execute]: [TERMINATING] [COMPLETE]
