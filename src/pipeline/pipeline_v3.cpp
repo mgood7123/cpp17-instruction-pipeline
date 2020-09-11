@@ -694,50 +694,46 @@ struct Pipeline {
     TickCallback tickcallback = PipelineLambdaTickCallback {
         const char * tick_stage = "TICK         ";
         while(!current_halt->load()) {
-            PipelinePrintIf(pipeline->debug_output) << "[" << tick_stage << "]" << " sleeping for 50 milliseconds";
-            std::this_thread::sleep_for(50ms);
-            PipelinePrintIf(pipeline->debug_output) << "[" << tick_stage << "]" << " slept for 50 milliseconds";
-            
             // a tick must wait for the all other stages to reach their end
             
-            PipelinePrintIf(true) << "[" << tick_stage << "]" << " waiting on stage end barrier";
+            PipelinePrintIf(pipeline->debug_output) << "[" << tick_stage << "]" << " waiting on stage end barrier";
             pipeline->stage_end_barrier.wait();
-            PipelinePrintIf(true) << "[" << tick_stage << "]" << " waited on stage end barrier";
+            PipelinePrintIf(pipeline->debug_output) << "[" << tick_stage << "]" << " waited on stage end barrier";
             
             // all other stages have ended
             
             // start flop stages
             
-            PipelinePrintIf(true) << "[" << tick_stage << "]" << " waiting on flop start barrier";
+            PipelinePrintIf(pipeline->debug_output) << "[" << tick_stage << "]" << " waiting on flop start barrier";
             pipeline->flop_start_barrier.wait();
-            PipelinePrintIf(true) << "[" << tick_stage << "]" << " waited on flop start barrier";
+            PipelinePrintIf(pipeline->debug_output) << "[" << tick_stage << "]" << " waited on flop start barrier";
             
             // wait for flop stages to end before ticking
             
-            PipelinePrintIf(true) << "[" << tick_stage << "]" << " waiting on flop end barrier";
+            PipelinePrintIf(pipeline->debug_output) << "[" << tick_stage << "]" << " waiting on flop end barrier";
             pipeline->flop_end_barrier.wait();
-            PipelinePrintIf(true) << "[" << tick_stage << "]" << " waited on flop end barrier";
+            PipelinePrintIf(pipeline->debug_output) << "[" << tick_stage << "]" << " waited on flop end barrier";
 
-            PipelinePrintIf(true) << "[" << tick_stage << "]" << " ticking";
+            PipelinePrintIf(pipeline->debug_output) << "[" << tick_stage << "]" << " ticking";
             pipeline->cycleFunc(pipeline);
-            PipelinePrintIf(true) << "[" << tick_stage << "]" << " ticked";
+            PipelinePrintIf(pipeline->debug_output) << "[" << tick_stage << "]" << " ticked";
             
             // a tick must wait for the all other stages to start up again
             
-            PipelinePrintIf(true) << "[" << tick_stage << "]" << " waiting on stage start barrier";
+            PipelinePrintIf(pipeline->debug_output) << "[" << tick_stage << "]" << " waiting on stage start barrier";
             pipeline->stage_start_barrier.wait();
-            PipelinePrintIf(true) << "[" << tick_stage << "]" << " waited on stage start barrier";
+            PipelinePrintIf(pipeline->debug_output) << "[" << tick_stage << "]" << " waited on stage start barrier";
             
             // all other stages have started up again
         }
         
-        PipelineFPrintIf(WARNING, true) << "[" << tick_stage << "]" << " [HALTING] : input size: 0, output size: 0";
-        PipelineFPrintIf(ERROR, true) << "[" << tick_stage << "]" << " [TERMINATING] : pipeline memory: " << pipeline->data_memory;
+        PipelineFPrintIf(WARNING, pipeline->debug_output) << "[" << tick_stage << "]" << " [HALTING] : input size: 0, output size: 0";
+        PipelineFPrintIf(ERROR, pipeline->debug_output) << "[" << tick_stage << "]" << " [TERMINATING] : pipeline memory: " << pipeline->data_memory;
         pipeline->flop_start_barrier.wait_and_terminate();
         pipeline->flop_end_barrier.wait_and_terminate();
         pipeline->stage_end_barrier.wait_and_terminate();
         pipeline->stage_start_barrier.wait_and_terminate();
-        PipelineFPrintIf(ERROR, true) << "[" << tick_stage << "]" << " [TERMINATING] [COMPLETE]";
+        PipelineFPrintIf(ERROR, pipeline->debug_output) << "[" << tick_stage << "]" << " [TERMINATING] [COMPLETE]";
     };
     
     TaskCallback callback = PipelineLambdaCallback {
@@ -762,17 +758,17 @@ struct Pipeline {
             while(true) { // LOOP START
                 if (functions.this_stage_is_flip_flop) {
                     // if this stage is a flip flop
-                    PipelinePrintStageIf(true, functions.index_of_this_stage) << "waiting on flop start barrier";
+                    PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << "waiting on flop start barrier";
                     pipeline->flop_start_barrier.wait();
-                    PipelinePrintStageIf(true, functions.index_of_this_stage) << "waited on flop start barrier";
+                    PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << "waited on flop start barrier";
                 }
                 if (input->size() == 0) {
                     // we do not have input
                     if (functions.this_stage_is_flip_flop) {
                         // if this stage is a flip flop
-                        PipelinePrintStageIf(true, functions.index_of_this_stage) << "waiting on flop end barrier";
+                        PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << "waiting on flop end barrier";
                         pipeline->flop_end_barrier.wait();
-                        PipelinePrintStageIf(true, functions.index_of_this_stage) << "waited on flop end barrier";
+                        PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << "waited on flop end barrier";
                     }
                     if (output == nullptr ? true : output->size() == 0) {
                         // we can halt safely if we have NO input and NO output to send
@@ -790,9 +786,9 @@ struct Pipeline {
                             int current_cycle = pipeline->Current_Cycle[0];
                             int cycle_to_halt_on = halted_cycle->load();
                             bool should_halt = current_halt->load();
-                            PipelineFPrintStageIf(WARNING, true, functions.index_of_this_stage) << PipelinePrintModifiersPrintValue(current_cycle);
-                            PipelineFPrintStageIf(WARNING, true, functions.index_of_this_stage) << PipelinePrintModifiersAlphaBool(should_halt);
-                            PipelineFPrintStageIf(WARNING, true, functions.index_of_this_stage) << PipelinePrintModifiersPrintValue(cycle_to_halt_on);
+                            PipelineFPrintStageIf(WARNING, pipeline->debug_output, functions.index_of_this_stage) << PipelinePrintModifiersPrintValue(current_cycle);
+                            PipelineFPrintStageIf(WARNING, pipeline->debug_output, functions.index_of_this_stage) << PipelinePrintModifiersAlphaBool(should_halt);
+                            PipelineFPrintStageIf(WARNING, pipeline->debug_output, functions.index_of_this_stage) << PipelinePrintModifiersPrintValue(cycle_to_halt_on);
                             if (current_cycle > cycle_to_halt_on && should_halt) {
                                 // if we have recieved a halt
                                 // then jump to halt
@@ -802,12 +798,12 @@ struct Pipeline {
                     }
                     if (!functions.this_stage_is_flip_flop) {
                         // if this stage is not a flip flop
-                        PipelinePrintStageIf(true, functions.index_of_this_stage) << "waiting on stage end barrier";
+                        PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << "waiting on stage end barrier";
                         pipeline->stage_end_barrier.wait();
-                        PipelinePrintStageIf(true, functions.index_of_this_stage) << "waited on stage end barrier";
-                        PipelinePrintStageIf(true, functions.index_of_this_stage) << "waiting on stage start barrier";
+                        PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << "waited on stage end barrier";
+                        PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << "waiting on stage start barrier";
                         pipeline->stage_start_barrier.wait();
-                        PipelinePrintStageIf(true, functions.index_of_this_stage) << "waited on stage start barrier";
+                        PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << "waited on stage start barrier";
                     }
                 } else {
                     // we have input
@@ -909,12 +905,12 @@ struct Pipeline {
                         } else {
                             input->pop();
                         }
-                        PipelinePrintStageIf(true, functions.index_of_this_stage) << "waiting on stage end barrier";
+                        PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << "waiting on stage end barrier";
                         pipeline->stage_end_barrier.wait();
-                        PipelinePrintStageIf(true, functions.index_of_this_stage) << "waited on stage end barrier";
-                        PipelinePrintStageIf(true, functions.index_of_this_stage) << "waiting on stage start barrier";
+                        PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << "waited on stage end barrier";
+                        PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << "waiting on stage start barrier";
                         pipeline->stage_start_barrier.wait();
-                        PipelinePrintStageIf(true, functions.index_of_this_stage) << "waited on stage start barrier";
+                        PipelinePrintStageIf(pipeline->debug_output, functions.index_of_this_stage) << "waited on stage start barrier";
                     }
                 }
             } // LOOP END
@@ -945,7 +941,7 @@ struct Pipeline {
         if (input != nullptr) CHECK_EQ(input->size(), 0);
         if (output != nullptr) CHECK_EQ(output->size(), 0);
         
-        PipelineFPrintStageIf(ERROR, true, functions.index_of_this_stage) << "[TERMINATING]";
+        PipelineFPrintStageIf(ERROR, pipeline->debug_output, functions.index_of_this_stage) << "[TERMINATING]";
         while(true) {
             if (functions.this_stage_is_flip_flop) {
                 // if this stage is a flip flop
@@ -959,7 +955,7 @@ struct Pipeline {
                 if (ret_1 == Barrier::return_code_terminated && ret_2 == Barrier::return_code_terminated) break;
             }
         }
-        PipelineFPrintStageIf(ERROR, true, functions.index_of_this_stage) << "[TERMINATING] [COMPLETE]";
+        PipelineFPrintStageIf(ERROR, pipeline->debug_output, functions.index_of_this_stage) << "[TERMINATING] [COMPLETE]";
     };
 
     void add(Task task) {
@@ -1166,7 +1162,7 @@ struct Instructions {
 };
 
 void simplePipeline(bool sequential) {
-    Pipeline<int, 1> pipeline(true);
+    Pipeline<int, 1> pipeline(false);
     
     struct registers {
         int clocktmp = 0;
