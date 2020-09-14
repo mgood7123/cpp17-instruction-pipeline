@@ -1,3 +1,5 @@
+// TODO optimize and reduce pipeline latency
+
 #include <mutex>
 #include <condition_variable>
 struct Barrier {
@@ -1163,7 +1165,7 @@ struct Instructions {
 };
 
 void simplePipeline(bool sequential) {
-    Pipeline<int, 1> pipeline(false);
+    Pipeline<int, 1> pipeline(true);
     
     struct registers {
         int clocktmp = 0;
@@ -1197,7 +1199,7 @@ void simplePipeline(bool sequential) {
         PipelinePrintStage(i) << "clock: " << reg->clock << ": fetch BEGIN, PC: " << reg->PC
         << ", " << PipelinePrintModifiersPrintValue(p->instruction_memory);
         
-        std::this_thread::sleep_for(250ms);
+//         std::this_thread::sleep_for(50ms);
         
         // in the fetch stage:
         
@@ -1218,7 +1220,7 @@ void simplePipeline(bool sequential) {
         struct registers * reg = static_cast<struct registers*>(p->externalData);
         PipelinePrintStage(i) << "clock: " << reg->clock << ": decode BEGIN";
         
-        std::this_thread::sleep_for(250ms);
+//         std::this_thread::sleep_for(50ms);
         // in the decode stage:
         
         // first we need context
@@ -1243,8 +1245,8 @@ void simplePipeline(bool sequential) {
         struct registers * reg = static_cast<struct registers*>(p->externalData);
         PipelinePrintStage(i) << "clock: " << reg->clock << ": execute BEGIN, "
             << "pipeline memory: " << p->data_memory << ", ACC: " << reg->ACC;
-            
-        std::this_thread::sleep_for(250ms);
+        
+//         std::this_thread::sleep_for(50ms);
         // in the execute stage:
         
         // R3 points to the instruction to execute
@@ -1279,10 +1281,61 @@ void simplePipeline(bool sequential) {
     pipeline.instruction_memory = {
         // load the contents of memory location of 0 into the accumulator
         Instructions::load, 0,
-        // add the contents of memory location 1 to what ever is in the accumulator
-        Instructions::add, 1,
-        // store what ever is in the accumulator back back into location 2
-        Instructions::store, 2
+        Instructions::load, 0,
+        Instructions::load, 0,
+        Instructions::load, 0,
+        Instructions::load, 0,
+        Instructions::load, 0,
+        Instructions::load, 0,
+        Instructions::load, 0,
+        Instructions::load, 0,
+        Instructions::load, 0,
+        Instructions::load, 0,
+        Instructions::load, 0,
+        Instructions::load, 0,
+        Instructions::load, 0,
+        Instructions::load, 0,
+        Instructions::load, 0,
+        Instructions::load, 0,
+        Instructions::load, 0,
+        Instructions::load, 0,
+        Instructions::load, 0,
+        Instructions::load, 0,
+        Instructions::load, 0,
+        Instructions::load, 0,
+        Instructions::load, 0,
+        Instructions::load, 0,
+        Instructions::load, 0,
+        Instructions::load, 0,
+        Instructions::load, 0,
+        Instructions::load, 0,
+        Instructions::load, 0,
+        Instructions::load, 0,
+        Instructions::load, 0,
+        Instructions::load, 0,
+        Instructions::load, 0,
+        Instructions::load, 0,
+        Instructions::load, 0,
+        Instructions::load, 0,
+        Instructions::load, 0,
+        Instructions::load, 0,
+        Instructions::load, 0,
+        Instructions::load, 0,
+        Instructions::load, 0,
+        Instructions::load, 0,
+        Instructions::load, 0,
+        Instructions::load, 0,
+        Instructions::load, 0,
+        Instructions::load, 0,
+        Instructions::load, 0,
+        Instructions::load, 0,
+        Instructions::load, 0,
+        Instructions::load, 0,
+        Instructions::load, 0,
+        Instructions::load, 0,
+        Instructions::load, 0,
+        Instructions::load, 0,
+        Instructions::load, 0
     };
     
     pipeline.data_memory = {
@@ -1297,6 +1350,6 @@ void simplePipeline(bool sequential) {
 int main() {
     el::Loggers::addFlag(el::LoggingFlag::ColoredTerminalOutput);
     simplePipeline(true);
-    simplePipeline(false);
+//     simplePipeline(false);
     return 0;
 }

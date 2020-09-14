@@ -1,0 +1,7 @@
+/home/smallville7123/AndroidCompositor/app/src/main/jni/GLIS/dependancies/pipeline/dependancies/textEdit/debug_BUILD/CMakeFiles/rebuild_cache.dir
+/home/smallville7123/AndroidCompositor/app/src/main/jni/GLIS/dependancies/pipeline/dependancies/textEdit/debug_BUILD/CMakeFiles/edit_cache.dir
+/home/smallville7123/AndroidCompositor/app/src/main/jni/GLIS/dependancies/pipeline/dependancies/textEdit/debug_BUILD/testBuilder/CMakeFiles/rebuild_cache.dir
+/home/smallville7123/AndroidCompositor/app/src/main/jni/GLIS/dependancies/pipeline/dependancies/textEdit/debug_BUILD/testBuilder/CMakeFiles/edit_cache.dir
+/home/smallville7123/AndroidCompositor/app/src/main/jni/GLIS/dependancies/pipeline/dependancies/textEdit/debug_BUILD/src/CMakeFiles/edit_cache.dir
+/home/smallville7123/AndroidCompositor/app/src/main/jni/GLIS/dependancies/pipeline/dependancies/textEdit/debug_BUILD/src/CMakeFiles/rebuild_cache.dir
+/home/smallville7123/AndroidCompositor/app/src/main/jni/GLIS/dependancies/pipeline/dependancies/textEdit/debug_BUILD/src/CMakeFiles/testBuilder_executables_textEditDemo.dir

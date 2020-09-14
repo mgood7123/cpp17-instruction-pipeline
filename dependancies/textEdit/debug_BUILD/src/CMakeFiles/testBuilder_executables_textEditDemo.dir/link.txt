@@ -1,0 +1,1 @@
+/usr/bin/c++  -g3 -O0   CMakeFiles/testBuilder_executables_textEditDemo.dir/textEdit.cpp.o  -o testBuilder_executables_textEditDemo  -lncurses 
