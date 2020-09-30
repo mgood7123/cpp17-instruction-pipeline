@@ -1,0 +1,21 @@
+{
+  "Tasks": [
+    {
+      "Command": {
+        "Cwd": "/home/smallville7123/AndroidCompositor/app/src/main/jni/GLIS/dependancies/pipeline",
+        "Exec": "make debug"
+      },
+      "Group": "build",
+      "Name": "Main"
+    },
+    {
+      "Command": {
+        "Cwd": "/home/smallville7123/AndroidCompositor/app/src/main/jni/GLIS/dependancies/pipeline",
+        "Exec": "debug_EXECUTABLE/pipeline"
+      },
+      "Group": "run",
+      "Name": "Main"
+    }
+  ],
+  "Version": 2
+}

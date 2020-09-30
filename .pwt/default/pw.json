@@ -1,0 +1,19 @@
+{
+  "Analysis": [
+    {
+      ".": {
+        "Arguments": {
+          "C": {
+            "Args": "-fexceptions -D ELPP_THREAD_SAFE -D ELPP_FORCE_USE_STD_THREAD -D ELPP_STL_LOGGING -std=c++17 -fexceptions -I dependancies/SPSCQueue/include/ -I dependancies/easyloggingpp/src",
+            "Compiler": "gcc"
+          }
+        },
+        "BundledHeaders": {
+          "IncludeLIBC": true,
+          "IncludeOpenMP": true
+        }
+      }
+    }
+  ],
+  "Version": 1
+}
